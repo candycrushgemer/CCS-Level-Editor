@@ -1,0 +1,653 @@
+<html>
+    <!-- Download stuff -->
+    <head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Level Editor</title>
+        <link rel="icon" href="/logo.png">
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        <link href="ui-fluent.css" rel="stylesheet" type="text/css" />
+        <link href="fonts.css" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.jsdelivr.net/npm/underscore@1.12.0/underscore-min.js"></script>
+        
+        <meta content="Web Candy Crush Level Editor" property="og:title">
+        <meta content="Level editor for candy crush that can be used to export levels in your browser" property="og:description">
+        <meta content="Candy Crush Level Editor" property="og:site_name">
+        <version>1.9</version>
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+        <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <script type="importmap">
+            {
+                "imports": {
+                    "@material/web/": "https://esm.run/@material/web/"
+                }
+            }
+        </script>
+        <script type="module">
+            import '@material/web/all.js';
+            import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+
+            document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+        </script>
+        
+        <script id="mduiAccent">
+            document.addEventListener('DOMContentLoaded', () => {
+                // Ensure mdui is available before calling setColorScheme
+                if (typeof mdui !== 'undefined') {
+                    mdui.setColorScheme('#7ac8ef');
+                } else {
+                    console.error('MDUI is not loaded.');
+                }
+            });
+        </script>
+        <!-- Filled -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Outlined -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+        <!-- Rounded -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+        <!-- Sharp -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+        <!-- Two Tone -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone" rel="stylesheet">
+        <link id="mwcaccent" rel="stylesheet" href="/mat-accent-color-light.css">
+        <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.4.0/index.js"></script>
+        <script>
+            // Function to detect if the user is on a mobile device
+            function isMobileDevice() {
+                return /Mobi|Android/i.test(navigator.userAgent);
+            }
+        
+            // Function to detect if the user is on a tablet or desktop
+            function isTabletOrDesktop() {
+                return !isMobileDevice() || (window.innerWidth >= 768); // Assuming tablets have a width of 768px or more
+            }
+        
+            // Redirect logic
+            window.onload = function() {
+                const currentPath = window.location.pathname;
+        
+                console.log("Current Path:", currentPath);
+                console.log("Is Mobile Device:", isMobileDevice());
+                console.log("Is Tablet or Desktop:", isTabletOrDesktop());
+        
+                if (isMobileDevice() && currentPath.endsWith('editor.html')) {
+                    // If on mobile and currently on editor.html, redirect to index-mobile.html
+                    console.log("Redirecting to index-mobile.html");
+                    window.location.href = 'index-mobile.html';
+                } else if (isTabletOrDesktop() && currentPath.endsWith('index-mobile.html')) {
+                    // If on tablet/desktop and currently on index-mobile.html, redirect to editor.html
+                    console.log("Redirecting to editor.html");
+                    window.location.href = 'editor.html';
+                }
+            };
+        </script>
+        <script src="
+        https://cdn.jsdelivr.net/npm/ace-builds@1.38.0/src-noconflict/snippets/python.min.js
+        "></script>
+        <link href="
+        https://cdn.jsdelivr.net/npm/ace-builds@1.38.0/css/ace.min.css
+        " rel="stylesheet">        
+    </head>
+
+    <body style="margin: 0;">
+        <div class="overlay-loading" style="background-color: #ffffffb9; backdrop-filter: blur(30px);">
+            <loading-block size="card-large" style="height: 50%; width: 70%;"></loading-block>
+        </div>
+        <script>
+            window.onload = function() {
+                document.body.classList.add('fade-in'); // Add the fade-in class
+                const loadingOverlay = document.querySelector('.overlay-loading'); // Select the loading overlay
+                
+                // Set a timeout to hide the loading overlay after 1 second
+                setTimeout(() => {
+                    loadingOverlay.style.display = 'none'; // Hide the loading overlay
+                }, 1000); // 1000 milliseconds = 1 second
+            };
+        </script>
+        <script src="script.js" defer></script>
+        <mdui-navigation-drawer modal close-on-esc close-on-overlay-click contained class="beginning-navd" style="position: fixed;">
+            <div class="content-navdrawer" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+                <button class="icon-button close-navdrawer"></button>
+                <h2>Welcome to Level Editor!</h2>
+                <p>Click anywhere outside the navigation drawer to start making levels!</p>
+                <md-list-item class="newlevelbigbtn" style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-radius: 20px; user-select: none;">
+                    <span class="sf-icon" slot="start"></span>Create new level
+                </md-list-item>
+                <md-list-item class="openlevelbigbtn" style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-radius: 20px; margin-top: 3pt; user-select: none;">
+                    <span class="sf-icon" slot="start">Ǆ</span>Open a level
+                </md-list-item>
+                <div class="navd-end" style="position: absolute; bottom: 15;"> 
+                    <button class="icon-button settings-btn"><span class="sf-icon">菱</span></button>
+                    <p style="font-size: smaller;">© Copyright 2025. Made with ❤️ by Blakiemon and other people.
+                        <a class="footer-href" href="https://discord.gg/kqq5Tx4XcM">Discord server</a> • <a class="footer-href" href="https://forms.gle/XMkahmBmzxN2HUEN9">Bug reports</a>
+                    </p>
+                </div>
+            </div>
+        </mdui-navigation-drawer>
+          
+            <mdui-layout-main class="example-layout-main" style="height: 100vh; display: flex; align-items: center; justify-content: center;  background: linear-gradient(339deg,rgba(207, 212, 255, 1) 0%, rgba(255, 255, 255, 1) 100%); position: absolute; top:0; width: 100vw;">
+                <div class="center">
+                    <div class="card"><img src="logo-horizontal.png" width="90px" draggable="false" style="margin-left: 10px; margin-top: 10px;">
+                        <h1>Login to Level Editor</h1>
+                        <form id="login-form">
+                            <div class="textbox-login">
+                                <span class="sf-icon" style="font-size: larger;"></span>
+                                <input type="email" placeholder="Email" name="email" id="login-email" required>
+                            </div>
+                            <br>
+                            <div class="textbox-login">
+                                <span class="sf-icon" style="font-size: larger;"></span>
+                                <input type="password" placeholder="Password" name="password" id="login-password" required>
+                                <button class="icon-button" id="show-password"></button>
+                            </div>
+                            <br>
+                            <div class="buttons" style="display: flex; flex-direction: row; justify-content: space-between;">
+                                <button class="filled-button" type="submit" id="signin">Sign in</button>
+                                <button class="outlined-button" onclick="window.location.href = 'signup.html'">Sign up</button>
+                            </div>
+                            <br>
+                            <md-outlined-button id="google-login" style="width: 100%;"><img slot="icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png" alt="">Sign in with Google</md-outlined-button>
+                        </form>
+                    </div>
+                    <br>
+                    <div class="hrefs" style="display: flex; gap: 20px;">
+                        <a href="documentation.html#legal" class="footer-href">Legal</a>
+                        <a href="documentation.html#legal" class="footer-href">Terms of Services</a>
+                        <a href="javascript:void(0)" class="footer-href" id="creditsBtn">Credits</a>
+                        <a href="javascript:void(0)" class="footer-href" style="pointer-events: none; opacity: 0.5;">Version 1.9</a>
+                    </div>
+                </div>
+
+                <!--Credits-->
+                <div class="credits-dialog close" id="creditsBackdrop">
+                    <div class="dialog close" id="creditsDialog">
+                        <div class="content">
+                            <div class="header">
+                                <h1>Credits</h1>
+                                <div class="buttons"><md-icon-button id="creditscloseBtn">
+                                    <md-icon>close</md-icon>
+                                </md-icon-button></div>
+                            </div>
+                            <div class="content-inside">
+                                <md-list-item style="background-color: rgba(255, 145, 145, 0.267); border-radius: 15px; color: #810000; --md-list-item-label-text-font: 'Inter';">
+                                    <md-icon slot="start" style="color: #810000;">info</md-icon>
+                                    <span style="color: #810000;">All right go to King Limited. If they so chose this editor may be taken down at any time.</span>
+                                </md-list-item>
+                                <p>Don't forget these cool guys who worked hard to make this editor!</p>
+                                <md-list style="--md-list-item-label-text-font: 'Inter'; background-color: #00000000;">
+                                    <md-list-item>
+                                        <md-icon slot="start">account_circle</md-icon>
+                                        Blakiemon
+                                        <div slot="supporting-text">The first person to create this tool</div>
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-list-item>
+                                        <md-icon slot="start">account_circle</md-icon>
+                                        Fence
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-list-item>
+                                        <md-icon slot="start">account_circle</md-icon>
+                                        Candy Crush Gemer
+                                        <div slot="supporting-text">Remaking this tool</div>
+                                    </md-list-item>
+                                </md-list>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <forge-dialog class="settings-fulldialog" style="--forge-dialog-shape: 30px; --forge-dialog-background: var(--md-sys-color-surface-container-high); width: 90vh;">
+                    <forge-scaffold style="margin: 0; width: 700px; height: 700px;">
+                        <mdui-layout slot="body">
+                            <mdui-top-app-bar style="background-color: #00000000;">
+                                <button class="icon-button close-settings"></button>
+                                <mdui-top-app-bar-title><strong>Settings</strong></mdui-top-app-bar-title>
+                                <div style="flex-grow: 1"></div>
+                            </mdui-top-app-bar>
+                            <mdui-layout-main>
+                                <md-list style="margin: 20px; margin-top: 0; display: flex; flex-direction: column; background-color: #00000000; gap: 3px;">
+                                    <md-list-item style="background-color: var(--md-sys-color-background); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;">
+                                        Enable dark mode
+                                        <forge-switch id="switchDark" icon="none" slot="end" style="--forge-switch-track-on-color: var(--md-sys-color-inverse-primary); --forge-switch-handle-on-color: var(--md-sys-color-primary);"></forge-switch>
+                                    </md-list-item>
+                                    <forge-expansion-panel>
+                                        <md-list-item slot="header" style="background-color: var(--md-sys-color-background); border-radius: 5px;">
+                                            Music and sound
+                                            <div style="display: flex; place-items: center; gap: 10px;" slot="end">
+                                                <span class="sf-icon"></span>
+                                            </div>
+                                        </md-list-item>
+                                        <div style="margin-left: 15px; padding: 10px; overflow: hidden;">
+                                            <forge-split-view id="musicConfig" auto-close-threshold="120" style="height: 300px;">
+                                                <forge-split-view-panel>
+                                                  <div>
+                                                    <md-list>
+                                                        <md-list-item id="candy-fantasia" type="link" href="javascript:void(0)"> <md-icon slot="start">music_note</md-icon> Candy Fantasia </md-list-item>
+                                                        <md-list-item id="candy-caravan" type="link" href="javascript:void(0)"> <md-icon slot="start">music_note</md-icon> Candy Caravan </md-list-item>
+                                                        <md-list-item id="frosted-brain" type="link" href="javascript:void(0)"> <md-icon slot="start">music_note</md-icon> Frosted Brain </md-list-item>
+                                                        <md-list-item id="candy-hour" type="link" href="javascript:void(0)"> <md-icon slot="start">music_note</md-icon> Candy Hour </md-list-item>
+                                                        <md-list-item id="pop-the-candy" type="link" href="javascript:void(0)"> <md-icon slot="start">music_note</md-icon> Pop The Candy </md-list-item>
+                                                    </md-list>
+                                                  </div>
+                                                </forge-split-view-panel>
+                                                <forge-split-view-panel size="350">
+                                                  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                                    <md-list-item style="background-color: var(--md-sys-color-secondary-container); border-radius: 20px; width: 90%;">
+                                                        <md-icon slot="start">music_note</md-icon>
+                                                        <div slot="headline" id="songName">?</div>
+                                                        <md-icon-button slot="end" id="playSong">
+                                                            <md-icon>play_arrow</md-icon>
+                                                        </md-icon-button>
+                                                    </md-list-item>
+                                                    <audio id="musicMain" loop>
+                                                        <source id="musicSrc" src="audio/songs/Editor_Song_Theme_Candy_Fantasia.ogg" type="audio/ogg">
+                                                    </audio>
+                                                    <md-list-item>
+                                                        <md-icon-button id="mute" slot="start">
+                                                            <md-icon>volume_up</md-icon>
+                                                        </md-icon-button>
+                                                        <md-slider id="volumeCustomize" min="0" max="1" step="0.01" value="1"></md-slider>
+                                                    </md-list-item>
+                                                  </div>
+                                                </forge-split-view-panel>
+                                            </forge-split-view>
+                                            <md-divider></md-divider>
+                                            <md-list-item>
+                                                Enable clicking sound
+                                                <forge-switch id="switchClick" icon="none" slot="end" style="--forge-switch-track-on-color: var(--md-sys-color-inverse-primary); --forge-switch-handle-on-color: var(--md-sys-color-primary);"></forge-switch>
+                                            </md-list-item>
+                                        </div>
+                                    </forge-expansion-panel>
+                                    <md-list-item onclick="window.open('https://forms.gle/XMkahmBmzxN2HUEN9')"  style="background-color: var(--md-sys-color-background); border-radius: 5px; cursor: pointer;">
+                                        Bug report
+                                        <span class="sf-icon" slot="end"></span>
+                                    </md-list-item>
+                                    
+                                    <md-list-item style="background-color: var(--md-sys-color-background); border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; border-top-right-radius: 5px; border-top-left-radius: 5px;">
+                                        <md-icon slot="start">info</md-icon>
+                                        Version 1.9
+                                        <forge-button id="checkUpdates" slot="end" style="--forge-button-background: var(--md-sys-color-primary); --forge-button-color: var(--md-sys-color-on-primary);">Check for updates</forge-button>
+                                        <forge-button slot="end" style=" --forge-button-color: var(--md-sys-color-primary);">View changelogs</forge-button>
+                                    </md-list-item>
+                                </md-list>
+                                <mdui-snackbar closeable class="updates-notify">You're using the latest version of Level Editor!</mdui-snackbar>
+                            </mdui-layout-main>
+                        </mdui-layout>
+                    </forge-scaffold>
+                </forge-dialog>
+                <audio id="clickSound" src="audio/ui/Generic_Button_Sound_Effect.wav"></audio>
+            </mdui-layout-main>
+
+            <script>
+                const beginningNavd = document.querySelector(".beginning-navd");
+                const menuBtn = document.querySelector(".opennavd");
+                const closeBtn = document.querySelector(".close-navdrawer");
+              
+                menuBtn.addEventListener("click", () => beginningNavd.open = true);
+                closeBtn.addEventListener("click", () => beginningNavd.open = false);
+            </script>
+
+        <script>
+            // Function to check the dark mode switch and apply changes
+            function checkDarkMode() {
+                // Get the switch element
+                const darkModeSwitch = document.getElementById('switchDark');
+
+                // Check if the switch is checked
+                if (darkModeSwitch.selected) {
+                    // Add the dark theme class to the HTML element
+                    document.documentElement.classList.add('mdui-theme-dark');
+
+                    // Change the src of the mwcaccent link
+                    const mwcAccentLink = document.getElementById('mwcaccent');
+                    mwcAccentLink.setAttribute('href', 'mat-accent-color-dark.css');
+                } else {
+                    // Remove the dark theme class if not checked
+                    document.documentElement.classList.remove('mdui-theme-dark');
+
+                    // Change the src back to light accent color
+                    const mwcAccentLink = document.getElementById('mwcaccent');
+                    mwcAccentLink.setAttribute('href', 'mat-accent-color-light.css');
+                }
+            }
+
+            // Add an event listener to the switch to check for changes
+            document.getElementById('switchDark').addEventListener('change', checkDarkMode);
+
+            // Initial check on page load
+            document.addEventListener('DOMContentLoaded', checkDarkMode);
+        </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                // Function to trigger a click event on a given selector
+                const triggerClick = (selector) => {
+                    const element = document.querySelector(selector);
+                    if (element) {
+                        element.click();
+                    } else {
+                        console.error(`Element with selector "${selector}" not found.`);
+                    }
+                };
+        
+                // Listen for keyboard shortcuts
+                document.addEventListener("keydown", (event) => {
+                    const tooltipKeyboard = document.querySelector('.keyboardshortcut-tooltip');
+                    if (event.ctrlKey) {
+                        switch (event.key.toLowerCase()) {
+                            case 'l':
+                                event.preventDefault(); // Prevent default browser behavior
+                                triggerClick(".newlvl"); // Trigger click on .newlvl
+                                break;
+                            case 's':
+                                event.preventDefault(); // Prevent default browser behavior
+                                triggerClick(".export-button"); // Trigger click on .export-button
+                                break;
+                            case 'i':
+                                event.preventDefault(); // Prevent default browser behavior
+                                triggerClick(".import-main"); // Trigger click on .import-main
+                                break;
+                            case 'b':
+                                event.preventDefault(); // Prevent default browser behavior
+                                triggerClick(".credit-btn"); // Trigger click on .credit-btn
+                                break;
+                            case 'k':
+                                event.preventDefault(); // Prevent default browser behavior
+                                triggerClick(".keyboard-shortcuts"); // Trigger click on .credit-btn
+                                break;
+                                tooltipKeyboard.setAttribute('open', 'open'); 
+                        }
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            const updateSnackbar = document.querySelector(".updates-notify");
+            const checkUpdates = document.getElementById("checkUpdates");
+
+            checkUpdates.addEventListener("click", () => updateSnackbar.open = true);
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const settingsBtn = document.querySelector('.settings-btn');
+                const settingsFulldialog = document.querySelector('.settings-fulldialog');
+                const closeSettings = document.querySelector('.close-settings');
+
+                // Add event listener to settings button
+                settingsBtn.addEventListener('click', function () {
+                    settingsFulldialog.setAttribute('open', '');
+                });
+
+                // Add event listener to close settings button
+                closeSettings.addEventListener('click', function () {
+                    settingsFulldialog.removeAttribute('open');
+                });
+            });
+        </script>
+
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const musicConfig = document.getElementById('musicConfig');
+                const musicMain = document.getElementById('musicMain');
+                const musicSrc = document.getElementById('musicSrc');
+                const playSongButton = document.getElementById('playSong');
+                const muteButton = document.getElementById('mute');
+                const volumeCustomize = document.getElementById('volumeCustomize');
+                const enableMusic = document.getElementById('enableMusic');
+                const songNameDisplay = document.getElementById('songName'); // Element to display the song name
+
+                // Function to change music source and play
+                function changeMusicSource(source, songName) {
+                    musicSrc.src = source;
+                    musicMain.load();
+                    musicMain.play();
+                    songNameDisplay.textContent = songName; // Display the song name
+                }
+
+                // Event listeners for music selection
+                document.getElementById('candy-fantasia').addEventListener('click', function() {
+                    changeMusicSource('audio/songs/Editor_Song_Theme_Candy_Fantasia.ogg', 'Candy Fantasia');
+                });
+
+                document.getElementById('candy-caravan').addEventListener('click', function() {
+                    changeMusicSource('audio/songs/Editor_Song_Theme_Candy_Caravan.ogg', 'Candy Caravan');
+                });
+
+                document.getElementById('frosted-brain').addEventListener('click', function() {
+                    changeMusicSource('audio/songs/Editor_Song_Theme_Frosted_Brain.ogg', 'Frosted Brain');
+                });
+
+                document.getElementById('candy-hour').addEventListener('click', function() {
+                    changeMusicSource('audio/songs/Editor_Song_Theme_Candy_Hour.ogg', 'Candy Hour');
+                });
+
+                document.getElementById('pop-the-candy').addEventListener('click', function() {
+                    changeMusicSource('audio/songs/Editor_Song_Theme_Pop_The_Candy.ogg', 'Pop The Candy');
+                });
+
+                // Play/Pause functionality
+                playSongButton.addEventListener('click', function() {
+                    const mdIcon = playSongButton.querySelector('md-icon'); // Select the md-icon inside the button
+                    if (musicMain.paused) {
+                        musicMain.play();
+                        mdIcon.textContent = 'pause'; // Change to pause icon
+                    } else {
+                        musicMain.pause();
+                        mdIcon.textContent = 'play_arrow'; // Change to play icon
+                    }
+                });
+
+                // Mute/Unmute functionality
+                muteButton.addEventListener('click', function() {
+                    const mdIcon = muteButton.querySelector('md-icon'); // Select the md-icon inside the button
+                    musicMain.muted = !musicMain.muted;
+                    mdIcon.textContent = musicMain.muted ? 'volume_off' : 'volume_up'; // Change icon based on mute state
+                });
+
+                // Volume control using md-slider
+                volumeCustomize.addEventListener('input', function() {
+                    musicMain.volume = volumeCustomize.value; // Set the audio volume based on slider value
+                });
+            });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const switchClick = document.getElementById('switchClick');
+                const clickSound = document.getElementById('clickSound');
+
+                // Function to play sound
+                function playClickSound() {
+                    if (switchClick.selected) {
+                        clickSound.currentTime = 0; // Reset sound to start
+                        clickSound.play(); // Play the sound
+                    }
+                }
+
+                // Add event listener to the entire document
+                document.addEventListener('click', playClickSound);
+            });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Select all dropdown menus
+                const dropdowns = document.querySelectorAll('.dropdownmenu');
+
+                // Loop through each dropdown menu
+                dropdowns.forEach(dropdown => {
+                    // Find the button that triggers the dropdown
+                    const dropbtn = dropdown.closest('button');
+
+                    // Add click event listener to the button
+                    dropbtn.addEventListener('click', function(event) {
+                        // Prevent the event from bubbling up to the window
+                        event.stopPropagation();
+
+                        // Toggle the dropdown visibility
+                        if (dropdown.classList.contains('show')) {
+                            // If the dropdown is currently shown, hide it
+                            dropdown.classList.remove('show');
+                            dropdown.classList.add('hide');
+                        } else {
+                            // If the dropdown is currently hidden, show it
+                            dropdown.classList.remove('hide'); // Remove hide class to allow showing
+                            dropdown.classList.add('show');
+                            dropdown.style.backdropFilter = 'blur(15px)'; // Apply backdrop filter directly
+                        }
+                    });
+                });
+
+                // Close dropdown if clicking outside
+                window.addEventListener('click', function(event) {
+                    dropdowns.forEach(dropdown => {
+                        // Check if the click was outside the dropdown and button
+                        if (!event.target.closest('button') && dropdown.classList.contains('show')) {
+                            // If the dropdown is currently shown, hide it
+                            dropdown.classList.remove('show');
+                            dropdown.classList.add('hide');
+                            dropdown.style.backdropFilter = ''; // Reset backdrop filter
+                        }
+                    });
+                });
+            });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const importBackdrop = document.getElementById('importdialogBackdrop');
+                const importDialog = document.getElementById('importDialog');
+                const importBtn = document.querySelector('.import-main');
+                const importClosebtn = document.getElementById('importClose');
+
+                importBtn.addEventListener('click', function() {
+                    if (importDialog.classList.contains('open')) {
+                        // If the dropdown is currently shown, hide it
+                        importDialog.classList.remove('open');
+                        importDialog.classList.add('close');
+                    } else {
+                        // If the dropdown is currently hidden, show it
+                        importDialog.classList.remove('close'); // Remove hide class to allow showing
+                        importDialog.classList.add('open');
+                    }
+                    if (importBackdrop.classList.contains('open')) {
+                        // If the dropdown is currently shown, hide it
+                        importBackdrop.classList.remove('open');
+                        importBackdrop.classList.add('close');
+                    } else {
+                        // If the dropdown is currently hidden, show it
+                        importBackdrop.classList.remove('close'); // Remove hide class to allow showing
+                        importBackdrop.classList.add('open');
+                    }
+                });
+
+                importClosebtn.addEventListener('click', function() {
+                    if (importDialog.classList.contains('open')) {
+                        // If the dropdown is currently shown, hide it
+                        importDialog.classList.remove('open');
+                        importDialog.classList.add('close');
+                    }
+                    if (importBackdrop.classList.contains('open')) {
+                        importBackdrop.classList.remove('open');
+                        importBackdrop.classList.add('close');
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const exportBackdrop = document.getElementById('exportdialogBackdrop');
+                const exportDialog = document.getElementById('exportDialog');
+                const exportBtn = document.querySelector('.export-button');
+                const exportCloseBtn = document.getElementById('exportClose');
+
+                exportBtn.addEventListener('click', function() {
+                    if (exportDialog.classList.contains('open')) {
+                        // If the dropdown is currently shown, hide it
+                        exportDialog.classList.remove('open');
+                        exportDialog.classList.add('close');
+                    } else {
+                        // If the dropdown is currently hidden, show it
+                        exportDialog.classList.remove('close'); // Remove hide class to allow showing
+                        exportDialog.classList.add('open');
+                    }
+                    if (exportBackdrop.classList.contains('open')) {
+                        // If the dropdown is currently shown, hide it
+                        exportBackdrop.classList.remove('open');
+                        exportBackdrop.classList.add('close');
+                    } else {
+                        // If the dropdown is currently hidden, show it
+                        exportBackdrop.classList.remove('close'); // Remove hide class to allow showing
+                        exportBackdrop.classList.add('open');
+                    }
+                });
+
+                exportCloseBtn.addEventListener('click', function() {
+                    if (exportDialog.classList.contains('open')) {
+                        // If the dropdown is currently shown, hide it
+                        exportDialog.classList.remove('open');
+                        exportDialog.classList.add('close');
+                    }
+                    if (exportBackdrop.classList.contains('open')) {
+                        exportBackdrop.classList.remove('open');
+                        exportBackdrop.classList.add('close');
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const backdropDialog = document.getElementById('creditsBackdrop');
+                const creditsDialog = document.getElementById('creditsDialog');
+                const creditsBtn = document.getElementById('creditsBtn');
+                const creditscloseBtn = document.getElementById('creditscloseBtn');
+
+                creditsBtn.addEventListener('click', function() {
+                    if (creditsDialog.classList.contains('open')) {
+                        // If the dropdown is currently shown, hide it
+                        creditsDialog.classList.remove('open');
+                        creditsDialog.classList.add('close');
+                    } else {
+                        // If the dropdown is currently hidden, show it
+                        creditsDialog.classList.remove('close'); // Remove hide class to allow showing
+                        creditsDialog.classList.add('open');
+                    }
+                    if (backdropDialog.classList.contains('open')) {
+                        // If the dropdown is currently shown, hide it
+                        backdropDialog.classList.remove('open');
+                        backdropDialog.classList.add('close');
+                    } else {
+                        // If the dropdown is currently hidden, show it
+                        backdropDialog.classList.remove('close'); // Remove hide class to allow showing
+                        backdropDialog.classList.add('open');
+                    }
+                });
+
+                creditscloseBtn.addEventListener('click', function() {
+                    if (creditsDialog.classList.contains('open')) {
+                        // If the dropdown is currently shown, hide it
+                        creditsDialog.classList.remove('open');
+                        creditsDialog.classList.add('close');
+                    }
+                    if (backdropDialog.classList.contains('open')) {
+                        backdropDialog.classList.remove('open');
+                        backdropDialog.classList.add('close');
+                    }
+                });
+            });
+        </script>
+        <script type="module" src="credentials.js"></script>
+    </body>
+</html>

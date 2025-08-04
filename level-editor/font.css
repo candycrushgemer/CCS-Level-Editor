@@ -1,0 +1,31 @@
+@font-face {
+    font-family: Google Sans;
+    src: url(font/google-sans/GoogleSansText-Regular.ttf);
+}
+
+@font-face {
+    font-family: Google Sans;
+    font-weight: bold;
+    src: url(font/google-sans/GoogleSansText-Bold.ttf);
+}
+
+@font-face {
+    font-family: Google Sans;
+    font-style: italic;
+    src: url(font/google-sans/GoogleSansText-Italic.ttf);
+}
+
+@font-face {
+    font-family: Google Sans;
+    font-weight: bold;
+    font-style: italic;
+    src: url(font/google-sans/GoogleSansText-BoldItalic.ttf);
+}
+
+body, p, span, h1, h2, h3 {
+    font-family: Google Sans, sans-serif;
+}
+
+md-icon, mdui-icon, [icon], [name], [end-icon] {
+    font-family: inherit;
+}

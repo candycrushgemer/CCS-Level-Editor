@@ -1,0 +1,50 @@
+<html><head></head><body>
+    <svg class="svg-loading-spinner-container" height="42" width="42"><g class="svg-loading-spinner-wrapper"><circle class="circle-spinning" cx="21" cy="21" fill="none" r="19" stroke="#000000" stroke-width="3"></circle></g></svg>
+    
+    <style>
+    .circle-spinning {
+        stroke-width: 3px;
+        stroke-linecap: round;
+        animation-direction: reverse;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-name: spinning;
+    }
+    
+    .svg-loading-spinner-wrapper {
+        animation: wrapperSpinner 4s infinite linear;
+        transform-origin: 50% 50%;
+    }
+    
+    @keyframes spinning {
+        0% {
+            animation-timing-function: cubic-bezier(.895,.03,.685,.22);
+            stroke-dasharray: 79 106;
+            stroke-dashoffset: 0;
+        }
+    
+        49.999% {
+            stroke-dasharray: 0 106;
+            stroke-dashoffset: 0;
+        }
+    
+        50.001% {
+            animation-timing-function: cubic-bezier(.165,.84,.44,1);
+            stroke-dasharray: 0 106;
+            stroke-dashoffset: -106;
+        }
+    
+        100% {
+            stroke-dasharray: 79 106;
+            stroke-dashoffset: 0;
+        }
+    }
+    
+    @keyframes wrapperSpinner {
+        100% {
+            transform: rotate(1turn);
+        }
+    }
+    </style>
+    </body></html>

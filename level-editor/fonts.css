@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'GoogleSans Code';
+    src: url(font/google-sans/GoogleSansCode.otf);
+}
+
+.editor-container, #editor {
+    font-family: 'GoogleSans Code';
+}
+
+.monaco-editor, .monaco-editor-background {
+    font-family: 'GoogleSans Code';
+}

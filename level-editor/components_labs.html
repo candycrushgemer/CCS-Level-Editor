@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Slider</title>
+  <link rel="stylesheet" href="mat-accent-color-light.css">
+</head>
+<body><br><br><br>
+  <div class="slider-container">
+    <div class="track">
+      <div class="valued-track"></div>
+      <div class="background-track"></div>
+    </div>
+    <input type="range" class="slider" min="0" max="100" value="30" />
+    <div class="thumb" style="font-family: 'Google Sans Text', 'Roboto', sans-serif;">
+        <div class="popover">30</div>
+    </div>
+  </div>
+  <style>
+
+.slider-container {
+  position: relative;
+  width: 300px;
+  height: 24px;
+  transition: all 0.3s ease;
+}
+
+/* Track (valued and background sections) */
+.track {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 7px;
+  background: transparent;
+}
+
+.valued-track {
+  position: absolute;
+  height: 7px;
+  background: var(--md-sys-color-primary);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 6px;
+}
+
+.background-track {
+  position: absolute;
+  height: 7px;
+  background: var(--md-sys-color-primary-container);
+  border-top-right-radius: 6px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 6px;
+  right: 0;
+}
+
+/* Slider Input */
+/* Slider Input */
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent; /* Transparent background */
+  z-index: 2;
+  cursor: pointer;
+  transition: all 0.05s ease;
+}
+
+/* Hide the original slider thumb */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0;
+  height: 0;
+  background: transparent;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.slider::-moz-range-thumb {
+  width: 0;
+  height: 0;
+  background: transparent;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+
+/* Thumb - Rounded Rectangle */
+.thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(165%, -50%);
+  width: 3px; /* Reduced width */
+  height: 24px; /* Taller height for a rectangle */
+  background: var(--md-sys-color-primary);
+  border-radius: 12px; /* Rounded rectangle */
+  z-index: 3;
+}
+
+.thumb:active {
+  width: 1.5px;transform: translate(355%, -50%)
+}
+
+/* Popover */
+.popover {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  background: #ffffff;
+  color: #202020;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 6px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 4;
+  white-space: nowrap;
+  opacity: 0; /* Initially hidden */
+  visibility: hidden; /* Hide the element visually */
+  transition: opacity 0.3s ease, visibility 0.3s ease, all 0.3s ease; /* Fade animation */
+}
+
+/* Popover Visible State */
+.popover.show {
+  opacity: 1;
+  visibility: visible; /* Show the element */
+}
+  </style>
+  <script>
+const slider = document.querySelector(".slider");
+const valuedTrack = document.querySelector(".valued-track");
+const backgroundTrack = document.querySelector(".background-track");
+const thumb = document.querySelector(".thumb");
+const popover = document.querySelector(".popover");
+
+function updateSlider() {
+  const sliderWidth = slider.offsetWidth;
+  const sliderValue = slider.value;
+  const thumbWidth = 14; // Updated thumb width
+  const spacing = 5; // Spacing from the thumb
+
+  // Calculate the percentage value of the slider
+  const percentage = sliderValue / slider.max;
+
+  // Calculate thumb position in pixels
+  const thumbPosition = percentage * sliderWidth;
+
+  // Set the valued track width
+  valuedTrack.style.width = `${thumbPosition - spacing}px`;
+
+  // Set the background track width
+  backgroundTrack.style.width = `${sliderWidth - thumbPosition - spacing}px`;
+
+  // Move the custom thumb
+  thumb.style.left = `${thumbPosition - thumbWidth / 2}px`;
+
+  // Update the popover position and value
+  popover.textContent = sliderValue; // Set the value
+  popover.style.left = `calc(${percentage * 100}% - 50%)`; // Center the popover dynamically
+}
+
+// Show popover when slider is interacted with
+slider.addEventListener("mousedown", () => {
+  popover.classList.add("show");
+});
+
+// Hide popover on mouse up or when interaction stops
+slider.addEventListener("mouseup", () => {
+  setTimeout(() => {
+    popover.classList.remove("show");
+  }, 200); // Add delay for fade-out animation
+});
+
+// Update slider and popover value dynamically
+slider.addEventListener("input", updateSlider);
+updateSlider();
+  </script>
+</body>
+</html>

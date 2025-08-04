@@ -1,0 +1,2187 @@
+<html>
+<!-- Download stuff -->
+
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Level Editor</title>
+    <link rel="icon" href="logo.png">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="ui-fluent.css" rel="stylesheet" type="text/css" />
+    <link href="fonts.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1.12.0/underscore-min.js"></script>
+
+    <meta content="Candy Crush Level Editor" property="og:title">
+    <meta content="Create your own Candy Crush level with your creativity!"
+        property="og:description">
+    <meta content="Candy Crush Level Editor" property="og:site_name">
+    <version>1.9</version>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+            {
+                "imports": {
+                    "@material/web/": "https://esm.run/@material/web/"
+                }
+            }
+        </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+    <!-- Filled -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Outlined -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <!-- Rounded -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- Sharp -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <!-- Two Tone -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone" rel="stylesheet">
+    <link id="mwcaccent" rel="stylesheet" href="mat-accent-color-light.css">
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.4.0/index.js"></script>
+    <script>
+        // Function to detect if the user is on a mobile device
+        function isMobileDevice() {
+            return /Mobi|Android/i.test(navigator.userAgent);
+        }
+
+        // Function to detect if the user is on a tablet or desktop
+        function isTabletOrDesktop() {
+            return !isMobileDevice() || (window.innerWidth >= 768); // Assuming tablets have a width of 768px or more
+        }
+
+        // Redirect logic
+        window.onload = function () {
+            const currentPath = window.location.pathname;
+
+            console.log("Current Path:", currentPath);
+            console.log("Is Mobile Device:", isMobileDevice());
+            console.log("Is Tablet or Desktop:", isTabletOrDesktop());
+
+            if (isMobileDevice() && currentPath.endsWith('editor.html')) {
+                // If on mobile and currently on editor.html, redirect to index-mobile.html
+                console.log("Redirecting to index-mobile.html");
+                window.location.href = 'index-mobile.html';
+            } else if (isTabletOrDesktop() && currentPath.endsWith('index-mobile.html')) {
+                // If on tablet/desktop and currently on index-mobile.html, redirect to editor.html
+                console.log("Redirecting to editor.html");
+                window.location.href = 'editor.html';
+            }
+        };
+    </script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBEbBryhcs9qxHpi9oxCiW9jV5eTDZHP7M",
+            authDomain: "ccs-level-editor.firebaseapp.com",
+            projectId: "ccs-level-editor",
+            storageBucket: "ccs-level-editor.firebasestorage.app",
+            messagingSenderId: "10424890215",
+            appId: "1:10424890215:web:e7bfc73e36785ef439f5c2"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // ✅ Store Firebase in Window for Global Access
+        window.firebaseAuth = auth;
+        window.firebaseDB = db;
+    </script>
+    <script src="
+        https://cdn.jsdelivr.net/npm/ace-builds@1.38.0/src-noconflict/snippets/python.min.js
+        "></script>
+    <link href="
+        https://cdn.jsdelivr.net/npm/ace-builds@1.38.0/css/ace.min.css
+        " rel="stylesheet">
+    <script src="network-checker.js"></script>
+</head>
+
+<body style="margin: 0; overflow: hidden;">
+    <div class="overlay-loading"><br>
+        <loading-block-container
+            style="width: 100%; height: 100%; flex-direction: column; align-items: center; display: flex;"
+            class="loading-desktop">
+            <loading-block size="card-large" style="width: 97%;"></loading-block>
+            <loading-block-container style="width: 97%;height:100%;">
+                <loading-block size="card-vertical"></loading-block>
+                <loading-block size="card-large" style="height: 100%;"></loading-block>
+                <loading-block size="card-vertical"></loading-block>
+            </loading-block-container>
+        </loading-block-container>
+        <loading-block-container
+            style="width: 100%; height: 100%; flex-direction: column; align-items: center; display: none;"
+            class="loading-mobile">
+            <loading-block size="card-large" style="width: 97%;"></loading-block>
+            <loading-block size="card-large" style="width: 77%; height: 47%;"></loading-block>
+            <loading-block size="card-large" style="width: 97%; height: 57%;"></loading-block>
+        </loading-block-container>
+    </div>
+    <script>
+        const loadingOverlay = document.querySelector('.overlay-loading'); // Select the loading overlay
+
+        // Set a timeout to hide the loading overlay after 1 second
+        setTimeout(() => {
+            loadingOverlay.style.display = 'none'; // Hide the loading overlay
+        }, 1500); // 1000 milliseconds = 1 second
+    </script>
+    <script src="script.js" defer></script>
+
+    <mdui-navigation-drawer modal close-on-esc close-on-overlay-click contained class="beginning-navd" data-liquid
+        style="position: fixed;">
+        <div class="content-navdrawer" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+            <button class="icon-button close-navdrawer"></button>
+            <h2>Welcome to Level Editor!</h2>
+            <p>Click anywhere outside the navigation drawer to start making levels!</p>
+            <md-list-item class="newlevelbigbtn"
+                style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-radius: 20px; user-select: none;">
+                <span class="sf-icon" slot="start"></span>Create new level
+            </md-list-item>
+            <md-list-item class="openlevelbigbtn"
+                style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-radius: 20px; margin-top: 3pt; user-select: none;">
+                <span class="sf-icon" slot="start">Ǆ</span>Open a level
+            </md-list-item>
+            <div class="navd-end" style="position: absolute; bottom: 15;">
+                <button class="icon-button settings-btn"><span class="sf-icon">菱</span></button>
+                <p style="font-size: smaller;">© Copyright 2025. Made with ❤️ by Blakiemon and other people.
+                    <a class="footer-href" href="https://discord.gg/kqq5Tx4XcM">Discord server</a> • <a
+                        class="footer-href" href="https://forms.gle/XMkahmBmzxN2HUEN9">Bug reports</a>
+                </p>
+            </div>
+        </div>
+    </mdui-navigation-drawer>
+
+
+    <mdui-top-app-bar class="example-top-app-bar"
+        style="width: 99%; align-items: center; position: fixed; z-index: 10; margin: 0 auto; margin-top: 10px; display: flex; place-items: center;" data-liquid>
+        <button class="icon-button opennavd"></button>
+        <img src="logo-horizontal.png" width="90px" draggable="false">
+        <div class="quick-access" style="display: flex; ">
+            <button class="navbarbtn">File <span class="sf-icon" style="font-size: smaller;margin-top: 3px;"></span>
+                <div class="dropdownmenu" id="toolsDropdown" style="width: 275%; top: 30px;">
+                    <div class="option newlvl">
+                        <div class="left">
+                            <span class="sf-icon"></span>
+                            <div class="heading"> New
+                            </div>
+                        </div>
+                        <div class="right" style="opacity: 0.5;">CTRL + L</div>
+                    </div>
+                    <div class="option openlvl">
+                        <div class="left">
+                            <span class="sf-icon">Ǆ</span>
+                            <div class="heading"> Open
+                            </div>
+                            <input type="file" id="fileInput" accept=".txt" style="display: none;" />
+                        </div>
+                        <div class="right" style="opacity: 0.5;">CTRL + O</div>
+                    </div>
+                    <md-divider inset></md-divider>
+                    <div class="option export-button" onclick="exportLevelUI()">
+                        <div class="left">
+                            <span class="sf-icon"></span>
+                            <div class="heading"> Export level
+                            </div>
+                        </div>
+                        <div class="right" style="opacity: 0.5;">CTRL + S</div>
+                    </div>
+                    <div class="option import-main" onclick="displayImportLevelUI()">
+                        <div class="left">
+                            <span class="sf-icon"></span>
+                            <div class="heading"> Import level
+                            </div>
+                        </div>
+                        <div class="right" style="opacity: 0.5;">CTRL + I</div>
+                    </div>
+                </div>
+            </button>
+            <button class="navbarbtn" id="viewBtn">View <span class="sf-icon"
+                    style="font-size: smaller;margin-top: 3px;"></span>
+                <div class="dropdownmenu" id="toolsDropdown" style="width: 275%; top: 30px;">
+                    <p>Zoom in/out the board</p>
+                    <fluent-slider-container>
+                        <fluent-slider-value id="valueBubble" hidden>50</fluent-slider-value>
+                        <input type="range" min="0" max="100" value="50" class="fluent-slider" id="fluentSlider">
+                    </fluent-slider-container>
+                </div>
+            </button>
+            <button class="navbarbtn">Help <span class="sf-icon" style="font-size: smaller; margin-top: 3px;"></span>
+                <div class="dropdownmenu" id="toolsDropdown" style="width: 275%; top: 30px;">
+                    <div class="option">
+                        <div class="left">
+                            <span class="sf-icon">﫢</span>
+                            <div class="heading"> <a href="document.html">Documentation</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="option credit-btn" id="creditsBtn">
+                        <div class="left">
+                            <span class="sf-icon"></span>
+                            <div class="heading"> About
+                            </div>
+                        </div>
+                        <div class="right" style="opacity: 0.5;">CTRL + B</div>
+                    </div>
+                </div>
+            </button>
+
+            <mdui-dropdown style="display: none;">
+                <md-text-button trailing-icon slot="trigger" class="quick-access-acent">File <md-icon
+                        slot="icon">arrow_drop_down</md-icon></md-text-button>
+                <md-list class="menu" style="width: 300px;">
+                    <md-list-item type="link" class="newlvl"> <md-icon slot="start">add</md-icon>New <div slot="end">
+                            Ctrl + L</div></md-list-item>
+                    <md-list-item type="link" class="openlvl"> <md-icon slot="start">folder</md-icon>Open <div
+                            slot="end">Ctrl + O</div><input type="file" id="fileInput" accept=".txt"
+                            style="display: none;" /></md-list-item>
+                    <md-divider></md-divider>
+                    <md-list-item type="link" class="export-button" onclick="exportLevelUI()"> <md-icon
+                            slot="start">upload</md-icon>Export level <div slot="end">Ctrl + S</div></md-list-item>
+                    <md-list-item class="import-main" type="link" onclick="displayImportLevelUI()"> <md-icon
+                            slot="start">file_download</md-icon>Import level <div slot="end">Ctrl + I</div>
+                    </md-list-item>
+
+                </md-list>
+            </mdui-dropdown>
+            <mdui-dropdown style="display: none;">
+                <md-text-button trailing-icon slot="trigger" class="quick-access-acent">Help <md-icon
+                        slot="icon">arrow_drop_down</md-icon></md-text-button>
+                <md-list class="menu" style="width: 300px;">
+                    <md-list-item type="link" target="_blank" href="document.html"> <md-icon
+                            slot="start">description</md-icon>Documentation <div slot="end">Alt + M</div></md-list-item>
+                    <md-list-item type="link" class="credit-btn"> <md-icon slot="start">info</md-icon>About <div
+                            slot="end">Ctrl + B</div></md-list-item>
+                    <mdui-tooltip variant="rich" placement="right" trigger="click" class="keyboardshortcut-tooltip">
+                        <md-list-item class="keyboard-shortcuts" type="link"> <md-icon
+                                slot="start">keyboard</md-icon>Keyboard shortcuts <div slot="end">Ctrl + K</div>
+                        </md-list-item>
+                        <div slot="content">
+                            <p><span class="key-keyb">CTRL</span> + <span class="key-keyb">L</span>: New level</p>
+                            <p><span class="key-keyb">CTRL</span> + <span class="key-keyb">O</span>: Open level</p>
+                            <p><span class="key-keyb">CTRL</span> + <span class="key-keyb">S</span>: Save level</p>
+                            <p><span class="key-keyb">CTRL</span> + <span class="key-keyb">I</span>: Import level</p>
+                            <p><span class="key-keyb">CTRL</span> + <span class="key-keyb">B</span>: About</p>
+                        </div>
+                    </mdui-tooltip>
+                </md-list>
+            </mdui-dropdown>
+
+            <div class="right">
+                <div class="points-indicator">
+                    <img src="power_uses.png" alt="Powers" draggable="false">
+                    <span id="pointsLeft">0</span>
+                </div>
+                <button class="icon-button" id="accBtn" onclick="window.location.href = 'account_dashboard.html'">
+                    <img src="account_circle--sf-symbools.svg" alt="" style="filter: invert(0); transform: scale(2);"
+                        draggable="false">
+                </button>
+            </div>
+        </div>
+        <div style="flex-grow: 1;"></div>
+    </mdui-top-app-bar>
+
+    <mdui-layout-main class="example-layout-main" style="height: 97vh; background-color: initial;">
+        <div id="main">
+
+            <mdui-navigation-drawer placement="right" contained class="sidebar-navdrawer" id="sidebar-config" open>
+                <div class="sideselectionright" id="scrollableContent">
+                    <br><br><br>
+                    <md-list
+                        style="background-color: #ffffff00; border-top-left-radius: 20px; margin-top: 10px; padding-left: 15px; padding-right: 15px;">
+                        <div class="elements-topab"
+                            style="display: flex; place-items: center; margin-right: 10px; margin-left: 10px; gap: 5px; justify-content: space-between;">
+
+                            <h2>Configuration</h2>
+                        </div>
+                        <mdui-card variant="outlined"
+                            style="border-radius: 20px; background-color: #00000000; border: none;">
+                            <mdui-collapse value="opened">
+                                <mdui-collapse-item value="opened">
+                                    <md-list-item slot="header" style="user-select: none;">Game modes <md-icon
+                                            slot="end">keyboard_arrow_down</md-icon></md-list-item>
+                                    <div class="sideoptions" id="modeselection">
+                                        <label for="movesoption" class="leveltypelabel" style="margin: 5px;"
+                                            onclick="selectMode()">
+                                            <img src="ui/playmode_icon_moves.png"
+                                                style="max-width: 30px; max-height: 30px;">
+                                            <div class="break"></div>
+                                            <!-- <label class='DroidSans' style="color: #5e2232; text-align: center;">Moves</label> -->
+                                            <input type="radio" id="movesoption" name="leveltype" value="Classic moves"
+                                                checked>
+                                        </label>
+                                        <label class="leveltypelabel" for="jellyoption" style="margin: 5px;"
+                                            onclick="selectMode()">
+                                            <img src="ui/playmode_icon_jelly.png"
+                                                style="max-width: 30px; max-height: 30px;">
+                                            <div class="break"></div>
+                                            <!-- <label class='DroidSans' style="color: #5e2232; text-align: center;">Jelly</label> -->
+                                            <input type="radio" id="jellyoption" name="leveltype" value="Light up">
+                                        </label>
+                                        <label class="leveltypelabel" for="ingredientsoption" style="margin: 5px;"
+                                            onclick="selectMode()">
+                                            <img src="ui/playmode_icon_drop.png"
+                                                style="max-width: 30px; max-height: 30px;">
+                                            <div class="break"></div>
+                                            <!-- <label class='DroidSans' style="color: #5e2232; text-align: center;">Ingredients</label> -->
+                                            <input type="radio" id="ingredientsoption" name="leveltype"
+                                                value="Drop down">
+                                        </label>
+                                        <label class="leveltypelabel" for="orderoption" style="margin: 5px;"
+                                            onclick="selectMode()">
+                                            <img src="ui/playmode_icon_order.png"
+                                                style="max-width: 30px; max-height: 30px;">
+                                            <div class="break"></div>
+                                            <!-- <label class='DroidSans' style="color: #5e2232; text-align: center;">Order</label> -->
+                                            <input type="radio" id="orderoption" name="leveltype" value="Order">
+                                        </label>
+                                        <label class="leveltypelabel" for="timedoption" style="margin: 5px;"
+                                            onclick="selectMode()">
+                                            <img src="ui/playmode_icon_time.png"
+                                                style="max-width: 30px; max-height: 30px;">
+                                            <div class="break"></div>
+                                            <!-- <label class='DroidSans' style="color: #5e2232; text-align: center;">Timed</label> -->
+                                            <input type="radio" id="timedoption" name="leveltype" value="Classic">
+                                        </label>
+                                        <label class="leveltypelabel" for="rainbowrapidsoption" style="margin: 5px;"
+                                            onclick="selectMode()">
+                                            <img src="ui/playmode_icon_rainbowrapids.png"
+                                                style="max-width: 30px; max-height: 30px;">
+                                            <div class="break"></div>
+                                            <!-- <label class='DroidSans' style="color: #5e2232; text-align: center;">Rainbow Rapids</label> -->
+                                            <input type="radio" id="rainbowrapidsoption" name="leveltype"
+                                                value="Rainbow Rapids">
+                                        </label>
+                                        <label class="leveltypelabel" for="jellyorderoption" style="margin: 5px;"
+                                            onclick="selectMode()">
+                                            <img src="ui/playmode_icon_jellyorder.png"
+                                                style="max-width: 30px; max-height: 30px;">
+                                            <div class="break"></div>
+                                            <!-- <label class='DroidSans' style="color: #5e2232; text-align: center;">Jelly Order</label> -->
+                                            <input type="radio" id="jellyorderoption" name="leveltype"
+                                                value="Jelly Order">
+                                        </label>
+                                        <label class="leveltypelabel" for="jellyingredientsoption" style="margin: 5px;"
+                                            onclick="selectMode()">
+                                            <img src="ui/playmode_icon_jellydrop.png"
+                                                style="max-width: 30px; max-height: 30px;">
+                                            <div class="break"></div>
+                                            <!-- <label class='DroidSans' style="color: #5e2232; text-align: center;">Jelly Ingredients</label> -->
+                                            <input type="radio" id="jellyingredientsoption" name="leveltype"
+                                                value="Jelly Drop down">
+                                        </label>
+                                        <label class="leveltypelabel" for="orderingredientsoption" style="margin: 5px;"
+                                            onclick="selectMode()">
+                                            <img src="ui/playmode_icon_orderdrop.png"
+                                                style="max-width: 30px; max-height: 30px;">
+                                            <div class="break"></div>
+                                            <!-- <label class='DroidSans' style="color: #5e2232; text-align: center;">Order Ingredients</label> -->
+                                            <input type="radio" id="orderingredientsoption" name="leveltype"
+                                                value="Order Drop Down">
+                                        </label>
+                                        <label class="leveltypelabel" for="rainbowjellyoption" style="margin: 5px;"
+                                            onclick="selectMode()">
+                                            <img src="ui/playmode_icon_rainbowjelly.png"
+                                                style="max-width: 30px; max-height: 30px;">
+                                            <div class="break"></div>
+                                            <!-- <label class='DroidSans' style="color: #5e2232; text-align: center;">Rainbow Rapids Jelly</label> -->
+                                            <input type="radio" id="rainbowjellyoption" name="leveltype"
+                                                value="Rainbow Rapids Jelly">
+                                        </label>
+                                        <label class="leveltypelabel" for="rainbowingredientsoption"
+                                            style="margin: 5px;" onclick="selectMode()">
+                                            <img src="ui/playmode_icon_rainbowdrop.png"
+                                                style="max-width: 30px; max-height: 30px;">
+                                            <div class="break"></div>
+                                            <!-- <label class='DroidSans' style="color: #5e2232; text-align: center;">Rainbow Rapids Ingredients</label> -->
+                                            <input type="radio" id="rainbowingredientsoption" name="leveltype"
+                                                value="Rainbow Rapids Drop Down">
+                                        </label>
+                                        <label class="leveltypelabel" for="rainboworderoption" style="margin: 5px;"
+                                            onclick="selectMode()">
+                                            <img src="ui/playmode_icon_rainboworder.png"
+                                                style="max-width: 30px; max-height: 30px;">
+                                            <div class="break"></div>
+                                            <!-- <label class='DroidSans' style="color: #5e2232; text-align: center;">Rainbow Rapids Order</label> -->
+                                            <input type="radio" id="rainboworderoption" name="leveltype"
+                                                value="Rainbow Rapids Order">
+                                        </label>
+                                        <label class="leveltypelabel" for="jellytimeoption" style="margin: 5px;"
+                                            onclick="selectMode()">
+                                            <img src="ui/playmode_icon_jellytime.png"
+                                                style="max-width: 30px; max-height: 30px;">
+                                            <div class="break"></div>
+                                            <!-- <label class='DroidSans' style="color: #5e2232; text-align: center;"><s>Jelly Time</s></label> -->
+                                            <input type="radio" id="jellytimeoption" name="leveltype"
+                                                value="Jelly Time">
+                                        </label>
+                                        <label class="leveltypelabel" for="froggeroption" style="margin: 5px;"
+                                            onclick="selectMode()">
+                                            <img src="ui/playmode_icon_frogger.png"
+                                                style="max-width: 30px; max-height: 30px;">
+                                            <div class="break"></div>
+                                            <!-- <label class='DroidSans' style="color: #5e2232; text-align: center;"><s>Frogger</s></label> -->
+                                            <input type="radio" id="froggeroption" name="leveltype" value="Frogger">
+                                        </label>
+                                        <label class="leveltypelabel" for="jellycoloroption" style="margin: 5px;"
+                                            onclick="selectMode()">
+                                            <img src="ui/playmode_icon_jelly_color.png"
+                                                style="max-width: 30px; max-height: 30px;">
+                                            <div class="break"></div>
+                                            <!-- <label class='DroidSans' style="color: #5e2232; text-align: center;"><s>Jelly Color</s></label> -->
+                                            <input type="radio" id="jellycoloroption" name="leveltype"
+                                                value="Jelly Color">
+                                        </label>
+                                    </div>
+                                </mdui-collapse-item>
+                            </mdui-collapse>
+                        </mdui-card><br>
+                        <mdui-card variant="outlined"
+                            style="display: none;border-radius: 20px; background-color: #00000000;"
+                            id="requirements-options-section">
+                            <mdui-collapse value="opened">
+                                <mdui-collapse-item value="opened">
+                                    <md-list-item slot="header"
+                                        style="user-select: none; display: flex; justify-content: space-between;">
+                                        <div
+                                            style="display: flex; align-items: center; justify-content: space-between;">
+                                            <button class="filled-button" id="addorder" onclick="addRequirement()">Add
+                                                order</button>
+                                            <button class="filled-button" id="addingredient"
+                                                onclick="addRequirement(true)">Add ingredient</button>
+                                        </div>
+                                        <div id="requirements">
+                                        </div>
+                                        <p style="color: red; display: none;" id="requirementwarning">You can only have
+                                            3 requirements at a time.</p>
+                                    </md-list-item>
+                                </mdui-collapse-item>
+                            </mdui-collapse>
+                        </mdui-card>
+                        <br><mdui-card variant="outlined" id="moves-section"
+                            style="border-radius: 20px; background-color: #00000000;">
+                            <mdui-collapse value="opened">
+                                <mdui-collapse-item value="opened">
+                                    <md-list-item
+                                        style="user-select: none; display: flex; justify-content: space-between;">
+                                        <div
+                                            style="display: flex; align-items: center; justify-content: space-between;">
+                                            <p>Moves</p>
+                                            <div class="wave-group">
+                                                <input type="number" class="input" placeholder="20" id="moves"
+                                                    style="width: 100px;">
+                                                <span class="bar"></span>
+                                                <span class="label-char" style="--index: 0"></span>
+                                            </div>
+                                        </div>
+                                    </md-list-item>
+                                </mdui-collapse-item>
+                            </mdui-collapse>
+                        </mdui-card>
+                        <mdui-card variant="outlined" id="time-section"
+                            style="display: none; border-radius: 20px; background-color: #00000000;">
+                            <mdui-collapse value="opened">
+                                <mdui-collapse-item value="opened">
+                                    <md-list-item
+                                        style="user-select: none; display: flex; justify-content: space-between;">
+                                        <div
+                                            style="display: flex; align-items: center; justify-content: space-between;">
+                                            <p>Time (seconds)</p>
+                                            <div class="wave-group">
+                                                <input type="number" class="input" placeholder="30" id="time"
+                                                    style="width: 100px;">
+                                                <span class="bar"></span>
+                                                <span class="label-char" style="--index: 0"></span>
+                                            </div>
+                                        </div>
+                                    </md-list-item>
+                                </mdui-collapse-item>
+                            </mdui-collapse>
+                        </mdui-card>
+                        <br><mdui-card variant="outlined" style="border-radius: 20px; background-color: #00000000;">
+                            <mdui-collapse value="opened">
+                                <mdui-collapse-item value="opened">
+                                    <md-list-item slot="header" style="user-select: none;">Preferred colors <md-icon
+                                            slot="end">keyboard_arrow_down</md-icon></md-list-item>
+                                    <div class="sideoptions">
+                                        <button value="0" class="preferred preferredselected"
+                                            onclick="togglePreferred(this)">
+                                            <img class="selectionimage" src="elements/blue.png">
+                                        </button>
+                                        <button value="1" class="preferred preferredselected"
+                                            onclick="togglePreferred(this)">
+                                            <img class="selectionimage" src="elements/green.png">
+                                        </button>
+                                        <button value="2" class="preferred preferredselected"
+                                            onclick="togglePreferred(this)">
+                                            <img class="selectionimage" src="elements/orange.png">
+                                        </button>
+                                        <button value="3" class="preferred preferredselected"
+                                            onclick="togglePreferred(this)">
+                                            <img class="selectionimage" src="elements/purple.png">
+                                        </button>
+                                        <button value="4" class="preferred preferredselected"
+                                            onclick="togglePreferred(this)">
+                                            <img class="selectionimage" src="elements/red.png">
+                                        </button>
+                                        <button value="5" class="preferred" onclick="togglePreferred(this)">
+                                            <img class="selectionimage" src="elements/yellow.png">
+                                        </button>
+                                    </div>
+                                </mdui-collapse-item>
+                            </mdui-collapse>
+                        </mdui-card><br>
+                        <mdui-card variant="outlined" style="border-radius: 20px; background-color: #00000000;">
+                            <mdui-collapse value="opened">
+                                <mdui-collapse-item value="opened">
+                                    <md-list-item slot="header" style="user-select: none;">Score targets <md-icon
+                                            slot="end">keyboard_arrow_down</md-icon></md-list-item>
+                                    <div
+                                        style="display: flex; align-items: center; justify-content: space-between; margin-left: 15px; margin-right: 15px;">
+                                        <p style="display: flex; gap: 10px; place-items: center;"><img
+                                                src="ui/hud/hud_scoreStar_red.png" style="width: 25px;"> Star 1</p>
+                                        <div class="wave-group">
+                                            <input type="number" class="input" placeholder="1000" id="star1"
+                                                style="width: 100px;">
+                                            <span class="bar"></span>
+                                            <span class="label-char" style="--index: 0"></span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        style="display: flex; align-items: center; justify-content: space-between; margin-left: 15px; margin-right: 15px;">
+                                        <p style="display: flex; gap: 10px; place-items: center;"><img
+                                                src="ui/hud/hud_scoreStar_green.png" style="width: 25px;"> Star 2</p>
+                                        <div class="wave-group">
+                                            <input type="number" class="input" placeholder="2000" id="star2"
+                                                style="width: 100px;">
+                                            <span class="bar"></span>
+                                            <span class="label-char" style="--index: 0"></span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        style="display: flex; align-items: center; justify-content: space-between; margin-left: 15px; margin-right: 15px;">
+                                        <p style="display: flex; gap: 10px; place-items: center;"><img
+                                                src="ui/hud/hud_scoreStar_yellow.png" style="width: 25px;"> Star 3</p>
+                                        <div class="wave-group">
+                                            <input type="number" class="input" placeholder="3000" id="star3"
+                                                style="width: 100px;">
+                                            <span class="bar"></span>
+                                            <span class="label-char" style="--index: 0"></span>
+                                        </div>
+                                    </div>
+                                </mdui-collapse-item>
+                            </mdui-collapse>
+                        </mdui-card><br>
+                        <mdui-card variant="outlined" style="border-radius: 20px; background-color: #00000000;">
+                            <mdui-collapse value="opened">
+                                <mdui-collapse-item value="opened">
+                                    <md-list-item slot="header"
+                                        style="user-select: none; display: flex; justify-content: space-between;">
+                                        <div
+                                            style="display: flex; align-items: center; justify-content: space-between;">
+                                            <p>Disable Starting Booster</p>
+                                            <!--<mdui-checkbox id="disablebooster"></mdui-checkbox>-->
+                                            <label class="container">
+                                                <input type="checkbox" id="disablebooster">
+                                                <span class="sf-icon checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </md-list-item>
+                                </mdui-collapse-item>
+                            </mdui-collapse>
+                        </mdui-card><br>
+                        <mdui-card class="dreamworld-card" style="border-radius: 20px; background-color: #00000000;">
+                            <mdui-collapse value="opened">
+                                <mdui-collapse-item value="opened">
+                                    <md-list-item slot="header"
+                                        style="user-select: none; display: flex; justify-content: space-between; place-items: center;">
+                                        <div
+                                            style="display: flex; align-items: center; justify-content: space-between;">
+                                            Dreamworld?
+                                            <!--<mdui-checkbox name="isOwlModeEnabled" id="isOwlModeEnabled" onchange="toggleDreamworld(this)"></mdui-checkbox>-->
+                                            <label class="container">
+                                                <input type="checkbox" id="isOwlModeEnabled"
+                                                    onchange="toggleDreamworld(this)">
+
+                                                <span class="sf-icon checkmark"></span>
+                                            </label>
+                                        </div>
+                                        <md-icon slot="end">keyboard_arrow_down</md-icon>
+                                    </md-list-item>
+                                    <div class="sideoptionsdream" id="dreamworldoptions"
+                                        style="display: none; border-radius: 20px;">
+                                        <md-outlined-text-field label="Moves until Moonstruck" type="number"
+                                            name="initialMovesUntilMoonStruck" id="initialMovesUntilMoonStruck"
+                                            placeholder="5"></md-outlined-text-field><br><br>
+                                        <md-outlined-text-field label="Moonstruck length"
+                                            name="initialMovesDuringMoonStruck" id="initialMovesDuringMoonStruck"
+                                            placeholder="3" type="number"></md-outlined-text-field><br><br>
+                                        <md-outlined-text-field label="Max scale difference" name="maxAllowedScaleDiff"
+                                            id="maxAllowedScaleDiff" placeholder="10"
+                                            type="number"></md-outlined-text-field>
+                                    </div>
+                                </mdui-collapse-item>
+                            </mdui-collapse>
+                        </mdui-card><br>
+                        <mdui-card variant="outlined" style="border-radius: 20px; background-color: #00000000;">
+                            <mdui-collapse value="opened">
+                                <mdui-collapse-item value="opened">
+                                    <md-list-item slot="header" style="user-select: none;">Candy Cannon <md-icon
+                                            slot="end">keyboard_arrow_down</md-icon></md-list-item>
+                                    <div class="sideoptions">
+                                        <table style="width: 100%;" class="cannonsettings">
+                                            <tr>
+                                                <td>
+                                                    <!-- <p class='MergePro' style="font-weight: bold; color: #5e2232; text-align: center;">Amount:</p> -->
+                                                </td>
+                                                <td>
+                                                    <p style="font-weight: bold;text-align: center;">Max:</p>
+                                                </td>
+                                                <td>
+                                                    <p style="font-weight: bold;text-align: center;">Interval:</p>
+                                                </td>
+                                                <td>
+                                                    <p style="font-weight: bold; text-align: center;">Tick:</p>
+                                                </td>
+                                            </tr>
+                                            <tr class="cannonpref" elm="fallingIcing"
+                                                image="elements/cannon_block_waffle.png" tick="Level"></tr>
+                                            <tr class="cannonpref" elm="licorice" image="elements/cannon_licorice.png"
+                                                tick=""></tr>
+                                            <tr class="cannonpref" elm="luckyCandy" image="elements/cannon_lucky.png"
+                                                tick=""></tr>
+                                            <tr class="cannonpref" elm="mysteryCandy"
+                                                image="elements/cannon_mystery.png" tick=""></tr>
+                                            <tr class="cannonpref" elm="mulockCandy"
+                                                image="elements/cannon_mulock_key.png" tick=""></tr>
+                                            <tr class="cannonpref" elm="pepperCandy" image="elements/cannon_bomb.png"
+                                                tick="ExplosionTurns"></tr>
+                                            <tr class="cannonpref" elm="stripedCandy"
+                                                image="elements/cannon_striped.png" tick=""></tr>
+                                            <tr class="cannonpref" elm="stripedRowCandy"
+                                                image="elements/cannon_striped_horizontal.png" tick=""></tr>
+                                            <tr class="cannonpref" elm="stripedColumnCandy"
+                                                image="elements/cannon_striped_vertical.png" tick=""></tr>
+                                            <tr class="cannonpref" elm="timeCandy"
+                                                image="elements/cannon_time_candy.png" tick=""></tr>
+                                            <tr class="cannonpref" elm="extraMoves" image="elements/extra_moves.png"
+                                                tick=""></tr>
+                                            <tr class="cannonpref" elm="wrappedCandy"
+                                                image="elements/cannon_wrapped_candy.png" tick=""></tr>
+                                            <tr class="cannonpref" elm="colorBomb" image="elements/cannon_colorbomb.png"
+                                                tick=""></tr>
+                                            <tr class="cannonpref" elm="fish" image="elements/cannon_fish.png" tick="">
+                                            </tr>
+                                            <tr class="cannonpref" elm="shield" image="elements/cannon_sugar_coat.png"
+                                                tick="Level"></tr>
+                                            <tr>
+                                                <td>
+                                                    <img class="elmimg" style="max-width: 70%;"
+                                                        src="elements/cannon_ingredient.png">
+                                                </td>
+                                                <td>
+                                                    <div class="wave-group"><input type="number" class="input max"
+                                                            id="maxNumIngredientsOnScreen" placeholder="0"
+                                                            style="width: 50px;"><span class="bar"></span><span
+                                                            class="label-char" style="--index: 0"></span></div>
+                                                </td>
+                                                <td>
+                                                    <div class="wave-group"><input type="number"
+                                                            id="ingredientSpawnDensity" class="input spawn"
+                                                            placeholder="0" style="width: 50px;"><span
+                                                            class="bar"></span><span class="label-char"
+                                                            style="--index: 0"></span></div>
+                                                </td>
+                                                <td>
+                                                    <!-- <input class="tick" style="width: 50px; text-align: center;" placeholder="0" type="number" id="shieldLevel">  -->
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </mdui-collapse-item>
+                            </mdui-collapse>
+                        </mdui-card><br>
+                        <mdui-card variant="outlined" style="border-radius: 20px; background-color: #00000000;">
+                            <mdui-collapse value="opened">
+                                <mdui-collapse-item value="opened">
+                                    <md-list-item slot="header" style="user-select: none;">Mixer options <md-icon
+                                            slot="end">keyboard_arrow_down</md-icon></md-list-item>
+                                    <div id="mixer-options-section" style="display: block;">
+                                        <div class="sideoptions">
+                                            <div class="wave-group"><input type="number" id="evilSpawnerAmount"
+                                                    class="input" placeholder="Max blocker" style="width: 200px;"><span
+                                                    class="bar"></span><span class="label-char"
+                                                    style="--index: 0"></span></div>
+                                            <div class="break"></div>
+                                            <br>
+                                            <div class="wave-group"><input type="number" id="evilSpawnerInterval"
+                                                    class="input" placeholder="Spawn interval"
+                                                    style="width: 200px;"><span class="bar"></span><span
+                                                    class="label-char" style="--index: 0"></span></div>
+                                            <div class="break"></div>
+                                            <br>
+                                            <button class="filled-button" onclick="addMixerOption()">Add mixer
+                                                blocker</button>
+                                        </div>
+                                        <div id="mixeroptions">
+                                        </div>
+                                    </div>
+                                </mdui-collapse-item>
+                            </mdui-collapse>
+                        </mdui-card><br>
+                        <mdui-card variant="outlined" style="border-radius: 20px; background-color: #00000000;">
+                            <mdui-collapse value="opened">
+                                <mdui-collapse-item value="opened">
+                                    <md-list-item slot="header"
+                                        style="user-select: none; display: flex; place-items: center; align-items: center;">Candy
+                                        Cobra <span class="beta-text">BETA</span> <md-icon
+                                            slot="end">keyboard_arrow_down</md-icon></md-list-item>
+                                    <div id="candy-cobra-section" style="display: block;">
+                                        <div class="sideoptions" style=" filter:blur(50px); pointer-events: none;">
+                                            <md-list-item
+                                                style="background-color: var(--md-sys-color-secondary-container); border-radius: 15px;"
+                                                type="text" md-list-item="">
+                                                <md-icon slot="start" aria-hidden="true">warning</md-icon>If you don't
+                                                have a property created but you see <code>"candyCobras":3</code> then
+                                                delete it, if the code format is incorrect then please remove the
+                                                parentheses and change from 0.1 to 0,1 (change the dot to comma)
+                                            </md-list-item>
+                                            <div class="break"></div>
+                                            <br>
+                                            <div class="wave-group"><input type="number" id="startTileCobra"
+                                                    class="input" placeholder="From tile number"
+                                                    style="width: 250px;"><span class="bar"></span><span
+                                                    class="label-char" style="--index: 0"></span></div>
+                                            <div class="break"></div>
+                                            <br>
+                                            <div class="wave-group"><input type="number" id="cobraLayer" class="input"
+                                                    placeholder="Candy Cobra Layer (1-5)" style="width: 250px;"><span
+                                                    class="bar"></span><span class="label-char"
+                                                    style="--index: 0"></span></div>
+                                            <div class="break"></div>
+                                            <br>
+                                            <div class="break"></div>
+                                            <div class="wave-group"><input type="number" id="endTileCobra" class="input"
+                                                    placeholder="To tile number" style="width: 250px;"><span
+                                                    class="bar"></span><span class="label-char"
+                                                    style="--index: 0"></span></div>
+                                            <div class="break"></div>
+                                            <br>
+                                            <button class="outlined-button" id="addProperty">
+                                                Add Cobra property
+                                            </button>
+                                        </div>
+                                        <div id="cobraproperty">
+                                        </div>
+                                    </div>
+                                </mdui-collapse-item>
+                            </mdui-collapse>
+                        </mdui-card><br>
+                    </md-list>
+                </div>
+            </mdui-navigation-drawer>
+
+            <mdui-navigation-drawer placement="left" contained class="sidebar-navdrawer" id="sidebar-elms" open>
+                <div class="sideselection">
+                    <br><br><br>
+                    <md-list
+                        style="background-color: #ffffff00; border-top-right-radius: 20px; margin-top: 10px; margin: 10px; margin-right: 10px; display: flex; flex-direction: column; gap: 3px;">
+                        <div class="elements-topab"
+                            style="display: flex; place-items: center; gap: 5px; margin-right: 10px; margin-left: 10px; justify-content: space-between;">
+
+                            <h2>Elements</h2>
+                        </div>
+                        <mdui-collapse>
+                            <mdui-collapse-item>
+                                <md-list-item slot="header"
+                                    style="user-select: none; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                                    <img width="30px" slot="start" src="colors.png" />Colors
+                                    <md-icon slot="end">keyboard_arrow_down</md-icon>
+                                </md-list-item>
+                                <div class="expanded-panel"
+                                    style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
+                                    <div class="dropped" id="colordrop">
+                                        <button class="colorselected" onclick="updateColor(this, 'random')"
+                                            style="position: relative;">
+                                            <img class="selectionimage" src="elements/random_ui.png">
+                                            <md-ripple></md-ripple>
+                                        </button>
+                                        <button onclick="updateColor(this, 'red')" style="position: relative;">
+                                            <img class="selectionimage" src="elements/red.png">
+                                            <md-ripple></md-ripple>
+                                        </button>
+                                        <button onclick="updateColor(this, 'orange')" style="position: relative;">
+                                            <img class="selectionimage" src="elements/orange.png">
+                                            <md-ripple></md-ripple>
+                                        </button>
+                                        <button onclick="updateColor(this, 'yellow')" style="position: relative;">
+                                            <img class="selectionimage" src="elements/yellow.png">
+                                            <md-ripple></md-ripple>
+                                        </button>
+                                        <button onclick="updateColor(this, 'green')" style="position: relative;">
+                                            <img class="selectionimage" src="elements/green.png">
+                                            <md-ripple></md-ripple>
+                                        </button>
+                                        <button onclick="updateColor(this, 'blue')" style="position: relative;">
+                                            <img class="selectionimage" src="elements/blue.png">
+                                            <md-ripple></md-ripple>
+                                        </button>
+                                        <button onclick="updateColor(this, 'purple')" style="position: relative;">
+                                            <img class="selectionimage" src="elements/purple.png">
+                                            <md-ripple></md-ripple>
+                                        </button>
+                                    </div>
+                                </div>
+                            </mdui-collapse-item>
+                        </mdui-collapse>
+
+                        <mdui-collapse>
+                            <mdui-collapse-item>
+                                <md-list-item slot="header" style="user-select: none;">
+                                    <img width="30px" slot="start" src="candies.png" />Candies
+                                    <md-icon slot="end">keyboard_arrow_down</md-icon>
+                                </md-list-item>
+                                <div class="expanded-panel"
+                                    style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
+                                    <div class="dropped" id="candy">
+                                        <button class="elementselected"
+                                            onclick="updateSelection(this, 'random', 'normal')">
+                                            <img class="selectionimage" src="elements/random.png">
+                                        </button>
+                                        <div class="selectcoloredelement" element="striped_horizontal"></div>
+                                        <div class="selectcoloredelement" element="striped_vertical"></div>
+                                        <div class="selectcoloredelement" element="wrapped"></div>
+                                        <div class="selectcoloredelement" element="pepper_candy"></div>
+                                        <div class="selectcoloredelement" element="key"></div>
+                                        <div class="selectcoloredelement" element="lucky"></div>
+                                        <div class="selectcoloredelement" element="mystery"></div>
+                                        <div class="selectcoloredelement" element="chameleon"></div>
+                                        <div class="selectcoloredelement" element="extra_time_and_moves"></div>
+                                        <div class="selectcoloredelement" element="jellyfish"></div>
+                                        <div class="selectcoloredelement" element="jellyfish_striped"></div>
+                                        <div class="selectcoloredelement" element="jellyfish_wrapped"></div>
+                                        <div class="selectcoloredelement" element="jellyfish_colorbomb"></div>
+                                        <div class="selectelement" element="bomb" , gamelayer="normal"></div>
+                                        <div class="selectelement" element="coconut_wheel" , gamelayer="normal"></div>
+                                        <div class="selectelement" element="ufo" , gamelayer="normal"></div>
+                                    </div>
+                                </div>
+                            </mdui-collapse-item>
+                        </mdui-collapse>
+
+                        <mdui-collapse>
+                            <mdui-collapse-item>
+                                <md-list-item slot="header" style="user-select: none;">
+                                    <img width="30px" slot="start" src="frog.png" />Frog
+                                    <md-icon slot="end">keyboard_arrow_down</md-icon>
+                                </md-list-item>
+                                <div class="expanded-panel"
+                                    style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
+                                    <div class="dropped" id="frogss">
+                                        <div class="selectcoloredelement" element="frog"></div>
+                                        <div class="selectelement" element="chocolate_frog" gamelayer="normal"></div>
+                                        <div class="selectelement" element="leaf" gamelayer="leaf"></div>
+                                    </div>
+                                </div>
+                            </mdui-collapse-item>
+                        </mdui-collapse>
+
+                        <mdui-collapse>
+                            <mdui-collapse-item>
+                                <md-list-item slot="header" style="user-select: none;">
+                                    <img width="30px" slot="start" src="tiles.png" />Tiles
+                                    <md-icon slot="end">keyboard_arrow_down</md-icon>
+                                </md-list-item>
+                                <div class="expanded-panel"
+                                    style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
+                                    <div class="dropped" id="tiles">
+                                        <button onclick="updateSelection(this, 'none', 'tile')">
+                                            <img class="selectionimage" src="elements/none_UI.png">
+                                        </button>
+                                        <button onclick="updateSelection(this, 'empty', 'tile')">
+                                            <img class="selectionimage" src="elements/empty_UI.png">
+                                        </button>
+                                        <div class="selectelement" element="grid" gamelayer="tile"></div>
+                                        <div class="selectelement" element="jelly" gamelayer="tile"></div>
+                                        <div class="selectelement" element="jelly2" gamelayer="tile"></div>
+                                        <div class="selectelement" element="blue_tile" gamelayer="tile"></div>
+                                        <div class="selectelement" element="black_tile" gamelayer="tile"></div>
+                                    </div>
+                                </div>
+                            </mdui-collapse-item>
+                        </mdui-collapse>
+
+                        <mdui-collapse>
+                            <mdui-collapse-item>
+                                <md-list-item slot="header" style="user-select: none;">
+                                    <img width="30px" slot="start" src="blockers.png" />Blockers
+                                    <md-icon slot="end">keyboard_arrow_down</md-icon>
+                                </md-list-item>
+                                <div class="expanded-panel"
+                                    style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
+                                    <div class="dropped" id="blockers">
+                                        <div class="selectelement" element="block_frosting" gamelayer="normal"></div>
+                                        <div class="selectelement" element="block_multi_frosting1" gamelayer="normal">
+                                        </div>
+                                        <div class="selectelement" element="block_multi_frosting2" gamelayer="normal">
+                                        </div>
+                                        <div class="selectelement" element="block_multi_frosting3" gamelayer="normal">
+                                        </div>
+                                        <div class="selectelement" element="block_multi_frosting4" gamelayer="normal">
+                                        </div>
+                                        <div class="selectelement" element="block_multi_frosting5" gamelayer="normal">
+                                        </div>
+                                        <div class="selectelement" element="bubble_pop_1" gamelayer="normal"></div>
+                                        <div class="selectelement" element="bubble_pop_2" gamelayer="normal"></div>
+                                        <div class="selectelement" element="bubble_pop_3" gamelayer="normal"></div>
+                                        <div class="selectelement" element="bubble_pop_4" gamelayer="normal"></div>
+                                        <div class="selectelement" element="bubble_pop_5" gamelayer="normal"></div>
+                                        <div class="selectelement" element="block_waffle1" gamelayer="normal"></div>
+                                        <div class="selectelement" element="block_waffle2" gamelayer="normal"></div>
+                                        <div class="selectelement" element="block_waffle3" gamelayer="normal"></div>
+                                        <div class="selectelement" element="block_waffle4" gamelayer="normal"></div>
+                                        <div class="selectelement" element="block_waffle5" gamelayer="normal"></div>
+                                        <div class="selectelement" element="chain_layer1_c" gamelayer="normal"></div>
+                                        <div class="selectelement" element="chain_layer2_c" gamelayer="normal"></div>
+                                        <div class="selectelement" element="chain_layer3_c" gamelayer="normal"></div>
+                                        <div class="selectelement" element="chain_layer4_c" gamelayer="normal"></div>
+                                        <div class="selectelement" element="chain_layer5_c" gamelayer="normal"></div>
+                                        <div class="selectelement" element="dark_chocolate_1" gamelayer="normal"></div>
+                                        <div class="selectelement" element="dark_chocolate_2" gamelayer="normal"></div>
+                                        <div class="selectelement" element="dark_chocolate_3" gamelayer="normal"></div>
+                                        <div class="selectelement" element="dark_chocolate_4" gamelayer="normal"></div>
+                                        <div class="selectelement" element="dark_chocolate_5" gamelayer="normal"></div>
+                                        <div class="selectelement" element="chocolate" gamelayer="normal"></div>
+                                        <div class="selectelement" element="licorice_square" gamelayer="normal"></div>
+                                        <div class="selectelement" element="bobber" , gamelayer="normal"></div>
+                                        <div class="selectelement" element="cake_bomb" gamelayer="normal"></div>
+                                        <div class="selectelement" element="shell_1" gamelayer="normal"></div>
+                                        <div class="selectelement" element="shell_2" gamelayer="normal"></div>
+                                        <div class="selectelement" element="shell_3" gamelayer="normal"></div>
+                                        <div class="selectelement" element="jelly_jar_1" gamelayer="normal"></div>
+                                        <div class="selectelement" element="jelly_jar_2" gamelayer="normal"></div>
+                                        <div class="selectelement" element="toffee_tornado" gamelayer="normal"></div>
+                                        <div class="selectelement" element="pinata" gamelayer="normal"></div>
+                                        <div class="selectelement" element="pinata_crash" gamelayer="normal"></div>
+                                        <div class="selectelement" element="pinata_link1" gamelayer="normal"></div>
+                                        <div class="selectelement" element="pinata_link2" gamelayer="normal"></div>
+                                        <div class="selectelement" element="pinata_link3" gamelayer="normal"></div>
+                                        <div class="selectelement" element="pinata_unbreakable" gamelayer="normal">
+                                        </div>
+                                        <div class="selectelement" element="pinata_empty" gamelayer="normal"></div>
+                                        <div class="selectelement" element="rainbow_rapid_mold" gamelayer="normal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </mdui-collapse-item>
+                        </mdui-collapse>
+
+                        <mdui-collapse>
+                            <mdui-collapse-item>
+                                <md-list-item slot="header" style="user-select: none;">
+                                    <img width="30px" slot="start" src="locks.png" />Locks
+                                    <md-icon slot="end">keyboard_arrow_down</md-icon>
+                                </md-list-item>
+                                <div class="expanded-panel"
+                                    style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
+                                    <div class="dropped" id="locks">
+                                        <div class="selectelement" element="licorice" gamelayer="lock"></div>
+                                        <div class="selectelement" element="marmalade" gamelayer="lock"></div>
+                                        <div class="selectelement" element="sugarcoat_1" gamelayer="sugarcoat"></div>
+                                        <div class="selectelement" element="sugarcoat_2" gamelayer="sugarcoat"></div>
+                                        <div class="selectelement" element="sugarcoat_3" gamelayer="sugarcoat"></div>
+                                        <div class="selectelement" element="mulock1" gamelayer="lock"></div>
+                                        <div class="selectelement" element="mulock2" gamelayer="lock"></div>
+                                        <div class="selectelement" element="mulock3" gamelayer="lock"></div>
+                                        <div class="selectelement" element="mulock4" gamelayer="lock"></div>
+                                        <div class="selectelement" element="mulock5" gamelayer="lock"></div>
+                                    </div>
+                                </div>
+                            </mdui-collapse-item>
+                        </mdui-collapse>
+
+                        <mdui-collapse>
+                            <mdui-collapse-item>
+                                <md-list-item slot="header" style="user-select: none;">
+                                    <img width="30px" slot="start" src="shields.png" />Shields
+                                    <md-icon slot="end">keyboard_arrow_down</md-icon>
+                                </md-list-item>
+                                <div class="expanded-panel"
+                                    style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
+                                    <div class="dropped" id="shields">
+                                        <div class="selectelement" element="glass_tile_1" gamelayer="glass"></div>
+                                        <div class="selectelement" element="glass_tile_2" gamelayer="glass"></div>
+                                        <div class="selectelement" element="glass_tile_3" gamelayer="glass"></div>
+                                    </div>
+                                </div>
+                            </mdui-collapse-item>
+                        </mdui-collapse>
+
+                        <mdui-collapse>
+                            <mdui-collapse-item>
+                                <md-list-item slot="header" style="user-select: none;">
+                                    <img width="30px" slot="start" src="cannon.png" />Candy Cannon
+                                    <md-icon slot="end">keyboard_arrow_down</md-icon>
+                                </md-list-item>
+                                <div class="expanded-panel"
+                                    style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
+                                    <div class="dropped" id="spawning">
+                                        <div class="selectelement" element="candy_cannon" gamelayer="candy_cannon">
+                                        </div>
+                                        <div class="selectelement" element="candy_entrance" gamelayer="candy_entrance">
+                                        </div>
+                                        <div class="selectelement" element="cannon_striped_horizontal"
+                                            gamelayer="candy_cannon"></div>
+                                        <div class="selectelement" element="cannon_striped_vertical"
+                                            gamelayer="candy_cannon"></div>
+                                        <div class="selectelement" element="cannon_colorbomb" gamelayer="candy_cannon">
+                                        </div>
+                                        <div class="selectelement" element="cannon_fish" gamelayer="candy_cannon"></div>
+                                        <div class="selectelement" element="cannon_sugar_coat" gamelayer="candy_cannon">
+                                        </div>
+                                        <div class="selectelement" element="cannon_blue" gamelayer="candy_cannon"></div>
+                                        <div class="selectelement" element="cannon_green" gamelayer="candy_cannon">
+                                        </div>
+                                        <div class="selectelement" element="cannon_orange" gamelayer="candy_cannon">
+                                        </div>
+                                        <div class="selectelement" element="cannon_purple" gamelayer="candy_cannon">
+                                        </div>
+                                        <div class="selectelement" element="cannon_red" gamelayer="candy_cannon"></div>
+                                        <div class="selectelement" element="cannon_yellow" gamelayer="candy_cannon">
+                                        </div>
+                                        <div class="selectelement" element="cannon_ingredient" gamelayer="candy_cannon">
+                                        </div>
+                                        <div class="selectelement" element="cannon_licorice" gamelayer="candy_cannon">
+                                        </div>
+                                        <div class="selectelement" element="cannon_bomb" gamelayer="candy_cannon"></div>
+                                        <div class="selectelement" element="cannon_mulock_key" gamelayer="candy_cannon">
+                                        </div>
+                                        <div class="selectelement" element="cannon_lucky" gamelayer="candy_cannon">
+                                        </div>
+                                        <div class="selectelement" element="cannon_mystery" gamelayer="candy_cannon">
+                                        </div>
+                                        <div class="selectelement" element="cannon_chameleon" gamelayer="candy_cannon">
+                                        </div>
+                                        <div class="selectelement" element="cannon_extra_time_and_moves"
+                                            gamelayer="candy_cannon"></div>
+                                        <div class="selectelement" element="cannon_striped" gamelayer="candy_cannon">
+                                        </div>
+                                        <div class="selectelement" element="cannon_wrapped_candy"
+                                            gamelayer="candy_cannon"></div>
+                                        <div class="selectelement" element="cannon_block_waffle"
+                                            gamelayer="candy_cannon"></div>
+                                    </div>
+                                </div>
+                            </mdui-collapse-item>
+                        </mdui-collapse>
+
+                        <mdui-collapse>
+                            <mdui-collapse-item>
+                                <md-list-item slot="header" style="user-select: none;">
+                                    <img width="30px" slot="start" src="ingredientas.png" />Ingredients
+                                    <md-icon slot="end">keyboard_arrow_down</md-icon>
+                                </md-list-item>
+                                <div class="expanded-panel"
+                                    style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
+                                    <div class="dropped" id="ingredients">
+                                        <div class="selectelement" element="cherry" gamelayer="normal"></div>
+                                        <div class="selectelement" element="hazelnut" gamelayer="normal"></div>
+                                        <div class="selectelement" element="ingredients_exit"
+                                            gamelayer="ingredients_exit"></div>
+                                    </div>
+                                </div>
+                            </mdui-collapse-item>
+                        </mdui-collapse>
+
+                        <mdui-collapse>
+                            <mdui-collapse-item>
+                                <md-list-item slot="header" style="user-select: none;">
+                                    <img width="30px" slot="start" src="walls.png" />Walls
+                                    <md-icon slot="end">keyboard_arrow_down</md-icon>
+                                </md-list-item>
+                                <div class="expanded-panel"
+                                    style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
+                                    <div class="dropped" id="walls">
+                                        <button onclick="updateSelection(this, 'wall_down', 'walldown')" class="">
+                                            <img class="selectionimage" src="elements/wall_down_ui.png">
+                                        </button>
+                                        <button onclick="updateSelection(this, 'wall_up', 'wallup')" class="">
+                                            <img class="selectionimage" src="elements/wall_up_ui.png">
+                                        </button>
+                                        <button onclick="updateSelection(this, 'wall_left', 'wallleft')" class="">
+                                            <img class="selectionimage" src="elements/wall_left_ui.png">
+                                        </button>
+                                        <button onclick="updateSelection(this, 'wall_right', 'wallright')" class="">
+                                            <img class="selectionimage" src="elements/wall_right_ui.png">
+                                        </button>
+
+
+                                        <button onclick="updateSelection(this, 'destructible_wall_1_down', 'walldown')"
+                                            class="">
+                                            <img class="selectionimage" src="elements/destructible_wall_1_down_ui.png">
+                                        </button>
+                                        <button onclick="updateSelection(this, 'destructible_wall_1_up', 'wallup')"
+                                            class="">
+                                            <img class="selectionimage" src="elements/destructible_wall_1_up_ui.png">
+                                        </button>
+                                        <button onclick="updateSelection(this, 'destructible_wall_1_left', 'wallleft')"
+                                            class="">
+                                            <img class="selectionimage" src="elements/destructible_wall_1_left_ui.png">
+                                        </button>
+                                        <button
+                                            onclick="updateSelection(this, 'destructible_wall_1_right', 'wallright')"
+                                            class="">
+                                            <img class="selectionimage" src="elements/destructible_wall_1_right_ui.png">
+                                        </button>
+
+
+                                        <button onclick="updateSelection(this, 'destructible_wall_2_down', 'walldown')"
+                                            class="">
+                                            <img class="selectionimage" src="elements/destructible_wall_2_down_ui.png">
+                                        </button>
+                                        <button onclick="updateSelection(this, 'destructible_wall_2_up', 'wallup')"
+                                            class="">
+                                            <img class="selectionimage" src="elements/destructible_wall_2_up_ui.png">
+                                        </button>
+                                        <button onclick="updateSelection(this, 'destructible_wall_2_left', 'wallleft')"
+                                            class="">
+                                            <img class="selectionimage" src="elements/destructible_wall_2_left_ui.png">
+                                        </button>
+                                        <button
+                                            onclick="updateSelection(this, 'destructible_wall_2_right', 'wallright')"
+                                            class="">
+                                            <img class="selectionimage" src="elements/destructible_wall_2_right_ui.png">
+                                        </button>
+
+
+                                        <button onclick="updateSelection(this, 'destructible_wall_3_down', 'walldown')"
+                                            class="">
+                                            <img class="selectionimage" src="elements/destructible_wall_3_down_ui.png">
+                                        </button>
+                                        <button onclick="updateSelection(this, 'destructible_wall_3_up', 'wallup')"
+                                            class="">
+                                            <img class="selectionimage" src="elements/destructible_wall_3_up_ui.png">
+                                        </button>
+                                        <button onclick="updateSelection(this, 'destructible_wall_3_left', 'wallleft')"
+                                            class="">
+                                            <img class="selectionimage" src="elements/destructible_wall_3_left_ui.png">
+                                        </button>
+                                        <button
+                                            onclick="updateSelection(this, 'destructible_wall_3_right', 'wallright')"
+                                            class="">
+                                            <img class="selectionimage" src="elements/destructible_wall_3_right_ui.png">
+                                        </button>
+
+
+                                        <button onclick="updateSelection(this, 'licorice_wall_down', 'walldown')"
+                                            class="">
+                                            <img class="selectionimage" src="elements/licorice_wall_down_ui.png">
+                                        </button>
+                                        <button onclick="updateSelection(this, 'licorice_wall_up', 'wallup')" class="">
+                                            <img class="selectionimage" src="elements/licorice_wall_up_ui.png">
+                                        </button>
+                                        <button onclick="updateSelection(this, 'licorice_wall_left', 'wallleft')"
+                                            class="">
+                                            <img class="selectionimage" src="elements/licorice_wall_left_ui.png">
+                                        </button>
+                                        <button onclick="updateSelection(this, 'licorice_wall_right', 'wallright')"
+                                            class="">
+                                            <img class="selectionimage" src="elements/licorice_wall_right_ui.png">
+                                        </button>
+
+
+                                        <button
+                                            onclick="updateSelection(this, 'destructible_wall_lic_1_down', 'walldown')"
+                                            class="">
+                                            <img class="selectionimage"
+                                                src="elements/destructible_wall_lic_1_down_ui.png">
+                                        </button>
+                                        <button onclick="updateSelection(this, 'destructible_wall_lic_1_up', 'wallup')"
+                                            class="">
+                                            <img class="selectionimage"
+                                                src="elements/destructible_wall_lic_1_up_ui.png">
+                                        </button>
+                                        <button
+                                            onclick="updateSelection(this, 'destructible_wall_lic_1_left', 'wallleft')"
+                                            class="">
+                                            <img class="selectionimage"
+                                                src="elements/destructible_wall_lic_1_left_ui.png">
+                                        </button>
+                                        <button
+                                            onclick="updateSelection(this, 'destructible_wall_lic_1_right', 'wallright')"
+                                            class="">
+                                            <img class="selectionimage"
+                                                src="elements/destructible_wall_lic_1_right_ui.png">
+                                        </button>
+
+
+                                        <button
+                                            onclick="updateSelection(this, 'destructible_wall_lic_2_down', 'walldown')"
+                                            class="">
+                                            <img class="selectionimage"
+                                                src="elements/destructible_wall_lic_2_down_ui.png">
+                                        </button>
+                                        <button onclick="updateSelection(this, 'destructible_wall_lic_2_up', 'wallup')"
+                                            class="">
+                                            <img class="selectionimage"
+                                                src="elements/destructible_wall_lic_2_up_ui.png">
+                                        </button>
+                                        <button
+                                            onclick="updateSelection(this, 'destructible_wall_lic_2_left', 'wallleft')"
+                                            class="">
+                                            <img class="selectionimage"
+                                                src="elements/destructible_wall_lic_2_left_ui.png">
+                                        </button>
+                                        <button
+                                            onclick="updateSelection(this, 'destructible_wall_lic_2_right', 'wallright')"
+                                            class="">
+                                            <img class="selectionimage"
+                                                src="elements/destructible_wall_lic_2_right_ui.png">
+                                        </button>
+
+
+                                        <button
+                                            onclick="updateSelection(this, 'destructible_wall_lic_3_down', 'walldown')"
+                                            class="">
+                                            <img class="selectionimage"
+                                                src="elements/destructible_wall_lic_3_down_ui.png">
+                                        </button>
+                                        <button onclick="updateSelection(this, 'destructible_wall_lic_3_up', 'wallup')"
+                                            class="">
+                                            <img class="selectionimage"
+                                                src="elements/destructible_wall_lic_3_up_ui.png">
+                                        </button>
+                                        <button
+                                            onclick="updateSelection(this, 'destructible_wall_lic_3_left', 'wallleft')"
+                                            class="">
+                                            <img class="selectionimage"
+                                                src="elements/destructible_wall_lic_3_left_ui.png">
+                                        </button>
+                                        <button
+                                            onclick="updateSelection(this, 'destructible_wall_lic_3_right', 'wallright')"
+                                            class="">
+                                            <img class="selectionimage"
+                                                src="elements/destructible_wall_lic_3_right_ui.png">
+                                        </button>
+                                    </div>
+                                </div>
+                            </mdui-collapse-item>
+                        </mdui-collapse>
+
+                        <mdui-collapse>
+                            <mdui-collapse-item>
+                                <md-list-item slot="header" style="user-select: none;">
+                                    <img width="30px" slot="start" src="mixers.png" />Mixers
+                                    <md-icon slot="end">keyboard_arrow_down</md-icon>
+                                </md-list-item>
+                                <div class="expanded-panel"
+                                    style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
+                                    <div class="dropped" id="mixers">
+                                        <div class="selectelement" element="chocolate_spawner" gamelayer="normal"></div>
+                                        <div class="selectelement" element="dark_chocolate_spawner_1"
+                                            gamelayer="normal"></div>
+                                        <div class="selectelement" element="dark_chocolate_spawner_2"
+                                            gamelayer="normal"></div>
+                                        <div class="selectelement" element="dark_chocolate_spawner_3"
+                                            gamelayer="normal"></div>
+                                        <div class="selectelement" element="magic_mixer" gamelayer="normal"></div>
+                                    </div>
+                                </div>
+                            </mdui-collapse-item>
+                        </mdui-collapse>
+
+                        <mdui-collapse>
+                            <mdui-collapse-item>
+                                <md-list-item slot="header" style="user-select: none;">
+                                    <img width="30px" slot="start" src="bonbon.png" />Bon Bon Blitz
+                                    <md-icon slot="end">keyboard_arrow_down</md-icon>
+                                </md-list-item>
+                                <div class="expanded-panel"
+                                    style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
+                                    <div class="dropped" id="bonbon">
+                                        <div class="selectelement" element="bonbon_colorbomb_1" gamelayer="normal">
+                                        </div>
+                                        <div class="selectelement" element="bonbon_colorbomb_2" gamelayer="normal">
+                                        </div>
+                                        <div class="selectelement" element="bonbon_colorbomb_3" gamelayer="normal">
+                                        </div>
+                                        <div class="selectelement" element="bonbon_colorbomb_4" gamelayer="normal">
+                                        </div>
+                                        <div class="selectelement" element="bonbon_horizontal_1" gamelayer="normal">
+                                        </div>
+                                        <div class="selectelement" element="bonbon_horizontal_2" gamelayer="normal">
+                                        </div>
+                                        <div class="selectelement" element="bonbon_horizontal_3" gamelayer="normal">
+                                        </div>
+                                        <div class="selectelement" element="bonbon_horizontal_4" gamelayer="normal">
+                                        </div>
+                                        <div class="selectelement" element="bonbon_vertical_1" gamelayer="normal"></div>
+                                        <div class="selectelement" element="bonbon_vertical_2" gamelayer="normal"></div>
+                                        <div class="selectelement" element="bonbon_vertical_3" gamelayer="normal"></div>
+                                        <div class="selectelement" element="bonbon_vertical_4" gamelayer="normal"></div>
+                                        <div class="selectelement" element="bonbon_fish_1" gamelayer="normal"></div>
+                                        <div class="selectelement" element="bonbon_fish_2" gamelayer="normal"></div>
+                                        <div class="selectelement" element="bonbon_fish_3" gamelayer="normal"></div>
+                                        <div class="selectelement" element="bonbon_fish_4" gamelayer="normal"></div>
+                                        <div class="selectelement" element="bonbon_wrapped_1" gamelayer="normal"></div>
+                                        <div class="selectelement" element="bonbon_wrapped_2" gamelayer="normal"></div>
+                                        <div class="selectelement" element="bonbon_wrapped_3" gamelayer="normal"></div>
+                                        <div class="selectelement" element="bonbon_wrapped_4" gamelayer="normal"></div>
+                                    </div>
+                                </div>
+                            </mdui-collapse-item>
+                        </mdui-collapse>
+
+                        <mdui-collapse>
+                            <mdui-collapse-item>
+                                <md-list-item slot="header" style="user-select: none;">
+                                    <img width="30px" slot="start" src="rainbowrapid.png" />Rainbow Rapids Paths
+                                    <md-icon slot="end">keyboard_arrow_down</md-icon>
+                                </md-list-item>
+                                <div class="expanded-panel"
+                                    style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
+                                    <div class="dropped" id="path">
+                                        <div class="selectelement" element="rainbow_rapid_cannon_top"
+                                            gamelayer="rainbow_cannon_top"></div>
+                                        <div class="selectelement" element="rainbow_rapid_cannon_bottom"
+                                            gamelayer="rainbow_cannon_bottom"></div>
+                                        <div class="selectelement" element="rainbow_rapid_cannon_left"
+                                            gamelayer="rainbow_cannon_left"></div>
+                                        <div class="selectelement" element="rainbow_rapid_cannon_right"
+                                            gamelayer="rainbow_cannon_right"></div>
+                                        <div class="selectelement" element="rainbow_stream_vertical" gamelayer="path">
+                                        </div>
+                                        <div class="selectelement" element="rainbow_stream_horizontal" gamelayer="path">
+                                        </div>
+                                        <div class="selectelement" element="rainbow_stream_BL" gamelayer="path"></div>
+                                        <div class="selectelement" element="rainbow_stream_BR" gamelayer="path"></div>
+                                        <div class="selectelement" element="rainbow_stream_TL" gamelayer="path"></div>
+                                        <div class="selectelement" element="rainbow_stream_TR" gamelayer="path"></div>
+                                        <div class="selectelement" element="rainbow_stream_TBL" gamelayer="path"></div>
+                                        <div class="selectelement" element="rainbow_stream_TBR" gamelayer="path"></div>
+                                        <div class="selectelement" element="rainbow_stream_TLR" gamelayer="path"></div>
+                                        <div class="selectelement" element="rainbow_stream_BLR" gamelayer="path"></div>
+                                        <div class="selectelement" element="rainbow_stream_all_directions"
+                                            gamelayer="path"></div>
+                                        <div class="selectelement" element="rainbow_stream_intersection_point"
+                                            gamelayer="path"></div>
+                                    </div>
+                                </div>
+                            </mdui-collapse-item>
+                        </mdui-collapse>
+
+                        <mdui-collapse>
+                            <mdui-collapse-item>
+                                <md-list-item slot="header" style="user-select: none;">
+                                    <img width="30px" slot="start" src="gumball_machine.webp" />Gumball Machine
+                                    <md-icon slot="end">keyboard_arrow_down</md-icon>
+                                </md-list-item>
+                                <div class="expanded-panel"
+                                    style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
+                                    <div class="dropped" id="gumball">
+                                        <div class="selectelement" element="gumball_machine_empty" gamelayer="normal">
+                                        </div>
+                                        <div class="selectelement" element="gumball_machine" gamelayer="normal"></div>
+                                    </div>
+                                </div>
+                            </mdui-collapse-item>
+                        </mdui-collapse>
+
+                        <mdui-collapse>
+                            <mdui-collapse-item>
+                                <md-list-item slot="header" style="user-select: none;">
+                                    <img width="30px" slot="start" src="elements/portal_entrance.png" />Portals
+                                    <md-icon slot="end">keyboard_arrow_down</md-icon>
+                                </md-list-item>
+                                <div class="expanded-panel"
+                                    style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
+                                    <div class="dropped" id="portals">
+                                        <div class="selectelement" element="portal_entrance"
+                                            gamelayer="portal_entrance"></div>
+                                        <div class="selectelement" element="portal_entrance_hidden"
+                                            gamelayer="portal_entrance"></div>
+                                        <!--<div class="selectelement" element="portal_exit" gamelayer="portal_exit"></div>
+                                        <div class="selectelement" element="portal_exit_hidden" gamelayer="portal_exit"></div>-->
+                                    </div>
+                                </div>
+                            </mdui-collapse-item>
+                        </mdui-collapse>
+
+                        <mdui-collapse>
+                            <mdui-collapse-item>
+                                <md-list-item slot="header" style="user-select: none;">
+                                    <img width="30px" slot="start" src="elements/conveyor_tex.webp" />Teleporter
+                                    <md-icon slot="end">keyboard_arrow_down</md-icon>
+                                </md-list-item>
+                                <div class="expanded-panel"
+                                    style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
+                                    <div class="dropped" id="teleporterentryexit"
+                                        style="filter: blur(50px); pointer-events: none;">
+                                        <md-list-item
+                                            style="background-color: var(--md-sys-color-secondary-container); border-radius: 15px;">
+                                            <md-icon slot="start">warning</md-icon><strong>14</strong> is very important
+                                            for teleporters' codes, it can hide, or show the elements in the board.
+                                        </md-list-item>
+                                        <md-list-item style="width: 100%;">
+                                            Entry Coordinate
+                                            <md-outlined-text-field id="entryCoordinate" type="number" slot="end"
+                                                draggable="false" placeholder="0,0,14"
+                                                style="width: 120px;"></md-outlined-text-field>
+                                        </md-list-item>
+                                        <md-list-item style="width: 100%;">
+                                            Exit Coordinate
+                                            <md-outlined-text-field type="number" id="exitCoordinate" slot="end"
+                                                draggable="false" placeholder="0,0,14"
+                                                style="width: 120px;"></md-outlined-text-field>
+                                        </md-list-item>
+                                        <md-outlined-button id="addTeleporters">Add teleporter</md-outlined-button>
+                                    </div>
+                                </div>
+                            </mdui-collapse-item>
+                        </mdui-collapse>
+
+                        <mdui-collapse>
+                            <mdui-collapse-item>
+                                <md-list-item slot="header" style="user-select: none; ">
+                                    <img width="30px" slot="start" src="elements/cobra_5.png" />Candy Cobra
+                                    <md-icon slot="end">keyboard_arrow_down</md-icon>
+                                </md-list-item>
+                                <div class="expanded-panel"
+                                    style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px; filter:blur(50px); pointer-events: none;">
+                                    <div class="dropped" id="candycobra">
+                                        <div class="selectelement" element="cobra_1" gamelayer="normal"></div>
+                                        <div class="selectelement" element="cobra_2" gamelayer="normal"></div>
+                                        <div class="selectelement" element="cobra_3" gamelayer="normal"></div>
+                                        <div class="selectelement" element="cobra_4" gamelayer="normal"></div>
+                                        <div class="selectelement" element="cobra_5" gamelayer="normal"></div>
+                                        <div class="selectelement" element="cobra_basket" gamelayer="cobra_basket">
+                                        </div>
+                                    </div>
+                                </div>
+                            </mdui-collapse-item>
+                        </mdui-collapse>
+                    </md-list>
+                </div>
+            </mdui-navigation-drawer>
+
+            <bottom-drawer>
+                <bottom-drawer-header-tabs>
+                    <bottom-drawer-header-tab for-value="files" active>File</bottom-drawer-header-tab>
+                    <bottom-drawer-header-tab for-value="configuration">Configuration</bottom-drawer-header-tab>
+                    <bottom-drawer-header-tab for-value="elements">Elements</bottom-drawer-header-tab>
+                    <bottom-drawer-header-tab for-value="settings">Settings</bottom-drawer-header-tab>
+                    <bottom-drawer-header-tab for-value="help">Help</bottom-drawer-header-tab>
+                </bottom-drawer-header-tabs>
+                <bottom-drawer-contents>
+                    <bottom-drawer-content value="files">
+                        <br><br><br>
+                        <md-list-item class="big-header-btn newlvl">
+                            <span class="sf-icon" slot="start"></span>Create new level
+                        </md-list-item>
+                        <md-list-item class="big-header-btn openlvl" style="margin-top: 10px;">
+                            <span class="sf-icon" slot="start">Ǆ</span>Open level...
+                        </md-list-item>
+                        <md-list-item class="big-header-btn export-button" onclick="
+                            const exportbackdrop = document.getElementById('exportdialogBackdrop');
+                            const exportdialog = document.getElementById('exportDialog');
+
+                            exportbackdrop.classList.remove('close');
+                            exportdialog.classList.remove('close');
+                            exportbackdrop.classList.add('open');
+                            exportdialog.classList.add('open');
+
+                            exportLevelUI();
+                        " style="margin-top: 10px;">
+                            <span class="sf-icon" slot="start"></span>Export level...
+                        </md-list-item>
+                        <md-list-item class="big-header-btn import-button" onclick="
+                            const importbackdrop = document.getElementById('importdialogBackdrop');
+                            const importdialog = document.getElementById('importDialog');
+
+                            importbackdrop.classList.remove('close');
+                            importdialog.classList.remove('close');
+                            importbackdrop.classList.add('open');
+                            importdialog.classList.add('open');
+                        " style="margin-top: 10px;">
+                            <span class="sf-icon" slot="start"></span>Import level...
+                        </md-list-item>
+                    </bottom-drawer-content>
+                    <bottom-drawer-content value="configuration"></bottom-drawer-content>
+                    <bottom-drawer-content value="elements"></bottom-drawer-content>
+                    <bottom-drawer-content value="settings">
+                    </bottom-drawer-content>
+                    <bottom-drawer-content value="help">
+                        <br><br><br>
+                        <md-list-item class="big-header-btn" onclick="window.location.href = 'documentation.html'">
+                            <span class="sf-icon" slot="start">﫢</span>Documentation
+                        </md-list-item>
+                        <md-list-item class="big-header-btn credits-btn" id="creditsBtn" style="margin-top: 10px;">
+                            <span class="sf-icon" slot="start"></span>About
+                        </md-list-item>
+                    </bottom-drawer-content>
+                </bottom-drawer-contents>
+            </bottom-drawer>
+
+            <div class="vertical-center" width="100px">
+                <table id="level" cellspacing="0">
+                </table>
+            </div>
+        </div>
+
+        <!--Import menu-->
+        <div class="credits-dialog close" id="importdialogBackdrop">
+            <div class="dialog close" id="importDialog">
+                <div class="content">
+                    <div class="header">
+                        <h1>Import</h1>
+                        <div class="buttons">
+                            <button class="icon-button" id="importClose"></button>
+                        </div>
+                    </div>
+                    <div class="content-inside">
+                        <div class="import-options"
+                            style="display: flex; gap: 20px; height: 300px; place-items: center; flex-wrap: wrap; overflow: hidden; overflow-y: scroll;">
+                            <div class="upload-area" style="width: 100%; height: 100%;">
+                                <div class="uploadfiles-area" style="height: 100%;">
+                                    <md-icon>upload_file</md-icon>
+                                    <p>Drag or upload your level file here</p>
+                                    <input type="file" id="fileInput" accept=".txt" style="display: none;" />
+                                </div>
+                            </div>
+                            <p>or</p>
+                            <div class="type-in-lvl-code" style="width: 100%;">
+                                <md-outlined-text-field type="textarea" id="importfield" name="importfield"
+                                    supporting-text="Tip: if your level is successfully imported but there is still an error, you can ignore it."
+                                    placeholder="Type in level code"
+                                    style="overflow: hidden; width: 100%; height: 100%; resize: none; --md-outlined-text-field-container-shape: 15px; --md-outlined-text-field-input-text-font: 'Inter', 'Roboto', sans-serif; --md-outlined-text-field-label-text-font: 'Inter', 'Roboto', sans-serif;">
+                                    <button class="icon-button" slot="trailing-icon" onclick="importLevelUI()"
+                                        class="import-btn">
+                                    </button>
+                                </md-outlined-text-field>
+                                <p id="importerror"
+                                    style="color: rgba(255, 0, 0, 0); display: none; width: fit-content; height: fit-content;">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Export menu-->
+        <div class="credits-dialog close" id="exportdialogBackdrop" onclick="
+            const epbd = document.getElementById('exportdialogBackdrop');
+            const exd = document.getElementById('exportDialog');
+
+            epbd.classList.remove('open');
+            exd.classList.remove('open');
+            epbd.classList.add('close');
+            exd.classList.add('close');
+        ">
+            <div class="dialog close" id="exportDialog" onclick="event.stopPropagation()">
+                <div class="content" id="exportContent" style="margin: 30px;">
+                    <div class="header">
+                        <br>
+                        <h1 style="text-align: center; margin: 0 auto;"><span class="sf-icon"></span><br>Export
+                            successfully</h1>
+                        <div class="buttons">
+                            <button class="icon-button" id="exportClose"></button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="content-inside">
+                        <md-outlined-text-field type="textarea" id="exportfield" name="exportfield"
+                            style="overflow: hidden; width: 100%; height: 300px; --md-outlined-text-field-input-text-font:  'GoogleSans Code', monospace; font-size: 15px; --md-outlined-text-field-container-shape: 20px;"></md-outlined-text-field>
+                        <br>
+                        <p>Share your levels to social medias or save to your device</p>
+                        <div id="sharingContainer">
+                            <div tabindex="0" class="buttonsharing" onclick="saveExport()">
+                                <div class="avatar-big-button"><md-icon>download</md-icon></div>
+                                Save
+
+                            </div>
+                            <div tabindex="0" class="buttonsharing" id="facebookShare" onclick="shareOnFacebook()"
+                                style="width: 70px;">
+                                <div class="avatar-big-button"><svg xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:svg="http://www.w3.org/2000/svg" version="1.1" id="svg9" width="666.66669"
+                                        height="666.66718" viewBox="0 0 666.66668 666.66717" style="filter: invert(0);">
+                                        <script xmlns="" />
+                                        <script xmlns="" />
+                                        <defs id="defs13">
+                                            <clipPath clipPathUnits="userSpaceOnUse" id="clipPath25">
+                                                <path d="M 0,700 H 700 V 0 H 0 Z" id="path23" />
+                                            </clipPath>
+                                        </defs>
+                                        <g id="g17" transform="matrix(1.3333333,0,0,-1.3333333,-133.33333,799.99999)">
+                                            <g id="g19">
+                                                <g id="g21" clip-path="url(#clipPath25)">
+                                                    <g id="g27" transform="translate(600,350)">
+                                                        <path
+                                                            d="m 0,0 c 0,138.071 -111.929,250 -250,250 -138.071,0 -250,-111.929 -250,-250 0,-117.245 80.715,-215.622 189.606,-242.638 v 166.242 h -51.552 V 0 h 51.552 v 32.919 c 0,85.092 38.508,124.532 122.048,124.532 15.838,0 43.167,-3.105 54.347,-6.211 V 81.986 c -5.901,0.621 -16.149,0.932 -28.882,0.932 -40.993,0 -56.832,-15.528 -56.832,-55.9 V 0 h 81.659 l -14.028,-76.396 h -67.631 V -248.169 C -95.927,-233.218 0,-127.818 0,0"
+                                                            style="fill:#0866ff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                                            id="path29" />
+                                                    </g>
+                                                    <g id="g31" transform="translate(447.9175,273.6036)">
+                                                        <path
+                                                            d="M 0,0 14.029,76.396 H -67.63 v 27.019 c 0,40.372 15.838,55.899 56.831,55.899 12.733,0 22.981,-0.31 28.882,-0.931 v 69.253 c -11.18,3.106 -38.509,6.212 -54.347,6.212 -83.539,0 -122.048,-39.441 -122.048,-124.533 V 76.396 h -51.552 V 0 h 51.552 v -166.242 c 19.343,-4.798 39.568,-7.362 60.394,-7.362 10.254,0 20.358,0.632 30.288,1.831 L -67.63,0 Z"
+                                                            style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                                            id="path33" />
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                        <script xmlns="" />
+                                    </svg></div>
+                                Facebook
+
+                            </div>
+                            <div tabindex="0" class="buttonsharing" id="xShare" onclick="shareOnX()">
+                                <div class="avatar-big-button" style="background-color: #ffffff;">
+                                    <img src="X_icon.svg.png" width="48px" draggable="false">
+                                </div>
+                                X
+
+                            </div>
+                            <div tabindex="0" class="buttonsharing" id="emailShare" onclick="shareViaEmail()">
+                                <div class="avatar-big-button"><md-icon>email</md-icon></div>
+                                Email
+
+                            </div>
+                            <div tabindex="0" class="buttonsharing" id="copyLink" style="width: 70px;">
+                                <div class="avatar-big-button"><md-icon id="confirmationCopy">link</md-icon></div>
+                                Copy link
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content" id="noPoints" style="margin: 30px; display: none;">
+                    <div class="header">
+                        <br>
+                        <h1 style="text-align: center; margin: 0 auto;">Oops!</h1>
+                        <div class="buttons">
+                            <button class="icon-button" id="nopointsClose"></button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="content-inside" style="display: flex; flex-direction: column; align-items: center;">
+                        <p>You have no powers left to export.</p>
+                        <span>Buy more powers to continue or wait until your power reset</span>
+                        <img src="power_not_enough.png" />
+                        <button class="filled-button" onclick="window.location.href = 'pricing.html'">Go to
+                            Shop</button>
+                    </div>
+                </div>
+                <div class="content" id="signintoContinue" style="margin: 30px; display: none;">
+                    <div class="header">
+                        <br>
+                        <h1 style="text-align: center; margin: 0 auto;">Oops!</h1>
+                        <div class="buttons">
+                            <button class="icon-button" id="signinclose"></button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="content-inside" style="display: flex; flex-direction: column; align-items: center;">
+                        <p>You have no powers left to export.</p>
+                        <span>Sign in to use your powers or sign up to get free 20 powers to use.</span>
+                        <img src="power_not_enough.png" />
+                        <button class="filled-button" onclick="window.location.href = 'login.html'">Log in</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Credits-->
+        <div class="credits-dialog close" id="creditsBackdrop">
+            <div class="dialog close" id="creditsDialog">
+                <div class="content">
+                    <div class="header">
+                        <h1>Credits</h1>
+                        <div class="buttons"><button class="icon-button" id="creditscloseBtn">
+                                <span class="sf-icon"></span>
+                            </button></div>
+                    </div>
+                    <div class="content-inside">
+                        <div class="app-info" style="display: flex;align-items: center;gap: 10px;">
+                            <img src="logo-1024x1024-full.png" style="width: 100px; height: 100px;">
+                            <div class="app-info-text">
+                                <h2>Candy Crush Level Editor</h2>
+                                <p>Version 1.9</p>
+                            </div>
+                        </div>
+                        <p style="display: flex;align-items: center;">This tool belongs to and is developed by <img
+                                src="../CCGAppsGifLogo.gif" draggable="false"
+                                style="width: 30px; height: 30px;">CCGApps.</p>
+                        <p>Credits</p>
+                        <md-list class="credits-list">
+                            <md-list-item>
+                                <md-icon slot="start">account_circle</md-icon>
+                                Blakiemon
+                                <div slot="supporting-text">Creator of this tool</div>
+                            </md-list-item>
+                            <md-list-item>
+                                <md-icon slot="start">account_circle</md-icon>
+                                Fence (Fence AKA Glasnost)
+                            </md-list-item>
+                            <md-list-item>
+                                <md-icon slot="start">account_circle</md-icon>
+                                Candy Crush Gemer (CCGApps)
+                                <div slot="supporting-text">Tool remaker and current developer of this tool</div>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Alert note-->
+        <div class="credits-dialog open" id="alertBackdrop">
+            <div class="dialog open" id="alertDialog">
+                <div class="content">
+                    <div class="header">
+                        <h1>Note</h1>
+                        <div class="buttons"><md-icon-button id="alertClose">
+                                <md-icon>close</md-icon>
+                            </md-icon-button></div>
+                    </div>
+                    <div class="content-inside">
+                        <p>When exporting, please delete the line <code>"candyCobras":3</code> at the end of the export
+                            result to avoid game crash. If you want to add Candy Cobra to your level, unfortunately, we
+                            had taken it down for fixing.</p>
+                    </div>
+                    <div style="display: flex;gap:5px;">
+                        <input type="checkbox" id="disableOpenAlert">Don't show it again
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const alertbackdropDialog = document.getElementById('alertBackdrop');
+                const alertDialog = document.getElementById('alertDialog');
+                const alertClose = document.getElementById('alertClose');
+                const disableOpenAlert = document.getElementById('disableOpenAlert');
+
+                // Check localStorage for alertUnderstood
+                if (localStorage.getItem('alertUnderstood') === 'true') {
+                    alertbackdropDialog.classList.remove('open');
+                    alertbackdropDialog.classList.add('close');
+                    alertDialog.classList.remove('open');
+                    alertDialog.classList.add('close');
+                }
+
+                alertClose.addEventListener('click', function () {
+                    if (alertDialog.classList.contains('open')) {
+                        // If the dropdown is currently shown, hide it
+                        alertDialog.classList.remove('open');
+                        alertDialog.classList.add('close');
+                    }
+                    if (alertbackdropDialog.classList.contains('open')) {
+                        alertbackdropDialog.classList.remove('open');
+                        alertbackdropDialog.classList.add('close');
+                    }
+
+                    // Check if the checkbox is checked and save to localStorage
+                    if (disableOpenAlert.checked) {
+                        localStorage.setItem('alertUnderstood', 'true');
+                    }
+                });
+            });
+        </script>
+        <!--New level menu-->
+        <div class="credits-dialog close" id="newLevelBackdrop">
+            <div class="dialog close" id="newLevelDialog">
+                <div class="content">
+                    <div class="header">
+                        <h1>Do you want to save your work?</h1>
+                        <div class="buttons">
+                            <button class="icon-button" id="newClose"></button>
+                        </div>
+                    </div>
+                    <div class="content-inside" style="height: 70px;">
+                        <span>There is unsaved changes in your level.</span>
+                        <div style="width: 100%;">
+                            <div
+                                style="position: absolute; right: 15px; display: flex; place-items: center; margin: 10px; gap: 10px;">
+                                <button class="filled-button" onclick="exportLevelUI()">Yes</button>
+                                <button class="outlined-button" onclick="window.location.reload()">No</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <forge-dialog class="settings-fulldialog"
+            style="--forge-dialog-shape: 30px; --forge-dialog-background: var(--background-initial-color); width: 90vh;">
+            <forge-scaffold style="margin: 0; width: 700px; height: 700px;">
+                <mdui-layout slot="body">
+                    <mdui-top-app-bar style="background-color: #00000000;">
+                        <button class="icon-button close-settings"></button>
+                        <mdui-top-app-bar-title><strong>Settings</strong></mdui-top-app-bar-title>
+                        <div style="flex-grow: 1"></div>
+                    </mdui-top-app-bar>
+                    <mdui-layout-main>
+                        <md-list id="settingsMenu"
+                            style="margin: 20px; margin-top: 0; display: flex; flex-direction: column; background-color: #00000000; gap: 3px;">
+                            <md-list-item
+                                style="background-color: var(--big-header-btn-bg); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;">
+                                Enable dark mode
+                                <label class="switch" slot="end">
+                                    <input tabindex="1" type="checkbox" id="switchDark">
+                                    <span tabindex="1" class="slider round"></span>
+                                </label>
+                            </md-list-item>
+                            <forge-expansion-panel>
+                                <md-list-item slot="header"
+                                    style="background-color: var(--big-header-btn-bg); border-radius: 5px;">
+                                    Music and sound
+                                    <div style="display: flex; place-items: center; gap: 10px;" slot="end">
+                                        <span class="sf-icon"></span>
+                                    </div>
+                                </md-list-item>
+                                <div
+                                    style="padding: 10px; overflow: hidden; background-color: var(--big-header-btn-bg); border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
+                                    <forge-split-view id="musicConfig" auto-close-threshold="120"
+                                        style="height: 150px;">
+                                        <forge-split-view-panel size="350">
+                                            <div
+                                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                                <md-list-item
+                                                    style="background-color: var(--background-initial-color); border-radius: 20px; width: 90%;">
+                                                    <md-icon slot="start" style="font-family: 'SF Symbols';">ﴁ</md-icon>
+                                                    <div slot="headline" id="songName">?</div>
+                                                    <div slot="end"
+                                                        style="display: flex; gap: 5px; place-items: center;">
+                                                        <button class="icon-button" id="previousSong">
+                                                            <md-icon
+                                                                style="font-family: 'SF Symbols'; font-size: smaller;">﵁</md-icon>
+                                                        </button>
+                                                        <button class="icon-button" id="playSong">
+                                                            <md-icon
+                                                                style="font-family: 'SF Symbols'; font-size: smaller;">ﵥ</md-icon>
+                                                        </button>
+                                                        <button class="icon-button" id="nextSong">
+                                                            <md-icon
+                                                                style="font-family: 'SF Symbols'; font-size: smaller;">ﴽ</md-icon>
+                                                        </button>
+
+                                                    </div>
+                                                </md-list-item>
+                                                <audio id="musicMain" loop>
+                                                    <source id="musicSrc" src="audio/songs/songs_1.9/Bonbon Bonbon.ogg"
+                                                        type="audio/ogg">
+                                                </audio>
+                                                <md-list-item>
+                                                    <md-icon-button id="mute" slot="start">
+                                                        <md-icon>volume_up</md-icon>
+                                                    </md-icon-button>
+                                                    <md-slider id="volumeCustomize" min="0" max="1" step="0.01"
+                                                        value="1"></md-slider>
+                                                </md-list-item>
+                                            </div>
+                                        </forge-split-view-panel>
+                                    </forge-split-view>
+                                    <md-divider></md-divider>
+                                    <md-list-item>
+                                        Enable clicking sound
+                                        <label class="switch" slot="end">
+                                            <input tabindex="1" type="checkbox" id="switchClick">
+                                            <span tabindex="1" class="slider round"></span>
+                                        </label>
+                                    </md-list-item>
+                                </div>
+                            </forge-expansion-panel>
+                            <md-list-item onclick="window.open('https://forms.gle/XMkahmBmzxN2HUEN9')"
+                                style="background-color: var(--big-header-btn-bg); border-radius: 5px;">
+                                Bug report
+                                <span class="sf-icon" slot="end"></span>
+                            </md-list-item>
+                            <md-list-item style="background-color: var(--big-header-btn-bg); border-radius: 5px;">
+                                Enable touch indicator
+                                <label class="switch" slot="end">
+                                    <input tabindex="1" type="checkbox" id="enableTouch">
+                                    <span tabindex="1" class="slider round"></span>
+                                </label>
+                            </md-list-item>
+                            <!--<md-list-item onclick="window.location.href = 'settings.html'" style="background-color: var(--md-sys-color-background); border-radius: 5px;">
+                                        More settings
+                                        <span class="sf-icon" slot="end"></span>
+                                    </md-list-item>-->
+                            <md-list-item
+                                style="background-color: var(--big-header-btn-bg); border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; border-top-right-radius: 5px; border-top-left-radius: 5px;">
+                                <md-icon slot="start">info</md-icon>
+                                Version 1.9
+                                <button class="filled-button" slot="end" id="checkUpdates">Check for updates</button>
+                                <button class="navbarbtn" slot="end"
+                                    onclick="window.open('documentation.html#changelogs')">View changelogs</button>
+                            </md-list-item>
+                        </md-list>
+                        <mdui-snackbar closeable class="updates-notify">You're using the latest version of Level
+                            Editor!</mdui-snackbar>
+                    </mdui-layout-main>
+                </mdui-layout>
+            </forge-scaffold>
+        </forge-dialog>
+        <audio id="clickSound" src="audio/ui/Generic_Button_Sound_Effect.wav"></audio>
+
+    </mdui-layout-main>
+
+
+    <svg style="position:absolute;width:0;height:0">
+        <filter id="frostedDock" primitiveUnits="objectBoundingBox">
+            <feImage href="frosted.png" x="-0.2" y="-0.2" width="1.3" height="1.3" result="map"
+                preserveAspectRatio="none"></feImage>
+            <feGaussianBlur in="SourceGraphic" stdDeviation="0" result="blur"></feGaussianBlur>
+            <feDisplacementMap id="disp" in="blur" in2="map" scale="0.1" xChannelSelector="R" yChannelSelector="G">
+            </feDisplacementMap>
+        </filter>
+    </svg>
+
+
+
+    <script type="module" src="credentials.js"></script>
+    <script src="editor.js"></script>
+
+    <!--Script handle points-->
+    <script type="module" src="points.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/liquid-web/liquid-core.min.js"></script>
+
+    <script>
+        // Vanilla JS Liquid Glass Effect - Paste into browser console
+        // Created by Shu Ding (https://github.com/shuding/liquid-glass) in 2025.
+
+        (function() {
+        'use strict';
+
+        // List of selectors to apply the liquid glass filter to
+        // You can add more selectors to this array as needed
+        const LIQUID_GLASS_TARGETS = [
+            '.example-top-app-bar'
+            // Add more selectors here, e.g. '.another-class', '#some-id'
+        ];
+
+        // Check if liquid glass already exists and destroy it
+        if (window.liquidGlass) {
+            window.liquidGlass.destroy();
+            console.log('Previous liquid glass effect removed.');
+        }
+
+        // Utility functions
+        function smoothStep(a, b, t) {
+            t = Math.max(0, Math.min(1, (t - a) / (b - a)));
+            return t * t * (3 - 2 * t);
+        }
+
+        function length(x, y) {
+            return Math.sqrt(x * x + y * y);
+        }
+
+        function roundedRectSDF(x, y, width, height, radius) {
+            const qx = Math.abs(x) - width + radius;
+            const qy = Math.abs(y) - height + radius;
+            return Math.min(Math.max(qx, qy), 0) + length(Math.max(qx, 0), Math.max(qy, 0)) - radius;
+        }
+
+        function texture(x, y) {
+            return { type: 't', x, y };
+        }
+
+        // Main Shader class
+        class Shader {
+            constructor(options = {}) {
+                this.width = options.width || 100;
+                this.height = options.height || 100;
+                this.fragment = options.fragment || ((uv) => texture(uv.x, uv.y));
+                this.canvasDPI = 1;
+                this.id = 'liquid';
+                this.offset = 10; // Viewport boundary offset
+
+                this.mouse = { x: 0, y: 0 };
+                this.mouseUsed = false;
+
+                // Create SVG filter
+                this.svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                this.svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+                this.svg.setAttribute('width', '0');
+                this.svg.setAttribute('height', '0');
+                this.svg.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    pointer-events: none;
+                    z-index: 9998;
+                `;
+
+                const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+                const filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
+                filter.setAttribute('id', `${this.id}_filter`);
+                filter.setAttribute('filterUnits', 'userSpaceOnUse');
+                filter.setAttribute('colorInterpolationFilters', 'sRGB');
+                filter.setAttribute('x', '0');
+                filter.setAttribute('y', '0');
+                filter.setAttribute('width', this.width.toString());
+                filter.setAttribute('height', this.height.toString());
+
+                this.feImage = document.createElementNS('http://www.w3.org/2000/svg', 'feImage');
+                this.feImage.setAttribute('id', `${this.id}_map`);
+                this.feImage.setAttribute('width', this.width.toString());
+                this.feImage.setAttribute('height', this.height.toString());
+                this.feImage.setAttribute('preserveAspectRatio','none');
+
+                this.feDisplacementMap = document.createElementNS('http://www.w3.org/2000/svg', 'feDisplacementMap');
+                this.feDisplacementMap.setAttribute('in', 'SourceGraphic');
+                this.feDisplacementMap.setAttribute('in2', `${this.id}_map`);
+                this.feDisplacementMap.setAttribute('xChannelSelector', 'R');
+                this.feDisplacementMap.setAttribute('yChannelSelector', 'G');
+
+                filter.appendChild(this.feImage);
+                filter.appendChild(this.feDisplacementMap);
+                defs.appendChild(filter);
+                this.svg.appendChild(defs);
+
+                // Create canvas for displacement map (hidden)
+                this.canvas = document.createElement('canvas');
+                this.canvas.width = this.width * this.canvasDPI;
+                this.canvas.height = this.height * this.canvasDPI;
+                this.canvas.style.display = 'none';
+
+                this.context = this.canvas.getContext('2d');
+            }
+
+            updateShader() {
+                const mouseProxy = new Proxy(this.mouse, {
+                    get: (target, prop) => {
+                        this.mouseUsed = true;
+                        return target[prop];
+                    }
+                });
+
+                this.mouseUsed = false;
+
+                const w = this.width * this.canvasDPI;
+                const h = this.height * this.canvasDPI;
+                const data = new Uint8ClampedArray(w * h * 4);
+
+                let maxScale = 0;
+                const rawValues = [];
+
+                for (let i = 0; i < data.length; i += 4) {
+                    const x = (i / 4) % w;
+                    const y = Math.floor(i / 4 / w);
+                    const pos = this.fragment(
+                        { x: x / w, y: y / h },
+                        mouseProxy
+                    );
+                    const dx = pos.x * w - x;
+                    const dy = pos.y * h - y;
+                    maxScale = Math.max(maxScale, Math.abs(dx), Math.abs(dy));
+                    rawValues.push(dx, dy);
+                }
+
+                maxScale *= 0.5;
+
+                let index = 0;
+                for (let i = 0; i < data.length; i += 4) {
+                    const r = rawValues[index++] / maxScale + 0.5;
+                    const g = rawValues[index++] / maxScale + 0.5;
+                    data[i] = r * 255;
+                    data[i + 1] = g * 255;
+                    data[i + 2] = 0;
+                    data[i + 3] = 255;
+                }
+
+                this.context.putImageData(new ImageData(data, w, h), 0, 0);
+                this.feImage.setAttributeNS('http://www.w3.org/1999/xlink', 'href', this.canvas.toDataURL());
+                this.feDisplacementMap.setAttribute('scale', (maxScale / this.canvasDPI).toString());
+            }
+
+            appendTo(parent) {
+                parent.appendChild(this.svg);
+            }
+
+            destroy() {
+                this.svg.remove();
+                this.canvas.remove();
+                // Remove filter from all targets
+                LIQUID_GLASS_TARGETS.forEach(selector => {
+                    document.querySelectorAll(selector).forEach(el => {
+                        el.style.backdropFilter = '';
+                        el.style.webkitBackdropFilter = '';
+                        el.style.filter = '';
+                    });
+                });
+            }
+        }
+
+        // Create the liquid glass effect
+        function createLiquidGlass() {
+            // Create shader
+            const shader = new Shader({
+                width: 300,
+                height: 200,
+                fragment: (uv, mouse) => {
+                    const ix = uv.x - 0.5;
+                    const iy = uv.y - 0.5;
+                    const distanceToEdge = roundedRectSDF(
+                        ix,
+                        iy,
+                        0.3,
+                        0.2,
+                        0.6
+                    );
+                    const displacement = smoothStep(0.8, 0, distanceToEdge - 0.15);
+                    const scaled = smoothStep(0, 1, displacement);
+                    return texture(ix * scaled + 0.5, iy * scaled + 0.5);
+                }
+            });
+
+            // Add SVG filter to page
+            shader.appendTo(document.body);
+
+            // Apply the SVG filter as a backdrop-filter to all target elements
+            function applyLiquidGlassFilter() {
+                LIQUID_GLASS_TARGETS.forEach(selector => {
+                    document.querySelectorAll(selector).forEach(el => {
+                        // Use backdrop-filter if supported, fallback to filter if not
+                        el.style.backdropFilter = `url(#${shader.id}_filter)`;
+                        el.style.webkitBackdropFilter = `url(#${shader.id}_filter)`;
+                        // For browsers that don't support backdrop-filter, fallback to filter (less ideal)
+                        el.style.filter = `url(#${shader.id}_filter)`;
+                    });
+                });
+            }
+
+            // Initial application
+            applyLiquidGlassFilter();
+
+            // Re-apply on DOM changes (optional, for dynamic content)
+            // You can comment this out if not needed
+            const observer = new MutationObserver(() => {
+                applyLiquidGlassFilter();
+            });
+            observer.observe(document.body, { childList: true, subtree: true });
+
+            // Re-apply on window resize (in case of layout changes)
+            window.addEventListener('resize', applyLiquidGlassFilter);
+
+            // Expose for removal
+            window.liquidGlass = shader;
+        }
+
+        // Initialize
+        createLiquidGlass();
+        })();
+    </script>
+</body>
+
+</html>

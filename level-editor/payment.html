@@ -1,0 +1,729 @@
+<html class="light">
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@400;700&display=swap" rel="stylesheet">
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  <script type="module">
+    import '@material/web/all.js';
+    import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+  </script>
+  <link rel="stylesheet" href="light-mc.css">
+  <link rel="stylesheet" href="light-hc.css">
+  <link rel="stylesheet" href="mat-accent-color-light.css">
+  <!--<link rel="stylesheet" href="mat-accent-color-dark.css">-->
+  <style>
+    body {
+      font-family: 'Google Sans Text', 'Roboto', sans-serif;
+      background-color: transparent;
+    }
+
+    forge-backdrop {
+      backdrop-filter: blur(10px);
+    }
+  </style>
+  <!-- Filled -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Outlined -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <!-- Rounded -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- Sharp -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+  <!-- Two Tone -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone" rel="stylesheet">
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.4.1/index.js"></script>
+  
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  
+  <style>
+    forge-dialog {
+      user-select: none;
+      -webkit-user-drag: none;
+      font-family: 'Google Sans Text', sans-serif !important;
+    }
+
+
+    a:focus {
+      outline: none;
+    }
+
+    a {
+      position: relative;
+    }
+
+    md-list-item {
+      font-family: 'Google Sans Text', sans-serif !important;
+    }
+
+    .hidden {
+      opacity: 0;
+    }
+
+    .visible {
+      opacity: 1;
+    }
+
+    #loading,
+    #payMain {
+      transition: opacity 0.3s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="form-area">
+    <forge-dialog open preset="bottom-sheet" moveable="true" style="--forge-dialog-elevation: none;">
+      <forge-scaffold>
+        <div slot="body" id="successfullPayment" style="width: 100%; display: none;">
+          <div
+            style="display: flex; place-items: center; justify-content: space-between; overflow: hidden; margin: 10px 20px;">
+            <img src="logo-horizontal.png" width="64px" alt="">
+          </div>
+          <md-divider></md-divider>
+          <div id="main" style="margin: 5px;">
+            <md-list-item>
+              <h2>Successfully subscribed</h2>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item>
+              Now you have the full of features to enhance your level designing experience in Level Editor. You can
+              cancel anytime in your profile dashboard.
+            </md-list-item>
+
+            <md-filled-button id="completeClose" style="margin: 10px; width: 97%;">Ok</md-filled-button>
+          </div>
+        </div>
+        <div slot="body" id="requestSent" style="width: 100%; display: none;">
+          <div
+            style="display: flex; place-items: center; justify-content: space-between; overflow: hidden; margin: 10px 20px;">
+            <img src="logo-horizontal.png" width="64px" alt="">
+          </div>
+          <md-divider></md-divider>
+          <div id="main" style="margin: 5px;">
+            <md-list-item>
+              <h2>Purchase request sent</h2>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item>
+              Why are we doing this?<md-icon slot="start">help</md-icon>
+            </md-list-item>
+            <md-divider inset></md-divider>
+            <md-list-item>
+              We are currently planning to develop a payment system feature on this page. To activate your subscription
+              or receive your gift code, you need to submit the exact value of the item you choose to purchase through
+              PayPal. <md-icon slot="start">info</md-icon>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item id="resendRequest" type="link" href="javascript:void(0)">
+              Resend request <md-icon slot="start">refresh</md-icon>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item type="link" href="javascript:void(0)">
+              Open Gmail for more info <md-icon slot="start">open_in_new</md-icon>
+            </md-list-item>
+
+            <md-filled-button class="close-dialog" style="margin: 10px; width: 97%;">Ok</md-filled-button>
+          </div>
+        </div>
+        <div slot="body" id="requestFailed" style="width: 100%; display: none;">
+          <div
+            style="display: flex; place-items: center; justify-content: space-between; overflow: hidden; margin: 10px 20px;">
+            <img src="logo-horizontal.png" width="64px" alt="">
+          </div>
+          <md-divider></md-divider>
+          <div id="main" style="margin: 5px;">
+            <md-list-item>
+              <h2>Request Failed</h2>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item>
+              There's an error occured when processing your purchase. Please try again later.
+            </md-list-item>
+
+            <md-filled-button class="close-dialog" style="margin: 10px; width: 97%;">Ok</md-filled-button>
+          </div>
+        </div>
+        <div slot="body" id="paymentFail" style="width: 100%;display: none;">
+          <div
+            style="display: flex; place-items: center; justify-content: space-between; overflow: hidden; margin: 10px 20px;">
+            <img src="logo-horizontal.png" width="64px" alt="">
+          </div>
+          <md-divider></md-divider>
+          <div id="main" style="margin: 5px;">
+            <md-list-item>
+              <h2 style="margin: 0;">Your purchase was unsuccessully.</h2>
+            </md-list-item>
+            <md-list-item>
+              No money was removed in your account.
+            </md-list-item>
+
+            <div style="display: flex; margin: 10px; gap: 10px;">
+              <md-outlined-button id="closeDialog" style="width: 100%;">Ok</md-outlined-button>
+            </div>
+          </div>
+        </div>
+        <div slot="body" id="successfullGift" style="width: 100%; display: none;">
+          <div
+            style="display: flex; place-items: center; justify-content: space-between; overflow: hidden; margin: 10px 20px;">
+            <img src="logo-horizontal.png" width="64px" alt="">
+          </div>
+          <md-divider></md-divider>
+          <div id="main" style="margin: 5px;">
+            <md-list-item>
+              <h2>Successfully purchased</h2>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item>
+              You will soon get your gift code in your email to use for yourself or give it to other people.
+            </md-list-item>
+
+            <md-filled-button id="completeClose" style="margin: 10px; width: 97%;">Ok</md-filled-button>
+          </div>
+        </div>
+        <div slot="body" id="payMain" style="width: 100%; display: none;">
+          <div
+            style="display: flex; place-items: center; justify-content: space-between; overflow: hidden; margin: 10px 20px;">
+            <img src="logo-horizontal.png" width="64px" alt="">
+            <md-icon-button class="close-dialog">
+              <md-icon>close</md-icon>
+            </md-icon-button>
+          </div>
+          <md-divider></md-divider>
+          <div id="main" style="margin: 5px;">
+            <md-list-item>
+              <div slot="start" style="display: flex; place-items: center; gap: 15px;">
+                <img id="payingImg" src="pricing/bronze.png" style="border-radius: 3px;" width="52px" height="52px"
+                  alt="">
+                <h2 style="font-weight: normal; display: flex; flex-direction: column;" id="purchaseItem">Item
+                  <span style="font-size: 14px;">Level Editor</span>
+                  <span class="type" style="font-size: 14px;">Personal subscription</span>
+                </h2>
+              </div>
+              <div slot="end">
+                <h2 id="price" style="margin: 0; font-weight: normal;">$0.00</h2>
+              </div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item style="opacity: 0.5; user-select: none;">
+              <span id="cardInfo">Payment method</span>
+              <span slot="supporting-text">PayPal, Bank transfer and Top-up card are available payment methods.
+                <br>More payment methods will be added in the future
+              </span>
+              <md-icon slot="end">chevron_right</md-icon>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item>
+              <span style="font-size: smaller; opacity: 0.7;">By tapping 'Purchase', you accept the following terms of
+                Service: <a href="documentation.html#legal" target="_blank"
+                  style="color: inherit;"><md-focus-ring></md-focus-ring> Privacy
+                  Notice</a>, <a href="documentation.html#legal" target="_blank"
+                  style="color: inherit;"><md-focus-ring></md-focus-ring> Terms
+                  of Service</a>.</span>
+            </md-list-item>
+            <br>
+            <md-filled-button id="purchaseOrder" style="margin: 10px; width: 97%;">Purchase</md-filled-button>
+          </div>
+        </div>
+        <div slot="body" id="loading"
+          style="width: 100%; display: flex; justify-content: center; align-items: center; position: relative; ">
+          <div style="opacity: 0; pointer-events: none;">
+            <div
+              style="display: flex; place-items: center; justify-content: space-between; overflow: hidden; margin: 10px 20px;">
+              <img src="logo-horizontal.png" width="64px" alt="">
+              <md-icon-button class="close-dialog">
+                <md-icon>close</md-icon>
+              </md-icon-button>
+            </div>
+            <md-divider></md-divider>
+            <div id="main" style="margin: 5px;">
+              <md-list-item>
+                <div slot="start" style="display: flex; place-items: center; gap: 15px;">
+                  <img id="payingImg" src="pricing/bronze.png" style="border-radius: 3px;" width="52px" height="52px"
+                    alt="">
+                  <h2 style="font-weight: normal; display: flex; flex-direction: column;" id="purchaseItem">Item
+                    <span style="font-size: 14px;">Level Editor</span>
+                    <span class="type" style="font-size: 14px;">Personal subscription</span>
+                  </h2>
+                </div>
+                <div slot="end">
+                  <h2 id="price" style="margin: 0; font-weight: normal;">$0.00</h2>
+                </div>
+              </md-list-item>
+              <md-divider></md-divider>
+              <md-list-item style="opacity: 0.5; user-select: none;">
+                <img src="pricing/paypal.png" slot="start" width="36px" alt="" id="card">
+                <span id="cardInfo">PayPal</span>
+                <span slot="supporting-text">More payment methods will be added in the future</span>
+                <md-icon slot="end">chevron_right</md-icon>
+              </md-list-item>
+              <md-divider></md-divider>
+              <md-list-item>
+                <span style="font-size: smaller; opacity: 0.7;">By tapping 'Purchase', you accept the following terms of
+                  Service: <a href="javascript:void(0)" style="color: inherit;"><md-focus-ring></md-focus-ring> Privacy
+                    Notice</a>, <a href="javascript:void(0)" style="color: inherit;"><md-focus-ring></md-focus-ring>
+                    Terms
+                    of Service</a>.</span>
+              </md-list-item>
+              <br>
+              <md-filled-button id="purchaseOrder" style="margin: 10px; width: 97%;">Purchase</md-filled-button>
+            </div>
+          </div>
+          <div
+            style="position: absolute;width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+            <mat-circular-progress bg="false" style="width: 48px; height: 48px;"></mat-circular-progress>
+          </div>
+        </div>
+      </forge-scaffold>
+    </forge-dialog>
+
+  </main>
+
+  <br><br>
+  <!--<md-switch id="dark-mode"></md-switch>-->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const darkBtn = document.getElementById('dark-mode');
+      const html = document.querySelector('html');
+
+      if (darkBtn) {
+        darkBtn.addEventListener("click", function () {
+          if (html.classList.contains('light')) {
+            html.classList.remove('light');
+            html.classList.add('dark');
+          } else {
+            html.classList.remove('dark');
+            html.classList.add('light');
+          }
+        })
+      }
+    })
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const dialog = document.querySelector('forge-dialog');
+      const closeDialogButtons = document.querySelectorAll('.close-dialog');
+
+      if (closeDialogButtons.length > 0) {
+        closeDialogButtons.forEach(function (button) {
+          button.addEventListener('click', function () {
+            dialog.removeAttribute('open');
+          });
+        });
+      }
+    });
+  </script>
+
+  <script>
+    // Script to remove fullscreen attribute from forge-dialog when screen width is less than 615px
+    document.addEventListener("DOMContentLoaded", function() {
+      // Function to check screen width and handle forge-dialog fullscreen attribute
+      function handleForgeDialogFullscreen() {
+        // Check if screen width is less than 615px
+        if (window.innerWidth < 615) {
+          const forgeDialog = document.querySelector('forge-dialog');
+          if (forgeDialog && forgeDialog.hasAttribute('fullscreen')) {
+            forgeDialog.removeAttribute('fullscreen');
+            console.log('Removed fullscreen attribute from forge-dialog');
+          }
+        }
+      }
+      
+      // Call the function on page load
+      handleForgeDialogFullscreen();
+      
+      // Also call the function when the window is resized
+      window.addEventListener('resize', handleForgeDialogFullscreen);
+    });
+  </script>
+
+  <script>
+    class MatCircularProgress extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+      }
+
+      connectedCallback() {
+        const bg = this.getAttribute('bg') === 'false' ? 'false' : 'true';
+        const iframeSrc = bg === 'false' ? 'mat-circular-progress-no-background.html' : 'mat-circular-progress.html';
+
+        this.shadowRoot.innerHTML = `
+                <div part="container">
+                    <iframe src="${iframeSrc}" part="loader" frameborder="0" scrolling="no" style="width: 100%; height: 100%; overflow: hidden; user-select: none; -webkit-user-drag: none; pointer-events: none;"></iframe>
+                </div>
+            `;
+      }
+    }
+
+    customElements.define('mat-circular-progress', MatCircularProgress);
+  </script>
+
+
+  <script>
+    // Function to get URL parameters
+    function getUrlParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    // Get the 'item' and 'type' parameters from the URL
+    var item = getUrlParameter('item');
+    var type = getUrlParameter('type');
+
+    // Store the current item and type for later use
+    let currentItem = item;
+    let currentType = type;
+
+    // Update the purchase item based on the 'item' parameter
+    if (item) {
+      let purchaseItemElement = document.querySelector('#purchaseItem');
+      let textToSet = '';
+
+      switch (item) {
+        case 'BM':
+          textToSet = 'Bronze Monthly';
+          document.querySelector('#price').textContent = '$5.99';
+          document.querySelector('#payingImg').src = 'pricing/bronze.png';
+          break;
+        case 'BY':
+          textToSet = 'Bronze Yearly';
+          document.querySelector('#price').textContent = '$4.99/mo';
+          document.querySelector('#payingImg').src = 'pricing/bronze.png';
+          break;
+        case 'SM':
+          textToSet = 'Silver Monthly';
+          document.querySelector('#price').textContent = '$10.99';
+          document.querySelector('#payingImg').src = 'pricing/silver.png';
+          break;
+        case 'SY':
+          textToSet = 'Silver Yearly';
+          document.querySelector('#price').textContent = '$8.99/mo';
+          document.querySelector('#payingImg').src = 'pricing/silver.png';
+          break;
+        case 'GM':
+          textToSet = 'Gold Monthly';
+          document.querySelector('#price').textContent = '$30.99';
+          document.querySelector('#payingImg').src = 'pricing/golden.png';
+          break;
+        case 'GY':
+          textToSet = 'Gold Yearly';
+          document.querySelector('#price').textContent = '$24.99/mo';
+          document.querySelector('#payingImg').src = 'pricing/golden.png';
+          break;
+        case 'powers10':
+          textToSet = '10 Powers';
+          document.querySelector('#price').textContent = '$1.00';
+          document.querySelector('#payingImg').src = 'power_uses.png';
+          break;
+        case 'powers50':
+          textToSet = '50 Powers';
+          document.querySelector('#price').textContent = '$5.00';
+          document.querySelector('#payingImg').src = 'power_uses.png';
+          break;
+        case 'powers100':
+          textToSet = '100 Powers';
+          document.querySelector('#price').textContent = '$10.00';
+          document.querySelector('#payingImg').src = 'power_uses.png';
+          break;
+        case 'powers250':
+          textToSet = '250 Powers';
+          document.querySelector('#price').textContent = '$25.00';
+          document.querySelector('#payingImg').src = 'power_uses.png';
+          break;
+        case 'powers500':
+          textToSet = '500 Powers';
+          document.querySelector('#price').textContent = '$50.00';
+          document.querySelector('#payingImg').src = 'power_uses.png';
+          break;
+        default:
+          console.log('Invalid item type');
+      }
+
+      // Update only the first text node in #purchaseItem
+      if (purchaseItemElement.childNodes.length > 0) {
+        // Check if the first child is a text node
+        if (purchaseItemElement.firstChild.nodeType === Node.TEXT_NODE) {
+          purchaseItemElement.firstChild.textContent = textToSet; // Set the text content
+        }
+      }
+    }
+
+    // Update the type based on the 'type' parameter
+    if (type) {
+      switch (type) {
+        case 'license':
+          document.querySelector('.type').textContent = 'Personal subscription';
+          break;
+        case 'gift':
+          document.querySelector('.type').textContent = 'Gift code';
+          break;
+        default:
+          console.log('Invalid type');
+      }
+    }
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      setTimeout(function () {
+        // Fade out #loading
+        const loadingElement = document.getElementById('loading');
+        loadingElement.classList.add('hidden');
+
+        // After fade out is complete, change display and fade in #payMain
+        loadingElement.addEventListener('transitionend', function () {
+          loadingElement.style.display = 'none'; // Set display to none after fade out
+          const payMainElement = document.getElementById('payMain');
+          payMainElement.style.display = 'block'; // Set display to block
+          payMainElement.classList.add('visible'); // Start fade in
+        });
+      }, 2000); // 2 seconds delay
+    });
+  </script>
+
+  <script>
+    // Initialize Firebase
+    document.addEventListener("DOMContentLoaded", function() {
+      // Check if Firebase is already initialized
+      if (!firebase.apps.length) {
+        const firebaseConfig = {
+          apiKey: "AIzaSyBEbBryhcs9qxHpi9oxCiW9jV5eTDZHP7M",
+          authDomain: "ccs-level-editor.firebaseapp.com",
+          projectId: "ccs-level-editor",
+          storageBucket: "ccs-level-editor.firebasestorage.app",
+          messagingSenderId: "10424890215",
+          appId: "1:10424890215:web:e7bfc73e36785ef439f5c2"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        console.log("Firebase initialized successfully");
+      }
+      
+      // Check if user is logged in
+      checkUserLoginStatus();
+    });
+    
+    // Function to check if user is logged in
+    function checkUserLoginStatus() {
+      const auth = firebase.auth();
+      const purchaseOrderButton = document.getElementById('purchaseOrder');
+      
+      auth.onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in
+          console.log("User is logged in:", user.email);
+          console.log("User ID:", user.uid);
+          
+          // Store user info in localStorage for later use
+          localStorage.setItem("loggedIn", "true");
+          localStorage.setItem("userId", user.uid);
+          localStorage.setItem("userEmail", user.email);
+          
+          // Update button text if needed
+          if (purchaseOrderButton) {
+            purchaseOrderButton.textContent = "Purchase";
+          }
+        } else {
+          // User is signed out
+          console.log("User is not logged in");
+          
+          // Clear user info from localStorage
+          localStorage.setItem("loggedIn", "false");
+          localStorage.removeItem("userId");
+          localStorage.removeItem("userEmail");
+          
+          // Update button text to indicate login required
+          if (purchaseOrderButton) {
+            purchaseOrderButton.textContent = "Login to Purchase";
+          }
+        }
+      });
+    }
+  </script>
+
+  <script>
+    // Function to send purchase request
+    async function sendPurchaseRequest(item, type) {
+      try {
+        // Store the current item and type in localStorage for resend functionality
+        localStorage.setItem('lastRequestItem', item);
+        localStorage.setItem('lastRequestType', type);
+        
+        // Check if user is logged in
+        const auth = firebase.auth();
+        const user = auth.currentUser;
+        
+        if (!user) {
+          // User is not logged in, redirect to login page
+          window.location.href = "login.html?redirect=payment.html?item=" + item + "&type=" + type;
+          return;
+        }
+        
+        // Show loading state
+        document.getElementById('payMain').style.display = 'none';
+        document.getElementById('loading').style.display = 'flex';
+        
+        // Store the subscription request in Firestore
+        try {
+          const db = firebase.firestore();
+          await db.collection("subscriptionRequests").add({
+            email: user.email,
+            userId: user.uid,
+            item: item,
+            type: type,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          });
+          console.log("Subscription request stored successfully");
+        } catch (firestoreError) {
+          console.error("Error storing subscription request:", firestoreError);
+          
+          // If it's a permissions error, we'll still show the request sent message
+          // but log the error for debugging
+          if (firestoreError.code === 'permission-denied') {
+            console.warn("Permission denied when storing request. This is likely a security rules issue.");
+          } else {
+            // For other errors, rethrow to be caught by the outer catch
+            throw firestoreError;
+          }
+        }
+        
+        // Simulate API request (replace with actual API call)
+        setTimeout(() => {
+          // Hide loading overlay
+          document.getElementById('loading').style.display = 'none';
+          
+          // Show request sent message
+          document.getElementById('requestSent').style.display = 'block';
+        }, 1500);
+        
+      } catch (error) {
+        console.error("Error sending purchase request:", error);
+        
+        // Hide loading overlay
+        document.getElementById('loading').style.display = 'none';
+        
+        // Show error message
+        document.getElementById('requestFailed').style.display = 'block';
+      }
+    }
+
+    // Add event listener for the purchase button
+    document.addEventListener("DOMContentLoaded", function() {
+      const purchaseOrderButton = document.getElementById('purchaseOrder');
+      if (purchaseOrderButton) {
+        purchaseOrderButton.addEventListener('click', function() {
+          // Check if user is logged in
+          const auth = firebase.auth();
+          const user = auth.currentUser;
+          
+          if (!user) {
+            // User is not logged in, redirect to login page
+            window.location.href = "login.html?redirect=payment.html?item=" + currentItem + "&type=" + currentType;
+            return;
+          }
+          
+          // Send the purchase request with the current item and type
+          sendPurchaseRequest(currentItem, currentType);
+        });
+      }
+      
+      // Add event listener for the resend request button
+      const resendRequestButton = document.getElementById('resendRequest');
+      if (resendRequestButton) {
+        resendRequestButton.addEventListener('click', function() {
+          // Get the current item and type from localStorage or use defaults
+          const item = localStorage.getItem('lastRequestItem') || currentItem;
+          const type = localStorage.getItem('lastRequestType') || currentType;
+          
+          // Send the purchase request again
+          sendPurchaseRequest(item, type);
+        });
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const dialog = document.querySelector('forge-dialog');
+      const purchaseAgain = document.getElementById('purchaseAgain');
+
+      // Click event for #completeClose
+      const closePurchase = document.querySelector('#closeDialog');
+      if (closePurchase) {
+        closePurchase.addEventListener('click', function () {
+          dialog.removeAttribute('open');
+        })
+      }
+
+      // Click event for #purchaseAgain
+      if (purchaseAgain) {
+        purchaseAgain.addEventListener('click', function () {
+          // Close the dialog
+          if (dialog) {
+            dialog.removeAttribute('open');
+          }
+
+          // Hide #successfulPayment and show #loading
+          const successfulPaymentElement = document.getElementById('successfulPayment');
+          const loadingElement = document.getElementById('loading');
+          const payMainElement = document.getElementById('payMain');
+
+          if (successfulPaymentElement && loadingElement && payMainElement) {
+            successfulPaymentElement.classList.add('hidden');
+            loadingElement.classList.remove('hidden');
+            loadingElement.style.display = 'block'; // Ensure it's displayed
+            loadingElement.style.opacity = '1'; // Set opacity to 1 when showing
+
+            // Show loading for 2 seconds
+            setTimeout(function () {
+              // Fade out #loading
+              loadingElement.style.opacity = '0'; // Start fade out
+
+              // After fade out is complete, change display and fade in #payMain
+              loadingElement.addEventListener('transitionend', function () {
+                loadingElement.style.display = 'none'; // Set display to none after fade out
+                payMainElement.style.display = 'block'; // Set display to block
+                payMainElement.classList.add('visible'); // Start fade in
+              });
+            }, 2000); // 2 seconds delay
+          } else {
+            console.error("One or more elements not found:", {
+              successfulPaymentElement,
+              loadingElement,
+              payMainElement
+            });
+          }
+
+          // Trigger click on the button outside the iframe
+          const outsideButton = parent.document.querySelector('.bronze-signup-button'); // Change this selector as needed
+          if (outsideButton) {
+            outsideButton.click(); // Simulate a click on the button outside the iframe
+          } else {
+            console.error("Outside button not found.");
+          }
+        });
+      }
+    });
+  </script>
+
+</body>
+
+</html>

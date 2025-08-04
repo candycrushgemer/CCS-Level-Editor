@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Download stuff-->
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+        {
+        "imports": {
+            "@material/web/": "https://esm.run/@material/web/"
+        }
+        }
+    </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+    <!--Accent Color Scheme-->
+    <script type="module">
+        import { setColorScheme } from 'mdui/functions/setColorScheme.js';
+    
+        // Generate a color scheme based on #0061a4 and set the <html> element to that color scheme
+        setColorScheme('#ff0055');
+    </script>
+    <link rel="stylesheet" href="accent.css">
+    <!--Google Sans Text-->
+    <link rel="stylesheet" href="font.css">
+    <!--Dreamworld CSS-->
+    <link rel="stylesheet" href="dreamworld.css">
+
+    <!--General Information-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create your own Candy Crush Saga level using this tool">
+    <meta name="keywords" content="ccs, candy crush saga, level creator, level editor">
+    <meta name="author" content="Candy Crush Gemer">
+    <title>Level Editor</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="margin: 0;">
+    <mdui-layout>
+        <mdui-top-app-bar class="top-app-bar">
+            <mdui-button-icon class="open" icon="menu" style="display: none;"></mdui-button-icon>
+            <mdui-button-icon class="close" icon="menu_open--outlined"></mdui-button-icon>
+            <mdui-top-app-bar-title>Level Editor</mdui-top-app-bar-title>
+            <div style="flex-grow: 1;"></div>
+            <mdui-button-icon icon="help_outline--outlined"></mdui-button-icon>
+            <mdui-button-icon icon="settings--outlined"></mdui-button-icon>
+            <mdui-button-icon icon="account_circle--outlined"></mdui-button-icon>            
+        </mdui-top-app-bar>
+      
+        <mdui-navigation-drawer open close-on-esc close-on-overlay-click class="nav-drawer">
+          <mdui-list>
+            <mdui-list-item href="home.html" rounded  icon="home--outlined"><span>Home</span></mdui-list-item>
+            <mdui-list-item href="changelog.html"  rounded icon="watch_later--outlined"><span>Changelog</span></mdui-list-item>
+            <mdui-list-item href="settings.html" rounded active icon="settings--outlined"><span>Settings</span></mdui-list-item>
+          </mdui-list>
+        </mdui-navigation-drawer>
+      
+        <mdui-layout-main class="example-layout-main" style="height: 97vh; margin-left: 20px; margin-right: 20px;">
+            <h1 style="text-align: center; margin-top: 40px;">Settings</h1>
+            <md-list id="appearance" style="width: 100%; border: 1px solid #0000002f; background-color: #00000000; border-radius: 30px;">
+                <mdui-list-subheader>APPEARANCE</mdui-list-subheader>
+                <md-list-item>
+                    <mdui-icon slot="start" name="dark_mode--outlined"></mdui-icon>Dark mode
+                    <md-switch slot="end" icons></md-switch>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item>
+                    <div style="display: flex; gap: 16px;"><mdui-icon name="format_paint--outlined" style="user-select: none;"></mdui-icon>Theme <span class="pro-label">PRO</span></div>
+                    <div slot="supporting-text">
+                        <p>Choose a theme for the editor</p>
+                        <br>
+                        <div class="theme-selector" style="display: flex; justify-content: center; gap: 50px;">
+                            <div class="material3" style="text-align: center;">
+                                <img src="themes/theme-material3-preview.png" alt="Material 3" width="200px">
+                                <br>
+                                <md-radio id="mat3" name="themes" value="material3" checked></md-radio>
+                            </div>
+                            <div class="candycrush-css" style="text-align: center;">
+                                <img src="themes/theme-candycrush-preview.png" alt="Candy Crush" width="200px">
+                                <br>
+                                <md-radio id="ccscss" name="themes" value="candycrushcss"> </md-radio>
+                            </div>
+                        </div>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item>
+                    <div style="display: flex; gap: 16px;"><mdui-icon name="edit--outlined" style="user-select: none;"></mdui-icon>Layout <span class="pro-label">PRO</span></div>
+                    <div slot="supporting-text">
+                        <p>Choose a layout for the editor</p>
+                        <br>
+                        <div class="layout-selector" style="display: flex; justify-content: center; gap: 50px;">
+                            <div class="default" style="text-align: center;">
+                                <img src="themes/layout-default.png" alt="Layout 3 Columns" width="200px">
+                                <br>
+                                <md-radio id="layout3columns" name="layout" value="default" checked></md-radio>
+                            </div>
+                            <div class="candycrush-css" style="text-align: center;">
+                                <img src="themes/layout-office.png" alt="Layout M365 Office" width="200px">
+                                <br>
+                                <md-radio id="layoutm365" name="layout" value="layoutM365"> </md-radio>
+                            </div>
+                        </div>
+                    </div>
+                </md-list-item>
+                
+            </md-list><br>
+            <md-list id="account" style="width: 100%; border: 1px solid #0000002f; background-color: #00000000; border-radius: 30px;">
+                <mdui-list-subheader>ACCOUNT</mdui-list-subheader>
+                <md-list-item>
+                    <mdui-avatar slot="start" icon="person"></mdui-avatar>
+                    Signed in with <span id="email">example@example.com</span>
+                    <md-outlined-button id="signout" slot="end" style="--md-sys-color-primary: #ba1a1a;">Sign out</md-outlined-button>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item id="managePrf" type="link">
+                    Manage your profile
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item id="manageAcc" type="link">
+                    Manage your account
+                </md-list-item>
+            </md-list>
+            <br>
+            <br><br>
+
+            <iframe id="ccsFooter" src="footer.html" frameborder="0" width="100%" height="320px" style="overflow-y: hidden;"></iframe>
+        </mdui-layout-main>
+    </mdui-layout>
+
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-bar">
+          <md-circular-progress indeterminate></md-circular-progress>
+        </div>
+        <div class="loading-overlay"></div>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const loadingScreen = document.getElementById("loadingScreen");
+
+            // Show loading screen before navigating to a new page
+            window.addEventListener("beforeunload", () => {
+                loadingScreen.style.display = 'flex'; // Show the loading screen
+            });
+
+            // Optional: Hide the loading screen when the page is loaded
+            window.addEventListener("load", () => {
+                loadingScreen.style.display = 'none'; // Hide the loading screen
+            });
+        });
+    </script>
+
+    <style>
+        .pro-label {
+            background: rgb(255,200,220);
+            background: linear-gradient(90deg, rgba(255,200,220,1) 11%, rgba(255,230,178,1) 75%);
+            padding-left: 5px;
+            padding-right: 5px;
+            border-radius: 5px;
+        }
+    </style>
+
+    <style>
+        .social-btn {
+            background-color: #00000000;
+            border-radius: 20px;
+            border: 1px solid #00000042;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            place-items: center;
+            position: relative;
+        }
+
+        .social-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+
+    <style>
+        .footer {
+        display: flex;
+        flex-flow: row wrap;
+        padding: 30px 30px 20px 30px;
+        color: #2f2f2f;
+        background-color: #fff;
+        border-top: 1px solid #e5e5e5;
+        }
+
+        .footer > * {
+        flex:  1 100%;
+        }
+
+        .footer__addr {
+        margin-right: 1.25em;
+        margin-bottom: 2em;
+        }
+
+        .footer__logo {
+        font-family: 'Pacifico', cursive;
+        font-weight: 400;
+        text-transform: lowercase;
+        font-size: 1.5rem;
+        }
+
+        .footer__addr h2 {
+        margin-top: 1.3em;
+        font-size: 15px;
+        font-weight: 400;
+        }
+
+        .nav__title {
+        font-weight: 400;
+        font-size: 15px;
+        }
+
+        .footer address {
+        font-style: normal;
+        color: #999;
+        }
+
+        .footer__btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 36px;
+        max-width: max-content;
+        background-color: rgb(33, 33, 33, 0.07);
+        border-radius: 100px;
+        color: #2f2f2f;
+        line-height: 0;
+        margin: 0.6em 0;
+        font-size: 1rem;
+        padding: 0 1.3em;
+        }
+
+        .footer ul {
+        list-style: none;
+        padding-left: 0;
+        }
+
+        .footer li {
+        line-height: 2em;
+        }
+
+        .footer a {
+        text-decoration: none;
+        }
+
+        .footer__nav {
+        display: flex;
+        flex-flow: row wrap;
+        }
+
+        .footer__nav > * {
+        flex: 1 50%;
+        margin-right: 1.25em;
+        }
+
+        .nav__ul a {
+        color: #999;
+        }
+
+        .nav__ul--extra {
+        column-count: 2;
+        column-gap: 1.25em;
+        }
+
+        .legal {
+        display: flex;
+        flex-wrap: wrap;
+        color: #999;
+        }
+        
+        .legal__links {
+        display: flex;
+        align-items: center;
+        }
+
+        .heart {
+        color: #2f2f2f;
+        }
+
+        @media screen and (min-width: 24.375em) {
+        .legal .legal__links {
+            margin-left: auto;
+        }
+        }
+
+        @media screen and (min-width: 40.375em) {
+        .footer__nav > * {
+            flex: 1;
+        }
+        
+        .nav__item--extra {
+            flex-grow: 2;
+        }
+        
+        .footer__addr {
+            flex: 1 0px;
+        }
+        
+        .footer__nav {
+            flex: 2 0px;
+        }
+        }
+    </style>
+    
+    <style>
+        .getstarted {
+            width: 97%;
+            border: 1px solid #0000004f;
+            padding-left: 30px;
+            border-radius: 20px;
+        }
+
+        .helpful-voting {
+            padding: 15px;
+        }
+
+        .pro-text {
+            background: #FF007B;
+            background: linear-gradient(to right, #FF007B 0%, #FFF200 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Style the table */
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 70%;
+            border: 1px solid #000000;
+            margin: 0 auto;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        /* Style table headers and table data */
+        th, td {
+            text-align: center;
+            padding: 16px;
+            background-color: rgb(255, 240, 254);
+        }
+
+        th:first-child, td:first-child {
+            text-align: left;
+        }
+
+        .fa-check {
+            color: green;
+        }
+
+        .fa-remove {
+            color: red;
+        }
+
+        .pro-content {
+            background: rgb(255,218,231);
+            background: linear-gradient(90deg, rgba(255,218,231,1) 11%, rgba(255,236,195,1) 75%);
+        }
+
+        .na {width: 30px; height: 30px; background-image: url(cross.svg); background-size: cover; margin: auto; /* Center the element */}
+        .available {width: 30px; height: 30px; background-image: url(tick.svg); background-size: cover; margin: auto; /* Center the element */}
+
+        .monthly {background: linear-gradient(90deg, rgba(255,0,90,1) 11%, rgba(255,174,0,1) 75%); border: none; color: #fff; font-family: Google Sans; padding: 13px; position: relative; border-radius: 30px; font-size: 15px; width: 130px; font-weight: bold;}
+        .trial {
+            font-weight: bold;
+            background: #FF007B;
+            background: linear-gradient(to right, #FF007B 0%, #FFF200 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border: 0.5px solid #919191; 
+            font-family: Google Sans; 
+            padding: 13px; 
+            position: relative; 
+            border-radius: 30px; 
+            font-size: 15px; 
+            width: 190px;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const newLevel = document.querySelector(".new-level");
+            const createBtn = document.querySelector(".create");
+            const levelNameInput = document.getElementById("levelName");
+    
+            createBtn.addEventListener("click", () => {
+                const levelName = levelNameInput.value.trim(); // Get the trimmed value of the level name
+    
+                if (levelName) {
+                    // Redirect to editor.html with the levelName as a URL parameter
+                    window.location.href = `editor.html?levelName=${encodeURIComponent(levelName)}`;
+                } else {
+                    // Set error attributes if the level name is empty
+                    levelNameInput.setAttribute("error", "error-text");
+                    levelNameInput.setAttribute("error-text", "Please set a level name!");
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const newLevel = document.querySelector(".new-level");
+            const newLvlTemplate = document.getElementById("createEmpty");
+            const cancelBtn = document.querySelector(".cancel");
+    
+            if (newLvlTemplate) {
+                newLvlTemplate.addEventListener("click", () => {
+                    if (newLevel) {
+                        newLevel.open = true;
+                    } else {
+                        console.error("Dialog element not found.");
+                    }
+                });
+            } else {
+                console.error("Template element not found.");
+            }
+    
+            if (cancelBtn) {
+                cancelBtn.addEventListener("click", () => {
+                    if (newLevel) {
+                        newLevel.open = false;
+                    } else {
+                        console.error("Dialog element not found.");
+                    }
+                });
+            } else {
+                console.error("Cancel button element not found.");
+            }
+        });
+    </script>
+    <script>
+        const navigationDrawer = document.querySelector(".nav-drawer");
+        const openButton = document.querySelector(".open");
+        const closeButton = document.querySelector(".close");
+
+        openButton.addEventListener("click", () => {
+            navigationDrawer.open = true;
+            closeButton.style.display = 'block'; // Show close button
+            openButton.style.display = 'none'; // Hide open button
+        });
+    
+        closeButton.addEventListener("click", () => {
+            navigationDrawer.open = false;
+            openButton.style.display = 'block'; // Show open button
+            closeButton.style.display = 'none'; // Hide close button
+        });
+    </script>
+</body>
+</html>

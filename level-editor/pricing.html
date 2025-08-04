@@ -1,0 +1,2544 @@
+<html>
+<!-- Download stuff -->
+
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Level Editor</title>
+    <link rel="icon" href="logo.png">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="ui-fluent.css" rel="stylesheet" type="text/css" />
+    <link href="../ccgemer-home-stylesheet.css" rel="stylesheet" type="text/css" />
+    <link href="fonts.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1.12.0/underscore-min.js"></script>
+
+    <meta content="Web Candy Crush Level Editor" property="og:title">
+    <meta content="Level editor for candy crush that can be used to export levels in your browser"
+        property="og:description">
+    <meta content="Candy Crush Level Editor" property="og:site_name">
+    <version>1.9</version>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+            {
+                "imports": {
+                    "@material/web/": "https://esm.run/@material/web/"
+                }
+            }
+        </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+
+    <script id="mduiAccent">
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure mdui is available before calling setColorScheme
+            if (typeof mdui !== 'undefined') {
+                mdui.setColorScheme('#7ac8ef');
+            } else {
+                console.error('MDUI is not loaded.');
+            }
+        });
+    </script>
+    <!-- Filled -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Outlined -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <!-- Rounded -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- Sharp -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <!-- Two Tone -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone" rel="stylesheet">
+    <link id="mwcaccent" rel="stylesheet" href="mat-accent-color-light.css">
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.4.0/index.js"></script>
+    <script>
+        // Function to detect if the user is on a mobile device
+        function isMobileDevice() {
+            return /Mobi|Android/i.test(navigator.userAgent);
+        }
+
+        // Function to detect if the user is on a tablet or desktop
+        function isTabletOrDesktop() {
+            return !isMobileDevice() || (window.innerWidth >= 768); // Assuming tablets have a width of 768px or more
+        }
+
+        // Redirect logic
+        window.onload = function () {
+            const currentPath = window.location.pathname;
+
+            console.log("Current Path:", currentPath);
+            console.log("Is Mobile Device:", isMobileDevice());
+            console.log("Is Tablet or Desktop:", isTabletOrDesktop());
+
+            if (isMobileDevice() && currentPath.endsWith('editor.html')) {
+                // If on mobile and currently on editor.html, redirect to index-mobile.html
+                console.log("Redirecting to index-mobile.html");
+                window.location.href = 'index-mobile.html';
+            } else if (isTabletOrDesktop() && currentPath.endsWith('index-mobile.html')) {
+                // If on tablet/desktop and currently on index-mobile.html, redirect to editor.html
+                console.log("Redirecting to editor.html");
+                window.location.href = 'editor.html';
+            }
+        };
+    </script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+        import { getFirestore, collection, query, where, onSnapshot, updateDoc, doc, getDoc, getDocs, deleteDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBEbBryhcs9qxHpi9oxCiW9jV5eTDZHP7M",
+            authDomain: "ccs-level-editor.firebaseapp.com",
+            projectId: "ccs-level-editor",
+            storageBucket: "ccs-level-editor.firebasestorage.app",
+            messagingSenderId: "10424890215",
+            appId: "1:10424890215:web:e7bfc73e36785ef439f5c2"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Make Firebase variables available globally
+        window.firebaseDB = db;
+        window.firebaseAuth = auth;
+        window.firebaseCollection = collection;
+        window.firebaseQuery = query;
+        window.firebaseWhere = where;
+        window.firebaseOnSnapshot = onSnapshot;
+        window.firebaseUpdateDoc = updateDoc;
+        window.firebaseDoc = doc;
+        window.firebaseGetDoc = getDoc;
+        window.firebaseGetDocs = getDocs;
+        window.firebaseDeleteDoc = deleteDoc;
+        window.firebaseAddDoc = addDoc;
+        window.firebaseServerTimestamp = serverTimestamp;
+    </script>
+
+    <script>
+        // Function to update subscription card classes based on subscription type
+        function updateSubscriptionCardClass(subscription) {
+            console.log('Updating subscription card class for:', subscription);
+            const subscriptionCard = document.querySelector('.subscription-card');
+            if (!subscriptionCard) {
+                console.error('Subscription card element not found');
+                return;
+            }
+            
+            // Remove all subscription type classes
+            subscriptionCard.classList.remove('bronze', 'silver', 'gold');
+            
+            // Add the appropriate class based on subscription type
+            if (subscription === 'BM' || subscription === 'BY') {
+                subscriptionCard.classList.add('bronze');
+                console.log('Added bronze class');
+            } else if (subscription === 'SM' || subscription === 'SY') {
+                subscriptionCard.classList.add('silver');
+                console.log('Added silver class');
+            } else if (subscription === 'GM' || subscription === 'GY') {
+                subscriptionCard.classList.add('gold');
+                console.log('Added gold class');
+            }
+        }
+        
+        // Function to update subscription display
+        function updateSubscriptionDisplay(userData) {
+            console.log('Updating subscription display with user data:', userData);
+            
+            const subscriptionShow = document.getElementById('subscriptionShow');
+            const subscriptionType = document.getElementById('subscriptionType');
+            const subscriptionRenewalDate = document.getElementById('subscriptionRenewalDate');
+            const subscriptionImage = document.querySelector('.subscription-card .image-header');
+
+            if (!subscriptionShow || !subscriptionType || !subscriptionRenewalDate || !subscriptionImage) {
+                console.error('Required subscription elements not found:', {
+                    subscriptionShow: !!subscriptionShow,
+                    subscriptionType: !!subscriptionType,
+                    subscriptionRenewalDate: !!subscriptionRenewalDate,
+                    subscriptionImage: !!subscriptionImage
+                });
+                return;
+            }
+
+            if (!userData || !userData.subscription) {
+                console.log('No subscription data found in user data');
+                subscriptionShow.style.display = 'none';
+                return;
+            }
+
+            subscriptionShow.style.display = 'flex';
+            const subscription = userData.subscription;
+            const registeredDate = userData.subscriptionRegisteredDate;
+
+            console.log('Subscription:', subscription);
+            console.log('Registered date:', registeredDate);
+
+            // Set subscription type text and renewal date
+            switch (subscription) {
+                case 'BM':
+                    subscriptionType.textContent = 'Bronze Monthly';
+                    subscriptionRenewalDate.textContent = calculateRenewalDate(registeredDate, false);
+                    subscriptionImage.style.background = "url('pricing/bronze.png')";
+                    console.log('Set Bronze Monthly subscription');
+                    break;
+                case 'BY':
+                    subscriptionType.textContent = 'Bronze Yearly';
+                    subscriptionRenewalDate.textContent = calculateRenewalDate(registeredDate, true);
+                    subscriptionImage.style.background = "url('pricing/bronze.png')";
+                    console.log('Set Bronze Yearly subscription');
+                    break;
+                case 'SM':
+                    subscriptionType.textContent = 'Silver Monthly';
+                    subscriptionRenewalDate.textContent = calculateRenewalDate(registeredDate, false);
+                    subscriptionImage.style.background = "url('pricing/silver.png')";
+                    console.log('Set Silver Monthly subscription');
+                    break;
+                case 'SY':
+                    subscriptionType.textContent = 'Silver Yearly';
+                    subscriptionRenewalDate.textContent = calculateRenewalDate(registeredDate, true);
+                    subscriptionImage.style.background = "url('pricing/silver.png')";
+                    console.log('Set Silver Yearly subscription');
+                    break;
+                case 'GM':
+                    subscriptionType.textContent = 'Gold Monthly';
+                    subscriptionRenewalDate.textContent = calculateRenewalDate(registeredDate, false);
+                    subscriptionImage.style.background = "url('pricing/golden.png')";
+                    console.log('Set Gold Monthly subscription');
+                    break;
+                case 'GY':
+                    subscriptionType.textContent = 'Gold Yearly';
+                    subscriptionRenewalDate.textContent = calculateRenewalDate(registeredDate, true);
+                    subscriptionImage.style.background = "url('pricing/golden.png')";
+                    console.log('Set Gold Yearly subscription');
+                    break;
+                default:
+                    console.warn('Unknown subscription type:', subscription);
+                    subscriptionShow.style.display = 'none';
+            }
+        }
+        
+        // Function to calculate renewal date
+        function calculateRenewalDate(registeredDate, isYearly) {
+            console.log('Calculating renewal date for:', registeredDate, 'isYearly:', isYearly);
+            const date = new Date(registeredDate);
+            if (isNaN(date.getTime())) {
+                console.error('Invalid date:', registeredDate);
+                return 'Invalid date';
+            }
+            
+            if (isYearly) {
+                date.setFullYear(date.getFullYear() + 1);
+            } else {
+                date.setMonth(date.getMonth() + 1);
+            }
+            
+            const formattedDate = date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            console.log('Calculated renewal date:', formattedDate);
+            return formattedDate;
+        }
+
+        // Handle subscription cancellation
+        document.addEventListener('DOMContentLoaded', function () {
+            const cancelSubscriptionBackdrop = document.getElementById('cancelSubscriptionBackdrop');
+            const cancelSubscriptionDialog = document.getElementById('cancelSubscriptionDialog');
+            const cancelSubscription = document.getElementById('cancelSubscription');
+            const cancelSubscriptionClose = document.getElementById('cancelSubscriptionClose');
+            const cancelSubscriptionNo = document.getElementById('cancelSubscriptionNo');
+            const cancelSubscriptionYes = document.getElementById('cancelSubscriptionYes');
+
+            // Event listeners for subscription cancellation are defined later in the file
+            // This prevents duplicate event listeners that could cause conflicts
+        });
+        
+        // Listen for auth state changes and update subscription display
+        window.firebaseOnAuthStateChanged(window.firebaseAuth, async (user) => {
+            console.log('Auth state changed, user:', user);
+            if (user) {
+                try {
+                    // User is signed in
+                    const userDoc = await window.firebaseGetDoc(window.firebaseDoc(window.firebaseDB, "users", user.uid));
+                    console.log('User document exists:', userDoc.exists());
+                    
+                    if (userDoc.exists()) {
+                        const userData = userDoc.data();
+                        console.log('User data:', userData);
+                        
+                        // Update subscription display
+                        updateSubscriptionDisplay(userData);
+                        
+                        // Update subscription card class
+                        if (userData.subscription) {
+                            updateSubscriptionCardClass(userData.subscription);
+                        }
+                    } else {
+                        console.log('User document does not exist');
+                        document.getElementById('subscriptionShow').style.display = 'none';
+                    }
+                } catch (error) {
+                    console.error('Error fetching user data:', error);
+                }
+            } else {
+                console.log('No user signed in');
+                document.getElementById('subscriptionShow').style.display = 'none';
+            }
+        });
+    </script>
+    <script src="
+        https://cdn.jsdelivr.net/npm/ace-builds@1.38.0/src-noconflict/snippets/python.min.js
+        "></script>
+    <link href="
+        https://cdn.jsdelivr.net/npm/ace-builds@1.38.0/css/ace.min.css
+        " rel="stylesheet">
+        <!-- Add GSAP -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+
+<body style="margin: 0;">
+    <div class="overlay-loading">
+        <loading-block-container>
+            <loading-block size="card-square"></loading-block>
+            <loading-block size="card-square"></loading-block>
+        </loading-block-container><br>
+        
+        <loading-block size="card-large"></loading-block><br>
+        <loading-block size="para-line"></loading-block><br>
+        <loading-block size="card-large"></loading-block>
+    </div>
+    <script>
+        window.onload = function () {
+            document.body.classList.add('fade-in'); // Add the fade-in class
+            const loadingOverlay = document.querySelector('.overlay-loading'); // Select the loading overlay
+
+            // Set a timeout to hide the loading overlay after 1 second
+            setTimeout(() => {
+                loadingOverlay.style.display = 'none'; // Hide the loading overlay
+            }, 1000); // 1000 milliseconds = 1 second
+        };
+    </script>
+    <script src="script.js" defer></script>
+    <top-app-bar>
+        <ul>
+            <button class="icon-button" onclick="window.history.back();"><span class="sf-icon"></span></button>
+          <li id="ccgappsLogo" style="font-weight: 800; display: flex; align-items: center; gap: 1px; position: relative;">
+            <img src="../CCGAppsGifLogo.gif" alt="CCGApps" style="width: 20px; height: 20px; border-radius: 50%; transform: scale(1.8); opacity: 0; position: absolute; left: 10px;"> 
+            <span class="ccgapps-text" style="margin-left: 5px;">CCGApps</span>
+          </li>
+        </ul>
+        <ul class="top-app-bar-btns">
+            <div class="points-indicator" style="border-top-left-radius: 999px; border-bottom-left-radius: 999px; border-top-right-radius: 250px; border-bottom-right-radius: 250px;">
+                <img src="power_uses.png" alt="Powers" draggable="false">
+                <span id="pointsLeft">0</span>
+            </div>
+            <div class="points-indicator" style="border-top-right-radius: 999px; border-bottom-right-radius: 999px; border-top-left-radius: 250px; border-bottom-left-radius: 250px;">
+                <img src="streaks-ico.png" alt="Powers" draggable="false">
+                <span id="streakCount">0</span>
+            </div>
+            <button class="icon-button" id="accBtn" onclick="window.location.href = 'account_dashboard.html'">
+                    <img src="account_circle--sf-symbools.svg" alt="" style="filter: invert(0); transform: scale(2);" draggable="false">
+                </button>
+        </ul>
+    </top-app-bar>
+
+    <mdui-layout-main class="example-layout-main" style="height: 97vh; background-color: initial; "><br>
+        <h1 class="title-behind">Pricing
+            <img src="pricing/cloud_header_gray_gradient.svg" class="cloud-header" alt="">
+        </h1>
+        <div class="main-purchase" style="z-index:3;position: relative;"><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <div class="main-purchase-container" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
+                <div class="current-points-card"
+                    style=" padding: 15px; margin-right: 20px; border-radius: 30px; background: linear-gradient(267deg, rgba(255,205,236,1) 0%, rgba(255,180,180,1) 100%); color: #000000; display: flex;  place-items: center;">
+                    <div class="introduce">
+                        <h1>Powers</h1>
+                        <span>You currently have <span id="pointsLeft">0</span> Powers.</span>
+                    </div>
+                    <img src="pricing/value-10-packs.png" style="width: 150px;">
+                    
+                </div>
+                <div class="current-points-card"
+                    style=" padding: 15px; margin-right: 20px; border-radius: 30px; background: linear-gradient(267deg, rgb(255, 205, 205) 0%, rgb(255, 223, 180) 100%); color: #000000; display: flex;  place-items: center;">
+                    <div class="introduce">
+                        <h1>Powers Streak</h1>
+                        <span>You are in <span id="streakCount">0</span> days streak. <a id="learnStreak" class="sf-icon" style="font-size: larger;"></a></span>
+                    </div>
+                    <img src="streaks-ico.png" style="width: 150px;">
+                    
+                </div>
+            </div>
+            <div class="main-purchase-container" style="display: flex; justify-content: center;">
+                <div class="lucky"
+                    style=" padding: 15px; width: 85%; margin: 20px; margin-right: 20px; border-radius: 30px; background: linear-gradient(267deg, rgba(255,205,236,1) 0%, rgba(255,180,180,1) 100%); color: #000000; display: flex; flex-direction: column; align-items: center;">
+                    <div class="introduce" style="text-align: center;">
+                        <h2>Random Items of the Day</h2>
+                        <span>Click the button to get random things. Good luck!</span>
+                    </div><br>
+                    <div class="random-items" style="display: flex; flex-direction: column; align-items: center;">
+                        <button class="random-things" id="startLucky">Start</button>
+                        <style>
+                            .random-things {
+                                border: none;
+                                background: linear-gradient(267deg, rgba(255, 0, 159, 1) 0%, rgba(226, 38, 38, 1) 100%);
+                                color: #ffffff;
+                                padding: 10px 15px;
+                                font-size: large;
+                                font-family: 'Inter', 'Roboto', sans-serif;
+                                border-radius: 999px;
+                                width: 300px;
+                            }
+
+                            .random-things[disabled] {
+                                opacity: 0.5;
+                                user-select: none;
+                            }
+
+                            #signInstartLucky {
+                                background: linear-gradient(267deg, rgba(255, 0, 159, 1) 0%, rgba(226, 38, 38, 1) 100%);
+                                background-clip: text;
+                                color: transparent;
+                            }
+
+                            #learnStreak {
+                                background: linear-gradient(267deg, rgb(255, 0, 0) 0%, rgb(226, 129, 38) 100%);
+                                background-clip: text;
+                                color: transparent;
+                            }
+
+                            #signinAlert, #congratsLucky, #ohNoLucky {
+                                display: none;
+                            }   
+                        </style>
+                        <p id="congratsLucky">You got <span class="points-lucky">2</span> points. Congratulations! You're now in <span id="pointsLuckyStreak">1 day</span> lucky streak! <br> Try reload the page if you see your points unchanged.</p>
+                        <p id="ohNoLucky">Oops! Looks like you don't get any powers today. But don't worry, your streaks are not breakable unless you miss a day.</p>
+                        <p id="signinAlert">Please <a id="signInstartLucky" href="login.html">Log in</a> first before you can use this feature.</p>
+                        <br>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="main-purchase-container" id="subscriptionShow" style="display: flex; justify-content: center;">
+                <div class="subscription-card"
+                    style="margin-right: 20px; border-radius: 30px; color: #000000; display: flex; flex-direction: column; overflow: hidden;">
+                    <div class="image-header" style="width: 500px; height: 500px; background-size: cover; background-position: center; position: relative;">
+                        <div class="introduce" style="position: absolute; bottom: 0; padding: 10px; background: #ffffffa4; width: 100%; backdrop-filter: blur(40px);">
+                            <h2>Your subscription</h2>
+                            <span id="infoSubscription">Your current plan: <span id="subscriptionType">No subscription</span><br> Auto renew on: <span id="subscriptionRenewalDate">-</span></span><br>
+                            <br>
+                            <div style="display: flex; place-items: center; gap: 10px;">
+                                <button id="cancelSubscription" class="outlined-button">Cancel subscription</button>
+                                <button class="outlined-button" onclick="window.location.href='#upgradePlan'">Upgrade plan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="upgradePlan" class="main-purchase-container"
+                style="display: flex;justify-content: center;flex-direction: column;flex-wrap: wrap;align-items: center;">
+                <h2>Purchase subscriptions, get unlimited Powers</h2>
+                <label style="display: flex; place-items: center; gap: 10px;">
+                    <span style="display: flex; flex-direction: column;">Yearly
+                        <span style="font-size: smaller;">Save <span
+                                style="padding: 1px 5px; background-color: #d4ffdb; border-radius: 10px;">40%</span></span>
+                    </span>
+                    <label class="switch">
+                        <input tabindex="1" type="checkbox" id="yearlyConvert">
+                        <span tabindex="1" class="slider round"></span>
+                    </label>
+                </label><br>
+                <span style="font-size: smaller; opacity: 0.7;">*Your final price will be shown on the payment process.</span><br>
+                <div class="purchasing-selection-container">
+                    <div class="purchase-card" id="bronzeSubscription">
+                        <label class="purchase-header" style="display: flex; place-items: center;">
+                            <h2 style="margin: 0;">Bronze</h2>
+                            <img src="pricing/bronze.png" width="64px">
+                        </label>
+                        <h3 id="bronzeprice">$5.99/month</h3>
+                        <h4>Features:</h4>
+                        <ul>
+                            <li>Get 100 Powers per month to use</li>
+                            <li>Bronze badge on your profile</li>
+                        </ul>
+                        <button class="filled-button bronze-signup-button" style="width: 100%;">Subscribe to
+                            Bronze</button>
+                        <button class="outlined-button gift-bronze" style="width: 100%; margin-top: 10px;">Buy as a
+                            gift</button>
+                    </div>
+                    <div class="purchase-card" id="silverSubscription">
+                        <label class="purchase-header" style="display: flex; place-items: center;">
+                            <h2 style="margin: 0;">Silver</h2>
+                            <img src="pricing/silver.png" width="64px">
+                        </label>
+                        <h3 id="silverprice">$10.99/month</h3>
+                        <h4>Features:</h4>
+                        <ul>
+                            <li>Get 500 Powers per month to use</li>
+                            <li>Silver badge on your profile</li>
+                        </ul>
+                        <button class="filled-button silver-signup-button" style="width: 100%;">Subscribe to
+                            Silver</button>
+                        <button class="outlined-button gift-silver" style="width: 100%; margin-top: 10px;">Buy as a
+                            gift</button>
+                    </div>
+                    <div class="purchase-card" id="goldSubscription">
+                        <label class="purchase-header" style="display: flex; place-items: center;">
+                            <h2 style="margin: 0;">Gold</h2>
+                            <img src="pricing/golden.png" width="64px">
+                        </label>
+                        <h3 id="goldprice">$30.99/month</h3>
+                        <h4>Features:</h4>
+                        <ul>
+                            <li>Get 1000 Powers per month to use</li>
+                            <li>Gold badge on your profile</li>
+                        </ul>
+                        <button class="filled-button gold-signup-button" style="width: 100%;">Subscribe to Gold</button>
+                        <button class="outlined-button gift-gold" style="width: 100%; margin-top: 10px;">Buy as a
+                            gift</button>
+                    </div>
+                </div>
+            </div>
+            <div class="main-purchase-container"
+                style="display: flex;justify-content: center;flex-direction: column;flex-wrap: wrap;align-items: center;">
+                <h2>...or buy Powers instead</h2>
+                <div class="purchasing-selection-container">
+                    <div class="purchase-card powers-purchasing" id="powers10">
+                        <label class="purchase-header" style="display: flex; place-items: center;">
+                            <h2 style="margin: 0;">10 Powers</h2>
+                            <img src="power_uses.png" width="64px">
+                        </label>
+                        <h3 id="price">$1.00</h3>
+                        <button class="filled-button powers-buy-button" style="width: 100%;">Purchase</button>
+                    </div>
+                    <div class="purchase-card powers-purchasing" id="powers50">
+                        <label class="purchase-header" style="display: flex; place-items: center;">
+                            <h2 style="margin: 0;">50 Powers</h2>
+                            <img src="pricing/value-10-packs.png" width="64px">
+                        </label>
+                        <h3 id="price">$5.00</h3>
+                        <button class="filled-button powers-buy-button" style="width: 100%;">Purchase</button>
+                    </div>
+                    <div class="purchase-card powers-purchasing" id="powers100">
+                        <label class="purchase-header" style="display: flex; place-items: center;">
+                            <h2 style="margin: 0;">100 Powers</h2>
+                            <img src="pricing/value-10-packs.png" width="64px">
+                        </label>
+                        <h3 id="price">$10.00</h3>
+                        <button class="filled-button powers-buy-button" style="width: 100%;">Purchase</button>
+                    </div>
+                    <div class="purchase-card powers-purchasing" id="powers250">
+                        <label class="purchase-header" style="display: flex; place-items: center;">
+                            <h2 style="margin: 0;">250 Powers</h2>
+                            <img src="pricing/value-10-packs.png" width="64px">
+                        </label>
+                        <h3 id="price">$25.00</h3>
+                        <button class="filled-button powers-buy-button" style="width: 100%;">Purchase</button>
+                    </div>
+                    <div class="purchase-card powers-purchasing" id="powers500">
+                        <label class="purchase-header" style="display: flex; place-items: center;">
+                            <h2 style="margin: 0;">500 Powers</h2>
+                            <img src="pricing/value-10-packs.png" width="64px">
+                        </label>
+                        <h3 id="price">$50.00</h3>
+                        <button class="filled-button powers-buy-button" style="width: 100%;">Purchase</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <h2 style="text-align: center;">Want custom amount of Powers?</h2>
+            <button class="filled-button" style="margin: 0 auto;">Contact us</button>
+            <br>
+            <h2 style="text-align: center;" id="redeem-code">Redeem your gift code</h2>
+            <p style="text-align: center;">Did you get a gift code from a friend? Type here and redeem it to get your tasty gift from your generous friend!</p>
+            <div class="redeem-container" style="display: flex; justify-content: center; width: 90%; margin: 0 auto;">
+                <redeem-card>
+                    <redeem-card-content>
+                        <h1 id="typetitle">Gift card</h1>
+                        <p>Tasty gift to boost your powers for making levels</p>
+                        <input type="text" placeholder="CCGAPPS@GIFTABCDEF123456" id="redeemInput">
+                        <br><br>
+                        <button class="filled-button" id="redeemCode" style="width: 100%;">Redeem</button>
+                    </redeem-card-content>
+                </redeem-card>
+            </div>
+        </div><br><br>
+
+
+
+        <footer>
+            <ul>
+                <li><img src="logo-horizontal.png" style="width: 100px;" alt=""></li>
+                <li style="display: flex; place-items: center; gap: 15px;"><md-icon>email</md-icon><a
+                        href="mailto:contact.ccgccs@gmail.com">contact.ccgccs@gmail.com</a></li>
+            </ul>
+            <ul>
+                <li><a href="editor.html">Editor</a></li>
+                <li><a href="index-mobile.html">Mobile editor</a></li>
+                <li><a href="document.html">Tutorial</a></li>
+                <li><a href="javascript:void(0)" id="creditsBtn">Credits</a></li>
+            </ul>
+            <ul>
+                <li><a href="documentation.html#legal">Legal</a></li>
+                <li><a href="documentation.html#legal">Terms of Service</a></li>
+                <li><a href="documentation.html#legal">Terms of Uses</a></li>
+            </ul>
+            <ul>
+                <li style="opacity: 0.5; ">© 2025 Made with ❤️ by Blakiemon
+                    <br><br>
+                    Version 1.9
+                </li>
+            </ul>
+        </footer>
+
+
+        <!--Import menu-->
+        <div class="credits-dialog close" id="importdialogBackdrop">
+            <div class="dialog close" id="importDialog">
+                <div class="content">
+                    <div class="header">
+                        <h1>Import</h1>
+                        <div class="buttons">
+                            <button class="icon-button" id="importClose"></button>
+                        </div>
+                    </div>
+                    <div class="content-inside">
+                        <div class="import-options"
+                            style="display: flex; gap: 20px; height: 300px; place-items: center;">
+                            <div class="upload-area" style="width: 100%; height: 100%;">
+                                <div class="uploadfiles-area" style="height: 100%;">
+                                    <md-icon>upload_file</md-icon>
+                                    <p>Drag or upload your level file here</p>
+                                    <input type="file" id="fileInput" accept=".txt" style="display: none;" />
+                                </div>
+                            </div>
+                            <p>or</p>
+                            <div class="type-in-lvl-code" style="width: 100%;">
+                                <md-outlined-text-field type="textarea" id="importfield" name="importfield"
+                                    supporting-text="Tip: if your level is successfully imported but there is still an error, you can ignore it."
+                                    placeholder="Type in level code"
+                                    style="overflow: hidden; width: 100%; height: 100%; resize: none; --md-outlined-text-field-container-shape: 15px; --md-outlined-text-field-input-text-font: 'Inter', 'Roboto', sans-serif; --md-outlined-text-field-label-text-font: 'Inter', 'Roboto', sans-serif;">
+                                    <button class="icon-button" slot="trailing-icon" onclick="importLevelUI()"
+                                        class="import-btn">
+                                    </button>
+                                </md-outlined-text-field>
+                                <p id="importerror"
+                                    style="color: rgba(255, 0, 0, 0); display: none; width: fit-content; height: fit-content;">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Export menu-->
+        <div class="credits-dialog close" id="exportdialogBackdrop">
+            <div class="dialog close" id="exportDialog">
+                <div class="content" style="margin: 30px;">
+                    <div class="header">
+                        <br>
+                        <h1 style="text-align: center; margin: 0 auto;"><span class="sf-icon"></span><br>Export
+                            successfully</h1>
+                        <div class="buttons">
+                            <button class="icon-button" id="exportClose"></button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="content-inside">
+                        <md-outlined-text-field type="textarea" id="exportfield" name="exportfield"
+                            style="overflow: hidden; width: 100%; height: 300px; --md-outlined-text-field-input-text-font:  'GoogleSans Code', monospace; font-size: 15px; --md-outlined-text-field-container-shape: 20px;"></md-outlined-text-field>
+                        <br>
+                        <p>Share your levels to social medias or save to your device</p>
+                        <div id="sharingContainer">
+                            <div tabindex="0" class="buttonsharing" onclick="saveExport()">
+                                <div class="avatar-big-button"><md-icon>download</md-icon></div>
+                                Save
+
+                            </div>
+                            <div tabindex="0" class="buttonsharing" id="facebookShare" onclick="shareOnFacebook()"
+                                style="width: 70px;">
+                                <div class="avatar-big-button"><svg xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:svg="http://www.w3.org/2000/svg" version="1.1" id="svg9" width="666.66669"
+                                        height="666.66718" viewBox="0 0 666.66668 666.66717" style="filter: invert(0);">
+                                        <script xmlns="" />
+                                        <script xmlns="" />
+                                        <defs id="defs13">
+                                            <clipPath clipPathUnits="userSpaceOnUse" id="clipPath25">
+                                                <path d="M 0,700 H 700 V 0 H 0 Z" id="path23" />
+                                            </clipPath>
+                                        </defs>
+                                        <g id="g17" transform="matrix(1.3333333,0,0,-1.3333333,-133.33333,799.99999)">
+                                            <g id="g19">
+                                                <g id="g21" clip-path="url(#clipPath25)">
+                                                    <g id="g27" transform="translate(600,350)">
+                                                        <path
+                                                            d="m 0,0 c 0,138.071 -111.929,250 -250,250 -138.071,0 -250,-111.929 -250,-250 0,-117.245 80.715,-215.622 189.606,-242.638 v 166.242 h -51.552 V 0 h 51.552 v 32.919 c 0,85.092 38.508,124.532 122.048,124.532 15.838,0 43.167,-3.105 54.347,-6.211 V 81.986 c -5.901,0.621 -16.149,0.932 -28.882,0.932 -40.993,0 -56.832,-15.528 -56.832,-55.9 V 0 h 81.659 l -14.028,-76.396 h -67.631 V -248.169 C -95.927,-233.218 0,-127.818 0,0"
+                                                            style="fill:#0866ff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                                            id="path29" />
+                                                    </g>
+                                                    <g id="g31" transform="translate(447.9175,273.6036)">
+                                                        <path
+                                                            d="M 0,0 14.029,76.396 H -67.63 v 27.019 c 0,40.372 15.838,55.899 56.831,55.899 12.733,0 22.981,-0.31 28.882,-0.931 v 69.253 c -11.18,3.106 -38.509,6.212 -54.347,6.212 -83.539,0 -122.048,-39.441 -122.048,-124.533 V 76.396 h -51.552 V 0 h 51.552 v -166.242 c 19.343,-4.798 39.568,-7.362 60.394,-7.362 10.254,0 20.358,0.632 30.288,1.831 L -67.63,0 Z"
+                                                            style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                                            id="path33" />
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                        <script xmlns="" />
+                                    </svg></div>
+                                Facebook
+
+                            </div>
+                            <div tabindex="0" class="buttonsharing" id="xShare" onclick="shareOnX()">
+                                <div class="avatar-big-button" style="background-color: #ffffff;">
+                                    <img src="X_icon.svg.png" width="48px" draggable="false">
+                                </div>
+                                X
+
+                            </div>
+                            <div tabindex="0" class="buttonsharing" id="emailShare" onclick="shareViaEmail()">
+                                <div class="avatar-big-button"><md-icon>email</md-icon></div>
+                                Email
+
+                            </div>
+                            <div tabindex="0" class="buttonsharing" id="copyLink" style="width: 70px;">
+                                <div class="avatar-big-button"><md-icon id="confirmationCopy">link</md-icon></div>
+                                Copy link
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Credits-->
+        <div class="credits-dialog close" id="creditsBackdrop">
+            <div class="dialog close" id="creditsDialog">
+                <div class="content">
+                    <div class="header">
+                        <h1>Credits</h1>
+                        <div class="buttons"><md-icon-button id="creditscloseBtn">
+                                <md-icon>close</md-icon>
+                            </md-icon-button></div>
+                    </div>
+                    <div class="content-inside">
+                        <md-list-item
+                            style="background-color: rgba(255, 145, 145, 0.267); border-radius: 15px; color: #810000; --md-list-item-label-text-font: 'Inter';">
+                            <md-icon slot="start" style="color: #810000;">info</md-icon>
+                            <span style="color: #810000;">All right go to King Limited. If they so chose this editor may
+                                be taken down at any time.</span>
+                        </md-list-item>
+                        <p>Don't forget these cool guys who worked hard to make this editor!</p>
+                        <md-list style="--md-list-item-label-text-font: 'Inter'; background-color: #00000000;">
+                            <md-list-item>
+                                <md-icon slot="start">account_circle</md-icon>
+                                Blakiemon
+                                <div slot="supporting-text">The first person to create this tool</div>
+                            </md-list-item>
+                            <md-divider></md-divider>
+                            <md-list-item>
+                                <md-icon slot="start">account_circle</md-icon>
+                                Fence
+                            </md-list-item>
+                            <md-divider></md-divider>
+                            <md-list-item>
+                                <md-icon slot="start">account_circle</md-icon>
+                                Candy Crush Gemer
+                                <div slot="supporting-text">Remaking this tool</div>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--What is Power Streaks?-->
+        <div class="credits-dialog close" id="introPowerBackdrop">
+            <div class="dialog close" id="introPowerDialog">
+                <div class="content">
+                    <div class="header">
+                        <h1>Power Streak</h1>
+                        <div class="buttons"><md-icon-button id="introPowerClose">
+                                <md-icon>close</md-icon>
+                            </md-icon-button></div>
+                    </div>
+                    <div class="content-inside">
+                        <img src="streak-intro.png" style="width: 100%;">
+                        <p>Every day you visit the Shop, you will have the opportunity to try your luck by pressing the mysterious Start button. By doing so, if you visit often, you will accumulate your Streak. Even if you try your luck and get nothing, your Streak does not reset, because you are still holding the streak! The higher the Streak, the bigger the reward you will receive if you try to keep the streak going.</p>
+                        <p><strong>Important:</strong> If you miss clicking the button for a day, your streak will reset to 0. Make sure to check back daily to maintain your streak!</p>
+                        <p>This feature is only available when you signed in. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Cancel subscription-->
+        <div class="credits-dialog close" id="cancelSubscriptionBackdrop">
+            <div class="dialog close" id="cancelSubscriptionDialog">
+                <div class="content">
+                    <div class="header">
+                        <h1>Cancel subscription</h1>
+                        <div class="buttons">
+                            <button class="icon-button" id="cancelSubscriptionClose">
+                                <span class="sf-icon"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="content-inside"> 
+                        <p><strong>Are you sure you want to cancel your current subscription? 😢</strong><br>
+                            If you've had a change of heart, feel free to explore and select a plan that suits you best at any time.
+                            If the subscription was made by mistake and you require a refund, please proceed with the request — we'll process it as promptly as possible.</p>
+                        <div class="buttons" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <button class="outlined-button" style="width: 100%;" id="cancelSubscriptionNo">No</button>
+                            <button class="filled-button" style="width: 100%;" id="cancelSubscriptionYes">Cancel subscription</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <mdui-dialog close-on-overlay-click class="credit-dialog">
+            <div slot="headline">
+                About
+            </div>
+            <div class="body">
+                <md-list
+                    style="--md-list-container-color: var(--md-sys-color-error-container); --md-list-item-label-text-color: var(--md-sys-color-error); border-radius: 20px;"><md-list-item>
+                        <md-icon slot="start" style="color: var(--md-sys-color-error);">release_alert</md-icon>All right
+                        go to King Limited. If they so chose this editor may be taken down at any time.
+                    </md-list-item></md-list>
+                <p>Don't forget these cool guys who worked hard to make this editor!</p>
+                <md-list style="border-radius: 20px;">
+                    <md-list-item>
+                        <mdui-avatar src="avatar-generic.png" slot="start"></mdui-avatar>Blakiemon
+                        <div slot="supporting-text">The first person to create this tool</div>
+                    </md-list-item>
+                    <md-divider inset></md-divider>
+                    <md-list-item>
+                        <mdui-avatar src="avatar-generic.png" slot="start"></mdui-avatar>Fence
+                        <div slot="supporting-text">Helper</div>
+                    </md-list-item>
+                    <md-divider inset></md-divider>
+                    <md-list-item>
+                        <mdui-avatar src="avatar-generic.png" slot="start"></mdui-avatar>Candy Crush Gemer
+                        <div slot="supporting-text">Redesigning and remaking the tool</div>
+                    </md-list-item>
+                    <md-divider inset></md-divider>
+                    <md-list-item type="link" href="https://discord.gg/kqq5Tx4XcM" target="_blank">
+                        <img src="discord.svg" slot="start" width="32px" alt="">Join Discord for supports and
+                        discussions! <md-icon slot="end">open_in_new</md-icon>
+                    </md-list-item>
+                </md-list>
+            </div>
+            <md-filled-button slot="action" class="ok-btn">OK</md-filled-button>
+        </mdui-dialog>
+        <mdui-dialog close-on-overlay-click class="newlvl-dialog">
+            <div slot="headline">
+                New level
+            </div>
+            <div class="body">
+                Do you want to save the current level?
+            </div>
+            <md-outlined-button slot="action" class="cancel-save" onclick="location.reload();">No</md-outlined-button>
+            <md-filled-button slot="action" class="current-save" onclick="exportLevelUI()">Yes</md-filled-button>
+        </mdui-dialog>
+        <forge-dialog class="settings-fulldialog"
+            style="--forge-dialog-shape: 30px; --forge-dialog-background: var(--md-sys-color-surface-container-high); width: 90vh;">
+            <forge-scaffold style="margin: 0; width: 700px; height: 700px;">
+                <mdui-layout slot="body">
+                    <mdui-top-app-bar style="background-color: #00000000;">
+                        <button class="icon-button close-settings"></button>
+                        <mdui-top-app-bar-title><strong>Settings</strong></mdui-top-app-bar-title>
+                        <div style="flex-grow: 1"></div>
+                    </mdui-top-app-bar>
+                    <mdui-layout-main>
+                        <md-list
+                            style="margin: 20px; margin-top: 0; display: flex; flex-direction: column; background-color: #00000000; gap: 3px;">
+                            <md-list-item
+                                style="background-color: var(--md-sys-color-background); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;">
+                                Enable dark mode
+                                <forge-switch id="switchDark" icon="none" slot="end"
+                                    style="--forge-switch-track-on-color: var(--md-sys-color-inverse-primary); --forge-switch-handle-on-color: var(--md-sys-color-primary);"></forge-switch>
+                            </md-list-item>
+                            <forge-expansion-panel>
+                                <md-list-item slot="header"
+                                    style="background-color: var(--md-sys-color-background); border-radius: 5px;">
+                                    Music and sound
+                                    <div style="display: flex; place-items: center; gap: 10px;" slot="end">
+                                        <span class="sf-icon"></span>
+                                    </div>
+                                </md-list-item>
+                                <div style="margin-left: 15px; padding: 10px; overflow: hidden;">
+                                    <forge-split-view id="musicConfig" auto-close-threshold="120"
+                                        style="height: 300px;">
+                                        <forge-split-view-panel>
+                                            <div>
+                                                <md-list>
+                                                    <md-list-item id="candy-fantasia" type="link"
+                                                        href="javascript:void(0)"> <md-icon
+                                                            slot="start">music_note</md-icon> Candy Fantasia
+                                                    </md-list-item>
+                                                    <md-list-item id="candy-caravan" type="link"
+                                                        href="javascript:void(0)"> <md-icon
+                                                            slot="start">music_note</md-icon> Candy Caravan
+                                                    </md-list-item>
+                                                    <md-list-item id="frosted-brain" type="link"
+                                                        href="javascript:void(0)"> <md-icon
+                                                            slot="start">music_note</md-icon> Frosted Brain
+                                                    </md-list-item>
+                                                    <md-list-item id="candy-hour" type="link" href="javascript:void(0)">
+                                                        <md-icon slot="start">music_note</md-icon> Candy Hour
+                                                    </md-list-item>
+                                                    <md-list-item id="pop-the-candy" type="link"
+                                                        href="javascript:void(0)"> <md-icon
+                                                            slot="start">music_note</md-icon> Pop The Candy
+                                                    </md-list-item>
+                                                </md-list>
+                                            </div>
+                                        </forge-split-view-panel>
+                                        <forge-split-view-panel size="350">
+                                            <div
+                                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                                <md-list-item
+                                                    style="background-color: var(--md-sys-color-secondary-container); border-radius: 20px; width: 90%;">
+                                                    <md-icon slot="start">music_note</md-icon>
+                                                    <div slot="headline" id="songName">?</div>
+                                                    <md-icon-button slot="end" id="playSong">
+                                                        <md-icon>play_arrow</md-icon>
+                                                    </md-icon-button>
+                                                </md-list-item>
+                                                <audio id="musicMain" loop>
+                                                    <source id="musicSrc"
+                                                        src="audio/songs/Editor_Song_Theme_Candy_Fantasia.ogg"
+                                                        type="audio/ogg">
+                                                </audio>
+                                                <md-list-item>
+                                                    <md-icon-button id="mute" slot="start">
+                                                        <md-icon>volume_up</md-icon>
+                                                    </md-icon-button>
+                                                    <md-slider id="volumeCustomize" min="0" max="1" step="0.01"
+                                                        value="1"></md-slider>
+                                                </md-list-item>
+                                            </div>
+                                        </forge-split-view-panel>
+                                    </forge-split-view>
+                                    <md-divider></md-divider>
+                                    <md-list-item>
+                                        Enable clicking sound
+                                        <forge-switch id="switchClick" icon="none" slot="end"
+                                            style="--forge-switch-track-on-color: var(--md-sys-color-inverse-primary); --forge-switch-handle-on-color: var(--md-sys-color-primary);"></forge-switch>
+                                    </md-list-item>
+                                </div>
+                            </forge-expansion-panel>
+                            <md-list-item onclick="window.open('https://forms.gle/XMkahmBmzxN2HUEN9')"
+                                style="background-color: var(--md-sys-color-background); border-radius: 5px; cursor: pointer;">
+                                Bug report
+                                <span class="sf-icon" slot="end"></span>
+                            </md-list-item>
+
+                            <md-list-item
+                                style="background-color: var(--md-sys-color-background); border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; border-top-right-radius: 5px; border-top-left-radius: 5px;">
+                                <md-icon slot="start">info</md-icon>
+                                Version 1.9
+                                <forge-button id="checkUpdates" slot="end"
+                                    style="--forge-button-background: var(--md-sys-color-primary); --forge-button-color: var(--md-sys-color-on-primary);">Check
+                                    for updates</forge-button>
+                                <forge-button slot="end"
+                                    style=" --forge-button-color: var(--md-sys-color-primary);">View
+                                    changelogs</forge-button>
+                            </md-list-item>
+                        </md-list>
+                        <mdui-snackbar closeable class="updates-notify">You're using the latest version of Level
+                            Editor!</mdui-snackbar>
+                    </mdui-layout-main>
+                </mdui-layout>
+            </forge-scaffold>
+        </forge-dialog>
+        <audio id="clickSound" src="audio/ui/Generic_Button_Sound_Effect.wav"></audio>
+    </mdui-layout-main>
+    <div class="purchase-overlay" onclick="this.classList.add('close');this.classList.remove('open')">
+        <iframe id="purchaseOverlay" frameborder="0" src="checkout.html" scrolling="no" onclick="event.stopPropagation()"></iframe>
+    </div>
+    <style>
+        #purchaseOverlay {
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            overflow: hidden;
+            display: none;
+            z-index: 999;
+            border-radius: 20px;
+        }
+
+        @media screen and (max-width: 840px) {
+            #purchaseOverlay {
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+            }
+        }
+
+        .purchase-overlay :not(.purchase-overlay.close) {
+            display: none;
+        }
+
+        .purchase-overlay.open {
+            width: 100%;
+            height: 100%;
+            background-color: #0000005f;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 998;
+        }
+
+        .purchase-overlay.open #purchaseOverlay {
+            animation: popInDialog ease 0.3s forwards;
+        }
+        .purchase-overlay.close #purchaseOverlay {
+            animation: closeDlg ease 0.3s forwards;
+        }
+        @keyframes popInDialog {
+            0% {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        @keyframes closeDlg {
+            0% {
+                transform: scale(1);
+                filter: blur(0px);
+            }
+            100% {
+                transform: scale(1.3);
+                filter: blur(10px);
+            }
+        }
+    </style>
+    <script>
+        const beginningNavd = document.querySelector(".beginning-navd");
+        const menuBtn = document.querySelector(".opennavd");
+        const closeBtn = document.querySelector(".close-navdrawer");
+
+        menuBtn.addEventListener("click", () => beginningNavd.open = true);
+        closeBtn.addEventListener("click", () => beginningNavd.open = false);
+    </script>
+
+    <script>
+        // Function to open the export dialog
+        const exportButton = document.querySelector('.export-button');
+        const exportDialog = document.querySelector('.export-dialog'); // Select the dialog by ID
+        const close = document.querySelector('.close-btn');
+
+        exportButton.addEventListener("click", () => exportDialog.open = true);
+        if (close) {
+            close.addEventListener("click", () => exportDialog.open = false);
+        } else {
+            console.error("Close button not found");
+        }
+
+        // Open Import dialog
+        const closeImport = document.querySelector('.cancel');
+        const importDialog = document.querySelector('.import-dialog');
+        const importButton = document.querySelector('.import-main')
+
+        importButton.addEventListener("click", () => importDialog.open = true);
+        closeImport.addEventListener("click", () => importDialog.open = false);
+
+        // Open Credits
+        const creditDialog = document.querySelector('.credit-dialog');
+        const creditButton = document.querySelector('.credit-btn');
+        const okButton = document.querySelector('.ok-btn');
+
+        creditButton.addEventListener("click", () => creditDialog.open = true);
+        okButton.addEventListener("click", () => creditDialog.open = false);
+
+        // Open  Settings
+        const settingsDialog = document.querySelector('.settings-dialog');
+        const settingsButton = document.querySelector('.settings-btn');
+        const closeSettings = document.querySelector('.apply-btn');
+
+        settingsButton.addEventListener("click", () => settingsDialog.open = true);
+        closeSettings.addEventListener("click", () => settingsDialog.open = false)
+
+        // Function to close the export dialog
+        function closeExportDialog() {
+            const exportDialog = document.querySelector('#export-dialog'); // Select the dialog by ID
+            if (exportDialog) {
+                exportDialog.close(); // Close the dialog
+            } else {
+                console.error("Dialog element not found");
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Find the element with class 'save-file'
+            var saveButton = document.querySelector('.save-file');
+
+            if (saveButton) {
+                saveButton.addEventListener('click', function () {
+                    saveExport();
+                });
+            }
+        });
+
+        function saveExport() {
+            console.log("saveExport function called");
+
+            // Get the content of the exportfield
+            var content = document.getElementById("exportfield").value;
+            console.log("Content:", content);
+
+            if (!content) {
+                console.error("No content found in exportfield");
+                return;
+            }
+
+            // Get the file name from the export-name field
+            var fileName = document.getElementById("export-name").value.trim();
+
+            // If the file name is blank, use the default
+            if (!fileName) {
+                fileName = "level.txt";
+            } else if (!fileName.toLowerCase().endsWith('.txt')) {
+                // Ensure the file has a .txt extension
+                fileName += '.txt';
+            }
+
+            console.log("File name:", fileName);
+
+            // Create a Blob with the content
+            var blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+
+            // Create a temporary URL for the Blob
+            var url = window.URL.createObjectURL(blob);
+
+            // Create a temporary anchor element
+            var a = document.createElement("a");
+            a.href = url;
+            a.download = fileName;
+
+            console.log("Triggering download");
+
+            // Append the anchor to the body, click it, and remove it
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            // Release the URL object
+            window.URL.revokeObjectURL(url);
+
+            console.log("Download process completed");
+        }
+
+        // Event listeners for buttons
+        document.querySelector('.export-button').addEventListener('click', exportLevelUI);
+        document.querySelector('.close-btn').addEventListener('click', closeExportDialog);
+        document.querySelector('.save-btn').addEventListener('click', saveExport);
+    </script>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const cancelSubscriptionBackdrop = document.getElementById('cancelSubscriptionBackdrop');
+            const cancelSubscriptionDialog = document.getElementById('cancelSubscriptionDialog');
+            const cancelSubscription = document.getElementById('cancelSubscription');
+            const cancelSubscriptionClose = document.getElementById('cancelSubscriptionClose');
+            const cancelSubscriptionNo = document.getElementById('cancelSubscriptionNo');
+            const cancelSubscriptionYes = document.getElementById('cancelSubscriptionYes');
+
+            cancelSubscription.addEventListener('click', function () {
+                if (cancelSubscriptionDialog.classList.contains('open')) {
+                    cancelSubscriptionDialog.classList.remove('open');
+                    cancelSubscriptionDialog.classList.add('close');
+                } else {
+                    cancelSubscriptionDialog.classList.remove('close');
+                    cancelSubscriptionDialog.classList.add('open');
+                }
+                if (cancelSubscriptionBackdrop.classList.contains('open')) {
+                    cancelSubscriptionBackdrop.classList.remove('open');
+                    cancelSubscriptionBackdrop.classList.add('close');
+                } else {
+                    cancelSubscriptionBackdrop.classList.remove('close');
+                    cancelSubscriptionBackdrop.classList.add('open');
+                }
+            });
+
+            cancelSubscriptionClose.addEventListener('click', function () {
+                if (cancelSubscriptionDialog.classList.contains('open')) {
+                    cancelSubscriptionDialog.classList.remove('open');
+                    cancelSubscriptionDialog.classList.add('close');
+                }
+                if (cancelSubscriptionBackdrop.classList.contains('open')) {
+                    cancelSubscriptionBackdrop.classList.remove('open');
+                    cancelSubscriptionBackdrop.classList.add('close');
+                }
+            });
+
+            cancelSubscriptionNo.addEventListener('click', function () {
+                cancelSubscriptionDialog.classList.remove('open');
+                cancelSubscriptionDialog.classList.add('close');
+                cancelSubscriptionBackdrop.classList.remove('open');
+                cancelSubscriptionBackdrop.classList.add('close');
+            });
+
+            cancelSubscriptionYes.addEventListener('click', function () {
+                // Close the dialog
+                cancelSubscriptionDialog.classList.remove('open');
+                cancelSubscriptionDialog.classList.add('close');
+                cancelSubscriptionBackdrop.classList.remove('open');
+                cancelSubscriptionBackdrop.classList.add('close');
+                
+                // Handle subscription cancellation with Firebase
+                console.log("Starting subscription cancellation process...");
+                
+                // Check if Firebase functions are available
+                if (!window.firebaseAuth || !window.firebaseDB || !window.firebaseDoc || !window.firebaseGetDoc || !window.firebaseCollection || !window.firebaseAddDoc) {
+                    console.error("Firebase functions not available:", {
+                        auth: window.firebaseAuth,
+                        db: window.firebaseDB,
+                        doc: window.firebaseDoc,
+                        getDoc: window.firebaseGetDoc,
+                        collection: window.firebaseCollection,
+                        addDoc: window.firebaseAddDoc
+                    });
+                    alert("There was an error initializing the application. Please refresh the page and try again.");
+                    return;
+                }
+                
+                const user = window.firebaseAuth.currentUser;
+                if (user) {
+                    console.log("User is logged in:", user.uid);
+                    // Get user data from Firestore
+                    const userRef = window.firebaseDoc(window.firebaseDB, "users", user.uid);
+                    console.log("Created user reference:", userRef);
+                    window.firebaseGetDoc(userRef).then((userDoc) => {
+                        if (userDoc.exists()) {
+                            const userData = userDoc.data();
+                            const subscription = userData.subscription;
+                            console.log("User subscription:", subscription);
+                            
+                            if (subscription) {
+                                // Create a subscription cancellation request
+                                console.log("Creating cancellation request...");
+                                const cancellationRef = window.firebaseCollection(window.firebaseDB, "subscriptionCancellations");
+                                console.log("Created cancellation reference:", cancellationRef);
+                                window.firebaseAddDoc(cancellationRef, {
+                                    userId: user.uid,
+                                    userEmail: user.email,
+                                    subscription: subscription,
+                                    requestDate: new Date().toISOString(),
+                                    status: "pending"
+                                }).then((docRef) => {
+                                    console.log("Cancellation request added with ID:", docRef.id);
+                                    // Show success notification
+                                    alert("Your subscription cancellation request has been submitted. We'll process it shortly.");
+                                }).catch((error) => {
+                                    console.error("Error submitting cancellation request:", error);
+                                    alert("There was an error submitting your cancellation request. Please try again later.");
+                                });
+                            } else {
+                                console.log("No active subscription found");
+                                alert("You don't have an active subscription to cancel.");
+                            }
+                        } else {
+                            console.error("User document does not exist");
+                            alert("There was an error retrieving your user data. Please try again later.");
+                        }
+                    }).catch((error) => {
+                        console.error("Error getting user data:", error);
+                        alert("There was an error processing your request. Please try again later.");
+                    });
+                } else {
+                    console.error("No user logged in");
+                    alert("You must be logged in to cancel a subscription.");
+                }
+            });
+        });
+
+        // Encode the content for use in a URL
+        const encodedContent = encodeURIComponent(exportFieldContent);
+        console.log("Encoded content:", encodedContent); // Debugging log
+
+        // Get the base URL (first part of the active address before the "/")
+        const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
+        console.log("Base URL:", baseUrl); // Debugging log
+
+        // Generate the full link
+        const generatedLink = `${baseUrl}/generatedlevel.html?content=${encodedContent}`;
+        console.log("Generated link:", generatedLink); // Debugging log
+
+        // Copy the link to the clipboard
+        navigator.clipboard.writeText(generatedLink).then(() => {
+            console.log("Link copied to clipboard!"); // Debugging log
+
+            // Change the icon from 'link' to 'check'
+            const confirmationCopyIcon = document.getElementById('confirmationCopy');
+            if (confirmationCopyIcon) {
+                confirmationCopyIcon.textContent = 'check'; // Change the icon to 'check'
+
+                // Revert the icon back to 'link' after 3 seconds
+                setTimeout(() => {
+                    confirmationCopyIcon.textContent = 'link'; // Revert to 'link'
+                }, 3000); // Revert after 3 seconds
+            }
+        }).catch((error) => {
+            console.error("Failed to copy link:", error); // Debugging log
+            alert("Failed to copy link. Please try again.");
+        });
+    </script>
+
+    <script>
+        // Function to generate the link
+        function generateLink() {
+            console.log("generateLink function called"); // Debugging log
+
+            // Get the content from the #exportfield text field
+            const exportFieldContent = document.getElementById('exportfield').value;
+            console.log("Export field content:", exportFieldContent); // Debugging log
+
+            // Check if the content is empty
+            if (!exportFieldContent) {
+                alert("The export field is empty!");
+                return null;
+            }
+
+            // Encode the content for use in a URL
+            const encodedContent = encodeURIComponent(exportFieldContent);
+            console.log("Encoded content:", encodedContent); // Debugging log
+
+            // Get the base URL (first part of the active address before the "/")
+            const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
+            console.log("Base URL:", baseUrl); // Debugging log
+
+            // Generate the full link
+            const generatedLink = `${baseUrl}/generatedlevel.html?content=${encodedContent}`;
+            console.log("Generated link:", generatedLink); // Debugging log
+
+            return generatedLink;
+        }
+
+        // Function to share on Facebook
+        function shareOnFacebook() {
+            const generatedLink = generateLink();
+            if (!generatedLink) return;
+
+            // Facebook sharing URL
+            const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(generatedLink)}`;
+            console.log("Facebook share URL:", facebookShareUrl); // Debugging log
+
+            // Open the Facebook sharing dialog in a new window
+            window.open(facebookShareUrl, '_blank');
+        }
+
+        // Function to share on X (Twitter)
+        function shareOnX() {
+            const generatedLink = generateLink();
+            if (!generatedLink) return;
+
+            // X (Twitter) sharing URL
+            const xShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(generatedLink)}`;
+            console.log("X share URL:", xShareUrl); // Debugging log
+
+            // Open the X sharing dialog in a new window
+            window.open(xShareUrl, '_blank');
+        }
+
+        // Function to share via email
+        function shareViaEmail() {
+            const generatedLink = generateLink();
+            if (!generatedLink) return;
+
+            // Email sharing URL
+            const emailShareUrl = `mailto:?body=${encodeURIComponent(generatedLink)}`;
+            console.log("Email share URL:", emailShareUrl); // Debugging log
+
+            // Open the default email client
+            window.location.href = emailShareUrl;
+        }
+
+        // Attach event listeners to the buttons
+        document.addEventListener('DOMContentLoaded', () => {
+            // Facebook Share
+            const facebookShareButton = document.getElementById('facebookShare');
+            if (facebookShareButton) {
+                facebookShareButton.addEventListener('click', shareOnFacebook);
+            } else {
+                console.error("Facebook share button not found!"); // Debugging log
+            }
+
+            // X Share
+            const xShareButton = document.getElementById('xShare');
+            if (xShareButton) {
+                xShareButton.addEventListener('click', shareOnX);
+            } else {
+                console.error("X share button not found!"); // Debugging log
+            }
+
+            // Email Share
+            const emailShareButton = document.getElementById('emailShare');
+            if (emailShareButton) {
+                emailShareButton.addEventListener('click', shareViaEmail);
+            } else {
+                console.error("Email share button not found!"); // Debugging log
+            }
+        });
+    </script>
+
+    <script>
+        // Function to hide #fakeLoading and show #levelResult after 2 seconds
+        function showLevelResult() {
+            // Get the elements
+            const fakeLoading = document.getElementById('fakeLoading');
+            const levelResult = document.getElementById('levelResult');
+
+            // Check if the elements exist
+            if (!fakeLoading || !levelResult) {
+                console.error("Elements not found!");
+                return;
+            }
+
+            // Hide #fakeLoading and show #levelResult after 2 seconds
+            setTimeout(() => {
+                fakeLoading.style.display = 'none'; // Hide #fakeLoading
+                levelResult.style.display = 'block'; // Show #levelResult
+            }, 2000); // 2000 milliseconds = 2 seconds
+        }
+
+        // Function to observe the .export-dialog for the 'open' attribute
+        function observeExportDialog() {
+            // Get the .export-dialog element
+            const exportDialog = document.querySelector('.export-dialog');
+
+            // Check if the dialog exists
+            if (!exportDialog) {
+                console.error(".export-dialog not found!");
+                return;
+            }
+
+            // Create a MutationObserver to watch for changes to the 'open' attribute
+            const observer = new MutationObserver((mutationsList) => {
+                for (const mutation of mutationsList) {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'open') {
+                        // Check if the dialog is open
+                        if (exportDialog.hasAttribute('open')) {
+                            console.log(".export-dialog is now open!");
+                            // Call the function to show the level result after 2 seconds
+                            showLevelResult();
+                        }
+                    }
+                }
+            });
+
+            // Start observing the .export-dialog for attribute changes
+            observer.observe(exportDialog, {
+                attributes: true, // Watch for attribute changes
+            });
+        }
+
+        // Call the observer function when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', observeExportDialog);
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Function to trigger a click event on a given selector
+            const triggerClick = (selector) => {
+                const element = document.querySelector(selector);
+                if (element) {
+                    element.click();
+                } else {
+                    console.error(`Element with selector "${selector}" not found.`);
+                }
+            };
+
+            // Listen for keyboard shortcuts
+            document.addEventListener("keydown", (event) => {
+                const tooltipKeyboard = document.querySelector('.keyboardshortcut-tooltip');
+                if (event.ctrlKey) {
+                    switch (event.key.toLowerCase()) {
+                        case 'l':
+                            event.preventDefault(); // Prevent default browser behavior
+                            triggerClick(".newlvl"); // Trigger click on .newlvl
+                            break;
+                        case 's':
+                            event.preventDefault(); // Prevent default browser behavior
+                            triggerClick(".export-button"); // Trigger click on .export-button
+                            break;
+                        case 'i':
+                            event.preventDefault(); // Prevent default browser behavior
+                            triggerClick(".import-main"); // Trigger click on .import-main
+                            break;
+                        case 'b':
+                            event.preventDefault(); // Prevent default browser behavior
+                            triggerClick(".credit-btn"); // Trigger click on .credit-btn
+                            break;
+                        case 'k':
+                            event.preventDefault(); // Prevent default browser behavior
+                            triggerClick(".keyboard-shortcuts"); // Trigger click on .credit-btn
+                            break;
+                            tooltipKeyboard.setAttribute('open', 'open');
+                    }
+                }
+            });
+        });
+    </script>
+
+    <script>
+        const updateSnackbar = document.querySelector(".updates-notify");
+        const checkUpdates = document.getElementById("checkUpdates");
+
+        checkUpdates.addEventListener("click", () => updateSnackbar.open = true);
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const settingsBtn = document.querySelector('.settings-btn');
+            const settingsFulldialog = document.querySelector('.settings-fulldialog');
+            const closeSettings = document.querySelector('.close-settings');
+
+            // Add event listener to settings button
+            settingsBtn.addEventListener('click', function () {
+                settingsFulldialog.setAttribute('open', '');
+            });
+
+            // Add event listener to close settings button
+            closeSettings.addEventListener('click', function () {
+                settingsFulldialog.removeAttribute('open');
+            });
+        });
+    </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const musicConfig = document.getElementById('musicConfig');
+            const musicMain = document.getElementById('musicMain');
+            const musicSrc = document.getElementById('musicSrc');
+            const playSongButton = document.getElementById('playSong');
+            const muteButton = document.getElementById('mute');
+            const volumeCustomize = document.getElementById('volumeCustomize');
+            const enableMusic = document.getElementById('enableMusic');
+            const songNameDisplay = document.getElementById('songName'); // Element to display the song name
+
+            // Function to change music source and play
+            function changeMusicSource(source, songName) {
+                musicSrc.src = source;
+                musicMain.load();
+                musicMain.play();
+                songNameDisplay.textContent = songName; // Display the song name
+            }
+
+            // Event listeners for music selection
+            document.getElementById('candy-fantasia').addEventListener('click', function () {
+                changeMusicSource('audio/songs/Editor_Song_Theme_Candy_Fantasia.ogg', 'Candy Fantasia');
+            });
+
+            document.getElementById('candy-caravan').addEventListener('click', function () {
+                changeMusicSource('audio/songs/Editor_Song_Theme_Candy_Caravan.ogg', 'Candy Caravan');
+            });
+
+            document.getElementById('frosted-brain').addEventListener('click', function () {
+                changeMusicSource('audio/songs/Editor_Song_Theme_Frosted_Brain.ogg', 'Frosted Brain');
+            });
+
+            document.getElementById('candy-hour').addEventListener('click', function () {
+                changeMusicSource('audio/songs/Editor_Song_Theme_Candy_Hour.ogg', 'Candy Hour');
+            });
+
+            document.getElementById('pop-the-candy').addEventListener('click', function () {
+                changeMusicSource('audio/songs/Editor_Song_Theme_Pop_The_Candy.ogg', 'Pop The Candy');
+            });
+
+            // Play/Pause functionality
+            playSongButton.addEventListener('click', function () {
+                const mdIcon = playSongButton.querySelector('md-icon'); // Select the md-icon inside the button
+                if (musicMain.paused) {
+                    musicMain.play();
+                    mdIcon.textContent = 'pause'; // Change to pause icon
+                } else {
+                    musicMain.pause();
+                    mdIcon.textContent = 'play_arrow'; // Change to play icon
+                }
+            });
+
+            // Mute/Unmute functionality
+            muteButton.addEventListener('click', function () {
+                const mdIcon = muteButton.querySelector('md-icon'); // Select the md-icon inside the button
+                musicMain.muted = !musicMain.muted;
+                mdIcon.textContent = musicMain.muted ? 'volume_off' : 'volume_up'; // Change icon based on mute state
+            });
+
+            // Volume control using md-slider
+            volumeCustomize.addEventListener('input', function () {
+                musicMain.volume = volumeCustomize.value; // Set the audio volume based on slider value
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const switchClick = document.getElementById('switchClick');
+            const clickSound = document.getElementById('clickSound');
+
+            // Function to play sound
+            function playClickSound() {
+                if (switchClick.selected) {
+                    clickSound.currentTime = 0; // Reset sound to start
+                    clickSound.play(); // Play the sound
+                }
+            }
+
+            // Add event listener to the entire document
+            document.addEventListener('click', playClickSound);
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select all dropdown menus
+            const dropdowns = document.querySelectorAll('.dropdownmenu');
+
+            // Loop through each dropdown menu
+            dropdowns.forEach(dropdown => {
+                // Find the button that triggers the dropdown
+                const dropbtn = dropdown.closest('button');
+
+                // Add click event listener to the button
+                dropbtn.addEventListener('click', function (event) {
+                    // Prevent the event from bubbling up to the window
+                    event.stopPropagation();
+
+                    // Toggle the dropdown visibility
+                    if (dropdown.classList.contains('show')) {
+                        // If the dropdown is currently shown, hide it
+                        dropdown.classList.remove('show');
+                        dropdown.classList.add('hide');
+                    } else {
+                        // If the dropdown is currently hidden, show it
+                        dropdown.classList.remove('hide'); // Remove hide class to allow showing
+                        dropdown.classList.add('show');
+                        dropdown.style.backdropFilter = 'blur(15px)'; // Apply backdrop filter directly
+                    }
+                });
+            });
+
+            // Close dropdown if clicking outside
+            window.addEventListener('click', function (event) {
+                dropdowns.forEach(dropdown => {
+                    // Check if the click was outside the dropdown and button
+                    if (!event.target.closest('button') && dropdown.classList.contains('show')) {
+                        // If the dropdown is currently shown, hide it
+                        dropdown.classList.remove('show');
+                        dropdown.classList.add('hide');
+                        dropdown.style.backdropFilter = ''; // Reset backdrop filter
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const importBackdrop = document.getElementById('importdialogBackdrop');
+            const importDialog = document.getElementById('importDialog');
+            const importBtn = document.querySelector('.import-main');
+            const importClosebtn = document.getElementById('importClose');
+
+            importBtn.addEventListener('click', function () {
+                if (importDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    importDialog.classList.remove('open');
+                    importDialog.classList.add('close');
+                } else {
+                    // If the dropdown is currently hidden, show it
+                    importDialog.classList.remove('close'); // Remove hide class to allow showing
+                    importDialog.classList.add('open');
+                }
+                if (importBackdrop.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    importBackdrop.classList.remove('open');
+                    importBackdrop.classList.add('close');
+                } else {
+                    // If the dropdown is currently hidden, show it
+                    importBackdrop.classList.remove('close'); // Remove hide class to allow showing
+                    importBackdrop.classList.add('open');
+                }
+            });
+
+            importClosebtn.addEventListener('click', function () {
+                if (importDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    importDialog.classList.remove('open');
+                    importDialog.classList.add('close');
+                }
+                if (importBackdrop.classList.contains('open')) {
+                    importBackdrop.classList.remove('open');
+                    importBackdrop.classList.add('close');
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const exportBackdrop = document.getElementById('exportdialogBackdrop');
+            const exportDialog = document.getElementById('exportDialog');
+            const exportBtn = document.querySelector('.export-button');
+            const exportCloseBtn = document.getElementById('exportClose');
+
+            exportBtn.addEventListener('click', function () {
+                if (exportDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    exportDialog.classList.remove('open');
+                    exportDialog.classList.add('close');
+                } else {
+                    // If the dropdown is currently hidden, show it
+                    exportDialog.classList.remove('close'); // Remove hide class to allow showing
+                    exportDialog.classList.add('open');
+                }
+                if (exportBackdrop.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    exportBackdrop.classList.remove('open');
+                    exportBackdrop.classList.add('close');
+                } else {
+                    // If the dropdown is currently hidden, show it
+                    exportBackdrop.classList.remove('close'); // Remove hide class to allow showing
+                    exportBackdrop.classList.add('open');
+                }
+            });
+
+            exportCloseBtn.addEventListener('click', function () {
+                if (exportDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    exportDialog.classList.remove('open');
+                    exportDialog.classList.add('close');
+                }
+                if (exportBackdrop.classList.contains('open')) {
+                    exportBackdrop.classList.remove('open');
+                    exportBackdrop.classList.add('close');
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const backdropDialog = document.getElementById('creditsBackdrop');
+            const creditsDialog = document.getElementById('creditsDialog');
+            const creditsBtn = document.getElementById('creditsBtn');
+            const creditscloseBtn = document.getElementById('creditscloseBtn');
+
+            creditsBtn.addEventListener('click', function () {
+                if (creditsDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    creditsDialog.classList.remove('open');
+                    creditsDialog.classList.add('close');
+                } else {
+                    // If the dropdown is currently hidden, show it
+                    creditsDialog.classList.remove('close'); // Remove hide class to allow showing
+                    creditsDialog.classList.add('open');
+                }
+                if (backdropDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    backdropDialog.classList.remove('open');
+                    backdropDialog.classList.add('close');
+                } else {
+                    // If the dropdown is currently hidden, show it
+                    backdropDialog.classList.remove('close'); // Remove hide class to allow showing
+                    backdropDialog.classList.add('open');
+                }
+            });
+
+            creditscloseBtn.addEventListener('click', function () {
+                if (creditsDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    creditsDialog.classList.remove('open');
+                    creditsDialog.classList.add('close');
+                }
+                if (backdropDialog.classList.contains('open')) {
+                    backdropDialog.classList.remove('open');
+                    backdropDialog.classList.add('close');
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const introPowerBackdrop = document.getElementById('introPowerBackdrop');
+            const introPowerDialog = document.getElementById('introPowerDialog');
+            const learnStreak = document.getElementById('learnStreak');
+            const introPowerClose = document.getElementById('introPowerClose');
+
+            learnStreak.addEventListener('click', function () {
+                if (introPowerDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    introPowerDialog.classList.remove('open');
+                    introPowerDialog.classList.add('close');
+                } else {
+                    // If the dropdown is currently hidden, show it
+                    introPowerDialog.classList.remove('close'); // Remove hide class to allow showing
+                    introPowerDialog.classList.add('open');
+                }
+                if (introPowerBackdrop.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    introPowerBackdrop.classList.remove('open');
+                    introPowerBackdrop.classList.add('close');
+                } else {
+                    // If the dropdown is currently hidden, show it
+                    introPowerBackdrop.classList.remove('close'); // Remove hide class to allow showing
+                    introPowerBackdrop.classList.add('open');
+                }
+            });
+
+            introPowerClose.addEventListener('click', function () {
+                if (introPowerDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    introPowerDialog.classList.remove('open');
+                    introPowerDialog.classList.add('close');
+                }
+                if (introPowerBackdrop.classList.contains('open')) {
+                    introPowerBackdrop.classList.remove('open');
+                    introPowerBackdrop.classList.add('close');
+                }
+            });
+        });
+    </script>
+
+    <!--Script handle points-->
+    <script type="module" src="points.js"></script>
+
+    <script>
+        function disableScrolling() {
+            const overlay = document.getElementById('purchaseOverlay');
+
+            // Prevent default scroll behavior
+            overlay.addEventListener('wheel', preventDefault, { passive: false });
+            overlay.addEventListener('touchmove', preventDefault, { passive: false });
+            overlay.addEventListener('scroll', preventDefault, { passive: false });
+        }
+
+        function enableScrolling() {
+            const overlay = document.getElementById('purchaseOverlay');
+
+            // Remove the event listeners to enable scrolling
+            overlay.removeEventListener('wheel', preventDefault);
+            overlay.removeEventListener('touchmove', preventDefault);
+            overlay.removeEventListener('scroll', preventDefault);
+        }
+
+        function preventDefault(e) {
+            e.preventDefault();
+        }
+
+        // Example buttons to open and close the overlay
+        document.getElementById('openOverlay').addEventListener('click', function () {
+            const overlay = document.getElementById('purchaseOverlay');
+            overlay.style.display = 'block'; // Show the overlay
+            disableScrolling(); // Always disable scrolling when the overlay is shown
+        });
+
+        document.getElementById('closeOverlay').addEventListener('click', function () {
+            const overlay = document.getElementById('purchaseOverlay');
+            overlay.style.display = 'none'; // Hide the overlay
+            enableScrolling(); // Enable scrolling when the overlay is hidden
+        });
+
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const yearlyConvert = document.querySelector('#yearlyConvert');
+            const purchaseOverlay = document.querySelector('#purchaseOverlay');
+            const iframe = document.querySelector('#purchaseOverlay');
+
+            // Debugging: Check if elements are found
+            console.log('yearlyConvert:', yearlyConvert);
+            console.log('purchaseOverlay:', purchaseOverlay);
+            console.log('iframe:', iframe);
+
+            // Function to update the URL based on the yearlyConvert checkbox state
+            function updateURL() {
+                const url = new URL(window.location.href);
+                if (yearlyConvert.checked) {
+                    url.searchParams.set('yearly', 'true');
+                } else {
+                    url.searchParams.delete('yearly');
+                }
+                window.history.replaceState({}, '', url);
+                updatePrices()
+            }
+
+            // Event listener for the yearlyConvert checkbox
+            yearlyConvert.addEventListener('change', function () {
+                updateURL();
+            });
+
+            // Function to handle button clicks and update the iframe URL
+            function handleButtonClick(itemCode, type) {
+                if (!iframe) {
+                    console.error('Iframe not found!');
+                    return; // Exit if iframe is not found
+                }
+
+                // Construct the base URL for the iframe
+                let iframeSrc = 'checkout.html?item=' + itemCode + '&mode=' + type;
+
+                // Check if yearly is true and update the item code accordingly
+                if (yearlyConvert.checked) {
+                    iframeSrc = 'checkout.html?item=' + itemCode + '&mode=' + type; // Change to yearly item code
+                }
+
+                // Set the iframe src
+                iframe.src = iframeSrc;
+
+                // Display the iframe and set the open attribute on the forge-dialog inside the iframe
+                purchaseOverlay.style.display = 'block'; // Show the iframe overlay
+            }
+
+            // Function to observe the forge-dialog for changes
+            function observeForgeDialog(forgeDialog) {
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.attributeName === 'open') {
+                            if (!forgeDialog.hasAttribute('open')) {
+                                // Wait for the closing animation to finish
+                                setTimeout(() => {
+                                    purchaseOverlay.style.display = 'none'; // Hide the overlay
+                                }, 500); // 0.5 seconds
+                            }
+                        }
+                    });
+                });
+
+                // Start observing the forge-dialog for attribute changes
+                observer.observe(forgeDialog, { attributes: true });
+            }
+
+            function updatePrices() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const isYearly = urlParams.get('yearly') === 'true';
+
+                if (isYearly) {
+                    document.querySelector('#bronzeprice').textContent = '$50.99/year';
+                    document.querySelector('#silverprice').textContent = '$105.99/year';
+                    document.querySelector('#goldprice').textContent = '$299.99/year';
+                } else {
+                    // Reset to default prices (assuming these are the monthly prices)
+                    document.querySelector('#bronzeprice').textContent = '$5.99/month'; // Example monthly price
+                    document.querySelector('#silverprice').textContent = '$10.99/month'; // Example monthly price
+                    document.querySelector('#goldprice').textContent = '$30.99/month'; // Example monthly price
+                }
+            }
+
+            // Event listeners for the signup buttons
+            document.querySelector('.bronze-signup-button').addEventListener('click', function () {
+                document.querySelector('.purchase-overlay').classList.remove('close');
+                document.querySelector('.purchase-overlay').classList.add('open');
+                handleButtonClick('BM', 'license'); // Regular bronze signup
+            });
+
+            document.querySelector('.silver-signup-button').addEventListener('click', function () {
+                document.querySelector('.purchase-overlay').classList.remove('close');
+                document.querySelector('.purchase-overlay').classList.add('open');
+                handleButtonClick('SM', 'license'); // Regular silver signup
+            });
+
+            document.querySelector('.gold-signup-button').addEventListener('click', function () {
+                document.querySelector('.purchase-overlay').classList.remove('close');
+                document.querySelector('.purchase-overlay').classList.add('open');
+                handleButtonClick('GM', 'license'); // Regular gold signup
+            });
+
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('yearly') === 'true') {
+                document.querySelector('.bronze-signup-button').addEventListener('click', function () {
+                    document.querySelector('.purchase-overlay').classList.remove('close');
+                    document.querySelector('.purchase-overlay').classList.add('open');
+                    handleButtonClick('BY', 'license'); // Regular bronze signup
+                });
+
+                document.querySelector('.silver-signup-button').addEventListener('click', function () {
+                    document.querySelector('.purchase-overlay').classList.remove('close');
+                    document.querySelector('.purchase-overlay').classList.add('open');
+                    handleButtonClick('SY', 'license'); // Regular silver signup
+                });
+
+                document.querySelector('.gold-signup-button').addEventListener('click', function () {
+                    document.querySelector('.purchase-overlay').classList.remove('close');
+                    document.querySelector('.purchase-overlay').classList.add('open');
+                    handleButtonClick('GY', 'license'); // Regular gold signup
+                });
+            }
+
+            // Example of how to manually add more buttons
+            document.querySelector('.gift-bronze').addEventListener('click', function () {
+                document.querySelector('.purchase-overlay').classList.remove('close');
+                document.querySelector('.purchase-overlay').classList.add('open');
+                handleButtonClick('BM', 'gift'); // Gift bronze signup
+            });
+
+            document.querySelector('.gift-silver').addEventListener('click', function () {
+                document.querySelector('.purchase-overlay').classList.remove('close');
+                document.querySelector('.purchase-overlay').classList.add('open');
+                handleButtonClick('SM', 'gift'); // Gift silver signup
+            });
+
+            document.querySelector('.gift-gold').addEventListener('click', function () {
+                document.querySelector('.purchase-overlay').classList.remove('close');
+                document.querySelector('.purchase-overlay').classList.add('open');
+                handleButtonClick('GM', 'gift'); // Gift gold signup
+            });
+
+            document.querySelector('#powers10 .powers-buy-button').addEventListener('click', function () {
+                document.querySelector('.purchase-overlay').classList.remove('close');
+                document.querySelector('.purchase-overlay').classList.add('open');
+                handleButtonClick('powers10', 'license'); // Gift gold signup
+            });
+
+            document.querySelector('#powers50 .powers-buy-button').addEventListener('click', function () {
+                document.querySelector('.purchase-overlay').classList.remove('close');
+                document.querySelector('.purchase-overlay').classList.add('open');
+                handleButtonClick('powers50', 'license'); // Gift gold signup
+            });
+
+            document.querySelector('#powers100 .powers-buy-button').addEventListener('click', function () {
+                document.querySelector('.purchase-overlay').classList.remove('close');
+                document.querySelector('.purchase-overlay').classList.add('open');
+                handleButtonClick('powers100', 'license'); // Gift gold signup
+            });
+
+            document.querySelector('#powers100 .powers-buy-button').addEventListener('click', function () {
+                document.querySelector('.purchase-overlay').classList.remove('close');
+                document.querySelector('.purchase-overlay').classList.add('open');
+                handleButtonClick('powers100', 'license'); // Gift gold signup
+            });
+
+            document.querySelector('#powers250 .powers-buy-button').addEventListener('click', function () {
+                document.querySelector('.purchase-overlay').classList.remove('close');
+                document.querySelector('.purchase-overlay').classList.add('open');
+                handleButtonClick('powers250', 'license'); // Gift gold signup
+            });
+
+            document.querySelector('#powers500 .powers-buy-button').addEventListener('click', function () {
+                document.querySelector('.purchase-overlay').classList.remove('close');
+                document.querySelector('.purchase-overlay').classList.add('open');
+                handleButtonClick('powers500', 'license'); // Gift gold signup
+            });
+
+
+            // Example of how to manually add more buttons
+            // For example, if you have a platinum button:
+            // document.querySelector('.platinum-signup-button').addEventListener('click', function() {
+            //     handleButtonClick('PM', 'license'); // Regular platinum signup
+            // });
+
+        document.querySelector('#purchaseOverlay').addEventListener('load', function() {
+            const iframeDocument = this.contentDocument || this.contentWindow.document;
+            const closeButton = iframeDocument.querySelector('#closeCheckout');
+            if (closeButton) {
+                closeButton.addEventListener('click', function() {
+                    document.querySelector('.purchase-overlay').classList.remove('open');
+                    document.querySelector('.purchase-overlay').classList.add('close');
+                });
+            }
+        });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const purchaseOverlay = document.querySelector('#purchaseOverlay');
+            const iframe = document.querySelector('#purchaseOverlay');
+
+            // Function to check screen width and handle forge-dialog fullscreen attribute
+            function handleForgeDialogFullscreen() {
+                // Check if screen width is less than 615px
+                if (window.innerWidth < 615) {
+                    // Wait for the iframe to load
+                    iframe.onload = function() {
+                        try {
+                            // Get the iframe document
+                            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+                            
+                            // Find all forge-dialog elements in the iframe
+                            const forgeDialogs = iframeDocument.querySelectorAll('forge-dialog');
+                            
+                            // Remove fullscreen attribute from each forge-dialog
+                            forgeDialogs.forEach(dialog => {
+                                if (dialog.hasAttribute('fullscreen')) {
+                                    dialog.removeAttribute('fullscreen');
+                                    console.log('Removed fullscreen attribute from forge-dialog');
+                                }
+                            });
+                            
+                            // Set up a MutationObserver to watch for new forge-dialog elements
+                            const observer = new MutationObserver((mutations) => {
+                                mutations.forEach((mutation) => {
+                                    if (mutation.addedNodes.length) {
+                                        mutation.addedNodes.forEach((node) => {
+                                            if (node.nodeName === 'FORGE-DIALOG' && node.hasAttribute('fullscreen')) {
+                                                node.removeAttribute('fullscreen');
+                                                console.log('Removed fullscreen attribute from newly added forge-dialog');
+                                            }
+                                        });
+                                    }
+                                });
+                            });
+                            
+                            // Start observing the iframe document body for changes
+                            observer.observe(iframeDocument.body, { 
+                                childList: true, 
+                                subtree: true 
+                            });
+                        } catch (error) {
+                            console.error('Error accessing iframe content:', error);
+                        }
+                    };
+                }
+            }
+            
+            // Call the function when the page loads
+            handleForgeDialogFullscreen();
+            
+            // Also call the function when the window is resized
+            window.addEventListener('resize', handleForgeDialogFullscreen);
+        });
+    </script>
+
+    <script>
+        // Script to remove fullscreen attribute from forge-dialog in iframe when screen width is less than 615px
+        document.addEventListener('DOMContentLoaded', function() {
+            const purchaseOverlay = document.getElementById('purchaseOverlay');
+            
+            // Function to check screen width and handle forge-dialog fullscreen attribute
+            function handleForgeDialogFullscreen() {
+                // Check if screen width is less than 615px
+                if (window.innerWidth < 615) {
+                    try {
+                        // Get the iframe document
+                        const iframeDocument = purchaseOverlay.contentDocument || purchaseOverlay.contentWindow.document;
+                        
+                        // Find all forge-dialog elements in the iframe
+                        const forgeDialogs = iframeDocument.querySelectorAll('forge-dialog');
+                        
+                        // Remove fullscreen attribute from each forge-dialog
+                        forgeDialogs.forEach(dialog => {
+                            if (dialog.hasAttribute('fullscreen')) {
+                                dialog.removeAttribute('fullscreen');
+                                console.log('Removed fullscreen attribute from forge-dialog');
+                            }
+                        });
+                    } catch (error) {
+                        console.error('Error accessing iframe content:', error);
+                    }
+                }
+            }
+            
+            // Set up a MutationObserver to watch for when the iframe is displayed
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                        // Check if the iframe is displayed
+                        if (purchaseOverlay.style.display === 'block') {
+                            // Wait a short time for the iframe to load
+                            setTimeout(handleForgeDialogFullscreen, 100);
+                        }
+                    }
+                });
+            });
+            
+            // Start observing the iframe for style changes
+            observer.observe(purchaseOverlay, { attributes: true });
+            
+            // Also call the function when the window is resized
+            window.addEventListener('resize', handleForgeDialogFullscreen);
+        });
+    </script>
+
+    <script>
+        // Code checker functionality
+        document.getElementById('redeemCode').addEventListener('click', async () => {
+            const code = document.getElementById('redeemInput').value.trim();
+            if (!code) {
+                alert('Please enter a gift code');
+                return;
+            }
+
+            try {
+                const db = window.firebaseDB;
+                const auth = window.firebaseAuth;
+                const user = auth.currentUser;
+
+                if (!user) {
+                    alert('Please log in to redeem a gift code');
+                    return;
+                }
+
+                // Check if code exists and is valid
+                const giftCodesRef = window.firebaseCollection(db, 'giftCodes');
+                const q = window.firebaseQuery(giftCodesRef, window.firebaseWhere('code', '==', code));
+                const querySnapshot = await window.firebaseGetDocs(q);
+
+                if (querySnapshot.empty) {
+                    alert('Invalid gift code');
+                    return;
+                }
+
+                const codeDoc = querySnapshot.docs[0];
+                const codeData = codeDoc.data();
+
+                // Check if code is already used
+                if (codeData.used || codeData.usedBy) {
+                    alert('This gift code has already been used');
+                    return;
+                }
+
+                // Get user's current subscription data
+                const userRef = window.firebaseDoc(db, 'users', user.uid);
+                const userDoc = await window.firebaseGetDoc(userRef);
+                const userData = userDoc.data();
+
+                // Determine subscription type and duration based on the gift code type
+                let subscriptionType = '';
+                let duration = 0;
+                let giftType = '';
+
+                switch (codeData.type) {
+                    case 'BM':
+                        subscriptionType = 'basic';
+                        duration = 1; // 1 month
+                        giftType = 'bronze';
+                        break;
+                    case 'BY':
+                        subscriptionType = 'basic';
+                        duration = 12; // 1 year
+                        giftType = 'bronze';
+                        break;
+                    case 'SM':
+                        subscriptionType = 'standard';
+                        duration = 1;
+                        giftType = 'silver';
+                        break;
+                    case 'SY':
+                        subscriptionType = 'standard';
+                        duration = 12;
+                        giftType = 'silver';
+                        break;
+                    case 'GM':
+                        subscriptionType = 'gold';
+                        duration = 1;
+                        giftType = 'gold';
+                        break;
+                    case 'GY':
+                        subscriptionType = 'gold';
+                        duration = 12;
+                        giftType = 'gold';
+                        break;
+                    case 'powers10':
+                        const currentPowers = userData.powers || 0;
+                        await window.firebaseUpdateDoc(userRef, {
+                            powers: currentPowers + 10
+                        });
+                        giftType = 'powers';
+                        document.getElementById('typetitle').textContent = '10 Powers Gift';
+                        document.querySelector('redeem-card').setAttribute('gift', 'powers');
+                        
+                        // Mark the gift code as used
+                        await window.firebaseUpdateDoc(window.firebaseDoc(db, 'giftCodes', codeDoc.id), {
+                            used: true,
+                            usedBy: user.uid,
+                            usedAt: new Date().toISOString(),
+                            isValid: false
+                        });
+                        
+                        // Add celebration effect
+                        createCelebrationEffect();
+                        
+                        alert('You have redeemed your code for 10 powers!');
+                        return;
+                    case 'powers50':
+                        const currentPowers50 = userData.powers || 0;
+                        await window.firebaseUpdateDoc(userRef, {
+                            powers: currentPowers50 + 50
+                        });
+                        giftType = 'powers';
+                        document.getElementById('typetitle').textContent = '50 Powers Gift';
+                        document.querySelector('redeem-card').setAttribute('gift', 'powers');
+                        
+                        // Mark the gift code as used
+                        await window.firebaseUpdateDoc(window.firebaseDoc(db, 'giftCodes', codeDoc.id), {
+                            used: true,
+                            usedBy: user.uid,
+                            usedAt: new Date().toISOString(),
+                            isValid: false
+                        });
+                        
+                        // Add celebration effect
+                        createCelebrationEffect();
+                        
+                        alert('You have redeemed your code for 50 powers!');
+                        return;
+                    case 'powers100':
+                        const currentPowers100 = userData.powers || 0;
+                        await window.firebaseUpdateDoc(userRef, {
+                            powers: currentPowers100 + 100
+                        });
+                        giftType = 'powers';
+                        document.getElementById('typetitle').textContent = '100 Powers Gift';
+                        document.querySelector('redeem-card').setAttribute('gift', 'powers');
+                        
+                        // Mark the gift code as used
+                        await window.firebaseUpdateDoc(window.firebaseDoc(db, 'giftCodes', codeDoc.id), {
+                            used: true,
+                            usedBy: user.uid,
+                            usedAt: new Date().toISOString(),
+                            isValid: false
+                        });
+                        
+                        alert('You have redeemed your code for 100 powers!');
+                        return;
+                    case 'powers250':
+                        const currentPowers250 = userData.powers || 0;
+                        await window.firebaseUpdateDoc(userRef, {
+                            powers: currentPowers250 + 250
+                        });
+                        giftType = 'powers';
+                        document.getElementById('typetitle').textContent = '250 Powers Gift';
+                        document.querySelector('redeem-card').setAttribute('gift', 'powers');
+                        
+                        // Mark the gift code as used
+                        await window.firebaseUpdateDoc(window.firebaseDoc(db, 'giftCodes', codeDoc.id), {
+                            used: true,
+                            usedBy: user.uid,
+                            usedAt: new Date().toISOString(),
+                            isValid: false
+                        });
+                        
+                        // Add celebration effect
+                        createCelebrationEffect();
+                        
+                        alert('You have redeemed your code for 250 powers!');
+                        return;
+                    case 'powers500':
+                        const currentPowers500 = userData.powers || 0;
+                        await window.firebaseUpdateDoc(userRef, {
+                            powers: currentPowers500 + 500
+                        });
+                        giftType = 'powers';
+                        document.getElementById('typetitle').textContent = '500 Powers Gift';
+                        document.querySelector('redeem-card').setAttribute('gift', 'powers');
+                        
+                        // Mark the gift code as used
+                        await window.firebaseUpdateDoc(window.firebaseDoc(db, 'giftCodes', codeDoc.id), {
+                            used: true,
+                            usedBy: user.uid,
+                            usedAt: new Date().toISOString(),
+                            isValid: false
+                        });
+                        
+                        // Add celebration effect
+                        createCelebrationEffect();
+                        
+                        alert('You have redeemed your code for 500 powers!');
+                        return;
+                    default:
+                        alert('Invalid gift code type');
+                        return;
+                }
+
+                // Update the redeem card title and attribute based on subscription type
+                let titleText = '';
+                if (subscriptionType === 'basic') {
+                    titleText = duration === 1 ? 'Bronze Monthly Gift' : 'Bronze Yearly Gift';
+                } else if (subscriptionType === 'standard') {
+                    titleText = duration === 1 ? 'Silver Monthly Gift' : 'Silver Yearly Gift';
+                } else if (subscriptionType === 'gold') {
+                    titleText = duration === 1 ? 'Gold Monthly Gift' : 'Gold Yearly Gift';
+                }
+                
+                document.getElementById('typetitle').textContent = titleText;
+                document.querySelector('redeem-card').setAttribute('gift', giftType);
+
+                if (subscriptionType) {
+                    // Calculate new subscription end date
+                    const now = new Date();
+                    const currentEndDate = userData.subscriptionEnd ? new Date(userData.subscriptionEnd) : now;
+                    const newEndDate = new Date(Math.max(now.getTime(), currentEndDate.getTime()));
+                    newEndDate.setMonth(newEndDate.getMonth() + duration);
+
+                    // Update user's subscription
+                    await window.firebaseUpdateDoc(userRef, {
+                        subscriptionType: subscriptionType,
+                        subscriptionEnd: newEndDate.toISOString(),
+                        lastUpdated: new Date().toISOString(),
+                        subscription: codeData.type, // Add the subscription code (BM, BY, SM, SY, GM, GY)
+                        subscriptionRegisteredDate: new Date().toISOString() // Add registration date
+                    });
+
+                    // Mark the gift code as used
+                    await window.firebaseUpdateDoc(window.firebaseDoc(db, 'giftCodes', codeDoc.id), {
+                        used: true,
+                        usedBy: user.uid,
+                        usedAt: new Date().toISOString(),
+                        isValid: false
+                    });
+
+                    // Add celebration effect
+                    createCelebrationEffect();
+
+                    alert(`You have redeemed your code for a ${giftType} ${duration === 1 ? 'monthly' : 'yearly'} subscription!`);
+                }
+            } catch (error) {
+                console.error('Error redeeming code:', error);
+                alert('An error occurred while redeeming the code. Please try again.');
+            }
+        });
+    </script>
+
+    <script>
+        // Add this function before the redeem button event listener
+        function createCelebrationEffect() {
+        // Create confetti container
+        const confettiContainer = document.createElement('div');
+        confettiContainer.className = 'confetti-container';
+        document.body.appendChild(confettiContainer);
+        
+        // Create celebration burst
+        const burst = document.createElement('div');
+        burst.className = 'celebration-burst';
+        document.body.appendChild(burst);
+        
+        // Create confetti pieces
+        const colors = ['#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff'];
+        for (let i = 0; i < 100; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDelay = Math.random() * 2 + 's';
+            confettiContainer.appendChild(confetti);
+        }
+        
+        // Remove elements after animation completes
+        setTimeout(() => {
+            document.body.removeChild(confettiContainer);
+            document.body.removeChild(burst);
+        }, 5000);
+        }
+    </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // For each .title-scroll-gradient element
+      document.querySelectorAll('.title-scroll-gradient').forEach(function(el) {
+        // Define color stops for each variant
+        let stopsStart, stopsEnd, color1, color2;
+        if (el.classList.contains('blue')) {
+          // Blue gradient
+          color1 = 'rgb(47, 24, 253)';
+          color2 = 'rgb(47, 24, 253)';
+          stopsStart = [100, 144, 158, 200];
+          stopsEnd   = [-100, -56, -42, 0];
+        } else if (el.classList.contains('green')) {
+          // Green gradient
+          color1 = 'rgb(24, 253, 47)';
+          color2 = 'rgb(24, 253, 47)';
+          stopsStart = [100, 144, 158, 200];
+          stopsEnd   = [-100, -56, -42, 0];
+        } else if (el.classList.contains('orange')) {
+          // Default orange gradient
+          color1 = 'rgb(253, 120, 24)';
+          color2 = 'rgb(255, 90, 31)';
+          stopsStart = [100, 144, 158, 200];
+          stopsEnd   = [-100, -56, -42, 0];
+        }
+    
+        function lerp(a, b, t) {
+          return a + (b - a) * t;
+        }
+    
+        function onScroll() {
+          const rect = el.getBoundingClientRect();
+          const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+          const start = windowHeight * 0.9;
+          const end = windowHeight * 0.3;
+    
+          let progress = (start - rect.top) / (start - end);
+          progress = Math.max(0, Math.min(1, progress));
+    
+          const stops = stopsStart.map((startVal, i) =>
+            lerp(startVal, stopsEnd[i], progress)
+          );
+    
+          const stopsStr = `rgba(0, 0, 0, 0.1) ${stops[0]}%, ${color1} ${stops[1]}%, ${color2} ${stops[2]}%, rgb(0, 0, 0) ${stops[3]}%`;
+          el.style.setProperty('--gradient-stops', stopsStr);
+        }
+    
+        window.addEventListener('scroll', onScroll);
+        window.addEventListener('resize', onScroll);
+        onScroll();
+      });
+    });
+    </script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // CCGApps logo hover animation
+        const ccgappsLogo = document.getElementById('ccgappsLogo');
+        const ccgappsText = ccgappsLogo.querySelector('.ccgapps-text');
+        const ccgappsImg = ccgappsLogo.querySelector('img');
+
+        // Set initial state
+        gsap.set(ccgappsText, { x: 0 });
+        gsap.set(ccgappsImg, { opacity: 0, x: -10 });
+
+        // Create hover animation timeline
+        const logoHoverTl = gsap.timeline({ paused: true });
+
+        logoHoverTl
+        .to(ccgappsText, {
+            x: 15,
+            duration: 0.3,
+            ease: "power2.out"
+        })
+        .to(ccgappsImg, {
+            opacity: 1,
+            x: 0,
+            duration: 0.3,
+            ease: "power2.out"
+        }, "-=0.2");
+
+        // Add hover listeners
+        ccgappsLogo.addEventListener('mouseenter', () => {
+        logoHoverTl.play();
+        // Reset gif by reloading it
+        ccgappsImg.src = ccgappsImg.src;
+        });
+
+        ccgappsLogo.addEventListener('mouseleave', () => {
+        logoHoverTl.reverse();
+        });
+    </script>
+</body>
+
+</html>

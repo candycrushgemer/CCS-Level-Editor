@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Admin Dashboard - Level Editor</title>
+    <link rel="icon" href="logo.png">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="ui-fluent.css" rel="stylesheet" type="text/css" />
+    <link href="fonts.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1.12.0/underscore-min.js"></script>
+
+    <meta content="Admin Dashboard - Candy Crush Level Editor" property="og:title">
+    <meta content="Admin dashboard for managing users and subscriptions" property="og:description">
+    <meta content="Candy Crush Level Editor" property="og:site_name">
+    <version>1.9</version>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+        {
+            "imports": {
+                "@material/web/": "https://esm.run/@material/web/"
+            }
+        }
+    </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+
+    <script id="mduiAccent">
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof mdui !== 'undefined') {
+                mdui.setColorScheme('#7ac8ef');
+            } else {
+                console.error('MDUI is not loaded.');
+            }
+        });
+    </script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone" rel="stylesheet">
+    <link id="mwcaccent" rel="stylesheet" href="mat-accent-color-light.css">
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.4.0/index.js"></script>
+    <script src="network-checker.js"></script>
+    <script src="checkout.js"></script>
+
+    <!-- Firebase Initialization -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+        import { getFirestore, collection, query, where, onSnapshot, updateDoc, doc, getDoc, getDocs, deleteDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+
+        try {
+            console.log('Starting Firebase initialization in admin dashboard...');
+            
+            const firebaseConfig = {
+                apiKey: "AIzaSyBEbBryhcs9qxHpi9oxCiW9jV5eTDZHP7M",
+                authDomain: "ccs-level-editor.firebaseapp.com",
+                projectId: "ccs-level-editor",
+                storageBucket: "ccs-level-editor.firebasestorage.app",
+                messagingSenderId: "10424890215",
+                appId: "1:10424890215:web:e7bfc73e36785ef439f5c2"
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth(app);
+            const db = getFirestore(app);
+
+            console.log('Firebase core initialized in admin dashboard, setting up global functions...');
+
+            // Make Firebase variables available globally
+            window.firebaseDB = db;
+            window.firebaseAuth = auth;
+            window.firebaseCollection = collection;
+            window.firebaseQuery = query;
+            window.firebaseWhere = where;
+            window.firebaseOnSnapshot = onSnapshot;
+            window.firebaseUpdateDoc = updateDoc;
+            window.firebaseDoc = doc;
+            window.firebaseGetDoc = getDoc;
+            window.firebaseGetDocs = getDocs;
+            window.firebaseDeleteDoc = deleteDoc;
+            window.firebaseAddDoc = addDoc;
+            window.firebaseServerTimestamp = serverTimestamp;
+            window.onAuthStateChanged = onAuthStateChanged;
+
+            // Create a promise that resolves when Firebase is ready
+            window.firebaseReady = new Promise((resolve, reject) => {
+                let initializationTimeout;
+                let retryCount = 0;
+                const MAX_RETRIES = 10;
+                const RETRY_INTERVAL = 1000; // 1 second
+                
+                const checkInitialization = () => {
+                    retryCount++;
+                    console.log(`Checking Firebase initialization (attempt ${retryCount}/${MAX_RETRIES})...`);
+                    
+                    if (window.firebaseDB && window.firebaseCollection) {
+                        console.log('Firebase functions are available in admin dashboard');
+                        clearTimeout(initializationTimeout);
+                        
+                        // Wait for auth to initialize
+                        const unsubscribe = onAuthStateChanged(auth, (user) => {
+                            console.log('Firebase auth state initialized in admin dashboard');
+                            unsubscribe();
+                            resolve();
+                        });
+                    } else if (retryCount < MAX_RETRIES) {
+                        console.warn(`Firebase functions not yet available, retrying in ${RETRY_INTERVAL/1000} seconds... (attempt ${retryCount}/${MAX_RETRIES})`);
+                        setTimeout(checkInitialization, RETRY_INTERVAL);
+                    } else {
+                        console.error('Maximum retry attempts reached');
+                        clearTimeout(initializationTimeout);
+                        reject(new Error('Firebase initialization failed after maximum retries'));
+                    }
+                };
+
+                // Set a timeout to prevent infinite waiting
+                initializationTimeout = setTimeout(() => {
+                    reject(new Error('Firebase initialization timed out'));
+                }, MAX_RETRIES * RETRY_INTERVAL + 5000); // Add 5 seconds buffer
+
+                // Start checking for initialization
+                checkInitialization();
+            });
+
+            // Dispatch event when Firebase is ready
+            window.firebaseReady
+                .then(() => {
+                    console.log('Firebase is fully initialized and ready in admin dashboard');
+                    window.dispatchEvent(new Event('firebaseReady'));
+                    
+                    // Initialize coupon codes after Firebase is ready
+                    if (typeof initializeCouponCodes === 'function') {
+                        console.log('Initializing coupon codes after Firebase ready...');
+                        initializeCouponCodes().catch(error => {
+                            console.error('Error initializing coupon codes:', error);
+                            showToast('Error loading coupon codes. Please refresh the page.', 'error');
+                        });
+                    } else {
+                        console.warn('initializeCouponCodes function not found');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error during Firebase initialization in admin dashboard:', error);
+                    window.dispatchEvent(new CustomEvent('firebaseError', { detail: error }));
+                });
+
+        } catch (error) {
+            console.error('Critical error during Firebase initialization in admin dashboard:', error);
+            window.dispatchEvent(new CustomEvent('firebaseError', { detail: error }));
+        }
+    </script>
+
+    <!-- Wait for Firebase to be ready before loading checkout.js -->
+    <script>
+        console.log('Setting up checkout.js loader in admin dashboard');
+        window.firebaseReady
+            .then(() => {
+                console.log('Loading checkout.js after Firebase initialization in admin dashboard');
+                const script = document.createElement('script');
+                script.src = 'checkout.js';
+                script.onload = () => {
+                    console.log('checkout.js loaded successfully');
+                    // Initialize coupon codes after script is loaded
+                    if (typeof initializeCouponCodes === 'function') {
+                        console.log('Initializing coupon codes after script load...');
+                        initializeCouponCodes().catch(error => {
+                            console.error('Error initializing coupon codes:', error);
+                            showToast('Error loading coupon codes. Please refresh the page.', 'error');
+                        });
+                    }
+                };
+                script.onerror = (error) => {
+                    console.error('Error loading checkout.js in admin dashboard:', error);
+                    showToast('Error loading required scripts. Please refresh the page.', 'error');
+                };
+                document.body.appendChild(script);
+            })
+            .catch(error => {
+                console.error('Error waiting for Firebase in admin dashboard:', error);
+                showToast('Error initializing application. Please refresh the page.', 'error');
+            });
+    </script>
+
+    <!-- Consolidated Styles -->
+    <style>
+        .notifications-list,
+        .requests-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .notification-item,
+        .request-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+        }
+
+        .users-table-container {
+            overflow-x: auto;
+        }
+
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .users-table th,
+        .users-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #5e5e5e00;
+        }
+
+        .users-table th {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .request-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        input[type="number"],
+        select {
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100px;
+        }
+
+        .points-container,
+        .subscription-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .update-btn {
+            background-color: var(--md-sys-color-primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .update-btn:hover {
+            background-color: var(--md-sys-color-primary-container);
+        }
+
+        .notification-toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 1000;
+            animation: slide-in 0.3s ease-out;
+            backdrop-filter: blur(6px);
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+        }
+
+        .notification-toast.success {
+            background-color: #e0e0e0d0;
+            color: #178800;
+            border-left: 2px solid #178800;
+        }
+
+        .notification-toast.error {
+            background-color: #e0e0e0d0;
+            color: var(--md-sys-color-error);
+            border-left: 2px solid var(--md-sys-color-error);
+        }
+
+        .notification-toast.info {
+            background-color: #ffffffd0;
+            color: var(--md-sys-color-primary);
+            border-left: 2px solid var(--md-sys-color-primary);
+        }
+
+        .notification-toast.fade-out {
+            animation: fade-out 0.5s ease-out forwards;
+        }
+
+        @keyframes slide-in {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-out {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        .neutral-button {
+            background-color: var(--md-sys-color-surface-variant);
+            color: var(--md-sys-color-on-surface-variant);
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .neutral-button:hover {
+            background-color: var(--md-sys-color-surface-variant-hover);
+        }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .status-badge.success {
+            background-color: #baffbc;
+            color: rgb(6, 168, 0);
+        }
+
+        .status-badge.neutral {
+            background-color: #eeeeee;
+            color: rgb(80, 80, 80);
+        }
+
+        .status-badge.error {
+            background-color: #ffcdca;
+            color: rgb(156, 0, 0);
+        }
+
+        /* Topup requests table styling */
+        .topup-requests-table-container {
+            overflow-x: auto;
+        }
+
+        .topup-requests-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .topup-requests-table th,
+        .topup-requests-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #5e5e5e00;
+        }
+
+        .topup-requests-table th {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+        import { getFirestore, collection, query, onSnapshot, doc, getDoc, updateDoc, deleteDoc, addDoc, serverTimestamp, setDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+        
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBEbBryhcs9qxHpi9oxCiW9jV5eTDZHP7M",
+            authDomain: "ccs-level-editor.firebaseapp.com",
+            projectId: "ccs-level-editor",
+            storageBucket: "ccs-level-editor.firebasestorage.app",
+            messagingSenderId: "10424890215",
+            appId: "1:10424890215:web:e7bfc73e36785ef439f5c2"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        
+        // Make Firebase functions available globally
+        window.db = db;
+        window.collection = collection;
+        window.query = query;
+        window.onSnapshot = onSnapshot;
+        window.doc = doc;
+        window.getDoc = getDoc;
+        window.updateDoc = updateDoc;
+        window.deleteDoc = deleteDoc;
+        window.addDoc = addDoc;
+        window.serverTimestamp = serverTimestamp;
+        window.setDoc = setDoc;
+        window.auth = auth;
+        window.onAuthStateChanged = onAuthStateChanged;
+    </script>
+
+    <!-- Load other scripts after Firebase initialization -->
+    <script src="gift-codes.js"></script>
+
+    <script>
+        // Browser notification functionality
+        let notificationsEnabled = false;
+        let soundEnabled = true;
+        
+        // Create audio element for notification sound
+        const notificationSound = new Audio('notification.mp3');
+        
+        // Function to show in-app notifications (toast)
+        function showToast(message, type = "info") {
+            const notification = document.createElement("div");
+            notification.className = `notification-toast ${type}`;
+            notification.textContent = message;
+
+            document.body.appendChild(notification);
+
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.classList.add("fade-out");
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 500);
+            }, 3000);
+        }
+        
+        // Function to request notification permissions
+        function requestNotificationPermission() {
+            if (!("Notification" in window)) {
+                console.log("This browser does not support desktop notifications");
+                showToast("Your browser doesn't support notifications", "error");
+                return;
+            }
+            
+            if (Notification.permission === "granted") {
+                notificationsEnabled = true;
+                updateNotificationButtonState();
+                showToast("Browser notifications are enabled", "success");
+            } else if (Notification.permission !== "denied") {
+                Notification.requestPermission().then(function (permission) {
+                    if (permission === "granted") {
+                        notificationsEnabled = true;
+                        updateNotificationButtonState();
+                        showToast("Browser notifications are enabled", "success");
+                    } else {
+                        notificationsEnabled = false;
+                        updateNotificationButtonState();
+                        showToast("Browser notifications are disabled", "error");
+                    }
+                });
+            } else {
+                notificationsEnabled = false;
+                updateNotificationButtonState();
+                showToast("Browser notifications are disabled. Please enable them in your browser settings.", "error");
+            }
+        }
+        
+        // Function to send browser notification
+        function sendBrowserNotification(title, options) {
+            if (!notificationsEnabled) return;
+            
+            if (Notification.permission === "granted") {
+                try {
+                    const notification = new Notification(title, options);
+                    
+                    // Play sound if enabled
+                    if (soundEnabled) {
+                        notificationSound.play().catch(error => {
+                            console.error("Error playing notification sound:", error);
+                        });
+                    }
+                    
+                    notification.onclick = function() {
+                        window.focus();
+                        this.close();
+                    };
+                    
+                    console.log("Notification sent:", title);
+                    return true;
+                } catch (error) {
+                    console.error("Error sending notification:", error);
+                    return false;
+                }
+            } else {
+                console.log("Notification permission not granted");
+                return false;
+            }
+        }
+        
+        // Toggle notifications
+        function toggleNotifications() {
+            if (notificationsEnabled) {
+                notificationsEnabled = false;
+                updateNotificationButtonState();
+                showToast("Browser notifications are disabled", "info");
+            } else {
+                requestNotificationPermission();
+            }
+        }
+        
+        // Toggle notification sound
+        function toggleNotificationSound() {
+            soundEnabled = !soundEnabled;
+            updateSoundButtonState();
+            showToast(`Notification sound ${soundEnabled ? 'enabled' : 'disabled'}`, "info");
+        }
+        
+        // Update notification button state
+        function updateNotificationButtonState() {
+            const notificationBtn = document.getElementById('notificationToggleBtn');
+            if (notificationBtn) {
+                if (notificationsEnabled) {
+                    notificationBtn.innerHTML = '<span class="sf-icon">塚</span>';
+                    notificationBtn.title = "Browser notifications are enabled (click to disable)";
+                } else {
+                    notificationBtn.innerHTML = '<span class="sf-icon">勇</span>';
+                    notificationBtn.title = "Browser notifications are disabled (click to enable)";
+                }
+            }
+        }
+        
+        // Update sound button state
+        function updateSoundButtonState() {
+            const soundBtn = document.getElementById('soundToggleBtn');
+            if (soundBtn) {
+                if (soundEnabled) {
+                    soundBtn.innerHTML = '<span class="sf-icon">ﴊ</span>';
+                    soundBtn.title = "Notification sound is enabled (click to disable)";
+                } else {
+                    soundBtn.innerHTML = '<span class="sf-icon">ﴓ</span>';
+                    soundBtn.title = "Notification sound is disabled (click to enable)";
+                }
+            }
+        }
+        
+        // Check notification permission on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            if ("Notification" in window && Notification.permission === "granted") {
+                notificationsEnabled = true;
+                updateNotificationButtonState();
+                console.log("Notifications are enabled");
+            } else {
+                console.log("Notifications are not enabled");
+            }
+            updateSoundButtonState();
+            
+            // Test notification on page load
+            setTimeout(() => {
+                if (notificationsEnabled) {
+                    sendBrowserNotification("Admin Dashboard", {
+                        body: "Admin dashboard loaded successfully",
+                        icon: "logo.png"
+                    });
+                }
+            }, 2000);
+        });
+    </script>
+</head>
+
+<body style="margin: 0;">
+    <div class="overlay-loading">
+        <loading-block size="card-large"></loading-block><br>
+        <loading-block size="card-large"></loading-block><br>
+        <loading-block size="card-large"></loading-block>
+    </div>
+
+    <script>
+        window.onload = function () {
+            document.body.classList.add('fade-in');
+            const loadingOverlay = document.querySelector('.overlay-loading');
+            setTimeout(() => {
+                loadingOverlay.style.display = 'none';
+            }, 1000);
+        };
+    </script>
+
+    <script src="script.js" defer></script>
+    <mdui-navigation-drawer modal close-on-esc close-on-overlay-click contained class="beginning-navd"
+        style="position: fixed;">
+        <div class="content-navdrawer" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+            <button class="icon-button close-navdrawer"></button>
+            <h2>Admin Dashboard</h2>
+            <p>Manage users and subscriptions</p>
+            <md-list-item class="users-section"
+                style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-radius: 20px; user-select: none;">
+                <span class="sf-icon" slot="start"></span>Users Management
+            </md-list-item>
+            <md-list-item class="subscriptions-section"
+                style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-radius: 20px; margin-top: 3pt; user-select: none;">
+                <span class="sf-icon" slot="start"></span>Subscriptions
+            </md-list-item>
+            <div class="navd-end" style="position: absolute; bottom: 15;">
+                <button class="icon-button settings-btn"><span class="sf-icon"></span></button>
+                <p style="font-size: smaller;">© Copyright 2025. Made with ❤️ by Blakiemon and other people.
+                    <a class="footer-href" href="https://discord.gg/kqq5Tx4XcM">Discord server</a> • <a
+                        class="footer-href" href="https://forms.gle/XMkahmBmzxN2HUEN9">Bug reports</a>
+                </p>
+            </div>
+        </div>
+    </mdui-navigation-drawer>
+
+    <mdui-top-app-bar class="example-top-app-bar"
+        style="width: 60%; align-items: center; position: fixed; z-index: 10; margin: 0 auto; margin-top: 10px; display: flex; place-items: center;">
+        <img src="logo-horizontal.png" width="90px" draggable="false" style="margin-left: 10px;">
+        <div style="flex-grow: 1;"></div>
+        <div class="right">
+            <div class="notifications-indicator"
+                style="border-radius: 999px; background-color: var(--md-sys-color-error-container); color: var(--md-sys-color-error); padding: 5px 10px; margin-right: 10px;">
+                <span id="notificationCount">0</span>
+            </div>
+            <button class="icon-button" id="notificationToggleBtn" onclick="toggleNotifications()" title="Browser notifications are disabled (click to enable)">
+                <span class="sf-icon" style="color: var(--md-sys-color-outline);">🔕</span>
+            </button>
+            <button class="icon-button" id="soundToggleBtn" onclick="toggleNotificationSound()" title="Notification sound is enabled (click to disable)">
+                <span class="sf-icon" style="color: var(--md-sys-color-primary);">🔊</span>
+            </button>
+            <button class="icon-button" id="accBtn" onclick="window.location.href = 'account_dashboard.html'">
+                <img src="account_circle--sf-symbools.svg" alt="" style="filter: invert(0); transform: scale(2);" draggable="false">
+            </button>
+        </div>
+    </mdui-top-app-bar>
+
+    <mdui-layout-main class="example-layout-main" style="height: 97vh; background-color: initial;">
+        <div class="info-card" style="margin-top: 30px; text-align: center;">
+            <h1>Admin Panel</h1>
+            <h3 style="font-weight: normal;">Manage users and subscriptions</h3>
+        </div>
+
+        <div class="main-content">
+            <!-- Notifications Section -->
+            <div class="notifications-section" style="margin: 20px; padding: 20px; border-radius: 30px;">
+                <h2>Notifications</h2>
+                <div id="notificationsList" class="notifications-list">
+                    <!-- Notifications will be populated here -->
+                </div>
+            </div>
+
+            <!-- Users Management Section -->
+            <div class="users-section" style="margin: 20px; padding: 20px; border-radius: 30px;">
+                <h2>Users Management</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div></div>
+                    <button onclick="refreshUsers()" class="icon-button" title="Refresh users"><span class="sf-icon"></span></button>
+                </div>
+                <div class="users-table-container">
+                    <table class="users-table">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Points</th>
+                                <th>Subscription</th>
+                                <th>Period</th>
+                                <th>Subscribed Date</th>
+                                <th>Registration Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <!-- Users will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Topup Card Requests Section -->
+            <div class="topup-requests-section" style="margin: 20px; padding: 20px; border-radius: 30px; background-color: #ffffff;">
+                <h2>Topup Card Requests</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div></div>
+                    <button onclick="refreshTopupRequests()" class="icon-button" title="Refresh topup requests"><span class="sf-icon"></span></button>
+                </div>
+                <div class="topup-requests-table-container">
+                    <table class="topup-requests-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 15%;">Email</th>
+                                <th style="width: 15%;">Network Operator</th>
+                                <th style="width: 15%;">Denomination</th>
+                                <th style="width: 15%;">Serial Number</th>
+                                <th style="width: 15%;">PIN</th>
+                                <th style="width: 15%;">Submitted Date</th>
+                                <th style="width: 5%;">Status</th>
+                                <th style="width: 5%;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="topupRequestsTableBody">
+                            <!-- Topup requests will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Subscription Requests Section -->
+            <div class="subscription-requests-section" style="margin: 20px; padding: 20px; border-radius: 30px; ">
+                <h2>Subscription Requests</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div></div>
+                    <button onclick="refreshSubscriptionRequests()" class="icon-button" title="Refresh requests"><span class="sf-icon"></span></button>
+                </div>
+                <div id="subscriptionRequestsList" class="requests-list">
+                    <!-- Subscription requests will be populated here -->
+                </div>
+            </div>
+
+            <!-- Subscription Cancellation Requests Section -->
+            <div class="cancellation-requests-section" style="margin: 20px; padding: 20px; border-radius: 30px; background-color: #ffffff;">
+                <h2>Subscription Cancellation Requests</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div></div>
+                    <button onclick="refreshCancellationRequests()" class="icon-button" title="Refresh cancellation requests"><span class="sf-icon"></span></button>
+                </div>
+                <div id="cancellationRequestsList" class="requests-list">
+                    <!-- Cancellation requests will be populated here -->
+                </div>
+            </div>
+
+            <!-- Gift code activation section -->
+            <!-- Gift Code Management Section -->
+            <div class="gift-codes-section" style="margin: 20px; padding: 20px; border-radius: 30px; background-color: #ffffff;">
+                <h2>Gift Code Management</h2>
+                
+                <!-- Create Gift Code Form -->
+                <div class="create-code-form" style="margin-bottom: 20px;">
+                    <h3>Create New Gift Code</h3>
+                    <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
+                        <select id="giftCodeType" style="width: 200px;">
+                            <option value="">Select Code Type</option>
+                            <option value="BM">Bronze Monthly</option>
+                            <option value="BY">Bronze Yearly</option>
+                            <option value="SM">Silver Monthly</option>
+                            <option value="SY">Silver Yearly</option>
+                            <option value="GM">Gold Monthly</option>
+                            <option value="GY">Gold Yearly</option>
+                            <option value="powers10">10 Powers</option>
+                            <option value="powers50">50 Powers</option>
+                            <option value="powers100">100 Powers</option>
+                            <option value="powers250">250 Powers</option>
+                            <option value="powers500">500 Powers</option>
+                        </select>
+                        <input type="date" id="expiryDate" style="width: 150px;">
+                        <button onclick="createGiftCode()" class="filled-button">Generate Code</button>
+                        <button onclick="refreshGiftCodes()" class="icon-button"><span class="sf-icon"></span></button>
+                    </div>
+                </div>
+
+                <!-- Gift Codes List -->
+                <div class="gift-codes-table-container" style="overflow-x: auto;">
+                    <table class="users-table" style="overflow: hidden;">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Type</th>
+                                <th>Created Date</th>
+                                <th>Expiry Date</th>
+                                <th>Status</th>
+                                <th>Used By</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="giftCodesTableBody">
+                            <!-- Gift codes will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <script>
+                // Function to fetch and display users
+                const initializeUsers = () => {
+                    try {
+                        const usersRef = window.collection(window.db, "users");
+                        const q = window.query(usersRef);
+                        
+                        // Keep track of existing users to detect new ones
+                        let existingUserIds = new Set();
+                        
+                        window.onSnapshot(q, (snapshot) => {
+                            const usersTableBody = document.getElementById('usersTableBody');
+                            if (!usersTableBody) return;
+                            
+                            // Check for new users - but don't send notifications
+                            snapshot.forEach((doc) => {
+                                existingUserIds.add(doc.id);
+                            });
+                            
+                            usersTableBody.innerHTML = '';
+                            
+                            if (snapshot.empty) {
+                                const row = document.createElement('tr');
+                                row.innerHTML = '<td colspan="8" style="text-align: center;">No users found</td>';
+                                usersTableBody.appendChild(row);
+                                return;
+                            }
+                            
+                            snapshot.forEach((doc) => {
+                                const userData = doc.data();
+                                const row = document.createElement('tr');
+                                
+                                // Format subscription status
+                                let subscriptionStatus = 'None';
+                                let subscriptionPeriod = '-';
+                                let subscribedDate = '-';
+                                let registrationDate = '-';
+                                
+                                if (userData.subscription) {
+                                    subscriptionStatus = userData.subscription || 'Unknown';
+                                    
+                                    // Determine period based on subscription type
+                                    if (typeof subscriptionStatus === 'string') {
+                                        if (subscriptionStatus.endsWith('M')) {
+                                            subscriptionPeriod = 'Monthly';
+                                        } else if (subscriptionStatus.endsWith('Y')) {
+                                            subscriptionPeriod = 'Yearly';
+                                        }
+                                    }
+                                    
+                                    // Format subscription start date if available
+                                    if (userData.subscriptionStartDate) {
+                                        const date = userData.subscriptionStartDate.toDate();
+                                        subscribedDate = date.toLocaleDateString();
+                                    } else if (userData.subscribedDate) {
+                                        const date = new Date(userData.subscribedDate);
+                                        subscribedDate = date.toLocaleDateString();
+                                    }
+                                }
+                                
+                                // Format registration date if available
+                                if (userData.createdAt) {
+                                    const date = userData.createdAt.toDate();
+                                    registrationDate = date.toLocaleDateString();
+                                } else if (userData.registrationDate) {
+                                    const date = new Date(userData.registrationDate);
+                                    registrationDate = date.toLocaleDateString();
+                                }
+                                
+                                // Check if subscription is active (assuming all subscriptions are active)
+                                const isActive = userData.subscription ? true : false;
+                                
+                                const statusClass = isActive ? 'success' : 'neutral';
+                                const statusText = isActive ? 'Active' : 'Inactive';
+                                
+                                row.innerHTML = `
+                                    <td>${userData.email || '-'}</td>
+                                    <td>
+                                        <div class="points-container">
+                                            <div class="wave-group" >
+                                                <input type="number" class="input" value="${userData.points || 0}" id="points-${doc.id}" min="0" style="width: 100px;">
+                                                <span class="bar"></span>
+                                                <span class="label-char" style="--index: 0"></span>
+                                            </div>
+                                            <button onclick="updateUserPoints('${doc.id}')" class="filled-button">Update</button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="subscription-container">
+                                            <select id="subscription-${doc.id}">
+                                                <option value="">None</option>
+                                                <option value="BM" ${subscriptionStatus === 'BM' ? 'selected' : ''}>Bronze Monthly</option>
+                                                <option value="BY" ${subscriptionStatus === 'BY' ? 'selected' : ''}>Bronze Yearly</option>
+                                                <option value="SM" ${subscriptionStatus === 'SM' ? 'selected' : ''}>Silver Monthly</option>
+                                                <option value="SY" ${subscriptionStatus === 'SY' ? 'selected' : ''}>Silver Yearly</option>
+                                                <option value="GM" ${subscriptionStatus === 'GM' ? 'selected' : ''}>Gold Monthly</option>
+                                                <option value="GY" ${subscriptionStatus === 'GY' ? 'selected' : ''}>Gold Yearly</option>
+                                            </select>
+                                            <button onclick="updateUserSubscription('${doc.id}')" class="filled-button">Update</button>
+                                        </div>
+                                    </td>
+                                    <td>${subscriptionPeriod}</td>
+                                    <td>${subscribedDate}</td>
+                                    <td>${registrationDate}</td>
+                                    <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                                    <td>
+                                        <button onclick="suspendUser('${doc.id}')" class="icon-button" title="Suspend user"><img src="disable-user.svg" alt="Suspend User" style="width: 20px; height: 20px;" draggable="false"></button>
+                                    </td>
+                                `;
+                                usersTableBody.appendChild(row);
+                            });
+                        }, (error) => {
+                            console.error("Error fetching users:", error);
+                            showToast("Error loading users", "error");
+                        });
+                    } catch (error) {
+                        console.error("Error initializing users:", error);
+                        showToast("Error initializing users", "error");
+                    }
+                };
+                
+                // Function to update user points
+                window.updateUserPoints = async function(userId) {
+                    try {
+                        const pointsInput = document.getElementById(`points-${userId}`);
+                        if (!pointsInput) {
+                            showToast("Points input not found", "error");
+                            return;
+                        }
+                        
+                        const pointsValue = parseInt(pointsInput.value);
+                        if (isNaN(pointsValue) || pointsValue < 0) {
+                            showToast("Please enter a valid number", "error");
+                            return;
+                        }
+                        
+                        const userRef = window.doc(window.db, "users", userId);
+                        await window.updateDoc(userRef, {
+                            points: pointsValue
+                        });
+                        
+                        showToast("User points updated successfully", "success");
+                    } catch (error) {
+                        console.error("Error updating user points:", error);
+                        showToast("Error updating user points", "error");
+                    }
+                };
+                
+                // Function to update user subscription
+                window.updateUserSubscription = async function(userId) {
+                    try {
+                        const subscriptionSelect = document.getElementById(`subscription-${userId}`);
+                        if (!subscriptionSelect) {
+                            showToast("Subscription select not found", "error");
+                            return;
+                        }
+                        
+                        const subscriptionType = subscriptionSelect.value;
+                        if (!subscriptionType) {
+                            showToast("Please select a subscription type", "error");
+                            return;
+                        }
+                        
+                        const userRef = window.doc(window.db, "users", userId);
+                        
+                        // Update subscription as a simple string value
+                        await window.updateDoc(userRef, {
+                            subscription: subscriptionType
+                        });
+                        
+                        showToast("User subscription updated successfully", "success");
+                    } catch (error) {
+                        console.error("Error updating user subscription:", error);
+                        showToast("Error updating user subscription", "error");
+                    }
+                };
+                
+                // Function to refresh users
+                window.refreshUsers = function() {
+                    try {
+                        console.log("Refreshing users...");
+                        initializeUsers();
+                        showToast("Users refreshed", "success");
+                    } catch (error) {
+                        console.error("Error refreshing users:", error);
+                        showToast("Error refreshing users", "error");
+                    }
+                };
+                
+                // Initialize users when Firebase is ready
+                if (window.auth) {
+                    window.onAuthStateChanged(window.auth, (user) => {
+                        if (user) {
+                            console.log("User authenticated, initializing users");
+                            initializeUsers();
+                        } else {
+                            console.log("User not authenticated");
+                            showToast("Please log in to manage users", "info");
+                        }
+                    });
+                } else {
+                    console.error("Firebase Auth not initialized");
+                }
+                
+                // Also try to initialize users when the page loads
+                document.addEventListener('DOMContentLoaded', function() {
+                    console.log("DOM loaded, checking if we should initialize users");
+                    if (window.auth && window.auth.currentUser) {
+                        console.log("User already authenticated, initializing users");
+                        initializeUsers();
+                    }
+                });
+            </script>
+
+            <script>
+                // Function to fetch and display subscription requests
+                const initializeSubscriptionRequests = () => {
+                    try {
+                        const requestsRef = window.collection(window.db, "subscriptionRequests");
+                        const q = window.query(requestsRef, window.serverTimestamp());
+                        
+                        // Keep track of existing requests to detect new ones
+                        let existingRequestIds = new Set();
+                        
+                        window.onSnapshot(q, (snapshot) => {
+                            const requestsList = document.getElementById('subscriptionRequestsList');
+                            if (!requestsList) return;
+                            
+                            // Check for new requests
+                            snapshot.forEach((doc) => {
+                                if (!existingRequestIds.has(doc.id)) {
+                                    // This is a new request
+                                    const request = doc.data();
+                                    sendBrowserNotification("New Subscription Request", {
+                                        body: `${request.email || 'Unknown User'} requested ${request.item || 'Unknown Item'}`,
+                                        icon: "logo.png"
+                                    });
+                                }
+                                existingRequestIds.add(doc.id);
+                            });
+                            
+                            requestsList.innerHTML = '';
+                            
+                            if (snapshot.empty) {
+                                requestsList.innerHTML = '<div class="request-item">No subscription requests found</div>';
+                                return;
+                            }
+                            
+                            snapshot.forEach((doc) => {
+                                const request = doc.data();
+                                const requestItem = document.createElement('div');
+                                requestItem.className = 'request-item';
+                                
+                                // Format the item type for display
+                                let itemDisplay = request.item || 'Unknown';
+                                let typeDisplay = request.type || 'Unknown';
+                                
+                                // Add a more user-friendly display for item types
+                                const itemTypes = {
+                                    'BM': 'Bronze Monthly',
+                                    'BY': 'Bronze Yearly',
+                                    'SM': 'Silver Monthly',
+                                    'SY': 'Silver Yearly',
+                                    'GM': 'Gold Monthly',
+                                    'GY': 'Gold Yearly',
+                                    'powers10': '10 Powers',
+                                    'powers50': '50 Powers',
+                                    'powers100': '100 Powers',
+                                    'powers250': '250 Powers',
+                                    'powers500': '500 Powers'
+                                };
+                                
+                                if (typeof itemDisplay === 'string' && itemTypes[itemDisplay]) {
+                                    itemDisplay = itemTypes[itemDisplay];
+                                }
+                                
+                                // Format the timestamp
+                                let timestamp = 'Unknown';
+                                if (request.timestamp) {
+                                    const date = request.timestamp.toDate();
+                                    timestamp = date.toLocaleString();
+                                }
+                                
+                                requestItem.innerHTML = `
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div>
+                                            <strong>${request.email || 'Unknown User'}</strong>
+                                            <div>Item: ${itemDisplay}</div>
+                                            <div>Type: ${typeDisplay}</div>
+                                            <div>Requested: ${timestamp}</div>
+                                        </div>
+                                        <div class="request-actions">
+                                            <button onclick="approveRequest('${doc.id}', '${request.userId}', '${request.item}', '${request.type}')" class="filled-button">Approve</button>
+                                            <button onclick="rejectRequest('${doc.id}')" class="neutral-button">Reject</button>
+                                        </div>
+                                    </div>
+                                `;
+                                requestsList.appendChild(requestItem);
+                            });
+                        }, (error) => {
+                            console.error("Error fetching subscription requests:", error);
+                            showToast("Error loading subscription requests", "error");
+                        });
+                    } catch (error) {
+                        console.error("Error initializing subscription requests:", error);
+                        showToast("Error initializing subscription requests", "error");
+                    }
+                };
+                
+                // Function to refresh subscription requests
+                window.refreshSubscriptionRequests = function() {
+                    try {
+                        console.log("Refreshing subscription requests...");
+                        initializeSubscriptionRequests();
+                        resetNotificationCount();
+                        showToast("Subscription requests refreshed", "success");
+                    } catch (error) {
+                        console.error("Error refreshing subscription requests:", error);
+                        showToast("Error refreshing subscription requests", "error");
+                    }
+                };
+                
+                // Function to approve a subscription request
+                window.approveRequest = async function(requestId, userId, item, type) {
+                    try {
+                        // Get the user document
+                        const userRef = window.doc(window.db, "users", userId);
+                        const userDoc = await window.getDoc(userRef);
+                        
+                        if (!userDoc.exists()) {
+                            showToast("User not found", "error");
+                            return;
+                        }
+                        
+                        const userData = userDoc.data();
+                        
+                        // Determine subscription details based on item type
+                        let subscriptionType = item;
+                        let pointsToAdd = 0;
+                        
+                        // Handle power purchases
+                        if (item.startsWith('powers')) {
+                            const powerAmount = parseInt(item.replace('powers', ''));
+                            pointsToAdd = powerAmount;
+                            subscriptionType = null;
+                        }
+                        
+                        // Update user document
+                        const updateData = {};
+                        
+                        // Update points if applicable
+                        if (pointsToAdd > 0) {
+                            updateData.points = (userData.points || 0) + pointsToAdd;
+                        }
+                        
+                        // Update subscription if applicable
+                        if (subscriptionType) {
+                            updateData.subscription = subscriptionType;
+                        }
+                        
+                        // Apply the updates
+                        await window.updateDoc(userRef, updateData);
+                        
+                        // Delete the request
+                        const requestRef = window.doc(window.db, "subscriptionRequests", requestId);
+                        await window.deleteDoc(requestRef);
+                        
+                        showToast("Request approved successfully", "success");
+                    } catch (error) {
+                        console.error("Error approving request:", error);
+                        showToast("Error approving request", "error");
+                    }
+                };
+                
+                // Function to reject a subscription request
+                window.rejectRequest = async function(requestId) {
+                    try {
+                        const requestRef = window.doc(window.db, "subscriptionRequests", requestId);
+                        await window.deleteDoc(requestRef);
+                        showToast("Request rejected successfully", "success");
+                    } catch (error) {
+                        console.error("Error rejecting request:", error);
+                        showToast("Error rejecting request", "error");
+                    }
+                };
+                
+                // Function to fetch and display cancellation requests
+                const initializeCancellationRequests = () => {
+                    try {
+                        const requestsRef = window.collection(window.db, "subscriptionCancellations");
+                        const q = window.query(requestsRef);
+                        
+                        // Keep track of existing requests to detect new ones
+                        let existingRequestIds = new Set();
+                        
+                        window.onSnapshot(q, (snapshot) => {
+                            const requestsList = document.getElementById('cancellationRequestsList');
+                            if (!requestsList) return;
+                            
+                            // Check for new requests
+                            snapshot.forEach((doc) => {
+                                if (!existingRequestIds.has(doc.id)) {
+                                    // This is a new request
+                                    const request = doc.data();
+                                    sendBrowserNotification("New Cancellation Request", {
+                                        body: `${request.email || 'Unknown User'} requested to cancel their subscription`,
+                                        icon: "logo.png"
+                                    });
+                                }
+                                existingRequestIds.add(doc.id);
+                            });
+                            
+                            requestsList.innerHTML = '';
+                            
+                            if (snapshot.empty) {
+                                requestsList.innerHTML = '<div class="request-item">No cancellation requests found</div>';
+                                return;
+                            }
+                            
+                            snapshot.forEach((doc) => {
+                                const request = doc.data();
+                                const requestItem = document.createElement('div');
+                                requestItem.className = 'request-item';
+                                
+                                // Format the timestamp
+                                let timestamp = 'Unknown';
+                                if (request.timestamp) {
+                                    const date = request.timestamp.toDate();
+                                    timestamp = date.toLocaleString();
+                                }
+                                
+                                // Get current subscription info
+                                let currentSubscription = 'Unknown';
+                                if (request.currentSubscription) {
+                                    const subscriptionTypes = {
+                                        'BM': 'Bronze Monthly',
+                                        'BY': 'Bronze Yearly',
+                                        'SM': 'Silver Monthly',
+                                        'SY': 'Silver Yearly',
+                                        'GM': 'Gold Monthly',
+                                        'GY': 'Gold Yearly'
+                                    };
+                                    
+                                    if (typeof request.currentSubscription === 'string') {
+                                        currentSubscription = subscriptionTypes[request.currentSubscription] || request.currentSubscription;
+                                    } else {
+                                        currentSubscription = 'Unknown format';
+                                    }
+                                }
+                                
+                                // Get user email if available
+                                let userEmail = 'Unknown User';
+                                if (request.email) {
+                                    userEmail = request.email;
+                                } else if (request.userId) {
+                                    // Try to fetch user email from users collection
+                                    const userRef = window.doc(window.db, "users", request.userId);
+                                    window.getDoc(userRef).then((userDoc) => {
+                                        if (userDoc.exists()) {
+                                            const userData = userDoc.data();
+                                            if (userData.email) {
+                                                // Update the email in the UI
+                                                const emailElement = document.querySelector(`#cancellation-${doc.id} .user-email`);
+                                                if (emailElement) {
+                                                    emailElement.textContent = userData.email;
+                                                }
+                                            }
+                                        }
+                                    }).catch((error) => {
+                                        console.error("Error fetching user data:", error);
+                                    });
+                                }
+                                
+                                requestItem.innerHTML = `
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div>
+                                            <strong id="cancellation-${doc.id} .user-email">${userEmail}</strong>
+                                            <div>Current Subscription: ${currentSubscription}</div>
+                                            <div>Requested: ${timestamp}</div>
+                                            <div>Reason: ${request.reason || 'No reason provided'}</div>
+                                        </div>
+                                        <div class="request-actions">
+                                            <button onclick="approveCancellation('${doc.id}', '${request.userId}')" class="filled-button">Approve</button>
+                                            <button onclick="rejectCancellation('${doc.id}')" class="neutral-button">Reject</button>
+                                        </div>
+                                    </div>
+                                `;
+                                requestsList.appendChild(requestItem);
+                            });
+                        }, (error) => {
+                            console.error("Error fetching cancellation requests:", error);
+                            showToast("Error loading cancellation requests", "error");
+                        });
+                    } catch (error) {
+                        console.error("Error initializing cancellation requests:", error);
+                        showToast("Error initializing cancellation requests", "error");
+                    }
+                };
+                
+                // Function to refresh cancellation requests
+                window.refreshCancellationRequests = function() {
+                    try {
+                        console.log("Refreshing cancellation requests...");
+                        initializeCancellationRequests();
+                        resetNotificationCount();
+                        showToast("Cancellation requests refreshed", "success");
+                    } catch (error) {
+                        console.error("Error refreshing cancellation requests:", error);
+                        showToast("Error refreshing cancellation requests", "error");
+                    }
+                };
+                
+                // Function to approve a cancellation request
+                window.approveCancellation = async function(requestId, userId) {
+                    try {
+                        // Get the user document
+                        const userRef = window.doc(window.db, "users", userId);
+                        const userDoc = await window.getDoc(userRef);
+                        
+                        if (!userDoc.exists()) {
+                            showToast("User not found", "error");
+                            return;
+                        }
+                        
+                        // Update user's subscription to null (cancelled)
+                        await window.updateDoc(userRef, {
+                            subscription: null
+                        });
+                        
+                        // Delete the cancellation request
+                        const requestRef = window.doc(window.db, "subscriptionCancellations", requestId);
+                        await window.deleteDoc(requestRef);
+                        
+                        showToast("Cancellation request approved successfully", "success");
+                    } catch (error) {
+                        console.error("Error approving cancellation request:", error);
+                        showToast("Error approving cancellation request", "error");
+                    }
+                };
+                
+                // Function to reject a cancellation request
+                window.rejectCancellation = async function(requestId) {
+                    try {
+                        const requestRef = window.doc(window.db, "subscriptionCancellations", requestId);
+                        await window.deleteDoc(requestRef);
+                        showToast("Cancellation request rejected successfully", "success");
+                    } catch (error) {
+                        console.error("Error rejecting cancellation request:", error);
+                        showToast("Error rejecting cancellation request", "error");
+                    }
+                };
+                
+                // Initialize cancellation requests when Firebase is ready
+                if (window.auth) {
+                    window.onAuthStateChanged(window.auth, (user) => {
+                        if (user) {
+                            console.log("User authenticated, initializing cancellation requests");
+                            initializeCancellationRequests();
+                        } else {
+                            console.log("User not authenticated");
+                            showToast("Please log in to manage cancellation requests", "info");
+                        }
+                    });
+                } else {
+                    console.error("Firebase Auth not initialized");
+                }
+                
+                // Also try to initialize cancellation requests when the page loads
+                document.addEventListener('DOMContentLoaded', function() {
+                    console.log("DOM loaded, checking if we should initialize cancellation requests");
+                    if (window.auth && window.auth.currentUser) {
+                        console.log("User already authenticated, initializing cancellation requests");
+                        initializeCancellationRequests();
+                    }
+                });
+            </script>
+
+            <script>
+                // Function to create a new gift code
+                window.createGiftCode = async function() {
+                    try {
+                        const type = document.getElementById('giftCodeType').value;
+                        const expiryDate = document.getElementById('expiryDate').value;
+
+                        if (!type || !expiryDate) {
+                            showToast("Please select both code type and expiry date", "error");
+                            return;
+                        }
+
+                        // Generate a random code with 6 alphabet digits and 6 numbers
+                        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                        const numbers = '0123456789';
+                        
+                        let code = 'CCGAPPS@GIFT';
+                        
+                        // Add 6 random alphabet characters
+                        for (let i = 0; i < 6; i++) {
+                            code += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                        }
+                        
+                        // Add 6 random numbers
+                        for (let i = 0; i < 6; i++) {
+                            code += numbers.charAt(Math.floor(Math.random() * numbers.length));
+                        }
+
+                        // Add the gift code to Firestore
+                        const giftCodesRef = window.collection(window.db, "giftCodes");
+                        await window.addDoc(giftCodesRef, {
+                            code: code,
+                            type: type,
+                            createdAt: window.serverTimestamp(),
+                            expiryDate: new Date(expiryDate).toISOString(),
+                            isValid: true,
+                            usedBy: null
+                        });
+
+                        showToast("Gift code created successfully", "success");
+                    } catch (error) {
+                        console.error("Error creating gift code:", error);
+                        showToast("Error creating gift code", "error");
+                    }
+                };
+
+                // Function to delete a gift code
+                window.deleteGiftCode = async function(codeId) {
+                    try {
+                        const giftCodeRef = window.doc(window.db, "giftCodes", codeId);
+                        await window.deleteDoc(giftCodeRef);
+                        showToast("Gift code deleted successfully", "success");
+                    } catch (error) {
+                        console.error("Error deleting gift code:", error);
+                        showToast("Error deleting gift code", "error");
+                    }
+                };
+
+                // Listen for gift codes changes
+                const initializeGiftCodes = () => {
+                    try {
+                        const giftCodesRef = window.collection(window.db, "giftCodes");
+                        const q = window.query(giftCodesRef);
+                        
+                        // Keep track of existing gift codes to detect new ones
+                        let existingGiftCodeIds = new Set();
+                        
+                        window.onSnapshot(q, (snapshot) => {
+                            const giftCodesTableBody = document.getElementById('giftCodesTableBody');
+                            if (!giftCodesTableBody) return;
+                            
+                            // Check for new gift codes
+                            snapshot.forEach((doc) => {
+                                if (!existingGiftCodeIds.has(doc.id)) {
+                                    // This is a new gift code
+                                    const giftCode = doc.data();
+                                    sendBrowserNotification("New Gift Code Created", {
+                                        body: `New gift code: ${giftCode.code}`,
+                                        icon: "logo.png"
+                                    });
+                                }
+                                existingGiftCodeIds.add(doc.id);
+                            });
+                            
+                            giftCodesTableBody.innerHTML = '';
+
+                            snapshot.forEach((doc) => {
+                                const giftCode = doc.data();
+                                const row = document.createElement('tr');
+                                
+                                const now = new Date();
+                                const expiryDate = new Date(giftCode.expiryDate);
+                                const isExpired = expiryDate < now;
+                                
+                                const status = giftCode.isValid ? 
+                                    (isExpired ? 'Expired' : 'Valid') : 
+                                    'Used';
+                                    
+                                const statusClass = giftCode.isValid ? 
+                                    (isExpired ? 'error' : 'success') : 
+                                    'neutral';
+
+                                row.innerHTML = `
+                                    <td>${giftCode.code}</td>
+                                    <td>${giftCode.type}</td>
+                                    <td>${giftCode.createdAt ? new Date(giftCode.createdAt.toDate()).toLocaleDateString() : '-'}</td>
+                                    <td>${new Date(giftCode.expiryDate).toLocaleDateString()}</td>
+                                    <td><span class="status-badge ${statusClass}">${status}</span></td>
+                                    <td>${giftCode.usedBy || '-'}</td>
+                                    <td>
+                                        <button onclick="copyGiftCode('${giftCode.code}')" class="icon-button" title="Copy code"><span class="sf-icon"></span></button>
+                                        <button onclick="deleteGiftCode('${doc.id}')" class="icon-button" title="Delete code"><span class="sf-icon"></span></button>
+                                    </td>
+                                `;
+                                giftCodesTableBody.appendChild(row);
+                            });
+                        }, (error) => {
+                            console.error("Error fetching gift codes:", error);
+                            showToast("Error loading gift codes", "error");
+                        });
+                    } catch (error) {
+                        console.error("Error initializing gift codes:", error);
+                        showToast("Error initializing gift codes", "error");
+                    }
+                };
+
+                // Initialize gift codes when Firebase is ready
+                if (window.auth) {
+                    window.onAuthStateChanged(window.auth, (user) => {
+                        if (user) {
+                            console.log("User authenticated, initializing gift codes");
+                            initializeGiftCodes();
+                        } else {
+                            console.log("User not authenticated");
+                            showToast("Please log in to manage gift codes", "info");
+                        }
+                    });
+                } else {
+                    console.error("Firebase Auth not initialized");
+                }
+                
+                // Also try to initialize gift codes when the page loads
+                document.addEventListener('DOMContentLoaded', function() {
+                    console.log("DOM loaded, checking if we should initialize gift codes");
+                    if (window.auth && window.auth.currentUser) {
+                        console.log("User already authenticated, initializing gift codes");
+                        initializeGiftCodes();
+                    }
+                });
+
+                // Function to refresh gift codes
+                window.refreshGiftCodes = function() {
+                    try {
+                        console.log("Refreshing gift codes...");
+                        initializeGiftCodes();
+                        showToast("Gift codes refreshed", "success");
+                    } catch (error) {
+                        console.error("Error refreshing gift codes:", error);
+                        showToast("Error refreshing gift codes", "error");
+                    }
+                };
+
+                // Function to copy gift code to clipboard
+                window.copyGiftCode = function(code) {
+                    navigator.clipboard.writeText(code).then(() => {
+                        showToast(`Code "${code}" copied to clipboard`, "success");
+                    }).catch(err => {
+                        console.error('Failed to copy code: ', err);
+                        showToast("Failed to copy code to clipboard", "error");
+                    });
+                };
+
+                // Function to reset notification count
+                function resetNotificationCount() {
+                    const notificationCount = document.getElementById('notificationCount');
+                    if (notificationCount) {
+                        notificationCount.textContent = '0';
+                    }
+                }
+
+                // Function to refresh all data
+                window.refreshAll = function() {
+                    try {
+                        console.log("Refreshing all data...");
+                        refreshUsers();
+                        refreshSubscriptionRequests();
+                        refreshCancellationRequests();
+                        refreshGiftCodes();
+                        refreshTopupRequests();
+                        resetNotificationCount();
+                        showToast("All data refreshed", "success");
+                    } catch (error) {
+                        console.error("Error refreshing all data:", error);
+                        showToast("Error refreshing all data", "error");
+                    }
+                };
+
+                // Refresh all data when the page loads
+                document.addEventListener('DOMContentLoaded', function() {
+                    console.log("DOM loaded, refreshing all data");
+                    // Wait a short time to ensure Firebase is initialized
+                    setTimeout(function() {
+                        if (window.auth && window.auth.currentUser) {
+                            refreshAll();
+                            // Add coupon code tool to admin dashboard
+                            addCouponCodeTool();
+                        }
+                    }, 1000);
+                });
+            </script>
+
+            <script>
+                // Initialize topup requests when Firebase is ready
+                async function initializeTopupRequests() {
+                    try {
+                        if (!window.auth || !window.db) {
+                            console.error("Firebase Auth not initialized");
+                            return;
+                        }
+
+                        // Keep track of existing requests to detect new ones
+                        let existingTopupRequestIds = new Set();
+
+                        const topupRequestsRef = window.collection(window.db, 'topupCardRequests');
+                        const unsubscribe = window.onSnapshot(topupRequestsRef, (snapshot) => {
+                            const tableBody = document.getElementById('topupRequestsTableBody');
+                            if (!tableBody) return;
+
+                            // Check for new requests
+                            let newRequestCount = 0;
+                            snapshot.forEach((doc) => {
+                                if (!existingTopupRequestIds.has(doc.id)) {
+                                    // This is a new request
+                                    newRequestCount++;
+                                    const request = doc.data();
+                                    sendBrowserNotification("New Topup Card Request", {
+                                        body: `${request.email || 'Unknown User'} submitted a topup card request`,
+                                        icon: "logo.png"
+                                    });
+                                }
+                                existingTopupRequestIds.add(doc.id);
+                            });
+
+                            // Update notification count in the UI
+                            if (newRequestCount > 0) {
+                                const notificationCount = document.getElementById('notificationCount');
+                                if (notificationCount) {
+                                    const currentCount = parseInt(notificationCount.textContent) || 0;
+                                    notificationCount.textContent = currentCount + newRequestCount;
+                                }
+                            }
+
+                            tableBody.innerHTML = '';
+
+                            snapshot.forEach((doc) => {
+                                const request = doc.data();
+                                const row = document.createElement('tr');
+                                
+                                // Get status badge class
+                                const statusClass = request.status === 'approved' ? 'success' : 
+                                                  request.status === 'rejected' ? 'error' : 
+                                                  'neutral';
+                                
+                                // Format the card type for display
+                                const cardTypes = {
+                                    'viettel': 'Viettel',
+                                    'vinaphone': 'Vinaphone',
+                                    'mobifone': 'Mobifone',
+                                    'vietnamobile': 'Vietnamobile',
+                                    'gmobile': 'Gmobile',
+                                    'zing': 'Zing'
+                                };
+                                
+                                const cardTypeDisplay = cardTypes[request.cardType] || request.cardType || '-';
+                                
+                                // Format the denomination for display
+                                const denominations = {
+                                    '10000': '10,000 VND',
+                                    '20000': '20,000 VND',
+                                    '50000': '50,000 VND',
+                                    '100000': '100,000 VND',
+                                    '200000': '200,000 VND',
+                                    '500000': '500,000 VND'
+                                };
+                                
+                                const denominationDisplay = denominations[request.denomination] || request.denomination || '-';
+                                
+                                row.innerHTML = `
+                                    <td style="text-align: left;">${request.email || 'Unknown User'}</td>
+                                    <td style="text-align: left;">${cardTypeDisplay}</td>
+                                    <td style="text-align: left;">${denominationDisplay}</td>
+                                    <td style="text-align: left;">${request.serial || '-'}</td>
+                                    <td style="text-align: left;">${request.pin || '-'}</td>
+                                    <td style="text-align: left;">${request.timestamp ? new Date(request.timestamp.toDate()).toLocaleString() : 'N/A'}</td>
+                                    <td style="text-align: center;"><span class="status-badge ${statusClass}">${request.status || 'pending'}</span></td>
+                                    <td style="text-align: center;">
+                                        ${request.status === 'pending' ? `
+                                            <button onclick="approveTopupRequest('${doc.id}')" class="icon-button" title="Approve request">✓</button>
+                                            <button onclick="rejectTopupRequest('${doc.id}')" class="icon-button" title="Reject request">✗</button>
+                                        ` : `
+                                            <span style="color: #666;">No actions available</span>
+                                        `}
+                                    </td>
+                                `;
+                                tableBody.appendChild(row);
+                            });
+                        });
+
+                        // Store unsubscribe function for cleanup
+                        window.unsubscribeTopupRequests = unsubscribe;
+                    } catch (error) {
+                        console.error("Error initializing topup requests:", error);
+                    }
+                }
+
+                // Refresh topup requests
+                async function refreshTopupRequests() {
+                    try {
+                        // Re-initialize topup requests
+                        if (window.unsubscribeTopupRequests) {
+                            window.unsubscribeTopupRequests();
+                        }
+                        await initializeTopupRequests();
+                        resetNotificationCount();
+                        showToast("Topup requests refreshed", "success");
+                    } catch (error) {
+                        console.error("Error refreshing topup requests:", error);
+                        showToast("Error refreshing topup requests", "error");
+                    }
+                }
+
+                // Approve topup request
+                async function approveTopupRequest(requestId) {
+                    try {
+                        const requestRef = window.doc(window.db, 'topupCardRequests', requestId);
+                        const requestDoc = await window.getDoc(requestRef);
+                        
+                        if (!requestDoc.exists()) {
+                            throw new Error('Request not found');
+                        }
+
+                        const request = requestDoc.data();
+                        const userRef = window.doc(window.db, 'users', request.userId);
+                        const userDoc = await window.getDoc(userRef);
+
+                        if (!userDoc.exists()) {
+                            throw new Error('User not found');
+                        }
+
+                        // Update user's points
+                        const currentPoints = userDoc.data().points || 0;
+                        await window.updateDoc(userRef, {
+                            points: currentPoints + request.amount
+                        });
+
+                        // Update request status
+                        await window.updateDoc(requestRef, {
+                            status: 'approved',
+                            approvedAt: window.serverTimestamp(),
+                            approvedBy: window.auth.currentUser.uid
+                        });
+
+                        showToast('Topup request approved successfully', 'success');
+                    } catch (error) {
+                        console.error('Error approving topup request:', error);
+                        showToast('Error approving topup request', 'error');
+                    }
+                }
+
+                // Reject topup request
+                async function rejectTopupRequest(requestId) {
+                    try {
+                        const requestRef = window.doc(window.db, 'topupCardRequests', requestId);
+                        
+                        // Update request status
+                        await window.updateDoc(requestRef, {
+                            status: 'rejected',
+                            rejectedAt: window.serverTimestamp(),
+                            rejectedBy: window.auth.currentUser.uid
+                        });
+
+                        showToast('Topup request rejected successfully', 'success');
+                    } catch (error) {
+                        console.error('Error rejecting topup request:', error);
+                        showToast('Error rejecting topup request', 'error');
+                    }
+                }
+
+                // Add initializeTopupRequests to the window load event
+                window.addEventListener('load', () => {
+                    initializeTopupRequests();
+                });
+            </script>
+        </div>
+
+        <footer>
+            <ul>
+                <li><img src="logo-horizontal.png" style="width: 100px;" alt=""></li>
+                <li style="display: flex; place-items: center; gap: 15px;"><md-icon>email</md-icon><a
+                        href="mailto:contact.ccgccs@gmail.com">contact.ccgccs@gmail.com</a></li>
+            </ul>
+            <ul>
+                <li><a href="editor.html">Editor</a></li>
+                <li><a href="index-mobile.html">Mobile editor</a></li>
+                <li><a href="document.html">Tutorial</a></li>
+                <li><a href="javascript:void(0)" id="creditsBtn">Credits</a></li>
+            </ul>
+            <ul>
+                <li><a href="documentation.html#legal">Legal</a></li>
+                <li><a href="documentation.html#legal">Terms of Service</a></li>
+                <li><a href="documentation.html#legal">Terms of Uses</a></li>
+            </ul>
+            <ul>
+                <li style="opacity: 0.5;">© 2025 Made with ❤️ by Blakiemon
+                    <br><br>
+                    Version 1.9
+                </li>
+            </ul>
+        </footer>
+    </mdui-layout-main>
+</body>
+
+</html>

@@ -1,0 +1,1671 @@
+<html>
+<!-- Download stuff -->
+
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Level Editor</title>
+    <link rel="icon" href="logo.png">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="ui-fluent.css" rel="stylesheet" type="text/css" />
+    <link href="fonts.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1.12.0/underscore-min.js"></script>
+
+    <meta content="Web Candy Crush Level Editor" property="og:title">
+    <meta content="Level editor for candy crush that can be used to export levels in your browser"
+        property="og:description">
+    <meta content="Candy Crush Level Editor" property="og:site_name">
+    <version>1.9</version>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+            {
+                "imports": {
+                    "@material/web/": "https://esm.run/@material/web/"
+                }
+            }
+        </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+
+    <script id="mduiAccent">
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure mdui is available before calling setColorScheme
+            if (typeof mdui !== 'undefined') {
+                mdui.setColorScheme('#7ac8ef');
+            } else {
+                console.error('MDUI is not loaded.');
+            }
+        });
+    </script>
+    <!-- Filled -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Outlined -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <!-- Rounded -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- Sharp -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <!-- Two Tone -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone" rel="stylesheet">
+    <link id="mwcaccent" rel="stylesheet" href="mat-accent-color-light.css">
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.4.0/index.js"></script>
+    <script>
+        // Function to detect if the user is on a mobile device
+        function isMobileDevice() {
+            return /Mobi|Android/i.test(navigator.userAgent);
+        }
+
+        // Function to detect if the user is on a tablet or desktop
+        function isTabletOrDesktop() {
+            return !isMobileDevice() || (window.innerWidth >= 768); // Assuming tablets have a width of 768px or more
+        }
+
+        // Redirect logic
+        window.onload = function () {
+            const currentPath = window.location.pathname;
+
+            console.log("Current Path:", currentPath);
+            console.log("Is Mobile Device:", isMobileDevice());
+            console.log("Is Tablet or Desktop:", isTabletOrDesktop());
+
+            if (isMobileDevice() && currentPath.endsWith('editor.html')) {
+                // If on mobile and currently on editor.html, redirect to index-mobile.html
+                console.log("Redirecting to index-mobile.html");
+                window.location.href = 'index-mobile.html';
+            } else if (isTabletOrDesktop() && currentPath.endsWith('index-mobile.html')) {
+                // If on tablet/desktop and currently on index-mobile.html, redirect to editor.html
+                console.log("Redirecting to editor.html");
+                window.location.href = 'editor.html';
+            }
+        };
+    </script>
+    <script src="
+        https://cdn.jsdelivr.net/npm/ace-builds@1.38.0/src-noconflict/snippets/python.min.js
+        "></script>
+    <link href="
+        https://cdn.jsdelivr.net/npm/ace-builds@1.38.0/css/ace.min.css
+        " rel="stylesheet">
+</head>
+
+<body style="margin: 0;">
+    <div class="overlay-loading">
+        <loading-block size="card-large" style="width: 50%; height: 90%;"></loading-block>
+        <style>
+            @media (max-width: 768px) {
+                .overlay-loading loading-block {
+                    width: 90% !important;
+                }
+                .write-smth, .main-content {
+                    width: 85% !important;
+                }
+
+                button.opennavd{
+                    display: flex !important ;
+                }
+                .example-top-app-bar{
+                    width: 99% !important;
+                }
+            }
+        </style>
+    </div>
+    <script>
+        window.onload = function () {
+            document.body.classList.add('fade-in'); // Add the fade-in class
+            const loadingOverlay = document.querySelector('.overlay-loading'); // Select the loading overlay
+
+            // Set a timeout to hide the loading overlay after 1 second
+            setTimeout(() => {
+                loadingOverlay.style.display = 'none'; // Hide the loading overlay
+            }, 1000); // 1000 milliseconds = 1 second
+        };
+    </script>
+    <script src="script.js" defer></script>
+
+    <mdui-navigation-drawer modal close-on-esc close-on-overlay-click contained class="beginning-navd"
+        style="position: fixed;">
+        <div class="content-navdrawer" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+            <button class="icon-button close-navdrawer"></button>
+            <h2>Welcome to Level Editor!</h2>
+            <p>Click anywhere outside the navigation drawer to start making levels!</p>
+            <md-list-item class="newlevelbigbtn" onclick="window.location.href = 'editor.html'"
+                style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-radius: 20px; user-select: none;">
+                <span class="sf-icon" slot="start"></span>Create new level
+            </md-list-item>
+            <md-list-item class="openlevelbigbtn" onclick="window.location.href = 'editor.html'"
+                style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-radius: 20px; margin-top: 3pt; user-select: none;">
+                <span class="sf-icon" slot="start">Ǆ</span>Open a level
+            </md-list-item>
+            <div class="navd-end" style="position: absolute; bottom: 15;">
+                <button class="icon-button settings-btn"><span class="sf-icon">菱</span></button>
+                <p style="font-size: smaller;">© Copyright 2025. Made with ❤️ by Blakiemon and other people.
+                    <a class="footer-href" href="https://discord.gg/kqq5Tx4XcM">Discord server</a> • <a
+                        class="footer-href" href="https://forms.gle/XMkahmBmzxN2HUEN9">Bug reports</a>
+                </p>
+            </div>
+        </div>
+    </mdui-navigation-drawer>
+    <mdui-top-app-bar class="example-top-app-bar"
+        style="width: 50%; align-items: center; position: fixed; z-index: 10; margin: 0 auto; margin-top: 10px; display: flex; place-items: center;">
+        <button class="icon-button opennavd"></button>
+        <img src="logo-horizontal.png" width="90px" draggable="false">
+        <mdui-top-app-bar-title>Documentation and Guides</mdui-top-app-bar-title>
+        <div style="flex-grow: 1;"></div>
+    </mdui-top-app-bar>
+
+    <mdui-layout-main class="example-layout-main" style="height: 97vh; background-color: initial;">
+        <br><br>
+        <div class="write-smth"
+            style="margin: 0 auto; padding: 10px 20px; width: 700px; display: flex; place-items: center; gap: 10px;">
+            <img src="account_circle--sf-symbools.svg" id="postAvt" width="32px" draggable="false" alt="">
+            <input type="text" disabled id="startPost" placeholder="Community mode is coming soon"
+                style="width: 100%; height: 100%; padding: 10px 10px; border-radius: 15px; border: 1px solid #5a5a5a69; font-family: 'Inter', sans-serif; font-size: 16px;">
+        </div>
+        <div class="main-content" id="legal"
+            style="margin: 0 auto; background-color: var(--blog-bg-clr); width: 700px; padding: 10px 20px; border-radius: 30px;">
+            <h1 onclick="window.location.href = '#legal'">Terms of Services, Terms of Uses and Legal Document</h1>
+            <p id="author" style="font-size: smaller; opacity: 0.7;">By @candycrushgemer • 04/03/2025</p>
+            <div class="blog-main">
+                <h2>1. Acceptance of Terms</h2>
+
+                <p>By accessing or using Candy Crush Saga Level Editor (hereinafter referred to as "Level Editor"), you
+                    agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, you may
+                    not
+                    access or use the Level Editor.</p>
+
+                <h2>2. Description of Service</h2>
+
+                <p>The Level Editor is a tool that allows users to create custom levels for the Candy Crush Saga game.
+                    It
+                    is important to note that this is an unofficial tool.</p>
+
+                <h2>3. Ownership and Copyright</h2>
+                <ul>
+                    <li>King's Copyright: All original game content, including but not limited to candies, levels, and
+                        game
+                        mechanics, are the intellectual property of King.</li>
+                    <li>Level Editor Copyright: The Level Editor tool itself is developed by
+                        <strong>candycrushgemer</strong>. candycrushgemer
+                        does not own the copyright to any of King's original game content.</li>
+                    <li>User-Generated Content: Users retain ownership of the levels they create using the Level Editor.
+                        However, by sharing or distributing these levels, users grant candycrushgemer a non-exclusive,
+                        royalty-free license to use, reproduce, and distribute the content within the Level Editor
+                        platform.
+
+                    </li>
+                </ul>
+                <h2>4. Fair Use</h2>
+                <p>The Level Editor and its content may utilize elements of Candy Crush Saga under the principles of fair
+                use. This use is for non-commercial, transformative purposes, such as enabling user creativity and
+                customization of the game experience.</p>
+                <h2>5. Disclaimer of Affiliation</h2>
+                <p>The Level Editor is not affiliated with, endorsed, or sponsored by King. It is an independent project
+                created by candycrushgemer for the purpose of user-generated content creation within the Candy Crush
+                Saga game.</p>
+                <h2>6. Use of the Level Editor</h2>
+                <p>You agree to use the Level Editor only for lawful purposes and in a manner that does not infringe the
+                rights of others or restrict or inhibit their use and enjoyment of the Level Editor.</p>
+                <h2>7. Termination</h2>
+                <p><strong>candycrushgemer</strong> reserves the right to terminate or suspend access to the Level Editor at any time, with
+                or without cause, and without notice. This may occur if King no longer permits the use of their
+                intellectual property in this manner.</p>
+                <h2>8. Disclaimer of Warranty</h2>
+                <p>The Level Editor is provided "as is" and "as available" without any warranties of any kind, either
+                express or implied, including but not limited to the implied warranties of merchantability, fitness for
+                a particular purpose, or non-infringement.</p>
+                <h2>9. Limitation of Liability</h2>
+                <p>In no event shall candycrushgemer be liable for any direct, indirect, incidental, special, or
+                consequential damages arising out of or in connection with the use or inability to use the Level Editor,
+                even if candycrushgemer has been advised of the possibility of such damages.</p>
+                <h2>10. Indemnity</h2>
+                <p>
+                    You agree to indemnify and hold harmless candycrushgemer from and against any and all claims,
+                    liabilities, damages, losses, costs, expenses, or fees (including attorney's fees) arising out of or
+                    relating to your use of the Level Editor or your violation of these Terms.
+                </p>
+                <h2>11. Changes to Terms</h2>
+                <p><strong>candycrushgemer</strong> reserves the right to modify these Terms at any time. Your continued use of the Level
+                    Editor following the posting of any changes to these Terms constitutes acceptance of those changes.</p>
+                <h2>12. Governing Law</h2>
+                <p>These terms shall be governed by and construed in accordance with the laws of Vietnam, and where applicable, the laws of other countries where the Level Editor is accessed.</p>
+                <h2>13. Contact Information</h2>
+                <p>If you have any questions about these Terms, please contact candycrushgemer at <a href="mailto:contact.ccgccs@gmail.com">here.</a></p>
+                <h2>Acknowledgement</h2>
+                <p>By using the Level Editor, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.</p>
+            </div>
+        </div>
+        <br>
+        <div class="main-content"
+            style="margin: 0 auto; background-color: var(--blog-bg-clr); width: 700px; padding: 10px 20px; border-radius: 30px;">
+            <h1 id="how-to-use" onclick="window.location.href = '#how-to-use'">How to use Level Editor: Step-by-step
+            </h1>
+            <p id="author" style="font-size: smaller; opacity: 0.7;">By @candycrushgemer • 04/03/2025</p>
+            <div class="blog-main">
+                <h2>Welcome to Candy Crush Level Editor!</h2>
+                <p>With new exciting features, we bring to you all the experience to bring your creative to the game,
+                    Candy Crush Saga. If this is your first time here, check out tutorials and tips before you start
+                    making your own level.</p>
+                <h3>Overview</h3>
+                <img src="guide-assets/get-started-1.png" width="100%" class="img-bdrd-hovering" alt="">
+                <ol>
+                    <li>All elements</li>
+                    <li>Open Help dropdown
+                        <ul>
+                            <li>Documentation</li>
+                            <li>About</li>
+                        </ul>
+                    </li>
+                    <li>Open File dropdown
+                        <ul>
+                            <li>Open/New</li>
+                            <li>Import/Export level</li>
+                        </ul>
+                    </li>
+                    <li>Level Board preview</li>
+                    <li>Game modes: Moves, Jelly, Ingredients, Orders, Timed, Mixed...</li>
+                    <li>Customise moves</li>
+                    <li>Preferred colors: candy colors that will be spawned in level. Must set to 3 colors or more if
+                        you want your level to be playable.</li>
+                    <li>Score target: define how many scores will each stars can be got.</li>
+                    <li>Disable starting booster: disable selecting boosters at level selecting on the map.</li>
+                    <li>Enable Dreamworld for your level. Note that this game feature is only available in old versions.
+                        If you enable Dreamworld with newer elements, the game would crash.</li>
+                </ol>
+                <img src="guide-assets/get-started-2.png" width="100%" class="img-bdrd-hovering" alt="">
+                <ol start="13">
+                    <li>Enter the Moonscale level properties here</li>
+                    <li>Candy Cannon: define the maximum, interval, tick value of a Candy Cannon.</li>
+                    <li>Mixer Options: customize the max blockers to spawn and spawn interval of a mixer. Then choose a
+                        custom element to spawn.</li>
+                    <li>Candy Cobra: Add Cobra property for Candy Cobra elements.</li>
+                </ol>
+                <img src="guide-assets/get-started-3.png" width="100%" class="img-bdrd-hovering" alt="">
+                <ol start="17">
+                    <li>Start new level: clear things out and start a blank.</li>
+                    <li>Open a level: open a level written in txt with json format.</li>
+                    <li>Export level: convert your design to level code for importing to game.</li>
+                    <li>Import level: paste your level code or upload your level file. (*.txt)</li>
+                </ol>
+                <img src="guide-assets/get-started-4.png" width="100%" class="img-bdrd-hovering" alt="">
+                <ol start="21">
+                    <li>Enable dark mode appearance</li>
+                    <li>Enable in-app music</li>
+                    <li>Enable clicking sound</li>
+                    <li>Send bug report if you have any problems</li>
+                    <li>Enable touch indicator: this feature is the same as in developer options on Android, placed here
+                        for who wants to have a screen recording video with indicator support.</li>
+                    <li>Check for updates: update Level Editor to latest version to get new features.</li>
+                    <li>View changelogs: view fixes, improvements and additions of Level Editor during development.</li>
+                </ol>
+                <img src="guide-assets/get-started-5.png" width="100%" class="img-bdrd-hovering" alt="">
+                <ol start="28">
+                    <li>Your exported data. Note that you need to have enough Powers to export your level.</li>
+                    <li>Share your level or save it to your device.</li>
+                </ol>
+                <h3>Tips</h3>
+                <ul>
+                    <li>Because the Candy Cobra exporting is still broken, so when exported you will see
+                        <code>candyCobras:3</code>. Please delete it because it may break the game.
+                    </li>
+                    <li>New account gets 20 Powers for free to export levels. <a href="signup.html">Sign up now</a></li>
+                    <li>Nowadays King has recently made changes for the game that replacing level in Windows version is
+                        difficult as it connects to the internet and overwrite your levels from the internet. If you
+                        want to play your levels, you might want to do it in an Android emulator.</a></li>
+                    <li><a href="https://discord.gg/kqq5Tx4XcM">Join Discord</a> for more supports and discussions.</li>
+                </ul>
+                <p>We hope that with this Get started guide, you may find out the way to bring your creative to the
+                    game!</p>
+            </div>
+        </div>
+        <br>
+        <div class="main-content"
+            style="margin: 0 auto; background-color: var(--blog-bg-clr); width: 700px; padding: 10px 20px; border-top-left-radius: 30px; border-top-right-radius: 30px;">
+            <h1 id="changelogs" onclick="window.location.href = '#changelogs'">Changelogs</h1>
+            <p id="author" style="font-size: smaller; opacity: 0.7;">By @candycrushgemer • 04/03/2025</p>
+            <div class="blog-main">
+                <h2>Welcome to the Level Editor development changelogs!</h2>
+                <p>Here you can see the changes of the editor over time! </p>
+                <div class="changelog-container">
+                    <div class="changelog-date" style="width: 30%;">
+                        <h3>05.03.2025</h3>
+                        <span class="level-editor-ver">1.9</span>
+                    </div>
+                    <div class="changelog-contents" style="width: 100%;">
+                        <span class="fixes">Fixes</span>
+                        <ul>
+                            <li>Fixed some known issues</li>
+                            <li>Fixed the entire UI for more modern</li>
+                        </ul>
+                        <span class="addition">Additions</span>
+                        <ul>
+                            <li>New soundtracks from Candy Crush Solitaire</li>
+                            <li>Introducing Portals: click the first time to create an entrance and the second time to make an exit!</li>
+                            <li>New Power system: export your level with your Powers! New users get 20 Powers for free
+                                to use until it's run out.</li>
+                            <li>Now you can sign in to the editor! Note that this editor is not by King, so you can't
+                                sign in with your King account. </li>
+                        </ul>
+                    </div>
+                </div><br><md-divider inset></md-divider><br>
+                <div class="changelog-container">
+                    <div class="changelog-date" style="width: 30%;">
+                        <h3>23.01.2025</h3>
+                        <span class="level-editor-ver">1.8.1</span>
+                    </div>
+                    <div class="changelog-contents" style="width: 100%;">
+                        <span class="fixes">Fixes</span>
+                        <ul>
+                            <li>Fixed some bugs for a better experience in the editor</li>
+                        </ul>
+                        <span class="addition">Additions</span>
+                        <ul>
+                            <li>In-app Music & Sound: you can open the background music to make levels while listening
+                                to music, increasing your relaxation and focusing more on your level. You can also turn
+                                on the mouse click sound effect like in Candy Crush.</li>
+                            <li>Editor is now available for Windows operating system! Computers using Windows 10 and
+                                above can use it. You can download the setup from the notification in the editor or <a
+                                    href="https://drive.usercontent.google.com/download?id=1DsI9hi_z5MeB9Xw1AxyMU3q5xfoyOMJo&export=download&authuser=0">click
+                                    here</a>.</li>
+                        </ul>
+                    </div>
+                </div><br><md-divider inset></md-divider><br>
+                <div class="changelog-container">
+                    <div class="changelog-date" style="width: 30%;">
+                        <h3>19.01.2025</h3>
+                        <span class="level-editor-ver">1.8</span>
+                    </div>
+                    <div class="changelog-contents" style="width: 100%;">
+                        <span class="fixes">Fixes</span>
+                        <ul>
+                            <li>Fixed some bugs for a better experience in the editor</li>
+                        </ul>
+                        <span class="addition">Additions</span>
+                        <ul>
+                            <li>The editor is available for both desktop and mobile. The function is the same, the
+                                editor was fixed the layout for the mobile version to be the most stable and flexible.
+                                If the mobile version is not as expected, you can turn on the desktop mode in your
+                                browser.</li>
+                            <li>New elements that come to the editor is <b>Gumball Machine</b> and <b>Candy Cobra</b>.
+                                Gumball Machine is simple, you just need to put it in the table and you're done. Candy
+                                Cobra is still in the development stage, when you put it in the table, you will have to
+                                add properties in the Configuration section. And remember to note in the Configuration
+                                section, or else... your game will crash.</li>
+                            <li>The editor interface has been changed and it has its official logo. And the editor has
+                                added blur glassmorphism effects to increase its beauty.</li>
+                            <li>You can now report bugs through the Bug Report section in Settings. We will review the
+                                bug and fix it as soon as possible, bringing the best experience to users.</li>
+                        </ul>
+                    </div>
+                </div><br><md-divider inset></md-divider><br>
+            </div>
+        </div>
+
+        <!--Credits-->
+        <div class="credits-dialog close" id="creditsBackdrop">
+            <div class="dialog close" id="creditsDialog">
+                <div class="content">
+                    <div class="header">
+                        <h1>Credits</h1>
+                        <div class="buttons"><md-icon-button id="creditscloseBtn">
+                                <md-icon>close</md-icon>
+                            </md-icon-button></div>
+                    </div>
+                    <div class="content-inside">
+                        <md-list-item
+                            style="background-color: rgba(255, 145, 145, 0.267); border-radius: 15px; color: #810000; --md-list-item-label-text-font: 'Inter';">
+                            <md-icon slot="start" style="color: #810000;">info</md-icon>
+                            <span style="color: #810000;">All right go to King Limited. If they so chose this editor may
+                                be taken down at any time.</span>
+                        </md-list-item>
+                        <p>Don't forget these cool guys who worked hard to make this editor!</p>
+                        <md-list style="--md-list-item-label-text-font: 'Inter'; background-color: #00000000;">
+                            <md-list-item>
+                                <md-icon slot="start">account_circle</md-icon>
+                                Blakiemon
+                                <div slot="supporting-text">The first person to create this tool</div>
+                            </md-list-item>
+                            <md-divider></md-divider>
+                            <md-list-item>
+                                <md-icon slot="start">account_circle</md-icon>
+                                Fence
+                            </md-list-item>
+                            <md-divider></md-divider>
+                            <md-list-item>
+                                <md-icon slot="start">account_circle</md-icon>
+                                Candy Crush Gemer
+                                <div slot="supporting-text">Remaking this tool</div>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <forge-dialog class="settings-fulldialog"
+            style="--forge-dialog-shape: 30px; --forge-dialog-background: var(--md-sys-color-surface-container-high); width: 90vh;">
+            <forge-scaffold style="margin: 0; width: 700px; height: 700px;">
+                <mdui-layout slot="body">
+                    <mdui-top-app-bar style="background-color: #00000000;">
+                        <button class="icon-button close-settings"></button>
+                        <mdui-top-app-bar-title><strong>Settings</strong></mdui-top-app-bar-title>
+                        <div style="flex-grow: 1"></div>
+                    </mdui-top-app-bar>
+                    <mdui-layout-main>
+                        <md-list
+                            style="margin: 20px; margin-top: 0; display: flex; flex-direction: column; background-color: #00000000; gap: 3px;">
+                            <md-list-item
+                                style="background-color: var(--md-sys-color-background); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;">
+                                Enable dark mode
+                                <label class="switch" slot="end">
+                                    <input tabindex="1" type="checkbox" id="switchDark">
+                                    <span tabindex="1" class="slider round"></span>
+                                </label>
+                            </md-list-item>
+                            <forge-expansion-panel>
+                                <md-list-item slot="header"
+                                    style="background-color: var(--md-sys-color-background); border-radius: 5px;">
+                                    Music and sound
+                                    <div style="display: flex; place-items: center; gap: 10px;" slot="end">
+                                        <span class="sf-icon"></span>
+                                    </div>
+                                </md-list-item>
+                                <div
+                                    style="padding: 10px; overflow: hidden; background-color: var(--md-sys-color-background); border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
+                                    <forge-split-view id="musicConfig" auto-close-threshold="120"
+                                        style="height: 150px;">
+                                        <forge-split-view-panel size="350">
+                                            <div
+                                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                                <md-list-item
+                                                    style="background-color: var(--md-sys-color-surface-container); border-radius: 20px; width: 90%;">
+                                                    <md-icon slot="start" style="font-family: 'SF Symbols';">ﴁ</md-icon>
+                                                    <div slot="headline" id="songName">?</div>
+                                                    <div slot="end"
+                                                        style="display: flex; gap: 5px; place-items: center;">
+                                                        <button class="icon-button" id="previousSong">
+                                                            <md-icon
+                                                                style="font-family: 'SF Symbols'; font-size: smaller;">﵁</md-icon>
+                                                        </button>
+                                                        <button class="icon-button" id="playSong">
+                                                            <md-icon
+                                                                style="font-family: 'SF Symbols'; font-size: smaller;">ﵥ</md-icon>
+                                                        </button>
+                                                        <button class="icon-button" id="nextSong">
+                                                            <md-icon
+                                                                style="font-family: 'SF Symbols'; font-size: smaller;">ﴽ</md-icon>
+                                                        </button>
+
+                                                    </div>
+                                                </md-list-item>
+                                                <audio id="musicMain" loop>
+                                                    <source id="musicSrc" src="audio/songs/songs_1.9/Bonbon Bonbon.ogg"
+                                                        type="audio/ogg">
+                                                </audio>
+                                                <md-list-item>
+                                                    <md-icon-button id="mute" slot="start">
+                                                        <md-icon>volume_up</md-icon>
+                                                    </md-icon-button>
+                                                    <md-slider id="volumeCustomize" min="0" max="1" step="0.01"
+                                                        value="1"></md-slider>
+                                                </md-list-item>
+                                            </div>
+                                        </forge-split-view-panel>
+                                    </forge-split-view>
+                                    <md-divider></md-divider>
+                                    <md-list-item>
+                                        Enable clicking sound
+                                        <label class="switch" slot="end">
+                                            <input tabindex="1" type="checkbox" id="switchClick">
+                                            <span tabindex="1" class="slider round"></span>
+                                        </label>
+                                    </md-list-item>
+                                </div>
+                            </forge-expansion-panel>
+                            <md-list-item onclick="window.open('https://forms.gle/XMkahmBmzxN2HUEN9')"
+                                style="background-color: var(--md-sys-color-background); border-radius: 5px;">
+                                Bug report
+                                <span class="sf-icon" slot="end"></span>
+                            </md-list-item>
+                            <md-list-item style="background-color: var(--md-sys-color-background); border-radius: 5px;">
+                                Enable touch indicator
+                                <label class="switch" slot="end">
+                                    <input tabindex="1" type="checkbox" id="enableTouch">
+                                    <span tabindex="1" class="slider round"></span>
+                                </label>
+                            </md-list-item>
+
+                            <md-list-item
+                                style="background-color: var(--md-sys-color-background); border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; border-top-right-radius: 5px; border-top-left-radius: 5px;">
+                                <md-icon slot="start">info</md-icon>
+                                Version 1.9
+                                <button class="filled-button" slot="end" id="checkUpdates">Check for updates</button>
+                            </md-list-item>
+                        </md-list>
+                        <mdui-snackbar closeable class="updates-notify">You're using the latest version of Level
+                            Editor!</mdui-snackbar>
+                    </mdui-layout-main>
+                </mdui-layout>
+            </forge-scaffold>
+        </forge-dialog>
+        <audio id="clickSound" src="audio/ui/Generic_Button_Sound_Effect.wav"></audio>
+        <style>
+            .main-content {
+                --blog-bg-clr: #ffffff;
+            }
+
+            .mdui-theme-dark .main-content {
+                --blog-bg-clr: #363636;
+            }
+
+            #postAvt {
+                opacity: 0.5;
+            }
+
+            .mdui-theme-dark #postAvt {
+                filter: invert(1) !important;
+                opacity: 0.5;
+            }
+
+            .img-bdrd-hovering {
+                transition: all 0.3s ease;
+            }
+
+            .img-bdrd-hovering:hover {
+                border-radius: 20px;
+            }
+
+            .img-bdrd-hovering:active {
+                border-radius: 30px;
+            }
+        </style>
+    </mdui-layout-main>
+
+    <script>
+        const beginningNavd = document.querySelector(".beginning-navd");
+        const menuBtn = document.querySelector(".opennavd");
+        const closeBtn = document.querySelector(".close-navdrawer");
+
+        menuBtn.addEventListener("click", () => beginningNavd.open = true);
+        closeBtn.addEventListener("click", () => beginningNavd.open = false);
+    </script>
+
+    <script>
+        // Function to open the export dialog
+        const exportButton = document.querySelector('.export-button');
+        const exportDialog = document.querySelector('.export-dialog'); // Select the dialog by ID
+        const close = document.querySelector('.close-btn');
+
+        exportButton.addEventListener("click", () => exportDialog.open = true);
+        if (close) {
+            close.addEventListener("click", () => exportDialog.open = false);
+        } else {
+            console.error("Close button not found");
+        }
+
+        // Open Import dialog
+        const closeImport = document.querySelector('.cancel');
+        const importDialog = document.querySelector('.import-dialog');
+        const importButton = document.querySelector('.import-main')
+
+        importButton.addEventListener("click", () => importDialog.open = true);
+        closeImport.addEventListener("click", () => importDialog.open = false);
+
+        // Open Credits
+        const creditDialog = document.querySelector('.credit-dialog');
+        const creditButton = document.querySelector('.credit-btn');
+        const okButton = document.querySelector('.ok-btn');
+
+        creditButton.addEventListener("click", () => creditDialog.open = true);
+        okButton.addEventListener("click", () => creditDialog.open = false);
+
+        // Open  Settings
+        const settingsDialog = document.querySelector('.settings-dialog');
+        const settingsButton = document.querySelector('.settings-btn');
+        const closeSettings = document.querySelector('.apply-btn');
+
+        settingsButton.addEventListener("click", () => settingsDialog.open = true);
+        closeSettings.addEventListener("click", () => settingsDialog.open = false)
+
+        // Function to close the export dialog
+        function closeExportDialog() {
+            const exportDialog = document.querySelector('#export-dialog'); // Select the dialog by ID
+            if (exportDialog) {
+                exportDialog.close(); // Close the dialog
+            } else {
+                console.error("Dialog element not found");
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Find the element with class 'save-file'
+            var saveButton = document.querySelector('.save-file');
+
+            if (saveButton) {
+                saveButton.addEventListener('click', function () {
+                    saveExport();
+                });
+            }
+        });
+
+        function saveExport() {
+            console.log("saveExport function called");
+
+            // Get the content of the exportfield
+            var content = document.getElementById("exportfield").value;
+            console.log("Content:", content);
+
+            if (!content) {
+                console.error("No content found in exportfield");
+                return;
+            }
+
+            // Get the file name from the export-name field
+            var fileName = document.getElementById("export-name").value.trim();
+
+            // If the file name is blank, use the default
+            if (!fileName) {
+                fileName = "level.txt";
+            } else if (!fileName.toLowerCase().endsWith('.txt')) {
+                // Ensure the file has a .txt extension
+                fileName += '.txt';
+            }
+
+            console.log("File name:", fileName);
+
+            // Create a Blob with the content
+            var blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+
+            // Create a temporary URL for the Blob
+            var url = window.URL.createObjectURL(blob);
+
+            // Create a temporary anchor element
+            var a = document.createElement("a");
+            a.href = url;
+            a.download = fileName;
+
+            console.log("Triggering download");
+
+            // Append the anchor to the body, click it, and remove it
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            // Release the URL object
+            window.URL.revokeObjectURL(url);
+
+            console.log("Download process completed");
+        }
+
+        // Event listeners for buttons
+        document.querySelector('.export-button').addEventListener('click', exportLevelUI);
+        document.querySelector('.close-btn').addEventListener('click', closeExportDialog);
+        document.querySelector('.save-btn').addEventListener('click', saveExport);
+    </script>
+
+    <script>
+        const newlvlButton = document.querySelector('.newlvl');
+        const newlvlDialog = document.querySelector('.newlvl-dialog'); // Select the dialog by ID
+        const cancelSaving = document.querySelector('.cancel-save');
+        const exportConfirm = document.querySelector('.export-dialog');
+        const savecurrentlvlBtn = document.querySelector('.current-save');
+        const beginningDrawer = document.querySelector('.beginning-navd');
+        const bignewlevelBtn = document.querySelector('.newlevelbigbtn');
+
+        newlvlButton.addEventListener("click", () => newlvlDialog.open = true);
+        if (cancelSaving) {
+            cancelSaving.addEventListener("click", () => newlvlDialog.open = false);
+        } else {
+            console.error("New level button not found!!!!11");
+        }
+
+        savecurrentlvlBtn.addEventListener("click", () => exportConfirm.open = true);
+        savecurrentlvlBtn.addEventListener("click", () => newlvlDialog.open = false);
+
+        bignewlevelBtn.addEventListener("click", () => newlvlDialog.open = true);
+        bignewlevelBtn.addEventListener("click", () => beginningDrawer.open = false);
+    </script>
+
+    <script>
+        // Function to check the dark mode switch and apply changes
+        function checkDarkMode() {
+            // Get the switch element
+            const darkModeSwitch = document.getElementById('switchDark');
+
+            // Check if the switch is checked
+            if (darkModeSwitch.checked) {
+                // Add the dark theme class to the HTML element
+                document.documentElement.classList.add('mdui-theme-dark');
+
+                // Change the src of the mwcaccent link
+                const mwcAccentLink = document.getElementById('mwcaccent');
+                mwcAccentLink.setAttribute('href', 'mat-accent-color-dark.css');
+            } else {
+                // Remove the dark theme class if not checked
+                document.documentElement.classList.remove('mdui-theme-dark');
+
+                // Change the src back to light accent color
+                const mwcAccentLink = document.getElementById('mwcaccent');
+                mwcAccentLink.setAttribute('href', 'mat-accent-color-light.css');
+            }
+        }
+
+        // Add an event listener to the switch to check for changes
+        document.getElementById('switchDark').addEventListener('change', checkDarkMode);
+
+        // Initial check on page load
+        document.addEventListener('DOMContentLoaded', checkDarkMode);
+    </script>
+
+    <script>
+        // Function to generate and copy the link
+        function generateAndCopyLink() {
+            console.log("generateAndCopyLink function called"); // Debugging log
+
+            // Get the content from the #exportfield text field
+            const exportFieldContent = document.getElementById('exportfield').value;
+            console.log("Export field content:", exportFieldContent); // Debugging log
+
+            // Check if the content is empty
+            if (!exportFieldContent) {
+                alert("The export field is empty!");
+                return;
+            }
+
+            // Encode the content for use in a URL
+            const encodedContent = encodeURIComponent(exportFieldContent);
+            console.log("Encoded content:", encodedContent); // Debugging log
+
+            // Get the base URL (first part of the active address before the "/")
+            const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
+            console.log("Base URL:", baseUrl); // Debugging log
+
+            // Generate the full link
+            const generatedLink = `${baseUrl}/generatedlevel.html?content=${encodedContent}`;
+            console.log("Generated link:", generatedLink); // Debugging log
+
+            // Copy the link to the clipboard
+            navigator.clipboard.writeText(generatedLink).then(() => {
+                console.log("Link copied to clipboard!"); // Debugging log
+
+                // Change the icon from 'link' to 'check'
+                const confirmationCopyIcon = document.getElementById('confirmationCopy');
+                if (confirmationCopyIcon) {
+                    confirmationCopyIcon.textContent = 'check'; // Change the icon to 'check'
+
+                    // Revert the icon back to 'link' after 3 seconds
+                    setTimeout(() => {
+                        confirmationCopyIcon.textContent = 'link'; // Revert to 'link'
+                    }, 3000); // Revert after 3 seconds
+                }
+            }).catch((error) => {
+                console.error("Failed to copy link:", error); // Debugging log
+                alert("Failed to copy link. Please try again.");
+            });
+        }
+
+        // Attach the function to the #copyLink button
+        document.addEventListener('DOMContentLoaded', () => {
+            const copyLinkButton = document.getElementById('copyLink');
+            if (copyLinkButton) {
+                console.log("Copy link button found!"); // Debugging log
+                copyLinkButton.addEventListener('click', generateAndCopyLink);
+            } else {
+                console.error("Copy link button not found!"); // Debugging log
+            }
+        });
+    </script>
+
+    <script>
+        // Function to generate the link
+        function generateLink() {
+            console.log("generateLink function called"); // Debugging log
+
+            // Get the content from the #exportfield text field
+            const exportFieldContent = document.getElementById('exportfield').value;
+            console.log("Export field content:", exportFieldContent); // Debugging log
+
+            // Check if the content is empty
+            if (!exportFieldContent) {
+                alert("The export field is empty!");
+                return null;
+            }
+
+            // Encode the content for use in a URL
+            const encodedContent = encodeURIComponent(exportFieldContent);
+            console.log("Encoded content:", encodedContent); // Debugging log
+
+            // Get the base URL (first part of the active address before the "/")
+            const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
+            console.log("Base URL:", baseUrl); // Debugging log
+
+            // Generate the full link
+            const generatedLink = `${baseUrl}/generatedlevel.html?content=${encodedContent}`;
+            console.log("Generated link:", generatedLink); // Debugging log
+
+            return generatedLink;
+        }
+
+        // Function to share on Facebook
+        function shareOnFacebook() {
+            const generatedLink = generateLink();
+            if (!generatedLink) return;
+
+            // Facebook sharing URL
+            const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(generatedLink)}`;
+            console.log("Facebook share URL:", facebookShareUrl); // Debugging log
+
+            // Open the Facebook sharing dialog in a new window
+            window.open(facebookShareUrl, '_blank');
+        }
+
+        // Function to share on X (Twitter)
+        function shareOnX() {
+            const generatedLink = generateLink();
+            if (!generatedLink) return;
+
+            // X (Twitter) sharing URL
+            const xShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(generatedLink)}`;
+            console.log("X share URL:", xShareUrl); // Debugging log
+
+            // Open the X sharing dialog in a new window
+            window.open(xShareUrl, '_blank');
+        }
+
+        // Function to share via email
+        function shareViaEmail() {
+            const generatedLink = generateLink();
+            if (!generatedLink) return;
+
+            // Email sharing URL
+            const emailShareUrl = `mailto:?body=${encodeURIComponent(generatedLink)}`;
+            console.log("Email share URL:", emailShareUrl); // Debugging log
+
+            // Open the default email client
+            window.location.href = emailShareUrl;
+        }
+
+        // Attach event listeners to the buttons
+        document.addEventListener('DOMContentLoaded', () => {
+            // Facebook Share
+            const facebookShareButton = document.getElementById('facebookShare');
+            if (facebookShareButton) {
+                facebookShareButton.addEventListener('click', shareOnFacebook);
+            } else {
+                console.error("Facebook share button not found!"); // Debugging log
+            }
+
+            // X Share
+            const xShareButton = document.getElementById('xShare');
+            if (xShareButton) {
+                xShareButton.addEventListener('click', shareOnX);
+            } else {
+                console.error("X share button not found!"); // Debugging log
+            }
+
+            // Email Share
+            const emailShareButton = document.getElementById('emailShare');
+            if (emailShareButton) {
+                emailShareButton.addEventListener('click', shareViaEmail);
+            } else {
+                console.error("Email share button not found!"); // Debugging log
+            }
+        });
+    </script>
+
+    <script>
+        // Function to hide #fakeLoading and show #levelResult after 2 seconds
+        function showLevelResult() {
+            // Get the elements
+            const fakeLoading = document.getElementById('fakeLoading');
+            const levelResult = document.getElementById('levelResult');
+
+            // Check if the elements exist
+            if (!fakeLoading || !levelResult) {
+                console.error("Elements not found!");
+                return;
+            }
+
+            // Hide #fakeLoading and show #levelResult after 2 seconds
+            setTimeout(() => {
+                fakeLoading.style.display = 'none'; // Hide #fakeLoading
+                levelResult.style.display = 'block'; // Show #levelResult
+            }, 2000); // 2000 milliseconds = 2 seconds
+        }
+
+        // Function to observe the .export-dialog for the 'open' attribute
+        function observeExportDialog() {
+            // Get the .export-dialog element
+            const exportDialog = document.querySelector('.export-dialog');
+
+            // Check if the dialog exists
+            if (!exportDialog) {
+                console.error(".export-dialog not found!");
+                return;
+            }
+
+            // Create a MutationObserver to watch for changes to the 'open' attribute
+            const observer = new MutationObserver((mutationsList) => {
+                for (const mutation of mutationsList) {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'open') {
+                        // Check if the dialog is open
+                        if (exportDialog.hasAttribute('open')) {
+                            console.log(".export-dialog is now open!");
+                            // Call the function to show the level result after 2 seconds
+                            showLevelResult();
+                        }
+                    }
+                }
+            });
+
+            // Start observing the .export-dialog for attribute changes
+            observer.observe(exportDialog, {
+                attributes: true, // Watch for attribute changes
+            });
+        }
+
+        // Call the observer function when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', observeExportDialog);
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Function to trigger a click event on a given selector
+            const triggerClick = (selector) => {
+                const element = document.querySelector(selector);
+                if (element) {
+                    element.click();
+                } else {
+                    console.error(`Element with selector "${selector}" not found.`);
+                }
+            };
+
+            // Listen for keyboard shortcuts
+            document.addEventListener("keydown", (event) => {
+                const tooltipKeyboard = document.querySelector('.keyboardshortcut-tooltip');
+                if (event.ctrlKey) {
+                    switch (event.key.toLowerCase()) {
+                        case 'l':
+                            event.preventDefault(); // Prevent default browser behavior
+                            triggerClick(".newlvl"); // Trigger click on .newlvl
+                            break;
+                        case 's':
+                            event.preventDefault(); // Prevent default browser behavior
+                            triggerClick(".export-button"); // Trigger click on .export-button
+                            break;
+                        case 'i':
+                            event.preventDefault(); // Prevent default browser behavior
+                            triggerClick(".import-main"); // Trigger click on .import-main
+                            break;
+                        case 'b':
+                            event.preventDefault(); // Prevent default browser behavior
+                            triggerClick(".credit-btn"); // Trigger click on .credit-btn
+                            break;
+                        case 'k':
+                            event.preventDefault(); // Prevent default browser behavior
+                            triggerClick(".keyboard-shortcuts"); // Trigger click on .credit-btn
+                            break;
+                            tooltipKeyboard.setAttribute('open', 'open');
+                    }
+                }
+            });
+        });
+    </script>
+
+    <script>
+        const updateSnackbar = document.querySelector(".updates-notify");
+        const checkUpdates = document.getElementById("checkUpdates");
+
+        checkUpdates.addEventListener("click", () => updateSnackbar.open = true);
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const settingsBtn = document.querySelector('.settings-btn');
+            const settingsFulldialog = document.querySelector('.settings-fulldialog');
+            const closeSettings = document.querySelector('.close-settings');
+
+            // Add event listener to settings button
+            settingsBtn.addEventListener('click', function () {
+                settingsFulldialog.setAttribute('open', '');
+            });
+
+            // Add event listener to close settings button
+            closeSettings.addEventListener('click', function () {
+                settingsFulldialog.removeAttribute('open');
+            });
+        });
+    </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const musicConfig = document.getElementById('musicConfig');
+            const musicMain = document.getElementById('musicMain');
+            const musicSrc = document.getElementById('musicSrc');
+            const playSongButton = document.getElementById('playSong');
+            const muteButton = document.getElementById('mute');
+            const volumeCustomize = document.getElementById('volumeCustomize');
+            const enableMusic = document.getElementById('enableMusic');
+            const songNameDisplay = document.getElementById('songName'); // Element to display the song name
+
+            // Function to change music source and play
+            function changeMusicSource(source, songName) {
+                musicSrc.src = source;
+                musicMain.load();
+                musicMain.play();
+                songNameDisplay.textContent = songName; // Display the song name
+            }
+
+            // Event listeners for music selection
+
+
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('bonbon-bonbon').addEventListener('click', function () {
+                    changeMusicSource('audio/songs/songs_1.9/Bonbon Bonbon.ogg', 'Bonbon Bonbon');
+                });
+            })
+
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('bonus').addEventListener('click', function () {
+                    changeMusicSource('audio/songs/songs_1.9/Bonus.ogg', 'Bonus');
+                });
+            })
+
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('candification').addEventListener('click', function () {
+                    changeMusicSource('audio/songs/songs_1.9/Candification.ogg', 'Candification');
+                });
+            })
+
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('candy-crushed').addEventListener('click', function () {
+                    changeMusicSource('audio/songs/songs_1.9/Candy Crushed.ogg', 'Candy Crushed');
+                });
+            })
+
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('candy-hour').addEventListener('click', function () {
+                    changeMusicSource('audio/songs/songs_1.9/Candy Hour.ogg', 'Candy Hour');
+                });
+            })
+
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('colorbomb').addEventListener('click', function () {
+                    changeMusicSource('audio/songs/songs_1.9/Colorbomb.ogg', 'Colorbomb');
+                });
+            })
+
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('floaty').addEventListener('click', function () {
+                    changeMusicSource('audio/songs/songs_1.9/Floaty.ogg', 'Floaty');
+                });
+            })
+
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('its-frosty').addEventListener('click', function () {
+                    changeMusicSource('audio/songs/songs_1.9/Its Frosty.ogg', 'It&#39;s Frosty');
+                });
+            })
+
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('just-shouffle').addEventListener('click', function () {
+                    changeMusicSource('audio/songs/songs_1.9/Just Shouffle.ogg', 'Just Shouffle');
+                });
+            })
+
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('sweet-sweet-caramel').addEventListener('click', function () {
+                    changeMusicSource('audio/songs/songs_1.9/Sweet Sweet Caramel.ogg', 'Sweet Sweet Caramel');
+                });
+            })
+
+            // Play/Pause functionality
+            playSongButton.addEventListener('click', function () {
+                const mdIcon = playSongButton.querySelector('md-icon'); // Select the md-icon inside the button
+                if (musicMain.paused) {
+                    musicMain.play();
+                    mdIcon.textContent = 'ﵙ'; // Change to pause icon
+                } else {
+                    musicMain.pause();
+                    mdIcon.textContent = 'ﵥ'; // Change to play icon
+                }
+            });
+
+            // Mute/Unmute functionality
+            muteButton.addEventListener('click', function () {
+                const mdIcon = muteButton.querySelector('md-icon'); // Select the md-icon inside the button
+                musicMain.muted = !musicMain.muted;
+                mdIcon.textContent = musicMain.muted ? 'volume_off' : 'volume_up'; // Change icon based on mute state
+            });
+
+            // Volume control using md-slider
+            volumeCustomize.addEventListener('input', function () {
+                musicMain.volume = volumeCustomize.value; // Set the audio volume based on slider value
+            });
+        });
+
+        // List of songs in the main folder (without file extensions)
+        const songs = [
+            'Bonbon Bonbon',
+            'Bonus',
+            'Candification',
+            'Candy Crushed',
+            'Colorbomb',
+            'Dunk that Cookie',
+            'Floaty',
+            'Its Frosty',
+            'Just Shouffle',
+            'Sweet Sweet Caramel',
+        ];
+
+        // Initialize current song index
+        let currentSongIndex = 0;
+
+        // Get DOM elements
+        const musicMain = document.getElementById('musicMain');
+        const songNameDisplay = document.getElementById('songName');
+
+        // Function to update the audio source and display the song name
+        function updateSong() {
+            const song = songs[currentSongIndex];
+            musicMain.src = `audio/songs/songs_1.9/${song}.ogg`; // Adjust the path and extension as needed
+            songNameDisplay.textContent = song; // Display song name without extension
+        }
+
+        // Event listeners for previous and next buttons
+        document.getElementById('previousSong').addEventListener('click', function () {
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length; // Loop back to the last song
+            updateSong();
+            musicMain.play(); // Play the song
+        });
+
+        document.getElementById('nextSong').addEventListener('click', function () {
+            currentSongIndex = (currentSongIndex + 1) % songs.length; // Loop back to the first song
+            updateSong();
+            musicMain.play(); // Play the song
+        });
+
+        // Start with the first song
+        updateSong();
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const switchClick = document.getElementById('switchClick');
+            const clickSound = document.getElementById('clickSound');
+
+            // Function to play sound
+            function playClickSound() {
+                if (switchClick.checked) {
+                    clickSound.currentTime = 0; // Reset sound to start
+                    clickSound.play(); // Play the sound
+                }
+            }
+
+            // Add event listener to the entire document
+            document.addEventListener('click', playClickSound);
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select all dropdown menus
+            const dropdowns = document.querySelectorAll('.dropdownmenu');
+
+            // Loop through each dropdown menu
+            dropdowns.forEach(dropdown => {
+                // Find the button that triggers the dropdown
+                const dropbtn = dropdown.closest('button');
+
+                // Add click event listener to the button
+                dropbtn.addEventListener('click', function (event) {
+                    // Prevent the event from bubbling up to the window
+                    event.stopPropagation();
+
+                    // Toggle the dropdown visibility
+                    if (dropdown.classList.contains('show')) {
+                        // If the dropdown is currently shown, hide it
+                        dropdown.classList.remove('show');
+                        dropdown.classList.add('hide');
+                    } else {
+                        // If the dropdown is currently hidden, show it
+                        dropdown.classList.remove('hide'); // Remove hide class to allow showing
+                        dropdown.classList.add('show');
+                        dropdown.style.backdropFilter = 'blur(15px)'; // Apply backdrop filter directly
+                    }
+                });
+            });
+
+            // Close dropdown if clicking outside
+            window.addEventListener('click', function (event) {
+                dropdowns.forEach(dropdown => {
+                    // Check if the click was outside the dropdown and button
+                    if (!event.target.closest('button') && dropdown.classList.contains('show')) {
+                        // If the dropdown is currently shown, hide it
+                        dropdown.classList.remove('show');
+                        dropdown.classList.add('hide');
+                        dropdown.style.backdropFilter = ''; // Reset backdrop filter
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const importBackdrop = document.getElementById('importdialogBackdrop');
+            const importDialog = document.getElementById('importDialog');
+            const importBtn = document.querySelector('.import-main');
+            const importClosebtn = document.getElementById('importClose');
+
+            importBtn.addEventListener('click', function () {
+                if (importDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    importDialog.classList.remove('open');
+                    importDialog.classList.add('close');
+                } else {
+                    // If the dropdown is currently hidden, show it
+                    importDialog.classList.remove('close'); // Remove hide class to allow showing
+                    importDialog.classList.add('open');
+                }
+                if (importBackdrop.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    importBackdrop.classList.remove('open');
+                    importBackdrop.classList.add('close');
+                } else {
+                    // If the dropdown is currently hidden, show it
+                    importBackdrop.classList.remove('close'); // Remove hide class to allow showing
+                    importBackdrop.classList.add('open');
+                }
+            });
+
+            importClosebtn.addEventListener('click', function () {
+                if (importDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    importDialog.classList.remove('open');
+                    importDialog.classList.add('close');
+                }
+                if (importBackdrop.classList.contains('open')) {
+                    importBackdrop.classList.remove('open');
+                    importBackdrop.classList.add('close');
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const exportBackdrop = document.getElementById('exportdialogBackdrop');
+            const exportDialog = document.getElementById('exportDialog');
+            const exportBtn = document.querySelector('.export-button');
+            const exportCloseBtn = document.getElementById('exportClose');
+            const nopointsClose = document.getElementById('nopointsClose');
+            const signinclose = document.getElementById('signinclose');
+
+            exportBtn.addEventListener('click', function () {
+                if (exportDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    exportDialog.classList.remove('open');
+                    exportDialog.classList.add('close');
+                } else {
+                    // If the dropdown is currently hidden, show it
+                    exportDialog.classList.remove('close'); // Remove hide class to allow showing
+                    exportDialog.classList.add('open');
+                }
+                if (exportBackdrop.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    exportBackdrop.classList.remove('open');
+                    exportBackdrop.classList.add('close');
+                } else {
+                    // If the dropdown is currently hidden, show it
+                    exportBackdrop.classList.remove('close'); // Remove hide class to allow showing
+                    exportBackdrop.classList.add('open');
+                }
+            });
+
+            exportCloseBtn.addEventListener('click', function () {
+                if (exportDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    exportDialog.classList.remove('open');
+                    exportDialog.classList.add('close');
+                }
+                if (exportBackdrop.classList.contains('open')) {
+                    exportBackdrop.classList.remove('open');
+                    exportBackdrop.classList.add('close');
+                }
+            });
+
+            nopointsClose.addEventListener('click', function () {
+                if (exportDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    exportDialog.classList.remove('open');
+                    exportDialog.classList.add('close');
+                }
+                if (exportBackdrop.classList.contains('open')) {
+                    exportBackdrop.classList.remove('open');
+                    exportBackdrop.classList.add('close');
+                }
+            })
+
+            signinclose.addEventListener('click', function () {
+                if (exportDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    exportDialog.classList.remove('open');
+                    exportDialog.classList.add('close');
+                }
+                if (exportBackdrop.classList.contains('open')) {
+                    exportBackdrop.classList.remove('open');
+                    exportBackdrop.classList.add('close');
+                }
+            })
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const backdropDialog = document.getElementById('creditsBackdrop');
+            const creditsDialog = document.getElementById('creditsDialog');
+            const creditsBtn = document.getElementById('creditsBtn');
+            const creditscloseBtn = document.getElementById('creditscloseBtn');
+
+            creditsBtn.addEventListener('click', function () {
+                if (creditsDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    creditsDialog.classList.remove('open');
+                    creditsDialog.classList.add('close');
+                } else {
+                    // If the dropdown is currently hidden, show it
+                    creditsDialog.classList.remove('close'); // Remove hide class to allow showing
+                    creditsDialog.classList.add('open');
+                }
+                if (backdropDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    backdropDialog.classList.remove('open');
+                    backdropDialog.classList.add('close');
+                } else {
+                    // If the dropdown is currently hidden, show it
+                    backdropDialog.classList.remove('close'); // Remove hide class to allow showing
+                    backdropDialog.classList.add('open');
+                }
+            });
+
+            creditscloseBtn.addEventListener('click', function () {
+                if (creditsDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    creditsDialog.classList.remove('open');
+                    creditsDialog.classList.add('close');
+                }
+                if (backdropDialog.classList.contains('open')) {
+                    backdropDialog.classList.remove('open');
+                    backdropDialog.classList.add('close');
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const newlvlBackdrop = document.getElementById('newLevelBackdrop');
+            const newlvlDialog = document.getElementById('newLevelDialog');
+            const newlevlBtn = document.querySelector('.newlvl');
+            const newlvlClosebtn = document.getElementById('newClose');
+
+            newlevlBtn.addEventListener('click', function () {
+                if (newlvlDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    newlvlDialog.classList.remove('open');
+                    newlvlDialog.classList.add('close');
+                } else {
+                    // If the dropdown is currently hidden, show it
+                    newlvlDialog.classList.remove('close'); // Remove hide class to allow showing
+                    newlvlDialog.classList.add('open');
+                }
+                if (newlvlBackdrop.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    newlvlBackdrop.classList.remove('open');
+                    newlvlBackdrop.classList.add('close');
+                } else {
+                    // If the dropdown is currently hidden, show it
+                    newlvlBackdrop.classList.remove('close'); // Remove hide class to allow showing
+                    newlvlBackdrop.classList.add('open');
+                }
+            });
+
+            newlvlClosebtn.addEventListener('click', function () {
+                if (newlvlDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    newlvlDialog.classList.remove('open');
+                    newlvlDialog.classList.add('close');
+                }
+                if (newlvlBackdrop.classList.contains('open')) {
+                    newlvlBackdrop.classList.remove('open');
+                    newlvlBackdrop.classList.add('close');
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const newlvlBackdrop = document.getElementById('newLevelBackdrop');
+            const newlvlDialog = document.getElementById('newLevelDialog');
+            const newlevlbigBtn = document.querySelector('.newlevelbigbtn');
+            const newlvlClosebtn = document.getElementById('newClose');
+
+            newlevlbigBtn.addEventListener('click', function () {
+                if (newlvlDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    newlvlDialog.classList.remove('open');
+                    newlvlDialog.classList.add('close');
+                } else {
+                    // If the dropdown is currently hidden, show it
+                    newlvlDialog.classList.remove('close'); // Remove hide class to allow showing
+                    newlvlDialog.classList.add('open');
+                }
+                if (newlvlBackdrop.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    newlvlBackdrop.classList.remove('open');
+                    newlvlBackdrop.classList.add('close');
+                } else {
+                    // If the dropdown is currently hidden, show it
+                    newlvlBackdrop.classList.remove('close'); // Remove hide class to allow showing
+                    newlvlBackdrop.classList.add('open');
+                }
+            });
+
+            newlvlClosebtn.addEventListener('click', function () {
+                if (newlvlDialog.classList.contains('open')) {
+                    // If the dropdown is currently shown, hide it
+                    newlvlDialog.classList.remove('open');
+                    newlvlDialog.classList.add('close');
+                }
+                if (newlvlBackdrop.classList.contains('open')) {
+                    newlvlBackdrop.classList.remove('open');
+                    newlvlBackdrop.classList.add('close');
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const pointsDisplay = document.getElementById("pointsLeft");
+
+            if (localStorage.getItem("loggedIn") === "true") {
+                // Logged-in: Get real points from Firestore
+                const userId = localStorage.getItem("userId");
+                if (userId) {
+                    const userRef = doc(db, "users", userId);
+                    const userSnap = await getDoc(userRef);
+                    if (userSnap.exists()) {
+                        pointsDisplay.innerText = `${userSnap.data().points || 0}`;
+                    }
+                }
+            } else {
+                // Guest Mode: Use localStorage for points
+                if (!localStorage.getItem("guestPoints")) {
+                    localStorage.setItem("guestPoints", "5");
+                }
+                updateGuestPointsUI();
+                monitorGuestExportField();
+            }
+        });
+
+        // 📌 Update Points UI for Guest Users
+        function updateGuestPointsUI() {
+            const guestPoints = parseInt(localStorage.getItem("guestPoints")) || 0;
+            document.getElementById("pointsLeft").innerText = `${guestPoints}`;
+
+            // Hide export if points = 0
+            if (guestPoints <= 0) {
+                document.getElementById("exportContent")?.style.display = "none";
+                document.getElementById("noPoints")?.style.removeProperty("display");
+            }
+        }
+
+        // 📌 Monitor `#exportfield` for Guest Users
+        function monitorGuestExportField() {
+            const exportField = document.getElementById("exportfield");
+            if (!exportField) return;
+
+            let lastContent = exportField.innerHTML;
+
+            setInterval(() => {
+                let guestPoints = parseInt(localStorage.getItem("guestPoints")) || 0;
+                const newContent = exportField.innerHTML;
+
+                if (guestPoints > 0 && newContent !== "" && newContent !== lastContent) {
+                    console.log("Guest mode: Deducting 1 point...");
+                    guestPoints -= 1;
+                    localStorage.setItem("guestPoints", guestPoints);
+                    updateGuestPointsUI();
+                    lastContent = newContent; // Prevent duplicate deductions
+                }
+            }, 1000);
+        }
+    </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const enableTouchCheckbox = document.getElementById('enableTouch');
+            let spotTouch = null; // Initialize spotTouch as null
+            let isDragging = false;
+
+            // Function to create the spotTouch element
+            function createSpotTouch() {
+                spotTouch = document.createElement('img');
+                spotTouch.src = 'pointers/pointer_spot_touch.png'; // Ensure this path is correct
+                spotTouch.draggable = false;
+                spotTouch.style.position = 'absolute';
+                spotTouch.style.zIndex = '100000';
+                spotTouch.style.top = '0';
+                spotTouch.style.left = '0';
+                spotTouch.style.display = 'none';
+                spotTouch.style.transition = 'opacity 0.2s ease-out';
+                spotTouch.style.pointerEvents = 'none';
+                spotTouch.id = 'spotTouch';
+
+                // Append the element inside <mdui-layout-main>
+                const layoutMain = document.querySelector('mdui-layout-main');
+                if (layoutMain) {
+                    layoutMain.appendChild(spotTouch);
+                } else {
+                    console.error('mdui-layout-main not found in the DOM.');
+                }
+            }
+
+            // Attach change event to the checkbox
+            enableTouchCheckbox.addEventListener('change', function () {
+                if (this.checked) {
+                    createSpotTouch(); // Create the spotTouch element when checked
+                } else {
+                    if (spotTouch) {
+                        spotTouch.parentNode.removeChild(spotTouch); // Remove the element if it exists
+                        spotTouch = null; // Clear the reference
+                    }
+                }
+            });
+
+            // Attach mousedown event to the entire document
+            document.addEventListener('mousedown', function (event) {
+                if (!enableTouchCheckbox.checked || !spotTouch) return; // Exit if checkbox is not checked or spotTouch doesn't exist
+
+                isDragging = true; // Start dragging
+
+                // Get the cursor position
+                const cursorX = event.pageX;
+                const cursorY = event.pageY;
+
+                // Set the position of the #spotTouch element
+                spotTouch.style.left = (cursorX - 10) + 'px'; // Center the spot
+                spotTouch.style.top = (cursorY - 10) + 'px';  // Center the spot
+                spotTouch.style.display = 'block';              // Show the spot
+                spotTouch.style.opacity = '1';                  // Make it fully visible
+
+                // Set a timeout to fade out the #spotTouch after 1 second
+                setTimeout(() => {
+                    if (!isDragging) { // Only fade out if not dragging
+                        spotTouch.style.opacity = '0'; // Start fade out
+                    }
+                }, 1000); // Wait for 1 second before starting to fade out
+
+                // Hide the #spotTouch after fading out
+                setTimeout(() => {
+                    if (!isDragging) { // Only hide if not dragging
+                        spotTouch.style.display = 'none'; // Hide it after fading out
+                    }
+                }, 1200); // Match this with the fade-out duration (1s + 0.2s)
+            });
+
+            // Attach mousemove event to update the position of #spotTouch
+            document.addEventListener('mousemove', function (event) {
+                if (isDragging && spotTouch) {
+                    const cursorX = event.pageX;
+                    const cursorY = event.pageY;
+
+                    // Update the position of the #spotTouch element
+                    spotTouch.style.left = (cursorX - 10) + 'px'; // Center the spot
+                    spotTouch.style.top = (cursorY - 10) + 'px';  // Center the spot
+                }
+            });
+
+            // Attach mouseup event to stop dragging
+            document.addEventListener('mouseup', function () {
+                if (!enableTouchCheckbox.checked || !spotTouch) return; // Exit if checkbox is not checked or spotTouch doesn't exist
+
+                isDragging = false; // Stop dragging
+
+                // Fade out the #spotTouch when mouse is released
+                spotTouch.style.opacity = '0'; // Start fade out
+
+                // Hide the #spotTouch after fading out
+                setTimeout(() => {
+                    spotTouch.style.display = 'none'; // Hide it after fading out
+                }, 200); // Match this with the transition duration
+            });
+
+            // Handle checkbox state change
+            enableTouchCheckbox.addEventListener('change', function () {
+                if (!this.checked) {
+                    // If the checkbox is unchecked, hide the spotTouch and reset state
+                    isDragging = false;
+                    if (spotTouch) {
+                        spotTouch.style.display = 'none'; // Hide it immediately
+                        spotTouch.style.opacity = '0'; // Ensure opacity is reset
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
