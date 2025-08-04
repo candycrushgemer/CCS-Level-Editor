@@ -12,7 +12,7 @@
 
 @font-face {
     font-family: 'SF Symbols';
-    src: url(level-editor/font/SF-Symbols-6.ttf);
+    src: url(level-editor/editor/fonts/IconsRegular.otf);
 }
 
 html, body {
