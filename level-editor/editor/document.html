@@ -1,0 +1,1205 @@
+<html style="scroll-behavior: smooth;">
+    <!-- Download stuff -->
+    <head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Level Editor Documentation</title>
+        <link rel="icon" href="logo.png">
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.jsdelivr.net/npm/underscore@1.12.0/underscore-min.js"></script>
+        
+        <meta content="Web Candy Crush Level Editor" property="og:title">
+        <meta content="Guide to how to use Candy Crush Level Editor and start making your own levels" property="og:description">
+        <meta content="Candy Crush Level Editor" property="og:site_name">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+        <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <script type="importmap">
+            {
+                "imports": {
+                    "@material/web/": "https://esm.run/@material/web/"
+                }
+            }
+        </script>
+        <script type="module">
+            import '@material/web/all.js';
+            import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+
+            document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+        </script>
+        <link id="mwcaccent" rel="stylesheet" href="mat-accent-color-light.css">
+        <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.4.0/index.js"></script>
+        <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+        <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+        <link rel="stylesheet" href="mdui.css">
+        <style>
+            ol li a {
+                text-decoration: none;
+                color: var(--md-sys-color-primary);
+            }
+
+            @media (max-width: 860px) {
+                .table-of-content {
+                    margin-left: 0 !important;
+                    background: none !important;
+                    border: none !important;
+                }
+            }
+        </style>
+    </head>
+
+    <body style="margin: 0;">
+        <div class="overlay-loading">
+            <img src="intro_logo_gif.gif" width="250px" style="user-select: none;pointer-events: none;">
+            <spinner-load></spinner-load>
+
+            <div class="watermark" style="position: absolute; bottom: 20px; display: flex; flex-direction: column; align-items: center;">
+                <span style="font-size: 12px; opacity: 0.5;">from</span>
+                <div style="display: flex; align-items: center; gap: 2px;">
+                    <img src="CCGAppsGifLogo.gif" alt="" style="width: 30px;"> CCGApps
+                </div>
+            </div>
+        </div>
+        <script>
+            window.onload = function() {
+                const loadingOverlay = document.querySelector('.overlay-loading');
+                // Set opacity to 0 after load
+                loadingOverlay.style.opacity = '0';
+                loadingOverlay.style.transform = 'scale(1.2)';
+                // After 0.5s, set display to none
+                setTimeout(() => {
+                    loadingOverlay.style.display = 'none';
+                }, 500);
+            };
+        </script>
+        <script src="script.js" defer></script>
+        <mdui-navigation-drawer modal close-on-esc close-on-overlay-click contained class="beginning-navd" style="position: fixed; overflow: hidden;">
+            <div class="content-navdrawer" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+                <md-icon-button class="close-navdrawer"><md-icon>􀆄</md-icon></md-icon-button>
+                <h2>Welcome to Level Editor!</h2>
+                <p>Click the button below to start making levels!</p>
+                <md-list-item type="link" class="newlevelbigbtn" href="index.html" target="_blank" style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-radius: 20px; user-select: none;">
+                    <md-icon slot="start">add</md-icon>Create new level
+                </md-list-item>
+                <div class="navd-end" style="position: absolute; bottom: 15;"> 
+                    <md-icon-button class="settings-btn"><md-icon>settings</md-icon></md-icon-button>
+                    <p style="font-size: smaller;">© Copyright 2025. Made with ❤️ by Blakiemon and other people.
+                        <a class="footer-href" href="https://discord.gg/kqq5Tx4XcM">Discord server</a> • <a class="footer-href" href="https://forms.gle/XMkahmBmzxN2HUEN9">Bug reports</a>
+                    </p>
+                </div>
+            </div>
+        </mdui-navigation-drawer>
+            <mdui-top-app-bar class="example-top-app-bar" style="width: 99%; align-items: center; position: fixed; z-index: 10; margin: 0 auto; margin-top: 10px;">
+                <md-icon-button class="opennavd">
+                    <md-icon>􀋲</md-icon>
+                </md-icon-button>
+                <img src="logo-horizontal.png" width="90px" draggable="false">
+                <mdui-top-app-bar-title>Documentation and Guide</mdui-top-app-bar-title>
+                <div style="flex-grow: 1;"></div>
+                
+            </mdui-top-app-bar>
+          
+            <mdui-layout-main class="example-layout-main" style="height: 97vh; scroll-behavior: smooth;">
+                <div class="bottom-side-bar">
+                    <div class="tabs" style="width: 50px;">
+                        <div class="tab minimize" style="width: 50px;"><md-icon>􀅋</md-icon></div>
+                    </div>
+                    <div class="contents">
+                        <div class="content documents">
+                            <br><br><br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-wrapper" style="margin-top: 35px; margin-left: 25px; scroll-behavior: smooth;">
+                    <div class="code-content-wrapper">
+                        
+                        <div class="table-of-content" id="level-editor-guide-tbc" placement="right">
+                            <div style="margin-left: 10px;">
+                                <h2>Documentation</h2>
+                            <mdui-collapse value="toc-overview">
+                                <mdui-collapse-item value="toc-overview">
+                                    <div class="list-item document-li-itm" slot="header">
+                                        <div class="left">
+                                            <md-icon>􀈿</md-icon>
+                                            <span>Get Started</span>
+                                        </div>
+                                        <div class="right"><md-icon>􀆈</md-icon></div>
+                                    </div>
+                                    <div class="list" style="margin-left: 15px;">
+                                        <div class="list-item document-li-itm page pg_overview" ><div class="left"><md-icon>􀈿</md-icon><span>Overview</span></div></div>
+                                    </div>
+                                </mdui-collapse-item>
+                            </mdui-collapse>
+                            <mdui-collapse value="toc-overview">
+                                <mdui-collapse-item value="toc-overview">
+                                    <div class="list-item document-li-itm page pg_rel_notes" slot="header">
+                                        <div class="left">
+                                            <md-icon>􀈿</md-icon>
+                                            <span>Release notes </span>
+                                        </div>
+                                    </div>
+                                </mdui-collapse-item>
+                            </mdui-collapse>
+                            <mdui-collapse value="toc-overview">
+                                <mdui-collapse-item value="toc-overview">
+                                    <div class="list-item document-li-itm page pg_legal_stuff" slot="header">
+                                        <div class="left">
+                                            <md-icon>􀈿</md-icon>
+                                            <span>Legal </span>
+                                        </div>
+                                    </div>
+                                </mdui-collapse-item>
+                            </mdui-collapse>
+                            </div>
+                        </div>
+                        <div class="main-content" id="overview" style="scroll-behavior: smooth; display: none;">
+                            <p>Welcome to the Level Editor! This guide will help you get started with creating your own Candy Crush Saga levels.</p>
+                            <h2>Contents</h2>
+                            <ol style="line-height: 29px;">
+                                <li><a href="#overview-hd">Overview</a></li>
+                                <li><a href="#how-to-use">How to use: Step-by-step</a></li>
+                                <li><a href="#contacts">Contacts</a></li>
+                            </ol>
+                            <a id="overview-hd" href="#overview-hd" class="content-header">Overview</a>
+                            <p>Here's a brief overview of the Level Editor:</p>
+                            <img src="guide-assets/get-started-1.png" width="100%" alt="">
+                            <img src="guide-assets/get-started-2.png" width="100%" alt="">
+                            <img src="guide-assets/get-started-3.png" width="100%" alt="">
+                            <img src="guide-assets/get-started-4.png" width="100%" alt="">
+                            <a id="how-to-use" href="#how-to-use" class="content-header">How to use: Step-by-step</a>
+                            <p>If you are a beginner in using Level Editor, check out these guides for making your first complete level.</p>
+                            <ol style="line-height: 29px;">
+                                <li>First, make a design for your level. Your level can be simple moves level, jelly level, ingredients level,... You can refer to some levels by <a href="https://youtube.com/@candycrushgemer" style="color: var(--md-sys-color-primary); text-decoration: none;">candycrushgemer</a> for making an idea for your level.</li>
+                                <li>Now, let's get started. Open <a href="index.html" style="color: var(--md-sys-color-primary); text-decoration: none;">Level Editor</a>, now you are in the main editor. 
+                                    <br>
+                                    Starting with making your level, for example, if you want to place a red candy, first choose color <img src="elements/red.png" width="20px"> in the <strong>Color</strong> dropdown menu, then make sure you have element <img src="elements/random.png" width="20px"> selected in the <strong>Candy</strong> menu. Now, click on the grid to place the candy and you are done!
+                                    <img src="guide-assets/guide-place-elements.svg" width="100%">
+                                    <strong>Notes:</strong>
+                                    <ul>
+                                        <li><strong>Mixers, Candy Cannon</strong> are elements that needed their own properties. You can change them in the Configuration side option.</li>
+                                        <li>You shouldn't add to many special candies otherwise the game will be unplayable due to the game mechanics.</li>
+                                        <li><strong>Candy Cobra notes:</strong> if you don't make a level with Candy Cobra inside, when exporting you should delete the code line <code>"candyCobras":3</code> at the end of the code. If you make a level with Candy Cobra inside, then remember to change </li>
+                                    </ul>
+                                </li>
+                                <li><strong>Export your level:</strong> Click on <b>File > Export level</b> or you can use <kbd>Ctrl + S</kbd> keyboard shortcut to export your level. You can save your level to your device or share it to anywhere. Note if you want the link shorter please use the link shortener online cuz this editor is not supported short links yet. </li>
+                                <li>The next time you want to load your levels, please go to <strong>File > Open</strong> or use <kbd>Ctrl + O</kbd> keyboard shortcut to open files. You can also load levels using <strong>File > Import level</strong> or <kbd>Ctrl + I</kbd>. You can select your level or type in your level code. </li>
+                            </ol>
+                            
+                            <a id="contacts" href="#contacts" class="content-header">Contacts</a>
+                            <p>If you have any problems while using tool, please send bugs so we can fix the tool as soon as possible, making the tool more usable and better for you.</p>
+                            <div class="body">
+                                <md-list style="--md-list-container-color: var(--md-sys-color-error-container); --md-list-item-label-text-color: var(--md-sys-color-error); border-radius: 20px;"><md-list-item type="text" md-list-item="" tabindex="0">
+                                    <md-icon slot="start" style="color: var(--md-sys-color-error);" aria-hidden="true">􀇻</md-icon>All right go to King Limited. If they so chose this editor may be taken down at any time.
+                                </md-list-item></md-list>
+                                <p>Don't forget these cool guys who worked hard to make this editor!</p>
+                                <md-list style="border-radius: 20px; --md-list-container-color: var(--md-sys-color-surface-container);">
+                                    <md-list-item type="text" md-list-item="" tabindex="-1">
+                                        <mdui-avatar src="avatar-generic.png" slot="start"></mdui-avatar>Blakiemon
+                                        <div slot="supporting-text">The first person to create this tool</div>
+                                    </md-list-item>
+                                    <md-divider inset=""></md-divider>
+                                    <md-list-item type="text" md-list-item="" tabindex="-1">
+                                        <mdui-avatar src="avatar-generic.png" slot="start"></mdui-avatar>Fence
+                                        <div slot="supporting-text">Helper</div>
+                                    </md-list-item>
+                                    <md-divider inset=""></md-divider>
+                                    <md-list-item type="text" md-list-item="" tabindex="-1">
+                                        <mdui-avatar src="avatar-generic.png" slot="start"></mdui-avatar>Candy Crush Gemer
+                                        <div slot="supporting-text">Redesigning and remaking the tool</div>
+                                    </md-list-item>
+                                    <md-divider inset=""></md-divider>
+                                    <md-list-item type="link" href="https://discord.gg/kqq5Tx4XcM" target="_blank" md-list-item="" tabindex="0">
+                                        <img src="discord.svg" slot="start" width="24px" alt="" style="filter: invert(0);">Join Discord for supports and discussions! <md-icon slot="end" aria-hidden="true">􀄯</md-icon>
+                                    </md-list-item>
+                                    <md-divider inset></md-divider>
+                                    <md-list-item type="link" href="https://forms.gle/XMkahmBmzxN2HUEN9" target="_blank" md-list-item="" tabindex="0">
+                                        <md-icon slot="start">bug_report</md-icon> Please send bugs here <md-icon slot="end" aria-hidden="true">􀄯</md-icon>
+                                    </md-list-item>
+                                    <md-divider inset></md-divider>
+                                    <md-list-item type="link" href="mailto:contact.ccgccs@gmail.com" target="_blank" md-list-item="" tabindex="0">
+                                        <md-icon slot="start">email</md-icon> Contact via email <md-icon slot="end" aria-hidden="true">􀄯</md-icon>
+                                    </md-list-item>
+                                </md-list>
+                                <br>
+                                <!--<md-divider></md-divider>
+                                <h2 id="release-notes" href="#release-notes">Release notes</h2>
+                                <div class="blog-main">
+                                    <p>Here you can see the changes of the editor over time! </p>
+                                    <div class="changelog-container">
+                                        <div class="changelog-date" style="width: 30%;">
+                                            <h3>05.03.2025</h3>
+                                            <span class="level-editor-ver">1.9</span>
+                                        </div>
+                                        <div class="changelog-contents" style="width: 100%;">
+                                            <span class="fixes">Fixes</span>
+                                            <ul>
+                                                <li>Fixed some known issues</li>
+                                                <li>Fixed the entire UI for more modern</li>
+                                            </ul>
+                                            <span class="addition">Additions</span>
+                                            <ul>
+                                                <li>New soundtracks from Candy Crush Solitaire</li>
+                                                <li>Introducing Portals: click the first time to create an entrance and the second time to make an exit!</li>
+                                                <li>New Power system: export your level with your Powers! New users get 20 Powers for free
+                                                    to use until it's run out.</li>
+                                                <li>Now you can sign in to the editor! Note that this editor is not by King, so you can't
+                                                    sign in with your King account. </li>
+                                            </ul>
+                                        </div>
+                                    </div><br><md-divider inset=""></md-divider><br>
+                                    <div class="changelog-container">
+                                        <div class="changelog-date" style="width: 30%;">
+                                            <h3>23.01.2025</h3>
+                                            <span class="level-editor-ver">1.8.1</span>
+                                        </div>
+                                        <div class="changelog-contents" style="width: 100%;">
+                                            <span class="fixes">Fixes</span>
+                                            <ul>
+                                                <li>Fixed some bugs for a better experience in the editor</li>
+                                            </ul>
+                                            <span class="addition">Additions</span>
+                                            <ul>
+                                                <li>In-app Music &amp; Sound: you can open the background music to make levels while listening
+                                                    to music, increasing your relaxation and focusing more on your level. You can also turn
+                                                    on the mouse click sound effect like in Candy Crush.</li>
+                                                <li>Editor is now available for Windows operating system! Computers using Windows 10 and
+                                                    above can use it. You can download the setup from the notification in the editor or <a href="https://drive.usercontent.google.com/download?id=1DsI9hi_z5MeB9Xw1AxyMU3q5xfoyOMJo&amp;export=download&amp;authuser=0">click
+                                                        here</a>.</li>
+                                            </ul>
+                                        </div>
+                                    </div><br><md-divider inset=""></md-divider><br>
+                                    <div class="changelog-container">
+                                        <div class="changelog-date" style="width: 30%;">
+                                            <h3>19.01.2025</h3>
+                                            <span class="level-editor-ver">1.8</span>
+                                        </div>
+                                        <div class="changelog-contents" style="width: 100%;">
+                                            <span class="fixes">Fixes</span>
+                                            <ul>
+                                                <li>Fixed some bugs for a better experience in the editor</li>
+                                            </ul>
+                                            <span class="addition">Additions</span>
+                                            <ul>
+                                                <li>The editor is available for both desktop and mobile. The function is the same, the
+                                                    editor was fixed the layout for the mobile version to be the most stable and flexible.
+                                                    If the mobile version is not as expected, you can turn on the desktop mode in your
+                                                    browser.</li>
+                                                <li>New elements that come to the editor is <b>Gumball Machine</b> and <b>Candy Cobra</b>.
+                                                    Gumball Machine is simple, you just need to put it in the table and you're done. Candy
+                                                    Cobra is still in the development stage, when you put it in the table, you will have to
+                                                    add properties in the Configuration section. And remember to note in the Configuration
+                                                    section, or else... your game will crash.</li>
+                                                <li>The editor interface has been changed and it has its official logo. And the editor has
+                                                    added blur glassmorphism effects to increase its beauty.</li>
+                                                <li>You can now report bugs through the Bug Report section in Settings. We will review the
+                                                    bug and fix it as soon as possible, bringing the best experience to users.</li>
+                                            </ul>
+                                        </div>
+                                    </div><br><md-divider inset=""></md-divider><br>-->
+                                </div>
+                        </div>
+                        <div class="main-content" id="rel_notes" style="scroll-behavior: smooth; display: none;">
+                            
+                                <a class="content-header" id="release-notes" href="#release-notes">Release notes</a>
+                                <div class="blog-main">
+                                    <p>Here you can see the changes of the editor over time! </p>
+                                    <div class="changelog-container">
+                                        <div class="changelog-date" style="width: 30%;">
+                                            <h3>03.08.2025</h3>
+                                            <span class="level-editor-ver">1.9 </span>
+                                        </div>
+                                        <div class="changelog-contents" style="width: 100%;">
+                                            <span class="fixes">Fixes</span>
+                                            <ul>
+                                                <li>Fixed some known issues</li>
+                                                <li>Fixed the entire UI for more modern</li>
+                                                <li>Fixed the mobile UI to make it easier to navigate across devices.</li>
+                                                <li><code>"candyCobras":3,</code> issue is officially fixed and smarter as you put Candy Cobras to your level. In this new version, you can put a Candy Cobra to your board and then the basket.</li>
+                                            </ul>
+                                            <span class="addition">Additions</span>
+                                            <ul>
+                                                <li>New soundtracks from Candy Crush Solitaire</li>
+                                                <li>Introducing Portals: click the first time to create an entrance and click again to make an exit! This element is officially released and ready to use.</li>
+                                                <li>Introducing Conveyor Belts: make a movement for your candies! Choose your direction and favorite portal color, and it is ready to go! This element is currently in experiments and may contain bugs and provide incorrect codes. </li>
+                                                <li>New accessbility tool: you can now zoom the board and drag freely if the board gets cut off, which makes more convenient and controllable.</li>
+                                            </ul>
+                                        </div>
+                                    </div><br><md-divider inset=""></md-divider><br>
+                                    <div class="changelog-container">
+                                        <div class="changelog-date" style="width: 30%;">
+                                            <h3>05.03.2025</h3>
+                                            <span class="level-editor-ver">1.9 
+                                                <span class="beta-text">BETA</span></span>
+                                        </div>
+                                        <div class="changelog-contents" style="width: 100%;">
+                                            <span class="fixes">Fixes</span>
+                                            <ul>
+                                                <li>Fixed some known issues</li>
+                                                <li>Fixed the entire UI for more modern</li>
+                                            </ul>
+                                            <span class="addition">Additions</span>
+                                            <ul>
+                                                <li>New soundtracks from Candy Crush Solitaire</li>
+                                                <li>Introducing Portals: click the first time to create an entrance and the second time to make an exit!</li>
+                                            </ul>
+                                        </div>
+                                    </div><br><md-divider inset=""></md-divider><br>
+                                    <div class="changelog-container">
+                                        <div class="changelog-date" style="width: 30%;">
+                                            <h3>23.01.2025</h3>
+                                            <span class="level-editor-ver">1.8.1</span>
+                                        </div>
+                                        <div class="changelog-contents" style="width: 100%;">
+                                            <span class="fixes">Fixes</span>
+                                            <ul>
+                                                <li>Fixed some bugs for a better experience in the editor</li>
+                                            </ul>
+                                            <span class="addition">Additions</span>
+                                            <ul>
+                                                <li>In-app Music &amp; Sound: you can open the background music to make levels while listening
+                                                    to music, increasing your relaxation and focusing more on your level. You can also turn
+                                                    on the mouse click sound effect like in Candy Crush.</li>
+                                                <li>Editor is now available for Windows operating system! Computers using Windows 10 and
+                                                    above can use it. You can download the setup from the notification in the editor or <a href="https://drive.usercontent.google.com/download?id=1DsI9hi_z5MeB9Xw1AxyMU3q5xfoyOMJo&amp;export=download&amp;authuser=0">click
+                                                        here</a>.</li>
+                                            </ul>
+                                        </div>
+                                    </div><br><md-divider inset=""></md-divider><br>
+                                    <div class="changelog-container">
+                                        <div class="changelog-date" style="width: 30%;">
+                                            <h3>19.01.2025</h3>
+                                            <span class="level-editor-ver">1.8</span>
+                                        </div>
+                                        <div class="changelog-contents" style="width: 100%;">
+                                            <span class="fixes">Fixes</span>
+                                            <ul>
+                                                <li>Fixed some bugs for a better experience in the editor</li>
+                                            </ul>
+                                            <span class="addition">Additions</span>
+                                            <ul>
+                                                <li>The editor is available for both desktop and mobile. The function is the same, the
+                                                    editor was fixed the layout for the mobile version to be the most stable and flexible.
+                                                    If the mobile version is not as expected, you can turn on the desktop mode in your
+                                                    browser.</li>
+                                                <li>New elements that come to the editor is <b>Gumball Machine</b> and <b>Candy Cobra</b>.
+                                                    Gumball Machine is simple, you just need to put it in the table and you're done. Candy
+                                                    Cobra is still in the development stage, when you put it in the table, you will have to
+                                                    add properties in the Configuration section. And remember to note in the Configuration
+                                                    section, or else... your game will crash.</li>
+                                                <li>The editor interface has been changed and it has its official logo. And the editor has
+                                                    added blur glassmorphism effects to increase its beauty.</li>
+                                                <li>You can now report bugs through the Bug Report section in Settings. We will review the
+                                                    bug and fix it as soon as possible, bringing the best experience to users.</li>
+                                            </ul>
+                                        </div>
+                                    </div><br><md-divider inset=""></md-divider><br>
+                                </div>
+                        </div>
+                        <div class="main-content" id="legal_stuff" style="scroll-behavior: smooth; display: none;">
+                            <h2 style="margin-top: 0;">Candy Crush Level Editor<br>Terms of Service, Legal Notice, and Credits</h2>
+                            <md-divider style="margin: 16px 0;"></md-divider>
+                            <section>
+                                <h3>1. Acceptance of Terms</h3>
+                                <p>
+                                    By accessing, browsing, or using the Candy Crush Level Editor ("the Editor"), you acknowledge that you have read, understood, and agree to be bound by these Terms of Service ("Terms"), our Privacy Policy, and all applicable laws and regulations. If you do not agree to these Terms, you are not authorized to use the Editor. These Terms constitute a legally binding agreement between you ("the User") and the Editor Team ("we", "us", "our").
+                                </p>
+                            </section>
+                            <section>
+                                <h3>2. Description of Service</h3>
+                                <p>
+                                    The Editor is a web-based, fan-made, non-commercial tool that enables users to create, edit, and share custom levels inspired by the Candy Crush franchise. The Editor is provided for educational, creative, and entertainment purposes only. The Editor is not affiliated with, endorsed by, or sponsored by King.com Limited or any of its affiliates, subsidiaries, or partners. All use of the Editor is at your own risk.
+                                </p>
+                                <p>
+                                    The Editor may be updated, modified, or discontinued at any time without prior notice. We reserve the right to add, remove, or change features, functionality, or content at our sole discretion.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>3. Eligibility</h3>
+                                <p>
+                                    You must be at least 13 years old or the minimum age required by your jurisdiction to use the Editor, or at least 8 years old with parental controls. By using the Editor, you represent and warrant that you meet the eligibility requirements. If you are using the Editor on behalf of an organization, you represent that you have the authority to bind that organization to these Terms.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>4. Intellectual Property</h3>
+                                <ul>
+                                    <li>
+                                        <strong>Trademarks & Copyrights:</strong> "Candy Crush" and all related marks, logos, characters, and game assets are trademarks or registered trademarks of King.com Limited. All original game assets, including but not limited to graphics, sounds, and gameplay mechanics, are the property of their respective owners. The Editor is an independent, fan-created project and does not claim ownership of any King.com Limited intellectual property.
+                                    </li>
+                                    <li>
+                                        <strong>Editor Assets:</strong> The Editor's source code, user interface, and custom assets (excluding any third-party or King.com Limited assets) are © 2022–2025 Candy Crush Level Editor Team and contributors. All rights reserved. The Editor may incorporate open-source libraries and frameworks, which are subject to their respective licenses.
+                                    </li>
+                                    <li>
+                                        <strong>User Content:</strong> You retain ownership of any original content you create using the Editor, including custom levels, configurations, and designs ("User Content"). By submitting, uploading, or sharing User Content through the Editor, you grant the Editor Team a worldwide, non-exclusive, royalty-free, perpetual, irrevocable license to use, reproduce, modify, adapt, publish, translate, distribute, publicly perform, and display such content for non-commercial purposes, including but not limited to showcasing user creations, improving the Editor, and promoting the community.
+                                    </li>
+                                    <li>
+                                        <strong>Third-Party Content:</strong> The Editor may display, include, or make available third-party content (including data, information, applications, and other products or services) or provide links to third-party websites or services. You acknowledge and agree that the Editor Team is not responsible for any third-party content, including its accuracy, completeness, timeliness, validity, copyright compliance, legality, decency, quality, or any other aspect thereof.
+                                    </li>
+                                </ul>
+                            </section>
+                            <section>
+                                <h3>5. User Conduct and Responsibilities</h3>
+                                <ul>
+                                    <li>Do not use the Editor for any unlawful, harmful, fraudulent, or abusive purposes.</li>
+                                    <li>Do not upload, share, or distribute content that infringes on the intellectual property rights, privacy, or publicity rights of others.</li>
+                                    <li>Do not attempt to reverse engineer, decompile, disassemble, or otherwise tamper with the Editor or its services.</li>
+                                    <li>Do not introduce viruses, malware, or any other harmful code or technology to the Editor.</li>
+                                    <li>Do not use automated scripts, bots, or other means to access, scrape, or interact with the Editor in a manner that exceeds normal human usage.</li>
+                                    <li>Respect the community and refrain from posting or sharing offensive, inappropriate, defamatory, harassing, or malicious content.</li>
+                                    <li>You are solely responsible for your User Content and any consequences of sharing or publishing it.</li>
+                                    <li>Do not impersonate any person or entity or misrepresent your affiliation with any person or entity.</li>
+                                </ul>
+                            </section>
+                            <section>
+                                <h3>6. Account Registration and Security</h3>
+                                <p>
+                                    Some features of the Editor may require you to register for an account or provide personal information. You agree to provide accurate, current, and complete information and to update it as necessary. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. The Editor Team is not liable for any loss or damage arising from your failure to comply with these requirements.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>7. Privacy Policy</h3>
+                                <p>
+                                    The Editor respects your privacy. We do not collect personal information unless explicitly provided by you (e.g., for bug reports, feedback, or account registration). Any data collected will be handled in accordance with our Privacy Policy and applicable data protection laws. We do not sell, rent, or share your personal information with third parties except as required by law or with your explicit consent. For more details, please review our full Privacy Policy.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>8. Disclaimer of Warranty</h3>
+                                <p>
+                                    THE EDITOR IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, OR NON-INFRINGEMENT. THE EDITOR TEAM DOES NOT WARRANT THAT THE EDITOR WILL BE UNINTERRUPTED, ERROR-FREE, SECURE, OR FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS. YOUR USE OF THE EDITOR IS AT YOUR SOLE RISK.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>9. Limitation of Liability</h3>
+                                <p>
+                                    TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE EDITOR TEAM, ITS CONTRIBUTORS, AFFILIATES, LICENSORS, OR PARTNERS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, ARISING OUT OF OR IN CONNECTION WITH YOUR ACCESS TO OR USE OF, OR INABILITY TO ACCESS OR USE, THE EDITOR, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+                                </p>
+                                <p>
+                                    SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES, SO THE ABOVE LIMITATION MAY NOT APPLY TO YOU.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>10. Indemnification</h3>
+                                <p>
+                                    You agree to indemnify, defend, and hold harmless the Editor Team, its contributors, affiliates, licensors, and partners from and against any and all claims, damages, obligations, losses, liabilities, costs, or debt, and expenses (including but not limited to attorney's fees) arising from: (a) your use of and access to the Editor; (b) your violation of any term of these Terms; (c) your violation of any third-party right, including without limitation any copyright, property, or privacy right; or (d) any claim that your User Content caused damage to a third party.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>11. Modifications to Terms and Service</h3>
+                                <p>
+                                    The Editor Team reserves the right, at its sole discretion, to modify or replace these Terms at any time. We will provide notice of material changes by posting the updated Terms on this page and updating the "Last updated" date below. Your continued use of the Editor after any such changes constitutes your acceptance of the new Terms. If you do not agree to the new Terms, you must stop using the Editor.
+                                </p>
+                                <p>
+                                    The Editor Team may also, at any time and without notice, modify, suspend, or discontinue the Editor or any part thereof, temporarily or permanently. We are not liable to you or any third party for any modification, suspension, or discontinuance of the Editor.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>12. Termination</h3>
+                                <p>
+                                    We reserve the right to terminate or suspend your access to the Editor, without prior notice or liability, for any reason whatsoever, including without limitation if you breach these Terms. Upon termination, your right to use the Editor will immediately cease. All provisions of the Terms which by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity, and limitations of liability.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>13. Governing Law and Dispute Resolution</h3>
+                                <p>
+                                    These Terms shall be governed and construed in accordance with the laws of the jurisdiction in which the Editor Team operates, without regard to its conflict of law provisions. Any dispute arising out of or relating to these Terms or the Editor shall be resolved through good faith negotiations. If a resolution cannot be reached, the dispute shall be submitted to binding arbitration in the Editor Team's jurisdiction.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>14. Severability</h3>
+                                <p>
+                                    If any provision of these Terms is found to be invalid or unenforceable by a court of competent jurisdiction, the remaining provisions of these Terms will remain in full force and effect.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>15. Entire Agreement</h3>
+                                <p>
+                                    These Terms, together with the Privacy Policy and any other legal notices published by the Editor Team, constitute the entire agreement between you and the Editor Team concerning your use of the Editor, superseding any prior agreements between you and the Editor Team regarding the Editor.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>16. Credits</h3>
+                                <ul>
+                                    <li>
+                                        <strong>Development:</strong> Candy Crush Level Editor Team and open-source contributors. Special thanks to all community members who provided feedback, bug reports, and feature suggestions.
+                                    </li>
+                                    <li>
+                                        <strong>UI/UX:</strong> Built with Material Design 3 components and custom styles inspired by Google's Material Design. Thanks to the open-source Material Web Components and the MDUI project. Main UI inspired by iOS/iPadOS/MacOS 26.
+                                    </li>
+                                    <li>
+                                        <strong>Fonts:</strong> Inter, Google Sans, Roboto (see <a href="https://fonts.google.com/" target="_blank" rel="noopener">Google Fonts</a>).
+                                    </li>
+                                    <li>
+                                        <strong>Icons:</strong> Material Symbols, SF Pro Icons, and custom SVGs.
+                                    </li>
+                                    <li>
+                                        <strong>Audio:</strong> All music and sound effects are original, used with permission. All in-app music and sound effects are original and owned by King.com, Limited. See the in-app music section for specific attributions.
+                                    </li>
+                                    <li>
+                                        <strong>Special Thanks:</strong> King.com Limited for creating Candy Crush and inspiring this project. Thanks to the founder of this tool, developers, testers, and community members for their invaluable support.
+                                    </li>
+                                    <li>
+                                        <strong>Please refer to the <a href="https://github.com/candycrushgemer/CCS-Level-Editor/blob/main/LICENSE" target="_blank" rel="noopener">project repository</a> for a full list of dependencies and licenses.</strong>
+                                    </li>
+                                </ul>
+                            </section>
+                            <section>
+                                <h3>17. Acknowledgements</h3>
+                                <p>
+                                    This project is a fan creation and is not affiliated with or endorsed by King.com Limited. All trademarks and copyrights are the property of their respective owners. The Editor Team respects the rights of all intellectual property holders and will promptly address any concerns or takedown requests.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>18. Contact</h3>
+                                <p>
+                                    For questions, feedback, bug reports, copyright concerns, or legal inquiries, please contact the Editor Team via the in-app feedback form or email: <a href="mailto:contact.ccgccs@gmail.com">contact.ccgccs@gmail.com</a>. We strive to respond to all inquiries within 7 business days.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>19. Community Guidelines</h3>
+                                <ul>
+                                    <li>Be respectful and constructive in all interactions with other users and the Editor Team.</li>
+                                    <li>Do not post or share content that is hateful, discriminatory, or otherwise inappropriate.</li>
+                                    <li>Report bugs, vulnerabilities, or abusive behavior through the appropriate channels.</li>
+                                    <li>Help foster a positive, creative, and inclusive environment for all users.</li>
+                                </ul>
+                            </section>
+                            <section>
+                                <h3>20. Exported Content and Sharing</h3>
+                                <p>
+                                    You may export, share, or publish levels created with the Editor for non-commercial purposes, provided you do not infringe on the intellectual property rights of King.com Limited or any third party. If you share your levels publicly, you are responsible for ensuring that your content complies with these Terms and all applicable laws.
+                                </p>
+                                <p>
+                                    The Editor Team is not responsible for any content shared outside of the Editor platform. If you encounter infringing or inappropriate content, please report it to us for review and possible removal.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>21. Feedback and Suggestions</h3>
+                                <p>
+                                    We welcome your feedback, suggestions, and ideas for improving the Editor. By submitting feedback, you grant us the right to use, modify, and incorporate your suggestions without any obligation to compensate you.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>22. Accessibility</h3>
+                                <p>
+                                    The Editor Team is committed to making the Editor accessible to as many users as possible. If you encounter accessibility barriers or have suggestions for improvement, please contact us.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>23. Language and Translations</h3>
+                                <p>
+                                    The Editor and these Terms may be provided in multiple languages for convenience. In the event of any discrepancy or conflict between translations, the English version shall prevail.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>24. No Waiver</h3>
+                                <p>
+                                    The failure of the Editor Team to enforce any right or provision of these Terms will not be deemed a waiver of such right or provision.
+                                </p>
+                            </section>
+                            <md-divider style="margin: 24px 0;"></md-divider>
+                            <div style="font-size: 13px; color: var(--md-sys-color-on-surface-variant);">
+                                Last updated: 03 August 2025
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <forge-dialog class="settings-fulldialog" style="--forge-dialog-shape: 30px; --forge-dialog-background: var(--md-sys-color-surface-container-high); width: 90vh;">
+                    <forge-scaffold style="margin: 0; width: 700px; height: 700px;">
+                        <mdui-layout slot="body">
+                            <mdui-top-app-bar style="background: #ffffff00;">
+                                <md-icon-button class="close-settings">
+                                    <md-icon>􀆄</md-icon>
+                                </md-icon-button>
+                                <mdui-top-app-bar-title><strong>Settings</strong></mdui-top-app-bar-title>
+                                <div style="flex-grow: 1"></div>
+                            </mdui-top-app-bar>
+                            <mdui-layout-main>
+                                <md-list style="margin: 15px; border-radius: 20px;">
+                                    <md-list-item style="font-family: 'Inter', sans-serif;">
+                                        <span>Enable dark mode</span>
+                                        <mdui-switch id="switchDark" icon="none" slot="end" style="--forge-switch-track-on-color: var(--md-sys-color-inverse-primary); --forge-switch-handle-on-color: var(--md-sys-color-primary);"></mdui-switch>
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <forge-expansion-panel>
+                                        <md-list-item slot="header" style="font-family: 'Inter', sans-serif;">
+                                            <span>Music and sound</span>
+                                            <div style="display: flex; place-items: center; gap: 10px;" slot="end">
+                                                <forge-open-icon></forge-open-icon>
+                                            </div>
+                                        </md-list-item>
+                                        <div style="margin-left: 15px; padding: 10px; overflow: hidden; font-family: 'Inter', sans-serif;">
+                                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                                <md-list-item style="background-color: var(--md-sys-color-secondary-container); border-radius: 20px; width: 90%;">
+                                                    <md-icon slot="start">􀑪</md-icon>
+                                                    <div slot="headline" id="songName" style="font-family: 'Inter', sans-serif;"> Bonbon Bonbon</div>
+                                                    <div slot="end" style="display: flex; place-items: center; gap: 10px;">
+                                                        <md-icon-button id="prevSong">
+                                                            <md-icon>􀊍</md-icon>
+                                                        </md-icon-button>
+                                                        <md-icon-button id="playSong">
+                                                            <md-icon>􀊄</md-icon>
+                                                        </md-icon-button>
+                                                        <md-icon-button id="nextSong">
+                                                            <md-icon>􀊏</md-icon>
+                                                        </md-icon-button>
+                                                    </div>
+                                                </md-list-item>
+                                                <audio id="musicMain" loop>
+                                                    <source id="musicSrc" src="audio/songs/Editor_Song_Theme_Candy_Fantasia.ogg" type="audio/ogg">
+                                                </audio>
+                                                <md-list-item>
+                                                    <md-icon-button id="mute" slot="start">
+                                                        <md-icon>􀊩</md-icon>
+                                                    </md-icon-button>
+                                                    <md-slider id="volumeCustomize" min="0" max="1" step="0.01" value="1"></md-slider>
+                                                </md-list-item>
+                                              </div>
+                                            <md-divider></md-divider>
+                                            <md-list-item>
+                                                <span>Enable clicking sound</span>
+                                                <mdui-switch id="switchClick" icon="none" slot="end" style="--forge-switch-track-on-color: var(--md-sys-color-inverse-primary); --forge-switch-handle-on-color: var(--md-sys-color-primary);"></mdui-switch>
+                                            </md-list-item>
+                                        </div>
+                                    </forge-expansion-panel>
+                                        
+                                    <md-divider></md-divider>
+                                    
+                                    <md-list-item type="link" href="https://forms.gle/XMkahmBmzxN2HUEN9" target="_blank">
+                                        Bug report
+                                        <md-icon slot="end">􀄯</md-icon>
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-list-item>
+                                        <md-icon slot="start">􀅴</md-icon>
+                                        V1.9
+                                        <md-filled-button id="checkUpdates" slot="end">Check for updates</md-filled-button>
+                                        <md-text-button slot="end">View changelogs</md-text-button>
+                                    </md-list-item>
+                                </md-list>
+                                <mdui-snackbar closeable class="updates-notify">You're using the latest version of Level Editor!</mdui-snackbar>
+                            </mdui-layout-main>
+                        </mdui-layout>
+                    </forge-scaffold>
+                </forge-dialog>
+                <audio id="clickSound" src="audio/ui/Generic_Button_Sound_Effect.wav"></audio>
+            </mdui-layout-main>
+
+            <script>
+                const beginningNavd = document.querySelector(".beginning-navd");
+                const menuBtn = document.querySelector(".opennavd");
+                const closeBtn = document.querySelector(".close-navdrawer");
+              
+                menuBtn.addEventListener("click", () => beginningNavd.open = true);
+                closeBtn.addEventListener("click", () => beginningNavd.open = false);
+            </script>
+
+        <script>
+            // Function to check the dark mode switch and apply changes
+            function checkDarkMode() {
+                // Get the switch element
+                const darkModeSwitch = document.getElementById('switchDark');
+
+                // Check if the switch is checked
+                if (darkModeSwitch.checked) {
+                    // Add the dark theme class to the HTML element
+                    document.documentElement.classList.add('mdui-theme-dark');
+
+                    // Change the src of the mwcaccent link
+                    const mwcAccentLink = document.getElementById('mwcaccent');
+                    mwcAccentLink.setAttribute('href', 'mat-accent-color-dark.css');
+                } else {
+                    // Remove the dark theme class if not checked
+                    document.documentElement.classList.remove('mdui-theme-dark');
+
+                    // Change the src back to light accent color
+                    const mwcAccentLink = document.getElementById('mwcaccent');
+                    mwcAccentLink.setAttribute('href', 'mat-accent-color-light.css');
+                }
+            }
+
+            // Add an event listener to the switch to check for changes
+            document.getElementById('switchDark').addEventListener('change', checkDarkMode);
+
+            // Initial check on page load
+            document.addEventListener('DOMContentLoaded', checkDarkMode);
+        </script>
+
+        <script>
+            const updateSnackbar = document.querySelector(".updates-notify");
+            const checkUpdates = document.getElementById("checkUpdates");
+
+            checkUpdates.addEventListener("click", () => updateSnackbar.open = true);
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const settingsBtn = document.querySelector('.settings-btn');
+                const settingsFulldialog = document.querySelector('.settings-fulldialog');
+                const closeSettings = document.querySelector('.close-settings');
+
+                // Add event listener to settings button
+                settingsBtn.addEventListener('click', function () {
+                    settingsFulldialog.setAttribute('open', '');
+                });
+
+                // Add event listener to close settings button
+                closeSettings.addEventListener('click', function () {
+                    settingsFulldialog.removeAttribute('open');
+                });
+            });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+            // Get the elements
+            const ccsCodes = document.getElementById('ccs-codes');
+            const lvledGuid = document.getElementById('lvled-guid');
+            const levelEditorGuide = document.getElementById('level-editor-guide');
+            const levelEditorGuideTbc = document.getElementById('level-editor-guide-tbc');
+            const ccsLevelCodes = document.getElementById('ccs-level-codes');
+            const ccsLevelCodesTbc = document.getElementById('ccs-level-codes-tbc');
+
+            // Function to handle #ccs-codes click
+            ccsCodes.addEventListener('click', function() {
+                // Set display to none for level editor guides
+                levelEditorGuide.style.display = 'none';
+                levelEditorGuideTbc.style.display = 'none';
+                
+                // Remove style attribute for ccs level codes
+                ccsLevelCodes.removeAttribute('style');
+                ccsLevelCodesTbc.removeAttribute('style');
+            });
+
+            // Function to handle #lvled-guid click
+            lvledGuid.addEventListener('click', function() {
+                // Remove style attribute for level editor guides
+                levelEditorGuide.removeAttribute('style');
+                levelEditorGuideTbc.removeAttribute('style');
+                
+                // Set display to none for ccs level codes
+                ccsLevelCodes.style.display = 'none';
+                ccsLevelCodesTbc.style.display = 'none';
+            });
+        });
+        </script>
+
+        <style>
+            .mdc-data-table__table, table {
+                border: 0.5px solid var(--md-sys-color-outline-variant);
+            }
+
+            .mdc-data-table__header-row, th {
+                background-color: var(--md-sys-color-surface-container) !important;
+                color: var(--md-sys-color-on-surface) !important;
+            }
+
+            .mdc-data-table__cell, .mdc-data-table__content, td, tr {
+                background-color: var(--md-sys-color-surface) !important;
+                color: var(--md-sys-color-on-surface) !important;
+                border-radius: 0px;
+                
+            }
+
+
+            .beginning-navd::part(panel) {
+                height: 95%;
+                border-radius: 30px;
+                padding: 15px;
+                margin: auto 0;
+                margin-left: 10px;
+            }
+
+            .table-of-content {
+                width: 300px;
+                margin-right: 20px;
+                padding: 10px;
+                border-radius: 30px;
+                background-color: var(--md-sys-color-surface);
+                border: 1px solid #00000025;
+            }
+
+            .table-contents-a {
+                color: var(--md-sys-color-primary);
+                text-decoration: none;
+            }
+
+            .main-content {
+                border-radius: 30px;
+                padding: 15px;
+                width: 100%;
+                margin-right: 12px;
+                overflow: scroll;
+                overflow-x: hidden;
+                display: none; /* Hide all main-content by default */
+            }
+
+            .content-header {
+                display: block;
+                font-size: 1.5em;
+                margin-block-start: 0.83em;
+                margin-block-end: 0.83em;
+                margin-inline-start: 0px;
+                margin-inline-end: 0px;
+                font-weight: bold;
+                unicode-bidi: isolate;
+                text-decoration: none;
+                color: #000000;
+            }
+
+            .h3-header-href {
+                display: block;
+                font-size: 1.17em;
+                margin-block-start: 1em;
+                margin-block-end: 1em;
+                margin-inline-start: 0px;
+                margin-inline-end: 0px;
+                font-weight: bold;
+                unicode-bidi: isolate;
+                text-decoration: none;
+                color: initial;
+            }
+
+            .code-content-wrapper {
+                display: flex;
+                height: 93%;
+                justify-content: space-between;
+                overflow: hidden;
+            }
+
+            @font-face {
+                font-family: GoogleSans Code;
+                src: url(font/google-sans/GoogleSansCode.otf) format(opentype);
+            } 
+
+            .code-container, .code-part {font-family: GoogleSans Code;}
+            .code-container 
+            {
+                background-color: var(--md-sys-color-surface-variant);
+                padding-left: 20px;
+                padding-top: 5px;
+                padding-right: 20px;
+                padding-bottom: 5px;
+                border-radius: 20px;
+            }
+
+            /* Custom scrollbar */
+            ::-webkit-scrollbar {
+            width: 7px;
+            height: 10px;
+            }
+
+            ::-webkit-scrollbar-thumb {
+            background-color: var(--md-sys-color-primary);
+            }
+
+            p {line-height: 29px;} ul {line-height: 29px;}
+
+            .newlevelbigbtn::part(focus-ring) {
+                --md-focus-ring-shape: 20px;
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const musicConfig = document.getElementById('musicConfig');
+                const musicMain = document.getElementById('musicMain');
+                const musicSrc = document.getElementById('musicSrc');
+                const playSongButton = document.getElementById('playSong');
+                const muteButton = document.getElementById('mute');
+                const volumeCustomize = document.getElementById('volumeCustomize');
+                const enableMusic = document.getElementById('enableMusic');
+                const songNameDisplay = document.getElementById('songName'); // Element to display the song name
+
+                // Function to change music source and play
+                function changeMusicSource(source, songName) {
+                    musicSrc.src = source;
+                    musicMain.load();
+                    musicMain.play();
+                    songNameDisplay.textContent = songName; // Display the song name
+                }
+
+                // Define the list of songs
+                const songs = [
+                    {
+                        id: 'bonbon-bonbon',
+                        src: 'audio/songs/bonbon_bonbon.ogg',
+                        name: 'Bonbon Bonbon'
+                    },
+                    {
+                        id: 'bonus',
+                        src: 'audio/songs/bonus.ogg',
+                        name: 'Bonus'
+                    },
+                    {
+                        id: 'candification',
+                        src: 'audio/songs/candification.ogg',
+                        name: 'Candification'
+                    },
+                    {
+                        id: 'candy-crushed',
+                        src: 'audio/songs/candy_crushed.ogg',
+                        name: 'Candy Crushed'
+                    },
+                    {
+                        id: 'candy-hour',
+                        src: 'audio/songs/candy_hour.ogg',
+                        name: 'Candy Hour'
+                    },
+                    {
+                        id: 'colorbomb',
+                        src: 'audio/songs/colorbomb.ogg',
+                        name: 'Colorbomb'
+                    },
+                    {
+                        id: 'dunk-that-cookie',
+                        src: 'audio/songs/dunk_that_cookie.ogg',
+                        name: 'Dunk That Cookie'
+                    },
+                    {
+                        id: 'floaty',
+                        src: 'audio/songs/floaty.ogg',
+                        name: 'Floaty'
+                    },
+                    {
+                        id: 'its-frosty',
+                        src: 'audio/songs/its_frosty.ogg',
+                        name: 'It\'s Frosty'
+                    },
+                    {
+                        id: 'just-shouffle',
+                        src: 'audio/songs/just_shouffle.ogg',
+                        name: 'Just Shouffle'
+                    },
+                    {
+                        id: 'sweet-sweet-caramel',
+                        src: 'audio/songs/sweet_sweet_caramel.ogg',
+                        name: 'Sweet Sweet Caramel'
+                    }
+                ];
+
+                // Track the current song index
+                let currentSongIndex = 0;
+
+                // Add event listeners for each song button
+                songs.forEach((song, idx) => {
+                    const btn = document.getElementById(song.id);
+                    if (btn) {
+                        btn.addEventListener('click', function() {
+                            currentSongIndex = idx;
+                            changeMusicSource(song.src, song.name);
+                        });
+                    }
+                });
+
+                // Previous song button
+                const prevSongBtn = document.getElementById('prevSong');
+                if (prevSongBtn) {
+                    prevSongBtn.addEventListener('click', function() {
+                        currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+                        const song = songs[currentSongIndex];
+                        changeMusicSource(song.src, song.name);
+                    });
+                }
+
+                // Next song button
+                const nextSongBtn = document.getElementById('nextSong');
+                if (nextSongBtn) {
+                    nextSongBtn.addEventListener('click', function() {
+                        currentSongIndex = (currentSongIndex + 1) % songs.length;
+                        const song = songs[currentSongIndex];
+                        changeMusicSource(song.src, song.name);
+                    });
+                }
+
+                // Play/Pause functionality
+                playSongButton.addEventListener('click', function() {
+                    const mdIcon = playSongButton.querySelector('md-icon'); // Select the md-icon inside the button
+                    if (musicMain.paused) {
+                        musicMain.play();
+                        mdIcon.textContent = '􀊆'; // Change to pause icon
+                    } else {
+                        musicMain.pause();
+                        mdIcon.textContent = '􀊄'; // Change to play icon
+                    }
+                });
+
+                // Mute/Unmute functionality
+                muteButton.addEventListener('click', function() {
+                    const mdIcon = muteButton.querySelector('md-icon'); // Select the md-icon inside the button
+                    musicMain.muted = !musicMain.muted;
+                    mdIcon.textContent = musicMain.muted ? '􀊣' : '􀊩'; // Change icon based on mute state
+                });
+
+                // Volume control using md-slider
+                volumeCustomize.addEventListener('input', function() {
+                    musicMain.volume = volumeCustomize.value; // Set the audio volume based on slider value
+                });
+            });
+        </script>
+
+        <script>
+            // Responsive table of contents and minimize functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const tableOfContent = document.querySelector('.table-of-content');
+                const bottomSideBar = document.querySelector('.bottom-side-bar');
+                const contents = document.querySelector('.bottom-side-bar .contents');
+                const documentsContent = document.querySelector('.bottom-side-bar .contents .content.documents');
+                const minimizeTab = document.querySelector('.tab.minimize');
+                const codeContentWrapper = document.querySelector('.code-content-wrapper');
+                
+                let originalTableOfContentParent = tableOfContent.parentNode;
+                let originalBottomSideBarHeight = bottomSideBar.style.height;
+                let isMinimized = false;
+
+                // Function to handle responsive behavior
+                function handleResponsiveLayout() {
+                    if (window.innerWidth < 860) {
+                        // Move table of content to documents content
+                        if (tableOfContent.parentNode !== documentsContent) {
+                            documentsContent.appendChild(tableOfContent);
+                            tableOfContent.style.width = '100%';
+                            tableOfContent.style.marginRight = '0';
+                        }
+                    } else {
+                        // Move table of content back to original position (before any .main-content)
+                        if (tableOfContent.parentNode === documentsContent) {
+                            // Find the first .main-content element in the code-content-wrapper
+                            const firstMainContent = codeContentWrapper.querySelector('.main-content');
+                            if (firstMainContent) {
+                                // Insert the table of content before the first .main-content
+                                codeContentWrapper.insertBefore(tableOfContent, firstMainContent);
+                            } else {
+                                // If no .main-content found, append to the end
+                                codeContentWrapper.appendChild(tableOfContent);
+                            }
+                            tableOfContent.style.width = '300px';
+                            tableOfContent.style.marginRight = '20px';
+                        }
+                    }
+                }
+
+                // Function to handle minimize functionality
+                function handleMinimize() {
+                    if (!isMinimized) {
+                        bottomSideBar.style.height = '30px';
+                        isMinimized = true;
+                    } else {
+                        bottomSideBar.style.height = originalBottomSideBarHeight || '';
+                        isMinimized = false;
+                    }
+                }
+
+                // Add event listeners
+                window.addEventListener('resize', handleResponsiveLayout);
+                minimizeTab.addEventListener('click', handleMinimize);
+
+                // Initial call to set up responsive layout
+                handleResponsiveLayout();
+            });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const switchClick = document.getElementById('switchClick');
+                const clickSound = document.getElementById('clickSound');
+
+                // Function to play sound
+                function playClickSound() {
+                    if (switchClick.checked) {
+                        clickSound.currentTime = 0; // Reset sound to start
+                        clickSound.play(); // Play the sound
+                    }
+                }
+
+                // Add event listener to the entire document
+                document.addEventListener('click', playClickSound);
+            });
+        </script>
+        
+        <script>
+            // Page navigation functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                // Hide all main-content elements initially
+                document.querySelectorAll('.main-content').forEach(function(content) {
+                    content.style.display = 'none';
+                });
+                
+                // Find all page navigation items
+                const pageItems = document.querySelectorAll('.list-item.document-li-itm.page');
+                
+                // Function to show a specific page
+                function showPage(targetPage) {
+                    // Hide all main-content elements
+                    const allContents = document.querySelectorAll('.main-content');
+                    allContents.forEach(function(content) {
+                        content.style.display = 'none';
+                    });
+                    
+                    // Show the corresponding main-content element
+                    const targetContent = document.querySelector('.main-content#' + targetPage);
+                    if (targetContent) {
+                        targetContent.style.display = 'block';
+                    }
+                }
+                
+                // Function to update URL parameter
+                function updateURLParameter(doc) {
+                    const url = new URL(window.location);
+                    url.searchParams.set('doc', doc);
+                    window.history.pushState({}, '', url);
+                }
+                
+                // Function to get page from URL parameter
+                function getPageFromURL() {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    return urlParams.get('doc');
+                }
+                
+                // Add click event listeners
+                pageItems.forEach(function(pageItem, index) {
+                    pageItem.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // Get the page class from the element
+                        const pageClasses = this.className.split(' ');
+                        let targetPage = null;
+                        
+                        // Find the page class (starts with 'pg_')
+                        for (let className of pageClasses) {
+                            if (className.startsWith('pg_')) {
+                                targetPage = className.replace('pg_', ''); // Remove 'pg_' prefix
+                                break;
+                            }
+                        }
+                        
+                        if (targetPage) {
+                            // Show the page
+                            showPage(targetPage);
+                            
+                            // Update URL parameter
+                            updateURLParameter(targetPage);
+                        }
+                    });
+                });
+                
+                // Check if there's a doc parameter in the URL
+                const urlDoc = getPageFromURL();
+                if (urlDoc) {
+                    // Show the page from URL parameter
+                    showPage(urlDoc);
+                } else {
+                    // Show the first page by default
+                    if (pageItems.length > 0) {
+                        pageItems[0].click();
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

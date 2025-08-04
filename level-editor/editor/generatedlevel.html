@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Download stuff-->
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+        {
+        "imports": {
+            "@material/web/": "https://esm.run/@material/web/"
+        }
+        }
+    </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+    <link rel="stylesheet" href="accent.css">
+    <!--Google Sans Text-->
+    <link rel="stylesheet" href="font.css">
+    <!--Dreamworld CSS-->
+    <link rel="stylesheet" href="dreamworld.css">
+
+    <!--General Information-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View my exported level!">
+    <meta name="keywords" content="ccs, candy crush saga, level creator, level editor">
+    <meta name="author" content="Candy Crush Gemer">
+    <title>Exported level</title>
+    <script src="script.js"></script>
+    <!-- Filled -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Outlined -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Rounded -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+    <!-- Sharp -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+
+    <!-- Two Tone -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'GoogleSans Code';
+            src: url(font/google-sans/GoogleSansCode.otf) format('opentype');
+        }
+
+        @font-face {
+            font-family: 'Roboto Mono';
+            src: url(font/RobotoMono-Regular.ttf);
+        }
+
+        html {
+            color: #fff;
+            background: linear-gradient(280deg,rgba(0, 112, 181, 1) 12%, rgba(0, 42, 115, 1) 69%);
+        }
+
+        body {
+            color: #fff;
+            background: #00000000;
+        }
+
+        
+        .monaco-editor {
+            height: 500px !important;
+            font-family: GoogleSans Code, monospace !important; 
+        }
+
+        #container {
+            width: 90vw;
+            height: 500px;
+            font-family: GoogleSans Code, monospace !important; 
+            border-radius: 30px;
+            margin: 0 auto;
+        }
+
+        span {
+            font-family: 'Roboto Mono';
+        }
+
+        .editor-wrapper {
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        md-icon {
+            color: #000;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mat-accent-color-light.css">
+</head>
+<body>
+    <div class="overlay-loading">
+        <img src="intro_logo_gif.gif" width="250px" style="user-select: none;pointer-events: none;">
+        <spinner-load></spinner-load>
+
+        <div class="watermark" style="position: absolute; bottom: 20px; display: flex; flex-direction: column; align-items: center;">
+            <span style="font-size: 12px; opacity: 0.5;">from</span>
+            <div style="display: flex; align-items: center; gap: 2px;">
+                <img src="CCGAppsGifLogo.gif" alt="" style="width: 30px;"> CCGApps
+            </div>
+        </div>
+    </div>
+    <script>
+        window.onload = function() {
+            const loadingOverlay = document.querySelector('.overlay-loading');
+            // Set opacity to 0 after load
+            loadingOverlay.style.opacity = '0';
+            loadingOverlay.style.transform = 'scale(1.2)';
+            loadingOverlay.style.backdropFilter = 'blur(0px)';
+            // After 0.5s, set display to none
+            setTimeout(() => {
+                loadingOverlay.style.display = 'none';
+            }, 500);
+        };
+    </script>
+    <mdui-layout>
+        <mdui-top-app-bar class="top-app-bar" style="background-color: #00000000;">
+            <md-icon-button onclick="window.history.back()"><md-icon>􀆉</md-icon></md-icon-button>
+        </mdui-top-app-bar>
+      
+        <mdui-layout-main class="example-layout-main" style="height: 97vh; margin-left: 20px; margin-right: 20px;">
+            <h1 style="text-align: center; margin-top: 40px; font-family: Google Sans;">Generated level</h1>
+            <br>
+            <div class="editor-wrapper">
+                <div id="container"></div>
+            </div>
+            <div id="sharingContainer" style="width: fit-content; margin: 0 auto; padding: 10px; background: color-mix(in srgb, var(--md-sys-color-surface-container-high) 60%, transparent); backdrop-filter: blur(10px); border-radius: 64px; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 1000;">
+                <div tabindex="0" class="buttonsharing" onclick="saveExport()">
+                    <div class="avatar-big-button"><md-icon>􀈨</md-icon></div>
+                </div>
+                <div tabindex="0" class="buttonsharing" id="facebookShare" onclick="shareOnFacebook()">
+                    <div class="avatar-big-button"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/500px-Facebook_Logo_%282019%29.png" width="48px" draggable="false"> </div>
+                </div>
+                <div tabindex="0" class="buttonsharing" id="xShare" onclick="shareOnX()">
+                    <div class="avatar-big-button" style="background-color: #ffffff; border-radius: 64px;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/X_logo.jpg" width="48px" style="border-radius: 64px;" draggable="false">
+                    </div>
+                </div>
+                <div tabindex="0" class="buttonsharing" id="emailShare" onclick="shareViaEmail()">
+                    <div class="avatar-big-button"><md-icon>􀍖</md-icon></div>
+                </div>
+                <div tabindex="0" class="buttonsharing" id="copyLink">
+                    <div class="avatar-big-button"><md-icon id="confirmationCopy">􀉣</md-icon></div>
+                </div>
+                <div class="buttonsharing" tabindex="0" id="advancedShare">
+                    <div class="avatar-big-button"><md-icon>􀉑</md-icon></div>
+                </div>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/monaco-editor/min/vs/loader.js"></script>
+
+            <script id="vscodeConfig">
+                // Extract the content from the URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const encodedContent = urlParams.get('content');
+                const content = encodedContent ? decodeURIComponent(encodedContent) : '{"example": "No content provided!"}';
+                console.log("Extracted content:", content); // Debugging log
+
+                require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor/min/vs' } });
+                require(['vs/editor/editor.main'], function () {
+                    // Define a Material 3-inspired dark theme for Monaco
+                    monaco.editor.defineTheme('material3Dark', {
+                        base: 'vs-dark',
+                        inherit: true,
+                        rules: [
+                            { token: '', foreground: 'E3E3E3' }, // Default text color
+                            { token: 'comment', foreground: '7DD6F7', fontStyle: 'italic' }, // Cyan for comments
+                            { token: 'string', foreground: 'F2B8B5' }, // Soft red for strings
+                            { token: 'keyword', foreground: 'B69DF8' }, // Material purple for keywords
+                            { token: 'number', foreground: 'F7D070' }, // Yellow for numbers
+                            { token: 'delimiter', foreground: 'A3A3A3' }, // Gray for delimiters
+                        ],
+                        colors: {
+                            'editor.background': '#1C1B1F22', // Material 3 dark surface
+                            'editor.foreground': '#E3E3E3',
+                            'editor.lineHighlightBackground': '#23232B42',
+                            'editorCursor.foreground': '#F2B8B5',
+                            // Changed selection color to a more vibrant Material 3 accent (Material 3 primary, 80% opacity)
+                            'editor.selectionBackground': '#4A8CFF55',
+                            'editor.inactiveSelectionBackground': '#6750A433',
+                            'editorLineNumber.foreground': '#938F99',
+                            'editorLineNumber.activeForeground': '#F2B8B5',
+                            'editorIndentGuide.background': '#49454F55',
+                            'editorIndentGuide.activeBackground': '#49454F99',
+                        }
+                    });
+
+                    // Always use dark mode
+                    const theme = 'material3Dark';
+
+                    // Create the Monaco Editor with the extracted content
+                    const editor = monaco.editor.create(document.getElementById('container'), {
+                        value: content,
+                        language: 'json',
+                        theme: theme,
+                        fontFamily: 'GoogleSans Code, Fira Mono, Menlo, Consolas, monospace',
+                        wordWrap: 'on',
+                        cursorBlinking: 'smooth',
+                        readOnly: true,
+                        minimap: { enabled: false }
+                    });
+                });
+            </script>
+
+        <style>
+            /* Force Monaco Editor to use GoogleSans Code font */
+            #container .monaco-editor,
+            #container .monaco-editor * {
+                font-family: 'GoogleSans Code', 'Fira Mono', 'Menlo', 'Consolas', 'monospace' !important;
+            }
+
+            #container .monaco-editor {
+                border-radius: 30px;
+            }
+        </style>
+        </mdui-layout-main>
+    </mdui-layout>
+
+    <style>
+        .container {
+        width: 97%;
+        }
+
+        .step {
+        
+        padding: 10px;
+        
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        
+        background-color: cream;
+        }
+
+        .v-stepper {
+        position: relative;
+        /*   visibility: visible; */
+        }
+
+
+        /* regular step */
+        .step .circle {
+        background-color: white;
+        border: 3px solid gray;
+        border-radius: 100%;
+        width: 20px;    /* +6 for border */
+        height: 20px;
+        display: inline-block;
+        }
+
+        .step .line {
+            top: 23px;
+        left: 12px;
+        /*   height: 120px; */
+        height: 100%;
+            
+            position: absolute;
+            border-left: 3px solid var(--md-sys-color-primary);
+        }
+
+        .step.completed .circle {
+        visibility: visible;
+        background-color: var(--md-sys-color-primary);
+        border: 1px solid var(--md-sys-color-primary);
+        }
+
+        .step.completed .line {
+        border-left: 3px solid var(--md-sys-color-primary);
+        }
+
+        .step.active .circle {
+        visibility: visible;
+        border-color: var(--md-sys-color-primary);
+        }
+
+        .step.empty .circle {
+            visibility: hidden;
+        }
+
+        .step.empty .line {
+        /*     visibility: hidden; */
+        /*   height: 150%; */
+        top: 0;
+        height: 150%;
+        }
+
+
+        .step:last-child .line {
+        border-left: 3px solid white;
+        z-index: -1; /* behind the circle to completely hide */
+        }
+
+        .content {
+        margin-left: 20px;
+        display: inline-block;
+        }
+    </style>
+
+    <style>
+        .social-btn {
+            background-color: #00000000;
+            border-radius: 20px;
+            border: 1px solid #00000042;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            place-items: center;
+            position: relative;
+        }
+
+        .social-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+
+    <style>
+        .footer {
+        display: flex;
+        flex-flow: row wrap;
+        padding: 30px 30px 20px 30px;
+        color: #2f2f2f;
+        background-color: #fff;
+        border-top: 1px solid #e5e5e5;
+        }
+
+        .footer > * {
+        flex:  1 100%;
+        }
+
+        .footer__addr {
+        margin-right: 1.25em;
+        margin-bottom: 2em;
+        }
+
+        .footer__logo {
+        font-family: 'Pacifico', cursive;
+        font-weight: 400;
+        text-transform: lowercase;
+        font-size: 1.5rem;
+        }
+
+        .footer__addr h2 {
+        margin-top: 1.3em;
+        font-size: 15px;
+        font-weight: 400;
+        }
+
+        .nav__title {
+        font-weight: 400;
+        font-size: 15px;
+        }
+
+        .footer address {
+        font-style: normal;
+        color: #999;
+        }
+
+        .footer__btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 36px;
+        max-width: max-content;
+        background-color: rgb(33, 33, 33, 0.07);
+        border-radius: 100px;
+        color: #2f2f2f;
+        line-height: 0;
+        margin: 0.6em 0;
+        font-size: 1rem;
+        padding: 0 1.3em;
+        }
+
+        .footer ul {
+        list-style: none;
+        padding-left: 0;
+        }
+
+        .footer li {
+        line-height: 2em;
+        }
+
+        .footer a {
+        text-decoration: none;
+        }
+
+        .footer__nav {
+        display: flex;
+        flex-flow: row wrap;
+        }
+
+        .footer__nav > * {
+        flex: 1 50%;
+        margin-right: 1.25em;
+        }
+
+        .nav__ul a {
+        color: #999;
+        }
+
+        .nav__ul--extra {
+        column-count: 2;
+        column-gap: 1.25em;
+        }
+
+        .legal {
+        display: flex;
+        flex-wrap: wrap;
+        color: #999;
+        }
+        
+        .legal__links {
+        display: flex;
+        align-items: center;
+        }
+
+        .heart {
+        color: #2f2f2f;
+        }
+
+        @media screen and (min-width: 24.375em) {
+        .legal .legal__links {
+            margin-left: auto;
+        }
+        }
+
+        @media screen and (min-width: 40.375em) {
+        .footer__nav > * {
+            flex: 1;
+        }
+        
+        .nav__item--extra {
+            flex-grow: 2;
+        }
+        
+        .footer__addr {
+            flex: 1 0px;
+        }
+        
+        .footer__nav {
+            flex: 2 0px;
+        }
+        }
+    </style>
+    
+    <style>
+        .getstarted {
+            width: 97%;
+            border: 1px solid #0000004f;
+            padding-left: 30px;
+            border-radius: 20px;
+        }
+
+        .helpful-voting {
+            padding: 15px;
+        }
+
+        .pro-text {
+            background: #FF007B;
+            background: linear-gradient(to right, #FF007B 0%, #FFF200 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Style the table */
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 70%;
+            border: 1px solid #000000;
+            margin: 0 auto;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        /* Style table headers and table data */
+        th, td {
+            text-align: center;
+            padding: 16px;
+            background-color: rgb(255, 240, 254);
+        }
+
+        th:first-child, td:first-child {
+            text-align: left;
+        }
+
+        .fa-check {
+            color: green;
+        }
+
+        .fa-remove {
+            color: red;
+        }
+
+        .pro-content {
+            background: rgb(255,218,231);
+            background: linear-gradient(90deg, rgba(255,218,231,1) 11%, rgba(255,236,195,1) 75%);
+        }
+
+        .na {width: 30px; height: 30px; background-image: url(cross.svg); background-size: cover; margin: auto; /* Center the element */}
+        .available {width: 30px; height: 30px; background-image: url(tick.svg); background-size: cover; margin: auto; /* Center the element */}
+
+        .monthly {background: linear-gradient(90deg, rgba(255,0,90,1) 11%, rgba(255,174,0,1) 75%); border: none; color: #fff; font-family: Google Sans; padding: 13px; position: relative; border-radius: 30px; font-size: 15px; width: 130px; font-weight: bold;}
+        .trial {
+            font-weight: bold;
+            background: #FF007B;
+            background: linear-gradient(to right, #FF007B 0%, #FFF200 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border: 0.5px solid #919191; 
+            font-family: Google Sans; 
+            padding: 13px; 
+            position: relative; 
+            border-radius: 30px; 
+            font-size: 15px; 
+            width: 190px;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const newLevel = document.querySelector(".new-level");
+            const createBtn = document.querySelector(".create");
+            const levelNameInput = document.getElementById("levelName");
+    
+            createBtn.addEventListener("click", () => {
+                const levelName = levelNameInput.value.trim(); // Get the trimmed value of the level name
+    
+                if (levelName) {
+                    // Redirect to index.html with the levelName as a URL parameter
+                    window.location.href = `index.html?levelName=${encodeURIComponent(levelName)}`;
+                } else {
+                    // Set error attributes if the level name is empty
+                    levelNameInput.setAttribute("error", "error-text");
+                    levelNameInput.setAttribute("error-text", "Please set a level name!");
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const newLevel = document.querySelector(".new-level");
+            const newLvlTemplate = document.getElementById("createEmpty");
+            const cancelBtn = document.querySelector(".cancel");
+    
+            if (newLvlTemplate) {
+                newLvlTemplate.addEventListener("click", () => {
+                    if (newLevel) {
+                        newLevel.open = true;
+                    } else {
+                        console.error("Dialog element not found.");
+                    }
+                });
+            } else {
+                console.error("Template element not found.");
+            }
+    
+            if (cancelBtn) {
+                cancelBtn.addEventListener("click", () => {
+                    if (newLevel) {
+                        newLevel.open = false;
+                    } else {
+                        console.error("Dialog element not found.");
+                    }
+                });
+            } else {
+                console.error("Cancel button element not found.");
+            }
+        });
+    </script>
+    <script>
+        const navigationDrawer = document.querySelector(".nav-drawer");
+        const openButton = document.querySelector(".open");
+        const closeButton = document.querySelector(".close");
+
+        openButton.addEventListener("click", () => {
+            navigationDrawer.open = true;
+            closeButton.style.display = 'block'; // Show close button
+            openButton.style.display = 'none'; // Hide open button
+        });
+    
+        closeButton.addEventListener("click", () => {
+            navigationDrawer.open = false;
+            openButton.style.display = 'block'; // Show open button
+            closeButton.style.display = 'none'; // Hide close button
+        });
+    </script>
+    <script>
+        // Utility function to get URL parameter by name
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Store the shared content (from ?content=) globally if present
+        let sharedContentFromUrl = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Fetch ?content=... and populate #exportfield if present
+            const contentParam = getUrlParameter('content');
+            if (contentParam) {
+                try {
+                    sharedContentFromUrl = decodeURIComponent(contentParam);
+                    const exportField = document.getElementById('exportfield');
+                    if (exportField) {
+                        exportField.value = sharedContentFromUrl;
+                    }
+                } catch (e) {
+                    console.error('Failed to decode content parameter:', e);
+                }
+            }
+
+            // Attach the function to the #copyLink button
+            const copyLinkButton = document.getElementById('copyLink');
+            if (copyLinkButton) {
+                copyLinkButton.addEventListener('click', generateAndCopyLink);
+            }
+
+            // Attach event listeners to the share buttons
+            const facebookShareButton = document.getElementById('facebookShare');
+            if (facebookShareButton) {
+                facebookShareButton.addEventListener('click', shareOnFacebook);
+            }
+            const xShareButton = document.getElementById('xShare');
+            if (xShareButton) {
+                xShareButton.addEventListener('click', shareOnX);
+            }
+            const emailShareButton = document.getElementById('emailShare');
+            if (emailShareButton) {
+                emailShareButton.addEventListener('click', shareViaEmail);
+            }
+            const advancedShareButton = document.getElementById('advancedShare');
+            if (advancedShareButton) {
+                advancedShareButton.addEventListener('click', advancedShare);
+            }
+
+            // Attach saveExport to #saveExport if present
+            const saveExportButton = document.getElementById('saveExport');
+            if (saveExportButton) {
+                saveExportButton.addEventListener('click', saveExport);
+            }
+        });
+
+        // Function to get the content to share (from exportfield if present, else from URL param)
+        function getShareContent() {
+            const exportField = document.getElementById('exportfield');
+            if (exportField && exportField.value) {
+                return exportField.value;
+            } else if (sharedContentFromUrl) {
+                return sharedContentFromUrl;
+            } else {
+                return null;
+            }
+        }
+
+        // Function to generate and copy the link
+        function generateAndCopyLink() {
+            const shareContent = getShareContent();
+            if (!shareContent) {
+                alert("The export field is empty!");
+                return;
+            }
+            const encodedContent = encodeURIComponent(shareContent);
+            // Always use the canonical share URL
+            const generatedLink = `https://ccgemerapps.web.app/level-editor/generatedlevel.html?content=${encodedContent}`;
+            copyToClipboard(generatedLink);
+        }
+
+        // Function to generate the link for sharing
+        function generateLink() {
+            const shareContent = getShareContent();
+            if (!shareContent) {
+                alert("The export field is empty!");
+                return null;
+            }
+            const encodedContent = encodeURIComponent(shareContent);
+            // Always use the canonical share URL
+            return `https://ccgemerapps.web.app/level-editor/generatedlevel.html?content=${encodedContent}`;
+        }
+
+        // Function to share on Facebook
+        function shareOnFacebook() {
+            const generatedLink = generateLink();
+            if (!generatedLink) return;
+            const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(generatedLink)}`;
+            window.open(facebookShareUrl, '_blank');
+        }
+
+        // Function to share on X (Twitter)
+        function shareOnX() {
+            const generatedLink = generateLink();
+            if (!generatedLink) return;
+            const xShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(generatedLink)}`;
+            window.open(xShareUrl, '_blank');
+        }
+
+        // Function to share via email
+        function shareViaEmail() {
+            const generatedLink = generateLink();
+            if (!generatedLink) return;
+            const emailShareUrl = `mailto:?body=${encodeURIComponent(generatedLink)}`;
+            window.location.href = emailShareUrl;
+        }
+
+        // Function for advanced sharing (native share API)
+        function advancedShare() {
+            const generatedLink = generateLink();
+            if (!generatedLink) return;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Candy Crush Level',
+                    text: 'Check out this awesome Candy Crush level I created!',
+                    url: generatedLink
+                }).catch(() => {
+                    copyToClipboard(generatedLink);
+                });
+            } else {
+                copyToClipboard(generatedLink);
+            }
+        }
+
+        // Function to copy text to clipboard
+        function copyToClipboard(text) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    const copyIcon = document.getElementById('confirmationCopy');
+                    if (copyIcon) {
+                        const originalIcon = '􀉣';
+                        copyIcon.textContent = '􀆅';
+                        setTimeout(() => {
+                            copyIcon.textContent = originalIcon;
+                        }, 2000);
+                    }
+                }).catch(() => {
+                    fallbackCopyToClipboard(text);
+                });
+            } else {
+                fallbackCopyToClipboard(text);
+            }
+        }
+
+        // Fallback copy function for older browsers
+        function fallbackCopyToClipboard(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+            } catch (err) {}
+            document.body.removeChild(textArea);
+        }
+
+        // Function to save export field as a file
+        function saveExport() {
+            const shareContent = getShareContent();
+            if (!shareContent) {
+                alert("The export field is empty!");
+                return;
+            }
+            const blob = new Blob([shareContent], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = "level.json";
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 0);
+        }
+    </script>
+    
+</body>
+</html>

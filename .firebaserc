@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "ccgemerapps"
+  },
+  "targets": {
+    "ccgemerapps": {
+      "hosting": {
+        "ccgapps": [
+          "ccgapps"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

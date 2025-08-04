@@ -1,0 +1,14 @@
+:root,:host{--md-sys-color-background:#141313;--md-sys-color-on-background:#e5e2e1;--md-sys-color-surface:#141313;--md-sys-color-surface-dim:#141313;--md-sys-color-surface-bright:#3a3939;--md-sys-color-surface-container-lowest:#0e0e0e;--md-sys-color-surface-container-low:#1c1b1b;--md-sys-color-surface-container:#201f1f;--md-sys-color-surface-container-high:#2a2a2a;--md-sys-color-surface-container-highest:#353434;--md-sys-color-on-surface:#e5e2e1;--md-sys-color-surface-variant:#444748;--md-sys-color-on-surface-variant:#c4c7c8;--md-sys-color-inverse-surface:#e5e2e1;--md-sys-color-inverse-on-surface:#313030;--md-sys-color-outline:#8e9192;--md-sys-color-outline-variant:#444748;--md-sys-color-shadow:#000000;--md-sys-color-scrim:#000000;--md-sys-color-surface-tint:#c6c6c7;--md-sys-color-primary:#ffffff;--md-sys-color-on-primary:#2f3131;--md-sys-color-primary-container:#d4d4d4;--md-sys-color-on-primary-container:#3e4040;--md-sys-color-inverse-primary:#5d5f5f;--md-sys-color-secondary:#c8c6c6;--md-sys-color-on-secondary:#303030;--md-sys-color-secondary-container:#3f3f3f;--md-sys-color-on-secondary-container:#d5d4d3;--md-sys-color-tertiary:#ffffff;--md-sys-color-on-tertiary:#2f3131;--md-sys-color-tertiary-container:#d4d4d4;--md-sys-color-on-tertiary-container:#3e4040;--md-sys-color-error:#ffb4ab;--md-sys-color-on-error:#690005;--md-sys-color-error-container:#93000a;--md-sys-color-on-error-container:#ffdad6;}
+.quick-access-acent {
+    --md-sys-color-primary: #ffffff;
+    font-weight: normal;
+}
+
+.beginning-navd::part(panel) {
+    background-color: #181c1e8e;
+    backdrop-filter: blur(15px);
+}
+
+.content-header {
+    color: #ffffff !important;
+}

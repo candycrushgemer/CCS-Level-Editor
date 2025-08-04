@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Download stuff-->
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+        {
+        "imports": {
+            "@material/web/": "https://esm.run/@material/web/"
+        }
+        }
+    </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+    <!--Accent Color Scheme-->
+    <script type="module">
+        import { setColorScheme } from 'mdui/functions/setColorScheme.js';
+    
+        // Generate a color scheme based on #0061a4 and set the <html> element to that color scheme
+        setColorScheme('#ff0055');
+    </script>
+    <link rel="stylesheet" href="accent.css">
+    <!--Google Sans Text-->
+    <link rel="stylesheet" href="font.css">
+    <!--Dreamworld CSS-->
+    <link rel="stylesheet" href="dreamworld.css">
+
+    <!--General Information-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create your own Candy Crush Saga level using this tool">
+    <meta name="keywords" content="ccs, candy crush saga, level creator, level editor">
+    <meta name="author" content="Candy Crush Gemer">
+    <title>Level Editor</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <mdui-layout>
+        <mdui-top-app-bar class="top-app-bar">
+            <mdui-top-app-bar-title>Level Editor</mdui-top-app-bar-title>
+            <div style="flex-grow: 1;"></div>
+            <mdui-button-icon icon="format_paint--outlined"></mdui-button-icon>
+            <mdui-button-icon icon="account_circle--outlined"></mdui-button-icon>            
+        </mdui-top-app-bar>
+      
+        <mdui-layout-main class="example-layout-main" style="height: 97vh; margin-left: 20px; margin-right: 20px; margin-top: 20px; overflow-x: hidden;">
+            <div>
+                <br>
+                <span style="font-size: 55px; display: flex; place-items: center; width: 100%; gap: 100px; margin-left: 20px;">
+                    <div class="introduce">
+                        <span>Grow up your custom level with advanced features<br></span>
+                        <span style="font-size: 20px; margin: 0;">Get the PRO plan now for $9.99/month to have a chance to build level with advanced features!</span>
+                        <br><br>
+                        <md-outlined-button href="#pricing">See full pricing</md-outlined-button>
+                    </div>
+                    <img src="pro-heading.png" alt="Introduction 1" width="770px" style="text-align: right; margin-right: 60px;">
+                </span>
+            </div><br><br>
+
+            <div style="background-color: #ebebeb3f; border-radius: 30px; padding: 20px; margin-right: 20px;">
+                <h1>Introduction of PRO plan</h1>
+                <p style="line-height: 30px;">
+                    Unlock the full potential of your creativity with Candy Crush Level Editor PRO. Designed for both casual gamers and seasoned level designers, PRO offers a suite of advanced features to bring your sweetest dreams to life.
+                    <br><b>Key benefits:</b>
+                    <ul style="line-height: 30px;">
+                        <li><b>Unlimited Level Creation:</b> Design and share an infinite number of levels.</li>
+                        <li><b>Advanced Editing Tools:</b> Fine-tune every aspect of your levels with precision.</li>
+                        <li><b>Exclusive Level Templates:</b> Accelerate your design process with our curated templates.</li>
+                        <li><b>Ad-Free Experience:</b> Enjoy uninterrupted creativity without distractions.</li>
+                    </ul>
+                    <p>With PRO, you'll have the freedom to experiment, innovate, and share your unique Candy Crush experiences with the world.</p>
+                </p>
+            </div>
+            <br>
+            <div id="pricing" style="text-align: center; display: flex; justify-content: center;"><h1>Full pricing of</h1><h1 class="pro-text">&nbsp;PRO</h1><h1>&nbsp;plan</h1></div>
+            <p style="text-align: center;">With PRO, you can have access to use blocked features and elements. You can see the list of features that are available in PRO plan below.</p>
+            <table>
+                <tr>
+                  <th style="width: 50%; background-color: #00000000;">Features</th>
+                  <th style="background-color: #00000000;">Normal user</th>
+                  <th class="pro-content" style="border-top-left-radius: 30px;">Pro</th>
+                </tr>
+                <tr>
+                  <td style="border-top-left-radius: 30px;">Play test on browser</td>
+                  <td><div class="na"></div></td>
+                  <td class="pro-content"><div class="available"></div></td>
+                </tr>
+                <tr>
+                  <td>Save levels to the cloud even if you clear your browser data</td>
+                  <td><div class="na"></div></td>
+                  <td class="pro-content"><div class="available"></div></td>
+                </tr>
+                <tr>
+                    <td style="display: flex; gap: 15px;">Themes with styles <br><mdui-tooltip variant="rich" headline="Additional notes:" content="Normal user can change theme and color modes, PRO users can change both theme, color modes and visual styles for editor. "><mdui-icon style="user-select: none; color: #00000060;" name="info--outlined"></mdui-icon></mdui-tooltip></td>
+                    <td><div class="na"></div></td>
+                    <td class="pro-content"><div class="available"></div></td>
+                </tr>
+                <tr>
+                    <td>Get a special badge for your account</td>
+                    <td><div class="na"></div></td>
+                    <td class="pro-content"><div class="available"></div></td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td><div class="na" style="background: none;">Free</div></td>
+                    <td class="pro-content"><div class="available" style="background: none;">$9.99/month</div></td>
+                </tr>
+            </table>
+            <h1 style="text-align: center;">Pick one that suits you</h1>
+            <div  style="text-align: center; display: flex; justify-content: center; align-items: center; gap: 10px;">
+                <div class="pricing-card" id="free">
+                    <mdui-card style="width: 200px; border-radius: 25px; text-align: center;">
+                        <p>Free</p>
+                        <h1>$0</h1>
+                        <md-filled-button disabled>Current plan</md-filled-button>
+                        <br><br>
+                    </mdui-card>
+                </div>
+                <div class="pricing-card" id="monthly">
+                    <mdui-card style="width: 200px; border-radius: 25px; text-align: center;">
+                        <p>PRO monthly</p>
+                        <h1>$9.99</h1>
+                        <md-filled-button>Get now</md-filled-button>
+                        <br><br>
+                    </mdui-card>
+                </div>
+                <div class="pricing-card" id="yearly">
+                    <mdui-card style="width: 200px; border-radius: 25px; text-align: center;">
+                        <p>PRO yearly</p>
+                        <h1>$29.99</h1>
+                        <md-filled-button>Get now</md-filled-button>
+                        <br><br>
+                    </mdui-card>
+                </div>
+                <div class="pricing-card" id="business">
+                    <mdui-card style="width: 200px; border-radius: 25px; text-align: center;">
+                        <p>Custom and for business</p>
+                        <h1>&nbsp;</h1>
+                        <mdui-tooltip trigger="click" content="Contact via email: gamingcandy344@gmail.com">
+                            <md-outlined-button>Contact us</md-outlined-button>
+                        </mdui-tooltip>
+                        <br><br>
+                    </mdui-card>
+                </div>
+            </div>
+            <br>
+            <br><br><br>
+
+            <iframe id="ccsFooter" src="footer.html" frameborder="0" width="100%" height="320px" style="overflow-y: hidden;"></iframe>
+        </mdui-layout-main>
+    </mdui-layout>
+
+    <style>
+        .top-app-bar {
+            /* From https://css.glass */
+            background: rgba(255, 198, 226, 0.25);
+            border-radius: 16px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(9.8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .pro-text {
+            background: #FF007B;
+            background: linear-gradient(to right, #FF007B 0%, #FFF200 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Style the table */
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 70%;
+            border: 1px solid #000000;
+            margin: 0 auto;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        /* Style table headers and table data */
+        th, td {
+            text-align: center;
+            padding: 16px;
+            background-color: rgb(255, 240, 254);
+        }
+
+        th:first-child, td:first-child {
+            text-align: left;
+        }
+
+        .fa-check {
+            color: green;
+        }
+
+        .fa-remove {
+            color: red;
+        }
+
+        .pro-content {
+            background: rgb(255,218,231);
+            background: linear-gradient(90deg, rgba(255,218,231,1) 11%, rgba(255,236,195,1) 75%);
+        }
+
+        .na {width: 30px; height: 30px; background-image: url(cross.svg); background-size: cover; margin: auto; /* Center the element */}
+        .available {width: 30px; height: 30px; background-image: url(tick.svg); background-size: cover; margin: auto; /* Center the element */}
+
+        .monthly {background: linear-gradient(90deg, rgba(255,0,90,1) 11%, rgba(255,174,0,1) 75%); border: none; color: #fff; font-family: Google Sans; padding: 13px; position: relative; border-radius: 30px; font-size: 15px; width: 130px; font-weight: bold;}
+        .trial {
+            font-weight: bold;
+            background: #FF007B;
+            background: linear-gradient(to right, #FF007B 0%, #FFF200 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border: 0.5px solid #919191; 
+            font-family: Google Sans; 
+            padding: 13px; 
+            position: relative; 
+            border-radius: 30px; 
+            font-size: 15px; 
+            width: 190px;
+        }
+    </style>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const newLevel = document.querySelector(".new-level");
+            const createBtn = document.querySelector(".create");
+            const levelNameInput = document.getElementById("levelName");
+    
+            createBtn.addEventListener("click", () => {
+                const levelName = levelNameInput.value.trim(); // Get the trimmed value of the level name
+    
+                if (levelName) {
+                    // Redirect to index.html with the levelName as a URL parameter
+                    window.location.href = `index.html?levelName=${encodeURIComponent(levelName)}`;
+                } else {
+                    // Set error attributes if the level name is empty
+                    levelNameInput.setAttribute("error", "error-text");
+                    levelNameInput.setAttribute("error-text", "Please set a level name!");
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const newLevel = document.querySelector(".new-level");
+            const newLvlTemplate = document.getElementById("createEmpty");
+            const cancelBtn = document.querySelector(".cancel");
+    
+            if (newLvlTemplate) {
+                newLvlTemplate.addEventListener("click", () => {
+                    if (newLevel) {
+                        newLevel.open = true;
+                    } else {
+                        console.error("Dialog element not found.");
+                    }
+                });
+            } else {
+                console.error("Template element not found.");
+            }
+    
+            if (cancelBtn) {
+                cancelBtn.addEventListener("click", () => {
+                    if (newLevel) {
+                        newLevel.open = false;
+                    } else {
+                        console.error("Dialog element not found.");
+                    }
+                });
+            } else {
+                console.error("Cancel button element not found.");
+            }
+        });
+    </script>
+    <script>
+        const navigationDrawer = document.querySelector(".nav-drawer");
+        const openButton = document.querySelector(".open");
+        const closeButton = document.querySelector(".close");
+
+        openButton.addEventListener("click", () => {
+            navigationDrawer.open = true;
+            closeButton.style.display = 'block'; // Show close button
+            openButton.style.display = 'none'; // Hide open button
+        });
+    
+        closeButton.addEventListener("click", () => {
+            navigationDrawer.open = false;
+            openButton.style.display = 'block'; // Show open button
+            closeButton.style.display = 'none'; // Hide close button
+        });
+    </script>
+</body>
+</html>
