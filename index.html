@@ -10,13 +10,16 @@
   <link rel="shortcut icon" href="icon.png" type="image/x-icon"><!-- Add GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+  <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+  <link rel="stylesheet" href="level-editor/editor/mdui.css">
 </head>
 
 <body>
   <top-app-bar>
     <ul>
       <li id="ccgappsLogo" style="font-weight: 800; display: flex; align-items: center; gap: 1px; position: relative;">
-        <img src="/LevelEditorWeb/CCGAppsGifLogo.gif" alt="CCGApps" style="width: 20px; height: 20px; border-radius: 50%; transform: scale(1.8); opacity: 0; position: absolute; left: 10px;"> 
+        <img src="CCGAppsGifLogo.gif" alt="CCGApps" style="width: 20px; height: 20px; border-radius: 50%; transform: scale(1.8); opacity: 0; position: absolute; left: 10px;"> 
         <span class="ccgapps-text" style="margin-left: 5px;">CCGApps</span>
       </li>
     </ul>
@@ -52,6 +55,19 @@
       </main-title-left>
       <main-title-right>
         <img src="home_assets/intro2.png" style="width: 100%; height: 100%;" draggable="false" alt="">
+      </main-title-right>
+    </main-title>
+    <main-title contents style="width: 70%; margin: 0 auto; flex-direction: row-reverse;" id="tools">
+      <main-title-left>
+        <h1 class="normal-title" style="font-size: 50px;">Play your designs with ease</h1>
+        <p>Replace default Candy Crush default levels with this new tool from CCGApps. Now only available for Windows 10 or later.</p>
+        <button-container>
+          <button normal class="open-editor-btn" onclick="window.location.href = 'level-replacer/downloads'">Download for Windows
+            <sf-icon>􀄯</sf-icon></button>
+        </button-container>
+      </main-title-left>
+      <main-title-right>
+        <img src="home_assets/replacer.png" style="width: 100%; height: 100%;" draggable="false" alt="">
       </main-title-right>
     </main-title>
     <main-title>
