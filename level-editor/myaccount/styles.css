@@ -777,7 +777,7 @@ label.checkbox input {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    filter: blur(175px);
+    filter: blur(175px) !important;
     z-index: -1;
     animation: spinForever 8s ease infinite;
 }
