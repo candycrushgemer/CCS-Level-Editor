@@ -1,0 +1,25 @@
+<TextureAtlas imagePath="ingame_double_colorbomb.ktp" width="256" height="256" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="ingame_double_colorbomb/double_bomb.png" x="2" y="153" w="102" h="101" pX="0.5" pY="0.5"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_piece_3.png" x="108" y="194" w="81" h="60" pX="0.5" pY="0.5" oW="60" oH="81" r="y"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_piece_4.png" x="193" y="187" w="60" h="67" pX="0.5" pY="0.5"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_piece_7.png" x="108" y="138" w="64" h="52" pX="0.5" pY="0.5"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_piece_13.png" x="176" y="172" w="13" h="18" pX="0.5" pY="0.5" oW="18" oH="13" r="y"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_piece_2.png" x="193" y="120" w="58" h="63" pX="0.5" pY="0.5" oW="63" oH="58" r="y"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_piece_9.png" x="176" y="155" w="13" h="13" pX="0.5" pY="0.5"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_candy_4.png" x="176" y="143" w="11" h="8" pX="0.5" pY="0.5" oW="8" oH="11" r="y"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_candy_5.png" x="176" y="125" w="11" h="14" pX="0.5" pY="0.5"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_piece_15.png" x="2" y="101" w="56" h="48" pX="0.5" pY="0.5" oX="7" oY="7" oW="70" oH="62"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_piece_14.png" x="62" y="116" w="35" h="33" pX="0.5" pY="0.5"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_piece_5.png" x="101" y="87" w="55" h="47" pX="0.5" pY="0.5"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_piece_10.png" x="160" y="123" w="11" h="11" pX="0.5" pY="0.5"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_piece_1.png" x="62" y="64" w="30" h="48" pX="0.5" pY="0.5" oX="1" oY="1" oW="49" oH="32" r="y"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_piece_11.png" x="2" y="48" w="54" h="49" pX="0.5" pY="0.5" oX="7" oY="7" oW="68" oH="63"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_piece_12.png" x="175" y="113" w="8" h="8" pX="0.5" pY="0.5"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_candy_1.png" x="160" y="114" w="6" h="5" pX="0.5" pY="0.5" oW="5" oH="6" r="y"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_candy_2.png" x="160" y="106" w="6" h="4" pX="0.5" pY="0.5"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_piece_8.png" x="60" y="10" w="47" h="50" pX="0.5" pY="0.5" oX="7" oY="7" oW="64" oH="61" r="y"/>
+	<sprite n="ingame_double_colorbomb/dcb_circle.png" x="2" y="14" w="30" h="30" pX="0.5" pY="0.5" oX="1" oY="1" oW="32" oH="32"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_candy_3.png" x="2" y="4" w="5" h="6" pX="0.5" pY="0.5"/>
+	<sprite n="ingame_double_colorbomb/rainbow_ring.png" x="187" y="67" w="49" h="49" pX="0.5" pY="0.5"/>
+	<sprite n="ingame_double_colorbomb/cb2_layer2_piece_6.png" x="111" y="15" w="44" h="48" pX="0.5" pY="0.5"/>
+</TextureAtlas>

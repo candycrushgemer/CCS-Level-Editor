@@ -1,0 +1,29 @@
+<TextureAtlas imagePath="store_bundle_vfx.ktp" width="1024" height="1024" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="store_bundle_vfx/floor.png" x="2" y="711" w="853" h="311" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_vfx/pack_06_closed.png" x="859" y="836" w="159" h="186" pX="0.5" pY="0.5" oW="187" oH="160" r="y"/>
+	<sprite n="store_bundle_vfx/pack_04_open.png" x="859" y="680" w="156" h="152" pX="0.5" pY="0.5" oX="5" oW="161" oH="156" r="y"/>
+	<sprite n="store_bundle_vfx/pattern.png" x="2" y="39" w="56" h="637" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_vfx/trail_sprite.png" x="2" y="681" w="54" h="26" pX="0.5" pY="0.5" oW="54" oH="27"/>
+	<sprite n="store_bundle_vfx/frame_bg.png" x="62" y="316" w="328" h="360" pX="0.5" pY="0.5" oW="360" oH="328" r="y"/>
+	<sprite n="store_bundle_vfx/pack_07_lid.png" x="62" y="22" w="130" h="290" pX="0.5" pY="0.5" oW="291" oH="131" r="y"/>
+	<sprite n="store_bundle_vfx/pack_07_bottom.png" x="196" y="40" w="130" h="272" pX="0.5" pY="0.5" oW="273" oH="131" r="y"/>
+	<sprite n="store_bundle_vfx/frame_foreground.png" x="330" y="54" w="231" h="258" pX="0.5" pY="0.5" oW="258" oH="231" r="y"/>
+	<sprite n="store_bundle_vfx/pack_01_open_back.png" x="330" y="6" w="131" h="44" pX="0.5" pY="0.5" oX="3" oY="6" oW="138" oH="50"/>
+	<sprite n="store_bundle_vfx/pack_06_open_back.png" x="465" y="13" w="173" h="37" pX="0.5" pY="0.5" oX="2" oY="19" oW="179" oH="56"/>
+	<sprite n="store_bundle_vfx/pack_05_closed.png" x="642" y="527" w="200" h="180" pX="0.5" pY="0.5" oW="182" oH="201" r="y"/>
+	<sprite n="store_bundle_vfx/pack_02_open_back.png" x="565" y="656" w="64" h="51" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_vfx/pack_04_open_back.png" x="394" y="655" w="151" h="52" pX="0.5" pY="0.5" oW="152" oH="53"/>
+	<sprite n="store_bundle_vfx/pack_02_open.png" x="549" y="534" w="87" h="118" pX="0.5" pY="0.5" oW="118" oH="87" r="y"/>
+	<sprite n="store_bundle_vfx/pack_04_closed.png" x="394" y="463" w="147" h="188" pX="0.5" pY="0.5" oW="148" oH="189"/>
+	<sprite n="store_bundle_vfx/extra_goldbar_pile.png" x="394" y="319" w="84" h="140" pX="0.5" pY="0.5" oW="141" oH="85" r="y"/>
+	<sprite n="store_bundle_vfx/pack_01_closed.png" x="482" y="323" w="123" h="136" pX="0.5" pY="0.5" oW="124" oH="137"/>
+	<sprite n="store_bundle_vfx/extra_goldbar.png" x="545" y="468" w="110" h="55" pX="0.5" pY="0.5" oW="111" oH="56"/>
+	<sprite n="store_bundle_vfx/pack_01_open.png" x="846" y="562" w="133" h="114" pX="0.5" pY="0.5" oX="3" oW="138" oH="116"/>
+	<sprite n="store_bundle_vfx/pack_02_closed.png" x="846" y="447" w="127" h="111" pX="0.5" pY="0.5" oW="128" oH="112"/>
+	<sprite n="store_bundle_vfx/pack_05_open.png" x="659" y="339" w="183" h="184" pX="0.5" pY="0.5" oX="5" oW="192" oH="186"/>
+	<sprite n="store_bundle_vfx/pack_03_bottom.png" x="846" y="362" w="125" h="81" pX="0.5" pY="0.5" oX="2" oW="86" oH="130" r="y"/>
+	<sprite n="store_bundle_vfx/pack_03_lid.png" x="846" y="258" w="112" h="100" pX="0.5" pY="0.5" oW="113" oH="101"/>
+	<sprite n="store_bundle_vfx/pack_03_bottom_back.png" x="962" y="278" w="52" h="80" pX="0.5" pY="0.5" oX="4" oY="3" oW="89" oH="55" r="y"/>
+	<sprite n="store_bundle_vfx/pack_06_open.png" x="565" y="69" w="182" h="185" pX="0.5" pY="0.5" oX="3" oW="188" oH="192" r="y"/>
+	<sprite n="store_bundle_vfx/pack_05_open_back.png" x="751" y="72" w="110" h="182" pX="0.5" pY="0.5" oW="183" oH="111" r="y"/>
+</TextureAtlas>

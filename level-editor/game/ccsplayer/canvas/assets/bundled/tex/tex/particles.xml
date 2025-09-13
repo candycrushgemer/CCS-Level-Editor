@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:8c029de61da1294d6e4bfa64a68dbe73:b8df5a4aff4636a4774b7574c5f8b9b6:5857d3eb5d29c9b0888f071ac863383f$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="particles.png" width="512" height="512">
+    <sprite n="000.png" x="81" y="65" w="72" h="72" pX="0.5" pY="0.5"/>
+    <sprite n="001.png" x="257" y="0" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="003.png" x="154" y="65" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="004.png" x="0" y="295" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="005.png" x="322" y="0" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="006.png" x="219" y="65" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="007.png" x="0" y="360" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="009.png" x="387" y="0" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="010.png" x="284" y="65" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="012.png" x="0" y="425" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="014.png" x="349" y="65" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="015.png" x="414" y="65" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="016.png" x="81" y="138" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="017.png" x="0" y="0" w="256" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="021.png" x="78" y="203" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="023.png" x="71" y="268" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="024.png" x="65" y="333" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="026.png" x="65" y="398" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="027.png" x="154" y="130" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="028.png" x="219" y="130" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="127.png" x="479" y="148" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="128.png" x="461" y="293" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="129.png" x="461" y="326" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="133.png" x="195" y="333" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="134.png" x="195" y="366" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="135.png" x="195" y="399" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="139.png" x="228" y="357" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="140.png" x="228" y="390" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="142.png" x="228" y="423" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="143.png" x="261" y="379" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="144.png" x="261" y="412" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="145.png" x="233" y="456" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="145_rewamp.png" x="266" y="445" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="146.png" x="266" y="478" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="148.png" x="294" y="400" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="149.png" x="327" y="390" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="150.png" x="299" y="433" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="150_revamp.png" x="299" y="466" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="155.png" x="332" y="423" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="161.png" x="332" y="456" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="166.png" x="360" y="390" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="170.png" x="365" y="423" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="172.png" x="365" y="456" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="173.png" x="417" y="339" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="175.png" x="368" y="344" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="177.png" x="450" y="359" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="179.png" x="393" y="377" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="184.png" x="398" y="410" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="184_b.png" x="398" y="443" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="186.png" x="398" y="476" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="187_revamp.png" x="284" y="130" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="188_revamp.png" x="349" y="130" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="189_revamp.png" x="437" y="195" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="190_revamp.png" x="426" y="244" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="191_revamp.png" x="184" y="463" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="192_revamp.png" x="431" y="392" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="193_revamp.png" x="414" y="130" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="194_revamp.png" x="136" y="268" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="195_revamp.png" x="0" y="224" w="70" h="70" pX="0.5" pY="0.5"/>
+    <sprite n="198_revamp.png" x="431" y="425" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="199_revamp.png" x="130" y="333" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="202.png" x="431" y="458" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="203.png" x="483" y="359" w="28" h="28" pX="0.5" pY="0.5"/>
+    <sprite n="204_hearts.png" x="201" y="292" w="30" h="32" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="205.png" x="130" y="398" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="206.png" x="294" y="379" w="20" h="20" pX="0.5" pY="0.5"/>
+    <sprite n="207.png" x="322" y="344" w="45" h="45" pX="0.5" pY="0.5"/>
+    <sprite n="208.png" x="273" y="295" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="209.png" x="143" y="203" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="activeLevel3D.png" x="208" y="195" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="ads_balloon_wind.png" x="475" y="282" w="10" h="10" pX="0.5" pY="0.5"/>
+    <sprite n="ads_map_balloon_gold_vapour.png" x="273" y="244" w="50" h="50" pX="0.5" pY="0.5"/>
+    <sprite n="ads_popcorn.png" x="452" y="0" w="60" h="59" pX="0.5" pY="0.5"/>
+    <sprite n="bean.png" x="417" y="295" w="43" h="43" pX="0.5" pY="0.5"/>
+    <sprite n="bubble_fish.png" x="0" y="65" w="80" h="80" pX="0.5" pY="0.5"/>
+    <sprite n="chocolate_piece_01.png" x="125" y="463" w="58" h="48" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="chocolate_piece_02.png" x="273" y="195" w="55" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="chocolate_shard_01.png" x="479" y="100" w="28" h="47" pX="0.5" pY="0.5"/>
+    <sprite n="chocolate_shard_02.png" x="475" y="244" w="37" h="37" pX="0.5" pY="0.5"/>
+    <sprite n="crumble_cream.png" x="371" y="295" w="45" h="47" pX="0.5" pY="0.5"/>
+    <sprite n="crumble_revamp.png" x="479" y="60" w="33" h="39" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="explode_burst.png" x="195" y="432" w="32" h="28" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="jellyPiece01.png" x="329" y="195" w="53" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="jellyPiece02.png" x="383" y="195" w="53" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="lineblast_lines.png" x="464" y="392" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="lineblast_lines_head.png" x="0" y="490" w="32" h="9" pX="0.5" pY="0.5"/>
+    <sprite n="lineblast_lines_revamp.png" x="464" y="425" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="liqoricePiece01.png" x="322" y="295" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="meringuePiece.png" x="324" y="244" w="50" h="50" pX="0.5" pY="0.5"/>
+    <sprite n="multiChocolate_02.png" x="65" y="463" w="59" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="multiChocolate_03.png" x="233" y="260" w="39" h="50" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="t_cakeBomb_tray_vfx_01.png" x="232" y="311" w="40" h="45" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="t_cakeBomb_tray_vfx_02.png" x="273" y="344" w="48" h="34" pX="0.5" pY="0.5"/>
+    <sprite n="val_heart.png" x="208" y="260" w="24" h="31" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="val_heart_flat.png" x="494" y="282" w="18" h="23" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="wafflePiece.png" x="375" y="244" w="50" h="50" pX="0.5" pY="0.5"/>
+    <sprite n="waterDrop.png" x="0" y="146" w="77" h="77" pX="0.5" pY="0.5"/>
+</TextureAtlas>

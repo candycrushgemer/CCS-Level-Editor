@@ -1,0 +1,114 @@
+<TextureAtlas imagePath="yeti_hud.ktp" width="1024" height="1024" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="yeti_hud/lightning1.png" x="1" y="759" w="78" h="264" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/lightning2.png" x="1" y="495" w="115" h="262" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_arm_lolli_legendary.png" x="81" y="794" w="223" h="229" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_body_sweet.png" x="81" y="759" w="44" h="33" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_cloak_legendary.png" x="0" y="325" w="113" h="169" pX="0.5" pY="0.5" oW="169" oH="113" r="y"/>
+	<sprite n="yeti_hud/trail.png" x="1" y="160" w="64" h="164" pX="0.5" pY="0.5" oW="164" oH="64" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_happy_legendary.png" x="0" y="10" w="85" h="149" pX="0.5" pY="0.5" oW="149" oH="85" r="y"/>
+	<sprite n="yeti_hud/trail_sweet.png" x="67" y="160" w="64" h="164" pX="0.5" pY="0.5" oW="164" oH="64" r="y"/>
+	<sprite n="yeti_hud/yeti_mouth_o.png" x="0" y="0" w="11" h="10" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_brow.png" x="11" y="1" w="18" h="9" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/pp_stick.png" x="29" y="2" w="14" h="8" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_pupil.png" x="43" y="2" w="7" h="8" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_head_legendary_outl.png" x="85" y="12" w="86" h="147" pX="0.5" pY="0.5" oW="147" oH="86" r="y"/>
+	<sprite n="yeti_hud/pp_slot.png" x="86" y="1" w="20" h="10" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_eye.png" x="107" y="0" w="13" h="12" pX="0.5" pY="0.5" oW="12" oH="13" r="y"/>
+	<sprite n="yeti_hud/yeti_mouth_laugh1.png" x="120" y="0" w="19" h="12" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_nose.png" x="139" y="0" w="36" h="12" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/export_yeti_arm_legendary.png" x="114" y="350" w="85" h="143" pX="0.5" pY="0.5" oW="143" oH="85" r="y"/>
+	<sprite n="yeti_hud/yeti_leg_sweet.png" x="114" y="328" w="25" h="20" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_arm_legendary.png" x="133" y="183" w="85" h="143" pX="0.5" pY="0.5" oW="143" oH="85" r="y"/>
+	<sprite n="yeti_hud/yeti_mouth_blow.png" x="140" y="328" w="63" h="21" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_mouth_smile.png" x="132" y="161" w="30" h="21" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_pin.png" x="163" y="162" w="17" h="19" pX="0.5" pY="0.5" oW="19" oH="17" r="y"/>
+	<sprite n="yeti_hud/yeti_body_legendary2.png" x="171" y="18" w="96" h="143" pX="0.5" pY="0.5" oW="143" oH="96" r="y"/>
+	<sprite n="yeti_hud/yeti_blink1.png" x="176" y="3" w="13" h="14" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_blink2.png" x="191" y="3" w="13" h="14" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_face.png" x="205" y="2" w="46" h="16" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/bulp_off.png" x="252" y="5" w="11" h="12" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/bulp_on.png" x="265" y="5" w="11" h="12" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_mouth_sad.png" x="181" y="168" w="13" h="14" pX="0.5" pY="0.5" oW="14" oH="13" r="y"/>
+	<sprite n="yeti_hud/yeti_body.png" x="117" y="616" w="94" h="142" pX="0.5" pY="0.5" oW="142" oH="94" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_open_sweet.png" x="127" y="761" w="40" h="31" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_mouth_meh.png" x="168" y="761" w="54" h="32" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_arm_worried_legendary.png" x="117" y="499" w="105" h="117" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_body_hard2.png" x="211" y="619" w="110" h="142" pX="0.5" pY="0.5" oW="142" oH="110" r="y"/>
+	<sprite n="yeti_hud/yeti_mouth_grr.png" x="222" y="763" w="60" h="30" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/glitter.png" x="282" y="767" w="25" h="26" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_body_nightm_hard2.png" x="200" y="357" w="95" h="142" pX="0.5" pY="0.5" oW="142" oH="95" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_point_superhard.png" x="222" y="505" w="85" h="114" pX="0.5" pY="0.5" oW="114" oH="85" r="y"/>
+	<sprite n="yeti_hud/yeti_body_superhard2.png" x="219" y="215" w="96" h="142" pX="0.5" pY="0.5" oW="142" oH="96" r="y"/>
+	<sprite n="yeti_hud/yeti_head_sweet.png" x="220" y="162" w="54" h="52" pX="0.5" pY="0.5" oW="52" oH="54" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_hard.png" x="268" y="21" w="59" h="139" pX="0.5" pY="0.5" oW="139" oH="59" r="y"/>
+	<sprite n="yeti_hud/yeti_leg.png" x="275" y="161" w="50" h="54" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_head_legendary.png" x="295" y="365" w="79" h="140" pX="0.5" pY="0.5" oW="140" oH="79" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_open_back_legendary.png" x="307" y="506" w="91" h="113" pX="0.5" pY="0.5" oW="113" oH="91" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_superhard.png" x="315" y="226" w="61" h="139" pX="0.5" pY="0.5" oW="139" oH="61" r="y"/>
+	<sprite n="yeti_hud/sign.png" x="326" y="164" w="121" h="61" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/export_yeti_arm_nightm_hard.png" x="375" y="369" w="72" h="136" pX="0.5" pY="0.5" oW="136" oH="72" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_happy_superhard.png" x="376" y="230" w="60" h="138" pX="0.5" pY="0.5" oW="138" oH="60" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_nightm_hard.png" x="437" y="231" w="72" h="136" pX="0.5" pY="0.5" oW="136" oH="72" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_peace_legendary.png" x="328" y="25" w="105" h="138" pX="0.5" pY="0.5" oW="138" oH="105" r="y"/>
+	<sprite n="yeti_hud/yeti_arm.png" x="434" y="27" w="56" h="135" pX="0.5" pY="0.5" oW="135" oH="56" r="y"/>
+	<sprite n="yeti_hud/yeti_leg_legendary.png" x="448" y="164" w="43" h="66" pX="0.5" pY="0.5" oW="66" oH="43" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_happy_hard.png" x="491" y="93" w="57" h="137" pX="0.5" pY="0.5" oW="137" oH="57" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_touch_ring.png" x="491" y="0" w="92" h="93" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_arm_happy_nightm_hard.png" x="305" y="887" w="70" h="137" pX="0.5" pY="0.5" oW="137" oH="70" r="y"/>
+	<sprite n="yeti_hud/yeti_head_nightm_hard.png" x="307" y="761" w="86" h="126" pX="0.5" pY="0.5" oW="126" oH="86" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_happy.png" x="375" y="888" w="52" h="136" pX="0.5" pY="0.5" oW="136" oH="52" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_open_legendary.png" x="322" y="627" w="104" h="133" pX="0.5" pY="0.5" oW="133" oH="104" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_open.png" x="394" y="762" w="82" h="125" pX="0.5" pY="0.5" oW="125" oH="82" r="y"/>
+	<sprite n="yeti_hud/yeti_head_nightm_hard_outl.png" x="427" y="891" w="93" h="133" pX="0.5" pY="0.5" oW="133" oH="93" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_point_hard.png" x="398" y="513" w="85" h="113" pX="0.5" pY="0.5" oW="113" oH="85" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_open_superhard.png" x="428" y="632" w="82" h="128" pX="0.5" pY="0.5" oW="128" oH="82" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_open_hard.png" x="478" y="763" w="82" h="127" pX="0.5" pY="0.5" oW="127" oH="82" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_peace_hard.png" x="520" y="896" w="84" h="128" pX="0.5" pY="0.5" oW="128" oH="84" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_peace_superhard.png" x="448" y="385" w="84" h="128" pX="0.5" pY="0.5" oW="128" oH="84" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_point_nightm_hard.png" x="483" y="520" w="101" h="111" pX="0.5" pY="0.5" oW="111" oH="101" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_open_nightm_hard.png" x="512" y="638" w="97" h="123" pX="0.5" pY="0.5" oW="123" oH="97" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_point_legendary.png" x="561" y="771" w="108" h="125" pX="0.5" pY="0.5" oW="125" oH="108" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_peace.png" x="604" y="900" w="84" h="124" pX="0.5" pY="0.5" oW="124" oH="84" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_peace_nightm_hard.png" x="510" y="262" w="98" h="123" pX="0.5" pY="0.5" oW="123" oH="98" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_worried_nightm_hard.png" x="532" y="409" w="99" h="111" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/Ring_Under.png" x="584" y="527" w="56" h="110" pX="0.5" pY="0.5" oW="110" oH="56" r="y"/>
+	<sprite n="yeti_hud/Ring_Upper.png" x="610" y="661" w="56" h="110" pX="0.5" pY="0.5" oW="110" oH="56" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_point.png" x="548" y="152" w="87" h="110" pX="0.5" pY="0.5" oW="110" oH="87" r="y"/>
+	<sprite n="yeti_hud/yeti_head_hard_outl.png" x="548" y="97" w="77" h="55" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/glow_lolli.png" x="584" y="1" w="44" h="95" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_mouth_laugh.png" x="625" y="98" w="38" h="54" pX="0.5" pY="0.5" oW="54" oH="38" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_point2_legendary.png" x="629" y="0" w="107" h="98" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_arm_point2_nightm_hard.png" x="608" y="301" w="98" h="108" pX="0.5" pY="0.5" oW="108" oH="98" r="y"/>
+	<sprite n="yeti_hud/yeti_cloak_sweet.png" x="609" y="263" w="51" h="37" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_arm_open_back_hard.png" x="635" y="155" w="78" h="107" pX="0.5" pY="0.5" oW="107" oH="78" r="y"/>
+	<sprite n="yeti_hud/yeti_head_hard.png" x="663" y="107" w="70" h="48" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_arm_point2_superhard.png" x="631" y="420" w="90" h="107" pX="0.5" pY="0.5" oW="107" oH="90" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_touch_ring_legendary.png" x="640" y="554" w="100" h="107" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_arm_point2_hard.png" x="666" y="666" w="90" h="105" pX="0.5" pY="0.5" oW="105" oH="90" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_open_back_nightm_hard.png" x="669" y="796" w="87" h="104" pX="0.5" pY="0.5" oW="104" oH="87" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_worried_hard.png" x="688" y="920" w="101" h="104" pX="0.5" pY="0.5" oW="104" oH="101" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_point2.png" x="706" y="317" w="91" h="103" pX="0.5" pY="0.5" oW="103" oH="91" r="y"/>
+	<sprite n="yeti_hud/yeti_leg_hard.png" x="706" y="270" w="71" h="47" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_arm_open_back_superhard.png" x="713" y="168" w="78" h="102" pX="0.5" pY="0.5" oW="102" oH="78" r="y"/>
+	<sprite n="yeti_hud/cards.png" x="734" y="100" w="69" h="67" pX="0.5" pY="0.5" oW="67" oH="69" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_thumb_up_hard.png" x="736" y="0" w="78" h="99" pX="0.5" pY="0.5" oW="99" oH="78" r="y"/>
+	<sprite n="yeti_hud/yeti_mouth_happy.png" x="777" y="273" w="63" h="44" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_arm_thumb_up_legendary.png" x="791" y="171" w="82" h="102" pX="0.5" pY="0.5" oW="102" oH="82" r="y"/>
+	<sprite n="yeti_hud/yeti_leg_nightm_hard.png" x="804" y="99" w="42" h="72" pX="0.5" pY="0.5" oW="72" oH="42" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_thumb_up_nightm_hard.png" x="814" y="0" w="84" h="99" pX="0.5" pY="0.5" oW="99" oH="84" r="y"/>
+	<sprite n="yeti_hud/yeti_leg_superhard.png" x="846" y="102" w="42" h="69" pX="0.5" pY="0.5" oW="69" oH="42" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_thumb_up_nightm_superhard.png" x="898" y="947" w="102" h="77" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_arm_open_back.png" x="797" y="945" w="101" h="79" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_arm_touch_ring_nightm_hard.png" x="898" y="854" w="102" h="93" pX="0.5" pY="0.5" oW="93" oH="102" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_worried.png" x="797" y="845" w="101" h="100" pX="0.5" pY="0.5" oW="100" oH="101" r="y"/>
+	<sprite n="yeti_hud/glow.png" x="757" y="881" w="38" h="38" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_arm_worried_superhard.png" x="898" y="754" w="100" h="100" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_head2.png" x="797" y="752" w="99" h="93" pX="0.5" pY="0.5" oW="93" oH="99" r="y"/>
+	<sprite n="yeti_hud/yeti_arm_thumb_up.png" x="898" y="675" w="98" h="79" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/Ring_Background.png" x="797" y="657" w="95" h="95" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_arm_touch_ring_superhard.png" x="898" y="585" w="95" h="90" pX="0.5" pY="0.5" oW="90" oH="95" r="y"/>
+	<sprite n="yeti_hud/yeti_head_superhard_outl.png" x="797" y="576" w="94" h="81" pX="0.5" pY="0.5"/>
+	<sprite n="yeti_hud/yeti_arm_touch_ring_hard.png" x="898" y="493" w="93" h="92" pX="0.5" pY="0.5" oW="92" oH="93" r="y"/>
+	<sprite n="yeti_hud/pompom.png" x="721" y="420" w="74" h="73" pX="0.5" pY="0.5" oW="73" oH="74" r="y"/>
+	<sprite n="yeti_hud/yeti_head_superhard.png" x="740" y="502" w="87" h="74" pX="0.5" pY="0.5"/>
+</TextureAtlas>

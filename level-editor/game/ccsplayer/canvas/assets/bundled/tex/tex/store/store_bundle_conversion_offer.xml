@@ -1,0 +1,14 @@
+<TextureAtlas imagePath="store_bundle_conversion_offer.ktp" width="256" height="256" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="store_bundle_conversion_offer/pink_divider.png" x="2" y="227" w="162" h="27" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_conversion_offer/pink_inset.png" x="168" y="181" w="73" h="73" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_conversion_offer/pink_divider_2.png" x="2" y="198" w="162" h="25" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_conversion_offer/rays_white.png" x="2" y="66" w="129" h="128" pX="0.5" pY="0.5" oW="128" oH="129" r="y"/>
+	<sprite n="store_bundle_conversion_offer/pink_divider_gradient.png" x="2" y="9" w="53" h="53" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_conversion_offer/plus_symbol.png" x="59" y="10" w="49" h="52" pX="0.5" pY="0.5" oY="4" oW="49" oH="56">
+		<vertices>35 56 13 56 0 42 49 43 49 18 0 20 18 4 33 4</vertices>
+		<verticesUV>94 62 72 62 59 48 108 49 108 24 59 26 77 10 92 10</verticesUV>
+		<triangles>0 1 2 3 0 2 3 2 4 4 2 5 6 4 5 6 7 4</triangles>
+	</sprite>
+	<sprite n="store_bundle_conversion_offer/gold_panel.png" x="135" y="107" w="70" h="70" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_conversion_offer/glow_white.png" x="135" y="36" w="67" h="67" pX="0.5" pY="0.5"/>
+</TextureAtlas>

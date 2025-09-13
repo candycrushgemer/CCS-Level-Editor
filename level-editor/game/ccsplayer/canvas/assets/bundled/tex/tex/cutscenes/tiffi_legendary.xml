@@ -1,0 +1,10 @@
+<TextureAtlas imagePath="tiffi_legendary.ktp" width="512" height="512" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="tiffi_legendary/stick.png" x="2" y="41" w="15" h="469" pX="0.5" pY="0.5" oW="16" oH="469"/>
+	<sprite n="tiffi_legendary/button_clip_left.png" x="2" y="12" w="25" h="25" pX="0.5" pY="0.5"/>
+	<sprite n="tiffi_legendary/Tiffi_legendary_body.png" x="21" y="248" w="230" h="262" pX="0.5" pY="0.5"/>
+	<sprite n="tiffi_legendary/Tiffi_legendary_body_2.png" x="31" y="22" w="259" h="222" pX="0.5" pY="0.5" oW="223" oH="259" r="y"/>
+	<sprite n="tiffi_legendary/tiffi_sad_left_arm.png" x="294" y="465" w="81" h="45" pX="0.5" pY="0.5" oX="1" oW="46" oH="81" r="y"/>
+	<sprite n="tiffi_legendary/tiffi_sad_right_arm.png" x="379" y="465" w="81" h="45" pX="0.5" pY="0.5" oW="46" oH="81" r="y"/>
+	<sprite n="tiffi_legendary/tiffi_happy_left_arm.png" x="255" y="392" w="59" h="69" pX="0.5" pY="0.5" oW="69" oH="59" r="y"/>
+	<sprite n="tiffi_legendary/tiffi_happy_right_arm.png" x="255" y="319" w="59" h="69" pX="0.5" pY="0.5" oW="69" oH="59" r="y"/>
+</TextureAtlas>

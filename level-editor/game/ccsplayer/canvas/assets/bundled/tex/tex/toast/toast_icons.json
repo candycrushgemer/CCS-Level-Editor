@@ -1,0 +1,11 @@
+{ "Icons": [
+{ "id": "gift_box", "file": "tex/toast/toast_eoe_giftbox.png"},
+{ "id": "first_attempt", "file": "tex/toast/toast_first_attempt_pin.png"},
+{ "id": "tony_toast", "file": "tex/toast/toast_tony_toast.png"},
+{ "id": "heart_outline", "file": "tex/toast/heart_outline.png"},
+{ "id": "ads_character", "file": "tex/toast/toast_ads_character.png"},
+{ "id": "prot", "file": "tex/toast/toast_shieldo.png"},
+{ "id": "toast_error_message", "file": "tex/toast/toast_error.png"},
+{ "id": "no_connection", "file": "tex/toast/no_connection.png"}
+]
+}

@@ -1,0 +1,124 @@
+<TextureAtlas imagePath="gamehud.ktp" width="2048" height="2048" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="gamehud/order_fondant_tutorial.png" x="2" y="2" w="220" h="206" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/booster_panel_portrait.png" x="3" y="213" w="166" h="160" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/fondant_tutorial.png" x="226" y="2" w="80" h="261" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/panel_bg_landscape.png" x="311" y="3" w="185" h="102" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/topbar_newhud_portrait.png" x="2" y="378" w="120" h="154" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/rimlight_center.png" x="311" y="111" w="128" h="128" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hardlevel_skull_base.png" x="175" y="268" w="128" h="128" pX="0.5" pY="0.5" oX="2" oY="2" oW="132" oH="132"/>
+	<sprite n="gamehud/booster_ads_jackpot.png" x="502" y="3" w="115" h="142" pX="0.5" pY="0.5" oX="1" oW="116" oH="142"/>
+	<sprite n="gamehud/booster_amount_panel.png" x="3" y="537" w="124" h="124" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/moves_tab.png" x="133" y="402" w="95" h="161" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/clock.png" x="311" y="245" w="123" h="124" pX="0.5" pY="0.5" oY="1" oW="123" oH="125"/>
+	<sprite n="gamehud/booster_shuffle.png" x="623" y="3" w="109" h="139" pX="0.5" pY="0.5" oX="13" oY="2" oW="150" oH="142"/>
+	<sprite n="gamehud/sugar_chest_key_tutorial.png" x="444" y="150" w="110" h="128" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hud_glass.png" x="3" y="667" w="115" h="115" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/legendary_hardlevel_skull_hud.png" x="234" y="402" w="115" h="113" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hud_waffle.png" x="738" y="3" w="112" h="113" pX="0.5" pY="0.5" oX="1" oW="115" oH="115"/>
+	<sprite n="gamehud/hud_gumball_machine.png" x="132" y="568" w="112" h="113" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/order_gumball_machine.png" x="558" y="150" w="112" h="112" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/order_wonderful_wrapper.png" x="3" y="788" w="110" h="114" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/order_fondant.png" x="439" y="282" w="114" h="108" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hud_links.png" x="856" y="3" w="110" h="109" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/order_color_cluster.png" x="354" y="394" w="119" h="99" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/order_liquorice.png" x="249" y="521" w="109" h="108" pX="0.5" pY="0.5" oX="4" oY="3" oW="116" oH="116"/>
+	<sprite n="gamehud/order_spawner.png" x="124" y="686" w="108" h="108" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hud_bubblepop.png" x="675" y="148" w="108" h="108" pX="0.5" pY="0.5" oX="4" oY="3" oW="115" oH="115"/>
+	<sprite n="gamehud/hud_sugarcoat.png" x="3" y="908" w="105" h="111" pX="0.5" pY="0.5" oX="5" oY="2" oW="115" oH="115"/>
+	<sprite n="gamehud/hud_candy_red.png" x="559" y="267" w="107" h="107" pX="0.5" pY="0.5" oX="5" oY="4" oW="116" oH="116"/>
+	<sprite n="gamehud/order_heavy_layered.png" x="971" y="2" w="110" h="104" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/timer_bg.png" x="789" y="122" w="102" h="112" pX="0.5" pY="0.5" oX="2" oY="2" oW="106" oH="116"/>
+	<sprite n="gamehud/hud_candy_blue.png" x="119" y="800" w="110" h="103" pX="0.5" pY="0.5" oX="4" oY="4" oW="116" oH="112"/>
+	<sprite n="gamehud/jelly_revamp.png" x="363" y="497" w="106" h="106" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hud_rainbow_candy.png" x="249" y="635" w="105" h="107" pX="0.5" pY="0.5" oX="5" oY="4" oW="114" oH="114"/>
+	<sprite n="gamehud/order_gummy_rope.png" x="2" y="1024" w="104" h="108" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/order_frosting.png" x="478" y="395" w="105" h="106" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/order_licorice_shell.png" x="1086" y="3" w="105" h="105" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/jelly_color.png" x="675" y="262" w="110" h="100" pX="0.5" pY="0.5" oX="3" oY="3" oW="116" oH="106"/>
+	<sprite n="gamehud/order_frosting_FTUE.png" x="897" y="118" w="103" h="106" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/risingsun_singleray.png" x="113" y="908" w="60" h="179" pX="0.5" pY="0.5" oW="60" oH="180"/>
+	<sprite n="gamehud/drop_down_dragon_order.png" x="2" y="1136" w="100" h="106" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hud_candy_purple.png" x="238" y="748" w="106" h="99" pX="0.5" pY="0.5" oX="5" oY="6" oW="116" oH="110"/>
+	<sprite n="gamehud/order_dark_chocolate.png" x="589" y="380" w="107" h="96" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/rimlight_left.png" x="364" y="608" w="80" h="128" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/order_wrapped_wrapped.png" x="1197" y="3" w="104" h="97" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/order_striped_wrapped.png" x="474" y="507" w="104" h="97" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/order_striped_striped.png" x="791" y="240" w="104" h="97" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hud_candy_green.png" x="1006" y="114" w="97" h="104" pX="0.5" pY="0.5" oX="4" oY="4" oW="104" oH="112"/>
+	<sprite n="gamehud/order_chocolate.png" x="3" y="1247" w="106" h="95" pX="0.5" pY="0.5" oX="5" oY="4" oW="116" oH="106"/>
+	<sprite n="gamehud/jelly.png" x="178" y="909" w="100" h="100" pX="0.5" pY="0.5" oX="3" oY="3" oW="106" oH="106"/>
+	<sprite n="gamehud/order_snake.png" x="1307" y="3" w="121" h="82" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/order_cbomb_wrapped.png" x="3" y="1348" w="103" h="96" pX="0.5" pY="0.5" oW="104" oH="97"/>
+	<sprite n="gamehud/order_cbomb_striped.png" x="111" y="1092" w="103" h="96" pX="0.5" pY="0.5" oW="104" oH="97"/>
+	<sprite n="gamehud/order_cbomb_cbomb.png" x="702" y="368" w="103" h="96" pX="0.5" pY="0.5" oW="104" oH="97"/>
+	<sprite n="gamehud/hud_skull.png" x="1109" y="114" w="105" h="94" pX="0.5" pY="0.5" oX="3" oY="5" oW="110" oH="110"/>
+	<sprite n="gamehud/order_wrapped.png" x="450" y="610" w="105" h="91" pX="0.5" pY="0.5" oX="1" oW="107" oH="91"/>
+	<sprite n="gamehud/crazy_hardlevel_skull_hud.png" x="901" y="230" w="119" h="80" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/order_frog.png" x="589" y="482" w="94" h="95" pX="0.5" pY="0.5" oX="6" oW="107" oH="95"/>
+	<sprite n="gamehud/hud_crystal_star.png" x="350" y="748" w="96" h="92" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/order_bomb.png" x="1434" y="3" w="100" h="88" pX="0.5" pY="0.5" oX="5" oW="112" oH="88"/>
+	<sprite n="gamehud/order_cbomb.png" x="284" y="853" w="93" h="94" pX="0.5" pY="0.5" oX="3" oY="1" oW="97" oH="96"/>
+	<sprite n="gamehud/order_fish.png" x="3" y="1450" w="99" h="86" pX="0.5" pY="0.5" oX="2" oY="1" oW="101" oH="88"/>
+	<sprite n="gamehud/hud_candy_yellow.png" x="115" y="1194" w="84" h="101" pX="0.5" pY="0.5" oX="7" oY="6" oW="98" oH="116"/>
+	<sprite n="gamehud/hud_jellyjar.png" x="1220" y="106" w="90" h="93" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hud_candy_orange.png" x="1540" y="3" w="79" h="104" pX="0.5" pY="0.5" oX="5" oY="4" oW="88" oH="112"/>
+	<sprite n="gamehud/order_cakebomb.png" x="3" y="1542" w="90" h="89" pX="0.5" pY="0.5" oX="1" oY="1" oW="92" oH="91"/>
+	<sprite n="gamehud/hud_candy_red_reskin_kitkat.png" x="195" y="1014" w="112" h="109" pX="0.5" pY="0.5" oX="1" oY="2" oW="116" oH="116">
+		<vertices>35 96 1 43 39 2 60 2 113 68 74 111 57 111 113 86 1 33 2 26</vertices>
+		<verticesUV>229 1108 195 1055 233 1014 254 1014 307 1080 268 1123 251 1123 307 1098 195 1045 196 1038</verticesUV>
+		<triangles>0 1 2 0 2 3 0 3 4 0 4 5 0 5 6 7 5 4 2 1 8 9 2 8</triangles>
+	</sprite>
+	<sprite n="gamehud/order_striped.png" x="811" y="343" w="89" h="89" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/super_hardlevel_skull.png" x="1026" y="224" w="86" h="90" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/panel_highlight_goal_stars.png" x="1315" y="90" w="87" h="86" pX="0.5" pY="0.5" oX="1" oY="3" oW="88" oH="94"/>
+	<sprite n="gamehud/yellow_arrow_curved.png" x="1624" y="2" w="130" h="54" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/goals_panel.png" x="3" y="1637" w="66" h="102" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/order_bonbon_blitz.png" x="452" y="707" w="78" h="83" pX="0.5" pY="0.5" oX="6" oY="3" oW="89" oH="89"/>
+	<sprite n="gamehud/check.png" x="284" y="953" w="80" h="75" pX="0.5" pY="0.5" oY="1" oW="80" oH="76"/>
+	<sprite n="gamehud/hardlevel_skull.png" x="906" y="316" w="82" h="72" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hud_crystal_star_superhard.png" x="702" y="470" w="52" h="100" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hud_crystal_star_normal.png" x="115" y="1301" w="52" h="100" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hud_crystal_star_nightmarish.png" x="584" y="583" w="52" h="100" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hud_crystal_star_hard.png" x="3" y="1745" w="52" h="100" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/checkmark.png" x="1759" y="3" w="85" h="60" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/panel_bg_landscape_shine.png" x="1118" y="214" w="165" h="30" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/timer.png" x="1850" y="3" w="64" h="64" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/candy_key.png" x="3" y="1851" w="63" h="65" pX="0.5" pY="0.5" oX="1" oW="64" oH="65"/>
+	<sprite n="gamehud/hud_unfilled_star_newhud_outline.png" x="382" y="845" w="65" h="59" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/order_licorice_curl.png" x="1407" y="97" w="120" h="30" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/order_destructible_wall.png" x="1920" y="3" w="120" h="30" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hud_unfilled_star_newhud_star_revamp.png" x="2" y="1921" w="61" h="55" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/panel_bg_landscape_shine_corner.png" x="220" y="1128" w="66" h="50" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/RecBoosterGlow.png" x="2" y="1980" w="57" h="57" pX="0.5" pY="0.5" oX="4" oY="4" oW="64" oH="64"/>
+	<sprite n="gamehud/level_panel.png" x="112" y="1407" w="68" h="43" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/ao_hardlevel_pin_revamp.png" x="760" y="470" w="54" h="53" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/ao_percentage.png" x="1625" y="61" w="53" h="53" pX="0.5" pY="0.5" oY="1" oW="53" oH="54"/>
+	<sprite n="gamehud/ao_hardlevel_pin.png" x="205" y="1194" w="53" h="53" pX="0.5" pY="0.5" oW="54" oH="53"/>
+	<sprite n="gamehud/yellow_arrow_tutorial.png" x="641" y="582" w="64" h="43" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/ticket.png" x="452" y="796" w="64" h="43" pX="0.5" pY="0.5" oY="12" oW="64" oH="65"/>
+	<sprite n="gamehud/score_bar_panel.png" x="108" y="1456" w="54" h="45" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/ao_arrow.png" x="820" y="438" w="65" h="36" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/yellow_arrow.png" x="1118" y="250" w="36" h="58" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/ao_percentage_red.png" x="175" y="213" w="45" h="45" pX="0.5" pY="0.5" oX="4" oY="3" oW="53" oH="54"/>
+	<sprite n="gamehud/lives_ingame_hud_icon.png" x="994" y="320" w="48" h="42" pX="0.5" pY="0.5" oX="6" oY="6" oW="60" oH="54"/>
+	<sprite n="gamehud/lives_ingame_hud_infinity_icon.png" x="536" y="707" w="61" h="31" pX="0.5" pY="0.5" oX="4" oY="2" oW="72" oH="36"/>
+	<sprite n="gamehud/red_notification_icon.png" x="235" y="853" w="42" h="45" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/TTSwipe.png" x="1684" y="61" w="40" h="41" pX="0.5" pY="0.5" oX="2" oY="2" oW="44" oH="45"/>
+	<sprite n="gamehud/hud_crystal_peace.png" x="1407" y="133" w="32" h="51" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hud_unfilled_star_border.png" x="172" y="1300" w="41" h="38" pX="0.5" pY="0.5" oX="1" oY="1" oW="42" oH="40"/>
+	<sprite n="gamehud/hud_scoreStar_yellow_star_revamp.png" x="382" y="908" w="41" h="38" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hud_scoreStar_master_star_revamp.png" x="304" y="1033" w="41" h="38" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hard_level_unfilled_star.png" x="75" y="1637" w="40" h="37" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/infinite_icon.png" x="108" y="1507" w="38" h="38" pX="0.5" pY="0.5" oX="1" oW="40" oH="39"/>
+	<sprite n="gamehud/hud_scoreStar_master.png" x="1920" y="39" w="39" h="36" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hud_scoreStar_yellow.png" x="99" y="1551" w="39" h="35" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/hud_unfilled_star_newhud.png" x="444" y="110" w="37" h="34" pX="0.5" pY="0.5" oX="3" oY="3" oW="42" oH="40"/>
+	<sprite n="gamehud/hud_scoreStar_red.png" x="1965" y="39" w="37" h="33" pX="0.5" pY="0.5" oX="1" oY="1" oW="39" oH="35"/>
+	<sprite n="gamehud/hud_scoreStar_green.png" x="61" y="1745" w="37" h="33" pX="0.5" pY="0.5" oX="1" oY="1" oW="39" oH="35"/>
+	<sprite n="gamehud/scores_bar_filler_side_MS.png" x="1730" y="61" w="21" h="36" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/scores_bar_filler_side.png" x="906" y="394" w="21" h="36" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/shine_edge.png" x="3" y="2042" w="167" h="4" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/scores_bar_filler_line_MS.png" x="178" y="1015" w="10" h="36" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/scores_bar_filler_line.png" x="561" y="610" w="10" h="36" pX="0.5" pY="0.5"/>
+	<sprite n="gamehud/level_sides-panel.png" x="127" y="379" w="4" h="12" pX="0.5" pY="0.5"/>
+</TextureAtlas>

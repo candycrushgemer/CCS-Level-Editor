@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:8c472dcd393fb666b3fdc55ab25382ef:9b4e0a3e3fe6a280a4ef459211bbebce:05552a7a27f8d7a3476f4b3416a7dd17$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="dynamic_EGP.png" width="512" height="512">
+    <sprite n="btn_panel_red.png" x="2" y="2" w="186" h="186"/>
+    <sprite n="dynamic_banner_bkg.png" x="192" y="71" w="161" h="74"/>
+    <sprite n="dynamic_banner_canvas.png" x="197" y="289" w="20" h="92"/>
+    <sprite n="dynamic_banner_highlight.png" x="262" y="149" w="7" h="10"/>
+    <sprite n="dynamic_banner_jelly.png" x="357" y="71" w="77" h="68"/>
+    <sprite n="dynamic_banner_shadow.png" x="262" y="163" w="7" h="10"/>
+    <sprite n="dynamic_banner_speech_bubble.png" x="2" y="289" w="140" h="107"/>
+    <sprite n="dynamic_glow_white.png" x="376" y="297" w="133" h="133"/>
+    <sprite n="dynamic_goldbar.png" x="197" y="388" w="75" h="69"/>
+    <sprite n="dynamic_heart_outline.png" x="423" y="143" w="86" h="88"/>
+    <sprite n="dynamic_infochart.png" x="276" y="388" w="73" h="77"/>
+    <sprite n="dynamic_light_blue_panel.png" x="353" y="434" w="72" h="73"/>
+    <sprite n="dynamic_pricetag01.png" x="221" y="297" w="151" h="87"/>
+    <sprite n="dynamic_pricetag02.png" x="423" y="235" w="49" h="29"/>
+    <sprite n="dynamic_speechBubble_bottom.png" x="192" y="2" w="307" h="31"/>
+    <sprite n="dynamic_speechBubble_hanger.png" x="129" y="461" w="38" h="40"/>
+    <sprite n="dynamic_speechBubble_left.png" x="168" y="289" w="16" h="118"/>
+    <sprite n="dynamic_speechBubble_middle.png" x="188" y="289" w="5" h="118"/>
+    <sprite n="dynamic_speechBubble_right.png" x="146" y="289" w="18" h="118"/>
+    <sprite n="dynamic_speechBubble_top.png" x="192" y="37" w="304" h="30"/>
+    <sprite n="dynamic_speechPin01.png" x="129" y="411" w="36" h="46"/>
+    <sprite n="dynamic_speechPin02.png" x="192" y="149" w="66" h="36"/>
+    <sprite n="dynamic_white_stripe.png" x="262" y="177" w="6" h="6"/>
+    <sprite n="egp_bg_panel_tooltip.png" x="2" y="400" w="123" h="79"/>
+    <sprite n="egp_goldbar_panel.png" x="2" y="192" w="269" h="93"/>
+    <sprite n="egp_inner_panel_1.png" x="275" y="149" w="144" h="144"/>
+    <sprite n="egp_inner_panel_bank_balance.png" x="476" y="235" w="34" h="34"/>
+    <sprite n="egp_inner_panel_bank_balance_highlight.png" x="438" y="71" w="69" h="60"/>
+    <sprite n="egp_panel_tooltip_tip.png" x="429" y="434" w="40" h="36"/>
+</TextureAtlas>

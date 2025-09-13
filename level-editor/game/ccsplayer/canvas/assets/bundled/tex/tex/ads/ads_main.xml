@@ -1,0 +1,24 @@
+<TextureAtlas imagePath="ads_main.ktp" width="512" height="512" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="ads_main/ads_header_ribbon.png" x="2" y="2" w="393" h="166" pX="0.5" pY="0.5">
+		<vertices>0 112 160 0 280 125 0 0 321 21 335 54 301 129 354 103 303 152 299 150 384 130 383 166 393 161 393 166 363 61 393 86 393 77 331 33</vertices>
+		<verticesUV>2 114 162 2 282 127 2 2 323 23 337 56 303 131 356 105 305 154 301 152 386 132 385 168 395 163 395 168 365 63 395 88 395 79 333 35</verticesUV>
+		<triangles>0 1 2 0 3 1 2 1 4 5 2 4 6 2 5 7 6 5 8 6 7 9 6 8 10 8 7 11 8 10 11 10 12 11 12 13 7 5 14 7 14 15 14 16 15 5 4 17</triangles>
+	</sprite>
+	<sprite n="ads_main/ads_header_custom_cinema.png" x="2" y="120" w="317" h="191" pX="0.5" pY="0.5">
+		<vertices>291 191 0 191 190 85 231 93 226 82 216 73 200 73 278 110 300 148 311 162 310 183 317 117 317 132 293 102 310 106 272 94 261 84 184 81 138 61 92 61 71 29 0 0 52 13 19 0 30 1 107 45 135 52 123 42 174 61</vertices>
+		<verticesUV>293 311 2 311 192 205 233 213 228 202 218 193 202 193 280 230 302 268 313 282 312 303 319 237 319 252 295 222 312 226 274 214 263 204 186 201 140 181 94 181 73 149 2 120 54 133 21 120 32 121 109 165 137 172 125 162 176 181</verticesUV>
+		<triangles>0 1 2 2 3 0 3 2 4 5 4 2 2 6 5 0 3 7 0 7 8 9 0 8 10 0 9 8 7 11 12 8 11 13 11 7 11 13 14 15 7 3 3 16 15 17 2 1 1 18 17 1 19 18 1 20 19 21 20 1 20 21 22 23 22 21 22 23 24 19 25 18 18 25 26 25 27 26 18 28 17</triangles>
+	</sprite>
+	<sprite n="ads_main/ads_icon_projection.png" x="2" y="315" w="196" h="196" pX="0.5" pY="0.5"/>
+	<sprite n="ads_main/ads_curtains_hanging.png" x="202" y="315" w="271" h="138" pX="0.5" pY="0.5">
+		<vertices>6 42 0 9 0 0 186 125 39 97 75 126 109 138 155 138 256 56 210 112 271 0 271 3</vertices>
+		<verticesUV>208 357 202 324 202 315 388 440 241 412 277 441 311 453 357 453 458 371 412 427 473 315 473 318</verticesUV>
+		<triangles>0 1 2 0 2 3 0 3 4 5 4 3 6 5 3 7 6 3 3 2 8 8 9 3 8 2 10 10 11 8</triangles>
+	</sprite>
+	<sprite n="ads_main/ads_curtains_strip.png" x="477" y="2" w="30" h="499" pX="0.5" pY="0.5"/>
+	<sprite n="ads_main/ads_icon.png" x="323" y="172" w="100" h="112" pX="0.5" pY="0.5"/>
+	<sprite n="ads_main/ads_header_custom_lamp.png" x="351" y="2" w="44" h="53" pX="0.5" pY="0.5"/>
+	<sprite n="ads_main/ads_curtain_shadow.png" x="399" y="2" w="2" h="98" pX="0.5" pY="0.5" oW="2" oH="100"/>
+	<sprite n="ads_main/ads_curtains_outline.png" x="70" y="131" w="19" h="10" pX="0.5" pY="0.5"/>
+	<sprite n="ads_main/ads_curtain_overlay.png" x="210" y="2" w="2" h="2" pX="0.5" pY="0.5"/>
+</TextureAtlas>

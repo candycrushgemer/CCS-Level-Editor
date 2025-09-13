@@ -1,0 +1,10 @@
+<TextureAtlas imagePath="tiffi_knight.ktp" width="512" height="512" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="tiffi_knight/stick.png" x="2" y="41" w="16" h="469" pX="0.5" pY="0.5"/>
+	<sprite n="tiffi_knight/button_clip_left.png" x="2" y="12" w="25" h="25" pX="0.5" pY="0.5"/>
+	<sprite n="tiffi_knight/tiffi_sad_body.png" x="22" y="269" w="233" h="241" pX="0.5" pY="0.5"/>
+	<sprite n="tiffi_knight/tiffi_happy_right_arm.png" x="259" y="388" w="236" h="122" pX="0.5" pY="0.5" oW="122" oH="236" r="y"/>
+	<sprite n="tiffi_knight/tiffi_happy_body.png" x="259" y="150" w="235" h="234" pX="0.5" pY="0.5" oW="234" oH="235" r="y"/>
+	<sprite n="tiffi_knight/tiffi_sad_right_arm.png" x="31" y="5" w="132" h="141" pX="0.5" pY="0.5" oW="141" oH="132" r="y"/>
+	<sprite n="tiffi_knight/tiffi_left_arm_happy.png" x="167" y="212" w="71" h="53" pX="0.5" pY="0.5"/>
+	<sprite n="tiffi_knight/tiffi_shield.png" x="167" y="25" w="116" h="121" pX="0.5" pY="0.5" oW="121" oH="116" r="y"/>
+</TextureAtlas>

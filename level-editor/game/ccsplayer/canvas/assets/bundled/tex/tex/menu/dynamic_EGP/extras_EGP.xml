@@ -1,0 +1,17 @@
+<TextureAtlas imagePath="extras_EGP.ktp" width="512" height="512" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="extras_EGP/full_heart.png" x="2" y="330" w="200" h="180" pX="0.5" pY="0.5"/>
+	<sprite n="extras_EGP/egp_offline_offer_tag.png" x="206" y="454" w="144" h="56" pX="0.5" pY="0.5" oX="1" oW="152" oH="56"/>
+	<sprite n="extras_EGP/egp_last_life_blur.png" x="354" y="372" w="141" h="138" pX="0.5" pY="0.5" oY="3" oW="138" oH="148" r="y"/>
+	<sprite n="extras_EGP/broken_heart_L.png" x="206" y="358" w="133" h="92" pX="0.5" pY="0.5" oW="92" oH="133" r="y"/>
+	<sprite n="extras_EGP/broken_heart_R.png" x="343" y="279" w="132" h="89" pX="0.5" pY="0.5" oW="89" oH="132" r="y"/>
+	<sprite n="extras_EGP/icon_no_connection_white.png" x="479" y="344" w="30" h="24" pX="0.5" pY="0.5"/>
+	<sprite n="extras_EGP/egp_inner_panel_shadow.png" x="206" y="274" w="116" h="80" pX="0.5" pY="0.5"/>
+	<sprite n="extras_EGP/Discount_crossline.png" x="326" y="288" w="13" h="66" pX="0.5" pY="0.5" oW="66" oH="14" r="y"/>
+	<sprite n="extras_EGP/dynamic_panel_half_rounded.png" x="326" y="215" w="115" h="60" pX="0.5" pY="0.5"/>
+	<sprite n="extras_EGP/plus_label_gold_2.png" x="445" y="181" w="44" h="94" pX="0.5" pY="0.5" oW="94" oH="44" r="y"/>
+	<sprite n="extras_EGP/bnr_limited_deal.png" x="2" y="72" w="98" h="105" pX="0.5" pY="0.5" oX="3" oY="2" oW="112" oH="100" r="y"/>
+	<sprite n="extras_EGP/egp_inner_panel_hard.png" x="104" y="256" w="94" h="70" pX="0.5" pY="0.5"/>
+	<sprite n="extras_EGP/egp_inner_panel_nightmarishly_hard.png" x="2" y="182" w="94" h="70" pX="0.5" pY="0.5"/>
+	<sprite n="extras_EGP/egp_inner_panel_normal.png" x="2" y="256" w="94" h="70" pX="0.5" pY="0.5"/>
+	<sprite n="extras_EGP/egp_inner_panel_super_hard.png" x="100" y="182" w="94" h="70" pX="0.5" pY="0.5"/>
+</TextureAtlas>

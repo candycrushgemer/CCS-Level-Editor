@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:719ece735aead68d9c61c448cc0e6449:a85bf0f225e1678cfb83301393d3127b:4438ffb885c813876179cf590e87dd37$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="tutorial_FTUE-1.png" width="512" height="512">
+    <sprite n="tutorial_badge_denize.png" x="1" y="185" w="175" h="178"/>
+    <sprite n="tutorial_badge_odus.png" x="166" y="365" w="176" h="144"/>
+    <sprite n="tutorial_badge_olivia.png" x="344" y="1" w="164" h="153"/>
+    <sprite n="tutorial_badge_roberta.png" x="1" y="1" w="175" h="182"/>
+    <sprite n="tutorial_badge_tiffy.png" x="1" y="365" w="163" h="146"/>
+    <sprite n="tutorial_badge_toffee.png" x="323" y="156" w="181" h="168"/>
+    <sprite n="tutorial_badge_yeti.png" x="178" y="1" w="143" h="158"/>
+    <sprite n="tutorial_blue_dot.png" x="216" y="326" w="32" h="33"/>
+    <sprite n="tutorial_icon_arrow.png" x="458" y="326" w="45" h="51"/>
+    <sprite n="tutorial_icon_cherry.png" x="178" y="226" w="102" h="95"/>
+    <sprite n="tutorial_icon_cobra.png" x="344" y="326" w="112" h="78"/>
+    <sprite n="tutorial_icon_horizontal.png" x="439" y="406" w="68" h="71"/>
+    <sprite n="tutorial_icon_wrappedbomb.png" x="344" y="406" w="93" h="105"/>
+    <sprite n="tutorial_pointer_hand.png" x="216" y="161" w="104" h="63"/>
+    <sprite n="tutorial_speech_bubble_notch.png" x="178" y="161" w="35" h="35"/>
+    <sprite n="tutorial_speech_bubble_notch2.png" x="178" y="326" w="36" h="36"/>
+</TextureAtlas>

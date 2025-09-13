@@ -1,0 +1,62 @@
+<TextureAtlas imagePath="bank_chest.ktp" width="256" height="256" premultipliedAlpha="false" king_version="1.5.2" sprites_scale="2.000000">
+	<sprite n="bank_chest/candy_bank_olivia.png" x="2" y="2" w="96" h="102" pX="0.5" pY="0.5">
+		<vertices>9 66 0 54 12 12 80 69 51 102 30 102 7 91 70 101 84 92 85 71 27 0 85 9 96 46 96 22 92 0 0 24</vertices>
+		<verticesUV>11 68 2 56 14 14 82 71 53 104 32 104 9 93 72 103 86 94 87 73 29 2 87 11 98 48 98 24 94 2 2 26</verticesUV>
+		<triangles>0 1 2 0 2 3 4 0 3 4 5 0 0 5 6 7 4 3 8 7 3 8 3 9 2 10 3 3 10 11 3 11 12 11 13 12 11 10 14 1 15 2</triangles>
+	</sprite>
+	<sprite n="bank_chest/bag_candy.png" x="102" y="2" w="99" h="63" pX="0.5" pY="0.5">
+		<vertices>5 45 0 41 0 21 18 46 8 13 41 3 51 63 86 45 96 13 99 37 99 16 80 56 27 63 36 0 14 0</vertices>
+		<verticesUV>107 47 102 43 102 23 120 48 110 15 143 5 153 65 188 47 198 15 201 39 201 18 182 58 129 65 138 2 116 2</verticesUV>
+		<triangles>0 1 2 2 3 0 3 2 4 5 3 4 5 6 3 5 7 6 7 5 8 7 8 9 8 10 9 6 7 11 6 12 3 5 4 13 13 4 14</triangles>
+	</sprite>
+	<sprite n="bank_chest/shop_tiffi_safari_hat.png" x="2" y="108" w="73" h="62" pX="0.5" pY="0.5">
+		<vertices>8 62 0 58 0 29 62 26 71 62 73 59 71 27 21 0 45 0 61 13</vertices>
+		<verticesUV>10 170 2 166 2 137 64 134 73 170 75 167 73 135 23 108 47 108 63 121</verticesUV>
+		<triangles>0 1 2 3 0 2 3 4 0 5 4 3 5 3 6 7 3 2 7 8 3 9 3 8</triangles>
+	</sprite>
+	<sprite n="bank_chest/candy_bank_big_cloud_1.png" x="2" y="174" w="145" h="27" pX="0.5" pY="0.5">
+		<vertices>0 27 18 0 145 27 0 18 145 0</vertices>
+		<verticesUV>2 201 20 174 147 201 2 192 147 174</verticesUV>
+		<triangles>0 1 2 0 3 1 1 4 2</triangles>
+	</sprite>
+	<sprite n="bank_chest/candy_bank_chest_bottom.png" x="2" y="205" w="98" h="48" pX="0.5" pY="0.5" oW="99" oH="48">
+		<vertices>9 38 0 6 17 0 71 9 68 48 75 48 92 33 87 0 98 0 0 0</vertices>
+		<verticesUV>11 243 2 211 19 205 73 214 70 253 77 253 94 238 89 205 100 205 2 205</verticesUV>
+		<triangles>0 1 2 0 2 3 4 0 3 5 4 3 6 5 3 3 7 6 6 7 8 1 9 2</triangles>
+	</sprite>
+	<sprite n="bank_chest/candy_bank_chest_top.png" x="90" y="69" w="77" h="47" pX="0.5" pY="0.5">
+		<vertices>59 47 0 41 34 6 45 7 43 0 35 0 77 18 77 39 70 47 73 7 0 29 4 6</vertices>
+		<verticesUV>149 116 90 110 124 75 135 76 133 69 125 69 167 87 167 108 160 116 163 76 90 98 94 75</verticesUV>
+		<triangles>0 1 2 2 3 0 3 2 4 2 5 4 6 0 3 7 0 6 8 0 7 6 3 9 2 1 10 2 10 11</triangles>
+	</sprite>
+	<sprite n="bank_chest/candy_bank_big_cloud_2.png" x="78" y="120" w="115" h="21" pX="0.5" pY="0.5">
+		<vertices>0 21 12 0 115 21 0 11 115 0</vertices>
+		<verticesUV>78 141 90 120 193 141 78 131 193 120</verticesUV>
+		<triangles>0 1 2 0 3 1 1 4 2</triangles>
+	</sprite>
+	<sprite n="bank_chest/candy_bank_sale_banner.png" x="130" y="145" w="94" h="26" pX="0.5" pY="0.5">
+		<vertices>21 25 0 6 0 0 94 0 77 26 94 5</vertices>
+		<verticesUV>151 170 130 151 130 145 224 145 207 171 224 150</verticesUV>
+		<triangles>0 1 2 0 2 3 0 3 4 5 4 3</triangles>
+	</sprite>
+	<sprite n="bank_chest/candy_bank_big_cloud_3.png" x="174" y="55" w="81" h="25" pX="0.5" pY="0.5">
+		<vertices>0 25 44 9 81 25 35 4 13 6 1 17 0 20 61 0 81 0</vertices>
+		<verticesUV>174 80 218 64 255 80 209 59 187 61 175 72 174 75 235 55 255 55</verticesUV>
+		<triangles>0 1 2 3 1 0 0 4 3 0 5 4 0 6 5 1 7 2 7 8 2</triangles>
+	</sprite>
+	<sprite n="bank_chest/candy_bank_olivia_arm.png" x="205" y="2" w="45" h="41" pX="0.5" pY="0.5">
+		<vertices>13 26 0 19 0 0 37 0 45 16 37 41 15 40 45 37</vertices>
+		<verticesUV>218 28 205 21 205 2 242 2 250 18 242 43 220 42 250 39</verticesUV>
+		<triangles>0 1 2 3 0 2 4 0 3 5 0 4 5 6 0 4 7 5</triangles>
+	</sprite>
+	<sprite n="bank_chest/candy_bank_olivia_2.png" x="171" y="84" w="55" h="30" pX="0.5" pY="0.5">
+		<vertices>53 30 0 30 29 0 55 19 55 27 54 13 0 11 9 0 2 5</vertices>
+		<verticesUV>224 114 171 114 200 84 226 103 226 111 225 97 171 95 180 84 173 89</verticesUV>
+		<triangles>0 1 2 3 0 2 4 0 3 3 2 5 2 1 6 6 7 2 6 8 7</triangles>
+	</sprite>
+	<sprite n="bank_chest/candy_bank_chest_inside.png" x="98" y="222" w="87" h="19" pX="0.5" pY="0.5">
+		<vertices>61 19 0 11 40 0 86 4 71 19 87 12 13 0 0 6</vertices>
+		<verticesUV>159 241 98 233 138 222 184 226 169 241 185 234 111 222 98 228</verticesUV>
+		<triangles>0 1 2 0 2 3 4 0 3 5 4 3 1 6 2 1 7 6</triangles>
+	</sprite>
+</TextureAtlas>

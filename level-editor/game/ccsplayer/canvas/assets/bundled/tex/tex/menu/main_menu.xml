@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:6e8f1b7e546407c617a6d693657a750a:53c7ee8af04224e607198aa5cf5d2840:37df1ffa2fcd4ec9463aa8ff2d1cd7c4$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="main_menu.png" width="1024" height="1024">
+    <sprite n="ads_cross.png" x="775" y="696" w="16" h="13"/>
+    <sprite n="ads_cross_shadow.png" x="390" y="439" w="16" h="13"/>
+    <sprite n="ads_icon.png" x="853" y="713" w="55" h="62"/>
+    <sprite n="beam_striped_glow.png" x="2" y="990" w="66" h="22" oX="2" oY="0" oW="68" oH="25"/>
+    <sprite n="booster_button_blue.png" x="414" y="356" w="117" h="115" oX="3" oY="0" oW="120" oH="116"/>
+    <sprite n="booster_button_gray.png" x="722" y="77" w="117" h="115" oX="3" oY="0" oW="120" oH="116"/>
+    <sprite n="booster_button_green.png" x="130" y="863" w="117" h="115" oX="3" oY="0" oW="120" oH="116"/>
+    <sprite n="booster_slot_crazyhard.png" x="615" y="149" w="103" h="103"/>
+    <sprite n="booster_slot_hard.png" x="615" y="256" w="103" h="103"/>
+    <sprite n="booster_slot_normal.png" x="615" y="363" w="103" h="103"/>
+    <sprite n="booster_slot_superhard.png" x="391" y="547" w="103" h="103"/>
+    <sprite n="btn_back.png" x="535" y="303" w="76" h="77" oX="0" oY="0" oW="77" oH="77"/>
+    <sprite n="btn_info.png" x="534" y="222" w="77" h="77"/>
+    <sprite n="btn_panel_blue.png" x="914" y="522" w="92" h="93" oX="0" oY="0" oW="93" oH="93"/>
+    <sprite n="btn_panel_blue_disabled.png" x="817" y="522" w="93" h="93"/>
+    <sprite n="btn_panel_disabled.png" x="593" y="667" w="87" h="87" oX="0" oY="0" oW="93" oH="93"/>
+    <sprite n="btn_panel_gray.png" x="277" y="676" w="92" h="93" oX="0" oY="0" oW="93" oH="93"/>
+    <sprite n="btn_panel_green.png" x="277" y="773" w="92" h="93" oX="0" oY="0" oW="93" oH="93"/>
+    <sprite n="btn_panel_orange.png" x="373" y="744" w="92" h="93" oX="0" oY="0" oW="93" oH="93"/>
+    <sprite n="btn_panel_pink.png" x="251" y="870" w="92" h="93" oX="0" oY="0" oW="93" oH="93"/>
+    <sprite n="btn_panel_pink_secondary.png" x="373" y="841" w="93" h="92"/>
+    <sprite n="btn_panel_purple.png" x="469" y="744" w="92" h="93" oX="0" oY="0" oW="93" oH="93"/>
+    <sprite n="btn_panel_yellow.png" x="470" y="841" w="92" h="93" oX="0" oY="0" oW="93" oH="93"/>
+    <sprite n="btn_quit.png" x="535" y="384" w="76" h="77" oX="0" oY="0" oW="77" oH="77"/>
+    <sprite n="btn_reward_purple.png" x="2" y="851" w="124" h="135" oX="1" oY="0" oW="125" oH="135"/>
+    <sprite n="check_booster_button.png" x="745" y="835" w="69" h="70" oX="4" oY="4" oW="75" oH="75"/>
+    <sprite n="cloud_hanger.png" x="206" y="648" w="46" h="40"/>
+    <sprite n="cloud_string_panel.png" x="522" y="630" w="14" h="2"/>
+    <sprite n="cloudpop_bottom.png" x="738" y="971" w="42" h="51"/>
+    <sprite n="cloudpop_midddle.png" x="989" y="619" w="16" h="75"/>
+    <sprite n="cloudpop_top.png" x="236" y="2" w="284" h="108"/>
+    <sprite n="copy_button.png" x="845" y="311" w="111" h="110"/>
+    <sprite n="crazyhardlevel_skull.png" x="509" y="149" w="102" h="69"/>
+    <sprite n="delete_account_button.png" x="530" y="938" w="75" h="75"/>
+    <sprite n="expand_life_storage.png" x="722" y="196" w="120" h="109" oX="4" oY="4" oW="128" oH="117"/>
+    <sprite n="expand_life_storage_border.png" x="843" y="74" w="128" h="117"/>
+    <sprite n="glow.png" x="899" y="993" w="29" h="29" oX="0" oY="0" oW="30" oH="29"/>
+    <sprite n="gold_inventory_hud_base.png" x="891" y="779" w="48" h="39"/>
+    <sprite n="gradient.png" x="509" y="114" w="2" h="23"/>
+    <sprite n="gradient_small.png" x="196" y="420" w="1" h="7"/>
+    <sprite n="haptics_button.png" x="499" y="649" w="90" h="90"/>
+    <sprite n="hardlevel_skull.png" x="540" y="578" w="73" h="67"/>
+    <sprite n="header_revamp_cloud.png" x="524" y="77" w="194" h="68"/>
+    <sprite n="header_revamp_ribbon.png" x="236" y="114" w="269" h="111"/>
+    <sprite n="heart.png" x="722" y="309" w="119" h="107"/>
+    <sprite n="heart_time_button.png" x="713" y="510" w="100" h="91"/>
+    <sprite n="help_button_new.png" x="617" y="576" w="89" h="87" oX="1" oY="3" oW="90" oH="90"/>
+    <sprite n="icon_delete_account.png" x="791" y="783" w="48" h="48"/>
+    <sprite n="icon_forum.png" x="829" y="955" w="66" h="53"/>
+    <sprite n="icon_help.png" x="976" y="710" w="39" h="53"/>
+    <sprite n="icon_player_return.png" x="656" y="837" w="85" h="99" oX="0" oY="1" oW="85" oH="100"/>
+    <sprite n="infinite_lives_icon.png" x="217" y="814" w="56" h="27" oX="3" oY="3" oW="62" oH="32"/>
+    <sprite n="legendaryhard_cloud1a.png" x="391" y="654" w="104" h="86"/>
+    <sprite n="legendaryhard_cloud1b.png" x="217" y="692" w="56" h="118" oX="0" oY="0" oW="56" oH="119"/>
+    <sprite n="legendaryhard_cloud1c.png" x="722" y="420" w="115" h="86"/>
+    <sprite n="legendaryhard_cloud2a.png" x="260" y="356" w="150" h="79"/>
+    <sprite n="legendaryhard_cloud2b.png" x="256" y="562" w="131" h="110"/>
+    <sprite n="legendaryhard_frame_glow.png" x="912" y="710" w="60" h="60"/>
+    <sprite n="legendaryhard_skull.png" x="610" y="470" w="99" h="102"/>
+    <sprite n="legenradyhard_flame.png" x="745" y="909" w="69" h="58"/>
+    <sprite n="legenradyhard_flame1.png" x="784" y="971" w="41" h="50" oX="0" oY="8" oW="41" oH="58"/>
+    <sprite n="legenradyhard_flame2.png" x="320" y="1005" w="12" h="17"/>
+    <sprite n="light_white_panel.png" x="843" y="783" w="44" h="46" oX="0" oY="0" oW="44" oH="47"/>
+    <sprite n="minipop_ads_play.png" x="984" y="767" w="35" h="38"/>
+    <sprite n="minipop_ads_topleft.png" x="2" y="431" w="250" h="124"/>
+    <sprite n="minipop_bottomleft.png" x="791" y="713" w="58" h="66"/>
+    <sprite n="minipop_hanger.png" x="251" y="967" w="65" h="55"/>
+    <sprite n="minipop_topleft.png" x="2" y="559" w="250" h="85"/>
+    <sprite n="minishop_revamp_body.png" x="522" y="475" w="14" h="127"/>
+    <sprite n="minishop_revamp_body_bottom.png" x="522" y="606" w="14" h="20"/>
+    <sprite n="minishop_revamp_body_bottom_corner.png" x="186" y="982" w="36" h="40"/>
+    <sprite n="minishop_revamp_body_topcurve01.png" x="130" y="982" w="52" h="40"/>
+    <sprite n="minishop_revamp_body_topcurve02.png" x="818" y="897" w="63" h="54"/>
+    <sprite n="minishop_revamp_body_topcurve03.png" x="390" y="475" w="102" h="68"/>
+    <sprite n="minishop_revamp_gold_medal_badge.png" x="2" y="236" w="190" h="191"/>
+    <sprite n="minishop_revamp_notch.png" x="347" y="870" w="22" h="29" oX="0" oY="3" oW="22" oH="32"/>
+    <sprite n="minishop_revamp_string.png" x="1011" y="2" w="2" h="20"/>
+    <sprite n="music_button_new.png" x="710" y="605" w="89" h="87" oX="1" oY="3" oW="90" oH="90"/>
+    <sprite n="panel_gradient.png" x="960" y="311" w="6" h="90"/>
+    <sprite n="plain_black_nine_patch.png" x="984" y="809" w="4" h="4"/>
+    <sprite n="plain_white_nine_patch.png" x="236" y="229" w="2" h="2"/>
+    <sprite n="popup_bkg_panel_blue.png" x="918" y="822" w="33" h="33"/>
+    <sprite n="popup_bkg_panel_darkblue.png" x="955" y="817" w="33" h="33"/>
+    <sprite n="popup_bkg_panel_pink.png" x="925" y="859" w="33" h="33"/>
+    <sprite n="popup_bkg_panel_purple.png" x="962" y="854" w="33" h="33"/>
+    <sprite n="popup_cloud.png" x="829" y="2" w="178" h="68"/>
+    <sprite n="popup_frame.png" x="2" y="2" w="230" h="230"/>
+    <sprite n="popup_frame_base_stripe.png" x="373" y="702" w="14" h="19"/>
+    <sprite n="popup_frame_left_stripe.png" x="226" y="982" w="21" h="12"/>
+    <sprite n="popup_frame_right_stripe.png" x="992" y="837" w="18" h="13"/>
+    <sprite n="popup_frame_top_stripe.png" x="373" y="676" w="14" h="22"/>
+    <sprite n="pre_level_master_star.png" x="260" y="229" w="133" h="123"/>
+    <sprite n="pre_level_star_transparent.png" x="846" y="195" w="123" h="112"/>
+    <sprite n="pre_level_star_transparent_outline.png" x="256" y="439" w="130" h="119"/>
+    <sprite n="pre_level_star_yellow.png" x="397" y="229" w="133" h="123"/>
+    <sprite n="risingsun_singleray.png" x="196" y="236" w="60" h="180"/>
+    <sprite n="send_life_button.png" x="566" y="837" w="86" h="89" oX="0" oY="2" oW="86" oH="91"/>
+    <sprite n="settings_button_menu.png" x="803" y="619" w="89" h="90" oX="1" oY="0" oW="90" oH="90"/>
+    <sprite n="settings_community_link_icon.png" x="565" y="758" w="75" h="75"/>
+    <sprite n="settings_polices_icon.png" x="644" y="759" w="75" h="74"/>
+    <sprite n="settings_sound_off_red_stripe.png" x="130" y="851" w="1" h="8"/>
+    <sprite n="slider_bg.png" x="885" y="880" w="36" h="36"/>
+    <sprite n="slider_center.png" x="932" y="993" w="6" h="29"/>
+    <sprite n="slider_fill.png" x="899" y="955" w="34" h="34"/>
+    <sprite n="socialnetwork_icon.png" x="872" y="833" w="42" h="43" oX="0" oY="0" oW="44" oH="44"/>
+    <sprite n="sound_button_new.png" x="896" y="619" w="89" h="87" oX="1" oY="3" oW="90" oH="90"/>
+    <sprite n="special_offer_sign.png" x="2" y="648" w="200" h="76"/>
+    <sprite n="speechbubble_scalable_base.png" x="609" y="930" w="39" h="60"/>
+    <sprite n="speechbubble_scalable_notch.png" x="72" y="990" w="24" h="32"/>
+    <sprite n="speechbubble_scalable_pointer.png" x="609" y="994" w="28" h="24"/>
+    <sprite n="speechbubble_scalable_pointer_horz.png" x="992" y="809" w="28" h="24"/>
+    <sprite n="superhardlevel_skull.png" x="723" y="759" w="64" h="72"/>
+    <sprite n="tab_active.png" x="818" y="835" w="50" h="58"/>
+    <sprite n="tab_inactive.png" x="973" y="248" w="48" h="58"/>
+    <sprite n="target_blue_bar.png" x="524" y="2" w="301" h="71"/>
+    <sprite n="thunder.png" x="320" y="967" w="19" h="34"/>
+    <sprite n="title_cloud_main01.png" x="155" y="728" w="58" h="131" oX="0" oY="2" oW="58" oH="135"/>
+    <sprite n="title_cloud_main02.png" x="540" y="465" w="66" h="109" oX="0" oY="0" oW="66" oH="111"/>
+    <sprite n="title_cloud_tip01.png" x="841" y="425" w="123" h="93" oX="1" oY="0" oW="124" oH="95"/>
+    <sprite n="title_cloud_tip02.png" x="2" y="728" w="149" h="119" oX="1" oY="2" oW="150" oH="123"/>
+    <sprite n="topbar_goldbar.png" x="347" y="937" w="88" h="85"/>
+    <sprite n="topbar_map_corner.png" x="975" y="74" w="41" h="170"/>
+    <sprite n="topbar_map_middle.png" x="498" y="475" w="20" h="170"/>
+    <sprite n="topbar_map_panel.png" x="652" y="940" w="82" h="46"/>
+    <sprite n="topbar_map_panel_shadow.png" x="885" y="920" w="33" h="31"/>
+    <sprite n="topbar_messages.png" x="684" y="696" w="87" h="59" oX="1" oY="0" oW="88" oH="59"/>
+    <sprite n="topbar_messages_bn.png" x="439" y="938" w="87" h="80" oX="1" oY="0" oW="88" oH="80"/>
+    <sprite n="topbar_red_notification_icon.png" x="943" y="774" w="37" h="39"/>
+</TextureAtlas>

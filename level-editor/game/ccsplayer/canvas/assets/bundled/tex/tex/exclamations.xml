@@ -1,0 +1,13 @@
+<TextureAtlas imagePath="exclamations.ktp" width="1024" height="1024" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="exclamations/frogtastic.png" x="1" y="1" w="332" h="77" pX="0.5" pY="0.5" oX="26" oY="2" oW="383" oH="82"/>
+	<sprite n="exclamations/delicious.png" x="1" y="80" w="330" h="71" pX="0.5" pY="0.5" oX="15" oY="4" oW="356" oH="79"/>
+	<sprite n="exclamations/crush.png" x="1" y="153" w="238" h="73" pX="0.5" pY="0.5" oX="5" oY="1" oW="250" oH="75"/>
+	<sprite n="exclamations/divine.png" x="1" y="228" w="244" h="70" pX="0.5" pY="0.5" oX="3" oY="2" oW="250" oH="73"/>
+	<sprite n="exclamations/sugar.png" x="1" y="300" w="202" h="77" pX="0.5" pY="0.5" oX="11" oY="2" oW="224" oH="81"/>
+	<sprite n="exclamations/sweet.png" x="335" y="1" w="221" h="70" pX="0.5" pY="0.5" oX="10" oY="2" oW="244" oH="73"/>
+	<sprite n="exclamations/tasty.png" x="1" y="379" w="198" h="78" pX="0.5" pY="0.5" oX="18" oY="1" oW="234" oH="82"/>
+	<sprite n="exclamations/party.png" x="335" y="73" w="196" h="77" pX="0.5" pY="0.5" oX="2" oY="6" oW="200" oH="86"/>
+	<sprite n="exclamations/Super.png" x="1" y="459" w="196" h="77" pX="0.5" pY="0.5" oX="6" oY="1" oW="208" oH="78"/>
+	<sprite n="exclamations/star.png" x="247" y="153" w="182" h="81" pX="0.5" pY="0.5" oX="16" oY="5" oW="214" oH="92"/>
+	<sprite n="exclamations/time.png" x="1" y="538" w="191" h="69" pX="0.5" pY="0.5" oX="3" oY="8" oW="200" oH="86"/>
+</TextureAtlas>

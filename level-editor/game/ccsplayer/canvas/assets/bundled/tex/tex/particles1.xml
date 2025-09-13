@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:a9d705f41a1894386abc8db5a130eb72:b9a9a6ed1c7b8837cbec39ba2447ba80:ba8449b1cf899e3d904ed62a27a73ce8$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="particles1.png" width="1024" height="1024">
+    <sprite n="184_c.png" x="657" y="401" w="32" h="32"/>
+    <sprite n="200_revamp.png" x="568" y="333" w="85" h="85"/>
+    <sprite n="201_revamp.png" x="696" y="389" w="85" h="85"/>
+    <sprite n="blue_candy_horisontal.png" x="698" y="295" w="90" h="90"/>
+    <sprite n="blue_candy_vertical.png" x="846" y="325" w="90" h="90"/>
+    <sprite n="bubble_blue.png" x="785" y="468" w="50" h="47"/>
+    <sprite n="bubble_green.png" x="344" y="285" w="50" h="47"/>
+    <sprite n="bubble_orange.png" x="792" y="364" w="50" h="48"/>
+    <sprite n="bubble_purple.png" x="203" y="328" w="50" h="47"/>
+    <sprite n="bubble_red.png" x="135" y="335" w="50" h="47"/>
+    <sprite n="bubble_yellow.png" x="785" y="416" w="50" h="48"/>
+    <sprite n="bubblegum_blob64.png" x="975" y="491" w="32" h="32"/>
+    <sprite n="bubblegumshell_1.png" x="435" y="358" w="32" h="24"/>
+    <sprite n="bubblegumwrapper1.png" x="907" y="419" w="29" h="31"/>
+    <sprite n="bubblegumwrapper3.png" x="822" y="64" w="17" h="38"/>
+    <sprite n="crown.png" x="257" y="328" w="50" h="45"/>
+    <sprite n="eoe_star1.png" x="365" y="204" w="38" h="36"/>
+    <sprite n="eoe_star2.png" x="846" y="3" w="110" h="110"/>
+    <sprite n="extra_moves_trail.png" x="950" y="293" w="64" h="64"/>
+    <sprite n="ghost_fish.png" x="211" y="3" w="200" h="120"/>
+    <sprite n="god_rays.png" x="940" y="361" w="73" h="126"/>
+    <sprite n="green_candy_wrapped.png" x="409" y="170" w="90" h="90"/>
+    <sprite n="half_rectangle_soft.png" x="503" y="170" w="64" h="64"/>
+    <sprite n="jelly_jar_lid.png" x="365" y="160" w="40" h="40"/>
+    <sprite n="jellysplash.png" x="960" y="3" w="53" h="48"/>
+    <sprite n="moves_plus.png" x="975" y="527" w="32" h="32"/>
+    <sprite n="portal_hole.png" x="363" y="336" w="32" h="32"/>
+    <sprite n="portal_hole_blue.png" x="293" y="388" w="30" h="30"/>
+    <sprite n="portal_hole_green.png" x="327" y="388" w="30" h="30"/>
+    <sprite n="portal_hole_low.png" x="714" y="39" w="104" h="44"/>
+    <sprite n="portal_hole_pink.png" x="225" y="413" w="30" h="30"/>
+    <sprite n="portal_light_shaft_sprite.png" x="657" y="333" w="35" h="64"/>
+    <sprite n="portal_orbs.png" x="257" y="377" w="32" h="32"/>
+    <sprite n="portal_rim.png" x="365" y="244" w="37" h="37"/>
+    <sprite n="portal_twinkles.png" x="189" y="379" w="32" h="32"/>
+    <sprite n="ray_1.png" x="686" y="203" w="8" h="126"/>
+    <sprite n="ring_fx_glow.png" x="503" y="238" w="64" h="64"/>
+    <sprite n="smoke_flat.png" x="135" y="209" w="69" h="54"/>
+    <sprite n="snowflake.png" x="714" y="87" w="100" h="100"/>
+    <sprite n="soft_glow.png" x="500" y="306" w="64" h="64"/>
+    <sprite n="sparkle_star.png" x="822" y="39" w="20" h="21"/>
+    <sprite n="vfx_area_glow.png" x="846" y="117" w="100" h="100"/>
+    <sprite n="vfx_candy_debris_big.png" x="839" y="419" w="64" h="64"/>
+    <sprite n="vfx_candy_soft_glow.png" x="839" y="487" w="64" h="64"/>
+    <sprite n="vfx_CandyDebrisX3_48x48.png" x="311" y="336" w="48" h="48"/>
+    <sprite n="vfx_circle_glow.png" x="3" y="209" w="128" h="128"/>
+    <sprite n="vfx_circular_motion.png" x="846" y="221" w="100" h="100"/>
+    <sprite n="vfx_colorbomb.png" x="582" y="135" w="100" h="100"/>
+    <sprite n="vfx_CrossShine.png" x="960" y="107" w="50" h="50"/>
+    <sprite n="vfx_emptytile.png" x="907" y="491" w="64" h="64"/>
+    <sprite n="vfx_glass_tile.png" x="415" y="3" w="163" h="163"/>
+    <sprite n="vfx_lightning_colorbomb.png" x="208" y="260" w="64" h="64"/>
+    <sprite n="vfx_line.png" x="818" y="106" w="24" h="64"/>
+    <sprite n="vfx_question.png" x="399" y="358" w="32" h="32"/>
+    <sprite n="vfx_rounded_glow.png" x="950" y="161" w="64" h="128"/>
+    <sprite n="vfx_shockwave.png" x="714" y="191" w="100" h="100"/>
+    <sprite n="vfx_smoke.png" x="582" y="3" w="128" h="128"/>
+    <sprite n="vfx_snakescale.png" x="960" y="55" w="53" h="48"/>
+    <sprite n="vfx_softglow.png" x="135" y="267" w="64" h="64"/>
+    <sprite n="vfx_star.png" x="363" y="372" w="32" h="32"/>
+    <sprite n="vfx_streak.png" x="818" y="174" w="24" h="64"/>
+    <sprite n="vfx_streak_hard.png" x="686" y="135" w="24" h="64"/>
+    <sprite n="vfx_streak_soft.png" x="818" y="242" w="16" h="64"/>
+    <sprite n="vfx_tile.png" x="276" y="260" w="64" h="64"/>
+    <sprite n="vfx_tp_booster.png" x="3" y="3" w="204" h="202"/>
+    <sprite n="vfx_tp_bubble.png" x="792" y="310" w="50" h="50"/>
+    <sprite n="vfx_tp_glow_90x90.png" x="406" y="264" w="90" h="90"/>
+    <sprite n="vfx_tp_specialCandies.png" x="211" y="127" w="150" h="129"/>
+    <sprite n="vfx_trail_soft.png" x="714" y="3" w="128" h="32"/>
+    <sprite n="vfx_water_splash.png" x="571" y="239" w="90" h="90"/>
+    <sprite n="vfx_wrap_debris_2.png" x="365" y="127" w="41" h="29"/>
+</TextureAtlas>

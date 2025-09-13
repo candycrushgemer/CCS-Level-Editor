@@ -1,0 +1,3 @@
+<TextureAtlas imagePath="store_bundle_allstars_2025.ktp" width="512" height="512" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="store_bundle_allstars_2025/BB_bg.png" x="2" y="320" w="301" h="190" pX="0.5" pY="0.5"/>
+</TextureAtlas>

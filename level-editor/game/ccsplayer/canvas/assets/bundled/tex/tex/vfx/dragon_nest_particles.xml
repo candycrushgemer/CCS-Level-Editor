@@ -1,0 +1,7 @@
+<TextureAtlas imagePath="dragon_nest_particles.ktp" width="128" height="128" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="dragon_nest_particles/T_VFX_Dragon_Nest_pieces.png" x="2" y="70" w="114" h="56" pX="0.5" pY="0.5" oX="6" oY="5" oW="128" oH="64"/>
+	<sprite n="dragon_nest_particles/T_VFX_wrapped_Lollipop_shockwave.png" x="2" y="2" w="64" h="64" pX="0.5" pY="0.5"/>
+	<sprite n="dragon_nest_particles/vfx_T_sparkle.png" x="70" y="36" w="30" h="30" pX="0.5" pY="0.5" oX="1" oY="1" oW="32" oH="32"/>
+	<sprite n="dragon_nest_particles/T_VFX_smoke_01.png" x="70" y="4" w="27" h="28" pX="0.5" pY="0.5" oX="2" oY="2" oW="32" oH="32" r="y"/>
+	<sprite n="dragon_nest_particles/T_VFX_square.png" x="104" y="54" w="12" h="12" pX="0.5" pY="0.5"/>
+</TextureAtlas>

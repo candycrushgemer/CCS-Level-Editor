@@ -1,0 +1,12 @@
+<TextureAtlas imagePath="tab_card_leagues.ktp" width="128" height="128" premultipliedAlpha="true" king_version="1.5.2" sprites_scale="2.000000">
+	<sprite n="tab_card_leagues/s_panel_gift_leagues.png" x="2" y="64" w="66" h="62" pX="0.5" pY="0.5">
+		<vertices>9 56 0 26 12 19 38 62 52 17 56 53 44 62 66 19 66 16 35 0 22 0 12 3 0 19</vertices>
+		<verticesUV>11 120 2 90 14 83 40 126 54 81 58 117 46 126 68 83 68 80 37 64 24 64 14 67 2 83</verticesUV>
+		<triangles>0 1 2 0 2 3 3 2 4 3 4 5 6 3 5 5 4 7 4 8 7 4 2 9 2 10 9 2 11 10 1 12 2</triangles>
+	</sprite>
+	<sprite n="tab_card_leagues/s_panel_striped_candies_leagues.png" x="72" y="65" w="54" h="61" pX="0.5" pY="0.5" oW="61" oH="54" r="y">
+		<vertices>20 54 2 43 0 33 10 12 61 32 61 44 56 54 36 0 13 0 59 11 47 1 0 17</vertices>
+		<verticesUV>72 85 83 67 93 65 114 75 94 126 82 126 72 121 126 101 126 78 115 124 125 112 109 65</verticesUV>
+		<triangles>0 1 2 0 2 3 4 0 3 5 0 4 6 0 5 3 7 4 7 3 8 4 7 9 9 7 10 2 11 3</triangles>
+	</sprite>
+</TextureAtlas>

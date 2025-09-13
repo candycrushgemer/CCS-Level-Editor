@@ -1,0 +1,35 @@
+<TextureAtlas imagePath="hires_striped.ktp" width="1024" height="1024" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="hires_striped/frog_v_white.png" x="1" y="1" w="159" h="164" pX="0.5" pY="0.5"/>
+	<sprite n="hires_striped/frog_v_grey.png" x="162" y="1" w="159" h="164" pX="0.5" pY="0.5"/>
+	<sprite n="hires_striped/frog_h_grey.png" x="1" y="167" w="159" h="162" pX="0.5" pY="0.5"/>
+	<sprite n="hires_striped/green_v_white_big.png" x="323" y="1" w="148" h="158" pX="0.5" pY="0.5" oY="1" oW="148" oH="159"/>
+	<sprite n="hires_striped/blue_h_blue_big.png" x="1" y="331" w="159" h="147" pX="0.5" pY="0.5"/>
+	<sprite n="hires_striped/green_v_green_big.png" x="162" y="167" w="148" h="157" pX="0.5" pY="0.5" oY="1" oW="148" oH="159"/>
+	<sprite n="hires_striped/green_h_white_big.png" x="473" y="1" w="148" h="157" pX="0.5" pY="0.5" oY="1" oW="148" oH="159"/>
+	<sprite n="hires_striped/blue_v_white_big.png" x="1" y="480" w="157" h="148" pX="0.5" pY="0.5" oX="1" oW="159" oH="148"/>
+	<sprite n="hires_striped/purple_v_purple_big.png" x="312" y="167" w="158" h="147" pX="0.5" pY="0.5" oX="3" oY="3" oW="164" oH="153"/>
+	<sprite n="hires_striped/green_h_green_big.png" x="162" y="326" w="147" h="157" pX="0.5" pY="0.5" oY="1" oW="148" oH="159"/>
+	<sprite n="hires_striped/purple_h_white_big.png" x="623" y="1" w="159" h="145" pX="0.5" pY="0.5" oX="3" oY="3" oW="165" oH="151"/>
+	<sprite n="hires_striped/frog_h_white.png" x="1" y="630" w="159" h="143" pX="0.5" pY="0.5" oY="19" oW="159" oH="162"/>
+	<sprite n="hires_striped/purple_v_white_big.png" x="1" y="775" w="155" h="142" pX="0.5" pY="0.5" oX="5" oY="4" oW="164" oH="153"/>
+	<sprite n="hires_striped/blue_h_white_big.png" x="784" y="1" w="159" h="138" pX="0.5" pY="0.5" oY="9" oW="159" oH="147"/>
+	<sprite n="hires_striped/purple_h_purple_big.png" x="473" y="160" w="158" h="136" pX="0.5" pY="0.5" oX="3" oY="3" oW="165" oH="151"/>
+	<sprite n="hires_striped/blue_v_blue_big.png" x="162" y="485" w="144" h="148" pX="0.5" pY="0.5" oX="7" oW="159" oH="148"/>
+	<sprite n="hires_striped/yellow_v_yellow_big.png" x="312" y="316" w="127" h="161" pX="0.5" pY="0.5" oX="5" oY="2" oW="134" oH="169"/>
+	<sprite n="hires_striped/frog_polka_grey_big.png" x="1" y="919" w="256" h="79" pX="0.5" pY="0.5" oX="3" oW="259" oH="79"/>
+	<sprite n="hires_striped/yellow_h_yellow_big.png" x="633" y="148" w="126" h="149" pX="0.5" pY="0.5" oX="5" oY="3" oW="134" oH="169"/>
+	<sprite n="hires_striped/orange_h_orange_big.png" x="162" y="635" w="117" h="159" pX="0.5" pY="0.5" oX="12" oY="1" oW="134" oH="169"/>
+	<sprite n="hires_striped/orange_v_white_big.png" x="441" y="316" w="112" h="161" pX="0.5" pY="0.5" oX="10" oY="1" oW="134" oH="169"/>
+	<sprite n="hires_striped/yellow_h_white_big.png" x="784" y="141" w="124" h="144" pX="0.5" pY="0.5" oX="6" oY="16" oW="134" oH="169"/>
+	<sprite n="hires_striped/yellow_v_white_big.png" x="311" y="479" w="114" h="156" pX="0.5" pY="0.5" oX="11" oY="4" oW="134" oH="169"/>
+	<sprite n="hires_striped/orange_v_orange_big.png" x="910" y="141" w="108" h="161" pX="0.5" pY="0.5" oX="21" oY="1" oW="134" oH="169"/>
+	<sprite n="hires_striped/red_h_red_big.png" x="555" y="299" w="128" h="130" pX="0.5" pY="0.5" oX="5" oY="19" oW="134" oH="169"/>
+	<sprite n="hires_striped/red_v_red_big.png" x="281" y="637" w="128" h="129" pX="0.5" pY="0.5" oX="5" oY="18" oW="134" oH="169"/>
+	<sprite n="hires_striped/orange_h_white_big.png" x="427" y="479" w="116" h="141" pX="0.5" pY="0.5" oX="12" oY="8" oW="134" oH="169"/>
+	<sprite n="hires_striped/red_h_white_big.png" x="158" y="796" w="129" h="120" pX="0.5" pY="0.5" oX="5" oY="28" oW="134" oH="169"/>
+	<sprite n="hires_striped/t_candy_polka_dark_d.png" x="685" y="299" w="199" h="75" pX="0.5" pY="0.5" oW="200" oH="75"/>
+	<sprite n="hires_striped/red_v_white_big.png" x="289" y="768" w="114" h="127" pX="0.5" pY="0.5" oX="13" oY="18" oW="134" oH="169"/>
+	<sprite n="hires_striped/t_candy_polka_white_d.png" x="259" y="918" w="175" h="67" pX="0.5" pY="0.5" oY="5" oW="200" oH="75"/>
+	<sprite n="hires_striped/frog_eye_bulge.png" x="555" y="431" w="124" h="83" pX="0.5" pY="0.5"/>
+	<sprite n="hires_striped/frog_polka_white_big.png" x="685" y="376" w="249" h="41" pX="0.5" pY="0.5" oX="9" oY="6" oW="259" oH="79"/>
+</TextureAtlas>

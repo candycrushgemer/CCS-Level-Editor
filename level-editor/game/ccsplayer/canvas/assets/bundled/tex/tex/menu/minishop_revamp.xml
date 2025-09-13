@@ -1,0 +1,8 @@
+<TextureAtlas imagePath="minishop_revamp.ktp" width="256" height="256" premultipliedAlpha="true" king_version="1.5.2" sprites_scale="2.000000">
+	<sprite n="minishop_revamp/minishop_revamp_stripes.png" x="2" y="209" w="231" h="45" pX="0.5" pY="0.5"/>
+	<sprite n="minishop_revamp/minishop_revamp_pricecross.png" x="237" y="195" w="11" h="59" pX="0.5" pY="0.5" oW="59" oH="11" r="y"/>
+	<sprite n="minishop_revamp/minishop_revamp_highlight_background.png" x="2" y="77" w="99" h="114" pX="0.5" pY="0.5" oW="114" oH="99" r="y"/>
+	<sprite n="minishop_revamp/minishop_revamp_highlight_panel.png" x="2" y="8" w="105" h="65" pX="0.5" pY="0.5"/>
+	<sprite n="minishop_revamp/minishop_revamp_label.png" x="105" y="114" w="75" h="77" pX="0.5" pY="0.5" oX="8" oY="12" oW="91" oH="91"/>
+	<sprite n="minishop_revamp/minishop_revamp_cloudpop_middle.png" x="105" y="79" w="75" h="31" pX="0.5" pY="0.5" oW="31" oH="75" r="y"/>
+</TextureAtlas>

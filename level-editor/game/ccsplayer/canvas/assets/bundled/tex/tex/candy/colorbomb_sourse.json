@@ -1,0 +1,137 @@
+{ "skeleton": { "images": "C:/repos/CCS/res/common/tex/candy/sprites/" },
+"PhotoshopToSpine": { "scale": 1, "padding": 1, "trim": true },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "colorbomb_01", "bone": "root", "attachment": "colorbomb_01" },
+	{ "name": "colorbomb_02", "bone": "root", "attachment": "colorbomb_02" },
+	{ "name": "colorbomb_03", "bone": "root", "attachment": "colorbomb_03" },
+	{ "name": "colorbomb_04", "bone": "root", "attachment": "colorbomb_04" },
+	{ "name": "colorbomb_05", "bone": "root", "attachment": "colorbomb_05" },
+	{ "name": "colorbomb_06", "bone": "root", "attachment": "colorbomb_06" },
+	{ "name": "colorbomb_07", "bone": "root", "attachment": "colorbomb_07" },
+	{ "name": "colorbomb_08", "bone": "root", "attachment": "colorbomb_08" },
+	{ "name": "colorbomb_09", "bone": "root", "attachment": "colorbomb_09" },
+	{ "name": "colorbomb_10", "bone": "root", "attachment": "colorbomb_10" },
+	{ "name": "colorbomb_11", "bone": "root", "attachment": "colorbomb_11" },
+	{ "name": "colorbomb_12", "bone": "root", "attachment": "colorbomb_12" },
+	{ "name": "colorbomb_13", "bone": "root", "attachment": "colorbomb_13" },
+	{ "name": "colorbomb_14", "bone": "root", "attachment": "colorbomb_14" },
+	{ "name": "colorbomb_15", "bone": "root", "attachment": "colorbomb_15" },
+	{ "name": "colorbomb_17", "bone": "root", "attachment": "colorbomb_17" },
+	{ "name": "colorbomb_18", "bone": "root", "attachment": "colorbomb_18" },
+	{ "name": "colorbomb_19", "bone": "root", "attachment": "colorbomb_19" },
+	{ "name": "colorbomb_20", "bone": "root", "attachment": "colorbomb_20" },
+	{ "name": "colorbomb_21", "bone": "root", "attachment": "colorbomb_21" },
+	{ "name": "colorbomb_22", "bone": "root", "attachment": "colorbomb_22" },
+	{ "name": "colorbomb_23", "bone": "root", "attachment": "colorbomb_23" },
+	{ "name": "colorbomb_24", "bone": "root", "attachment": "colorbomb_24" },
+	{ "name": "colorbomb_25", "bone": "root", "attachment": "colorbomb_25" },
+	{ "name": "colorbomb_26", "bone": "root", "attachment": "colorbomb_26" },
+	{ "name": "colorbomb_27", "bone": "root", "attachment": "colorbomb_27" },
+	{ "name": "colorbomb_28", "bone": "root", "attachment": "colorbomb_28" },
+	{ "name": "colorbomb_29", "bone": "root", "attachment": "colorbomb_29" },
+	{ "name": "colorbomb_30", "bone": "root", "attachment": "colorbomb_30" },
+	{ "name": "colorbomb_31", "bone": "root", "attachment": "colorbomb_31" },
+	{ "name": "colorbomb_32", "bone": "root", "attachment": "colorbomb_32" }
+],
+"skins": {
+	"default": {
+		"colorbomb_01": {
+			"colorbomb_01": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_02": {
+			"colorbomb_02": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_03": {
+			"colorbomb_03": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_04": {
+			"colorbomb_04": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_05": {
+			"colorbomb_05": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_06": {
+			"colorbomb_06": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_07": {
+			"colorbomb_07": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_08": {
+			"colorbomb_08": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_09": {
+			"colorbomb_09": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_10": {
+			"colorbomb_10": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_11": {
+			"colorbomb_11": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_12": {
+			"colorbomb_12": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_13": {
+			"colorbomb_13": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_14": {
+			"colorbomb_14": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_15": {
+			"colorbomb_15": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_17": {
+			"colorbomb_17": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_18": {
+			"colorbomb_18": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_19": {
+			"colorbomb_19": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_20": {
+			"colorbomb_20": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_21": {
+			"colorbomb_21": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_22": {
+			"colorbomb_22": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_23": {
+			"colorbomb_23": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_24": {
+			"colorbomb_24": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_25": {
+			"colorbomb_25": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_26": {
+			"colorbomb_26": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_27": {
+			"colorbomb_27": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_28": {
+			"colorbomb_28": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_29": {
+			"colorbomb_29": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_30": {
+			"colorbomb_30": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_31": {
+			"colorbomb_31": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		},
+		"colorbomb_32": {
+			"colorbomb_32": { "x": 90, "y": -84, "width": 168, "height": 160 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:8d98b68aac5bee273a183cb69b8dc5e8:5eed268f2dc9274232c213927283a63c:e23360b92a6cce0e45fad572b344ad00$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="bank_bundles.png" width="1024" height="1024">
+    <sprite n="bank_bg_transparent.png" x="1020" y="299" w="2" h="2"/>
+    <sprite n="bank_rising_sun.png" x="2" y="256" w="172" h="91"/>
+    <sprite n="black_bkg.png" x="953" y="218" w="4" h="4"/>
+    <sprite n="bundle_goldbarStack.png" x="2" y="91" w="191" h="159"/>
+    <sprite n="bundle_unlimited_outline.png" x="2" y="585" w="160" h="162"/>
+    <sprite n="candy_bank_banner_01.png" x="207" y="713" w="87" h="96"/>
+    <sprite n="candy_bank_banner_02.png" x="2" y="2" w="384" h="83"/>
+    <sprite n="candy_bank_banner_03.png" x="226" y="486" w="94" h="90"/>
+    <sprite n="candy_bank_bar.png" x="969" y="2" w="52" h="101"/>
+    <sprite n="candy_bank_booster_input.png" x="274" y="263" w="74" h="77" r="y"/>
+    <sprite n="candy_bank_goldbars.png" x="354" y="263" w="89" h="76"/>
+    <sprite n="candy_bank_golden_badge.png" x="262" y="351" w="106" h="107"/>
+    <sprite n="candy_bank_more_offers_button.png" x="2" y="919" w="92" h="99" r="y"/>
+    <sprite n="candy_bank_plus_button.png" x="2" y="353" w="146" h="148"/>
+    <sprite n="candy_bank_status_checkmark.png" x="953" y="399" w="60" h="81" r="y"/>
+    <sprite n="goldbar01.png" x="125" y="509" w="95" h="70"/>
+    <sprite n="goldbar02.png" x="953" y="299" w="61" h="94" r="y"/>
+    <sprite n="goldbar_white_border.png" x="180" y="263" w="88" h="82"/>
+    <sprite n="L_Currency.png" x="741" y="2" w="222" h="210"/>
+    <sprite n="M_Currency.png" x="199" y="91" w="185" h="166"/>
+    <sprite n="priceTag01.png" x="100" y="919" w="153" h="96" r="y"/>
+    <sprite n="priceTag02.png" x="2" y="509" w="117" h="70"/>
+    <sprite n="purple_bag.png" x="168" y="585" w="94" h="122" r="y"/>
+    <sprite n="S_Currency.png" x="2" y="753" w="108" h="160" r="y"/>
+    <sprite n="shop_bundle_bottom.png" x="953" y="486" w="57" h="93" r="y"/>
+    <sprite n="shop_bundle_panel.png" x="969" y="205" w="50" h="88" r="y"/>
+    <sprite n="shop_bundle_panel_shadow.png" x="969" y="109" w="50" h="90" r="y"/>
+    <sprite n="shop_bundle_top.png" x="207" y="815" w="43" h="88"/>
+    <sprite n="shop_bundle_top_blue.png" x="256" y="815" w="43" h="88"/>
+    <sprite n="shop_bundle_top_dark_blue.png" x="259" y="909" w="43" h="88"/>
+    <sprite n="shop_bundle_top_gold.png" x="268" y="585" w="43" h="88"/>
+    <sprite n="shop_bundle_top_green.png" x="300" y="679" w="43" h="88"/>
+    <sprite n="shop_bundle_top_light_blue.png" x="317" y="585" w="43" h="88"/>
+    <sprite n="shop_bundle_top_purple.png" x="326" y="464" w="43" h="88"/>
+    <sprite n="white_square_1x1px.png" x="1020" y="307" w="1" h="1"/>
+    <sprite n="XL_Currency.png" x="741" y="218" w="206" h="285" r="y"/>
+    <sprite n="XS_Currency.png" x="154" y="353" w="102" h="127" r="y"/>
+    <sprite n="XXL_Currency.png" x="392" y="2" w="343" h="255"/>
+    <sprite n="XXS_Currency.png" x="116" y="753" w="85" h="124" r="y"/>
+</TextureAtlas>

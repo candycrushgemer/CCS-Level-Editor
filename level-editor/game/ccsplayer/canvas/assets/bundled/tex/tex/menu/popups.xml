@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:701a2750cd5092441d4819502587b0b3:3eff1f28956f89742d1c6b2ea96c0197:7c137308b6f23053fa8a60fdc1473c06$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="popups.png" width="1024" height="1024">
+    <sprite n="balloon.png" x="446" y="630" w="72" h="86"/>
+    <sprite n="balloon_string.png" x="165" y="987" w="8" h="36"/>
+    <sprite n="beige_panel.png" x="615" y="709" w="58" h="49"/>
+    <sprite n="board_slot.png" x="113" y="257" w="58" h="11"/>
+    <sprite n="booster_wheel_edge_1.png" x="605" y="461" w="120" h="59"/>
+    <sprite n="booster_wheel_edge_2.png" x="713" y="641" w="107" h="45"/>
+    <sprite n="booster_wheel_edge_3.png" x="183" y="987" w="106" h="31"/>
+    <sprite n="booster_wheel_overlay.png" x="277" y="1" w="74" h="148"/>
+    <sprite n="booster_wheel_pin.png" x="725" y="578" w="45" h="45"/>
+    <sprite n="booster_wheel_pointer.png" x="565" y="710" w="48" h="86"/>
+    <sprite n="booster_wheel_separator.png" x="122" y="509" w="26" h="26"/>
+    <sprite n="booster_wheel_slice_bigger.png" x="1" y="1" w="110" h="267"/>
+    <sprite n="booster_wheel_slice_decoration.png" x="551" y="524" w="27" h="65"/>
+    <sprite n="booster_wheel_slice_jackpot.png" x="1" y="270" w="62" h="267"/>
+    <sprite n="check_box_pink.png" x="297" y="985" w="37" h="37"/>
+    <sprite n="collab_lock_lvl_pin.png" x="372" y="147" w="98" h="90"/>
+    <sprite n="conversion_price.png" x="684" y="946" w="23" h="71"/>
+    <sprite n="conversion_stroke.png" x="113" y="240" w="80" h="15"/>
+    <sprite n="first_attempt_crown.png" x="425" y="946" w="100" h="74"/>
+    <sprite n="glow_white.png" x="165" y="720" w="133" h="133"/>
+    <sprite n="goldbar.png" x="376" y="391" w="100" h="92"/>
+    <sprite n="heart_broken_outline.png" x="300" y="720" w="150" h="120"/>
+    <sprite n="heart_outline.png" x="393" y="321" w="74" h="68"/>
+    <sprite n="heart_outline_HD.png" x="229" y="240" w="162" h="149"/>
+    <sprite n="icn_booster_bonus_spin.png" x="297" y="855" w="126" h="128"/>
+    <sprite n="infinite_lives_icon_large.png" x="612" y="655" w="99" h="52"/>
+    <sprite n="inset_blue.png" x="580" y="524" w="31" h="64"/>
+    <sprite n="inset_crazyhard.png" x="1" y="539" w="162" h="237"/>
+    <sprite n="inset_darkblue.png" x="619" y="390" w="31" h="64"/>
+    <sprite n="inset_hard.png" x="1" y="778" w="162" h="237"/>
+    <sprite n="inset_light_pink.png" x="478" y="390" w="70" h="70"/>
+    <sprite n="inset_normal.png" x="65" y="270" w="162" h="237"/>
+    <sprite n="inset_pink.png" x="487" y="219" w="31" h="64"/>
+    <sprite n="inset_purple.png" x="520" y="219" w="31" h="64"/>
+    <sprite n="inset_superhard.png" x="113" y="1" w="162" h="237"/>
+    <sprite n="jelly_nostroke.png" x="356" y="527" w="101" h="101"/>
+    <sprite n="jellynostroke.png" x="459" y="526" w="90" h="90"/>
+    <sprite n="jellytrasparent.png" x="520" y="618" w="90" h="90"/>
+    <sprite n="level_button_first_attempt_golden.png" x="452" y="718" w="111" h="99"/>
+    <sprite n="light_blue_panel.png" x="527" y="946" w="73" h="74"/>
+    <sprite n="light_pink_panel.png" x="661" y="760" w="44" h="47"/>
+    <sprite n="lighter_beige_panel.png" x="675" y="709" w="44" h="47"/>
+    <sprite n="list_shadow.png" x="65" y="509" w="55" h="26"/>
+    <sprite n="number_three.png" x="376" y="485" w="65" h="40"/>
+    <sprite n="number_two.png" x="443" y="485" w="59" h="39"/>
+    <sprite n="option_panel_bkg.png" x="549" y="819" w="44" h="94"/>
+    <sprite n="panel_pinklight.png" x="543" y="462" w="60" h="60"/>
+    <sprite n="pink_arrow.png" x="550" y="390" w="67" h="69"/>
+    <sprite n="plus_three.png" x="595" y="882" w="92" h="62"/>
+    <sprite n="pnl_info_popup_beige.png" x="356" y="630" w="88" h="88"/>
+    <sprite n="scroll_icon.png" x="229" y="391" w="9" h="137"/>
+    <sprite n="spark.png" x="150" y="509" w="19" h="19"/>
+    <sprite n="spinner.png" x="240" y="391" w="134" h="134"/>
+    <sprite n="tiffy.png" x="353" y="1" w="153" h="144"/>
+    <sprite n="time_limited_badge.png" x="165" y="530" w="189" h="188"/>
+    <sprite n="timer_panel.png" x="472" y="147" w="75" h="70"/>
+    <sprite n="toast_cloud_hanger.png" x="393" y="239" w="92" h="80"/>
+    <sprite n="toast_panel_s_new.png" x="613" y="522" w="57" h="59"/>
+    <sprite n="toast_panel_top_new.png" x="612" y="590" w="57" h="63"/>
+    <sprite n="toast_plates.png" x="175" y="987" w="6" h="36"/>
+    <sprite n="toast_trophy_back.png" x="504" y="462" w="37" h="62"/>
+    <sprite n="toast_trophy_left.png" x="726" y="522" w="30" h="44"/>
+    <sprite n="toast_trophy_progress.png" x="661" y="809" w="3" h="44"/>
+    <sprite n="token_collection_bell.png" x="595" y="798" w="64" h="82"/>
+    <sprite n="tool_tip_panel.png" x="425" y="842" w="122" h="102"/>
+    <sprite n="tooltip_arrow_b.png" x="671" y="583" w="52" h="56"/>
+    <sprite n="tooltip_arrow_t.png" x="672" y="522" w="52" h="54"/>
+    <sprite n="tooltip_scroll_background.png" x="277" y="151" w="93" h="87"/>
+    <sprite n="tooltip_shadow.png" x="165" y="855" w="130" h="130"/>
+    <sprite n="tutorial_candy1.png" x="469" y="321" w="177" h="67"/>
+    <sprite n="white_small_panel.png" x="195" y="240" w="14" h="14"/>
+    <sprite n="x_mark.png" x="602" y="946" w="80" h="71"/>
+</TextureAtlas>

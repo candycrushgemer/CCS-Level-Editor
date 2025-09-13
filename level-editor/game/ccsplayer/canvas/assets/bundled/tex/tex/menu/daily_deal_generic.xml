@@ -1,0 +1,6 @@
+<TextureAtlas imagePath="daily_deal_generic.ktp" width="256" height="256" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="daily_deal_generic/daily_deal_generic_1.png" x="2" y="94" w="151" h="160" pX="0.5" pY="0.5"/>
+	<sprite n="daily_deal_generic/daily_deal_generic_2.png" x="2" y="16" w="104" h="74" pX="0.5" pY="0.5"/>
+	<sprite n="daily_deal_generic/daily_deal_generic_4.png" x="110" y="35" w="116" h="55" pX="0.5" pY="0.5"/>
+	<sprite n="daily_deal_generic/daily_deal_generic_3.png" x="157" y="97" w="41" h="157" pX="0.5" pY="0.5" oW="157" oH="41" r="y"/>
+</TextureAtlas>

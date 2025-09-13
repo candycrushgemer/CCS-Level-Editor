@@ -1,0 +1,8 @@
+<TextureAtlas imagePath="account_migration.ktp" width="512" height="512" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="account_migration/bg_pink_panel.png" x="2" y="2" w="300" h="300" pX="0.5" pY="0.5"/>
+	<sprite n="account_migration/checkmark.png" x="306" y="2" w="189" h="134" pX="0.5" pY="0.5" oX="6" oY="7" oW="200" oH="147">
+		<vertices>27 109 6 93 6 73 14 62 48 105 44 56 71 73 108 92 88 141 61 139 100 33 131 64 133 9 155 51 172 7 195 20 183 56 193 50</vertices>
+		<verticesUV>327 104 306 88 306 68 314 57 348 100 344 51 371 68 408 87 388 136 361 134 400 28 431 59 433 4 455 46 472 2 495 15 483 51 493 45</verticesUV>
+		<triangles>0 1 2 3 0 2 4 0 3 3 5 4 4 5 6 7 4 6 7 8 4 4 8 9 7 6 10 11 7 10 11 10 12 13 11 12 13 12 14 15 13 14 15 16 13 17 16 15</triangles>
+	</sprite>
+</TextureAtlas>

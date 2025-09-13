@@ -1,0 +1,5 @@
+<TextureAtlas imagePath="ingame_banners.ktp" width="128" height="128" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="ingame_banners/dynamic_banner_bkg.png" x="2" y="89" w="81" h="37" pX="0.5" pY="0.5"/>
+	<sprite n="ingame_banners/dynamic_banner_canvas.png" x="87" y="121" w="23" h="5" pX="0.5" pY="0.5" oW="5" oH="23" r="y"/>
+	<sprite n="ingame_banners/dynamic_banner_shadow.png" x="114" y="122" w="5" h="4" pX="0.5" pY="0.5" oW="4" oH="5" r="y"/>
+</TextureAtlas>

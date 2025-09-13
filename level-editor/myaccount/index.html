@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My account</title>
+    <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
+    <meta name="description" content="Manage your CCGApps account.">
+    <meta property="og:image" content="https://yourdomain.com/editor/logo-1024x1024-full.png">
+    <meta property="og:title" content="CCGApps My Account">
+    <meta property="og:description" content="Manage your CCGApps Account.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CCGApps My Account">
+    <meta name="twitter:description" content="Manage your CCGApps Account.">
+    <meta name="twitter:image" content="https://yourdomain.com/editor/logo-1024x1024-full.png">
+    <meta name="keywords" content="level editor, ccs level editor, ccs level creator, candy crush level creator, candy crush level editor, ccgapps">
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <script src="liquid-glass-18jdn1wbjkey10kam.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+        {
+            "imports": {
+                "@material/web/": "https://esm.run/@material/web/"
+            }
+        }
+    </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+    <link rel="stylesheet" href="mat-accent-color-light.css">
+    <link rel="stylesheet" href="mat-accent-color-dark.css">
+    <link rel="stylesheet" href="mdui.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <script src="instant-navigation.js"></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.4.0/index.js"></script>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage-compat.js"></script>
+    <script src="credentials.js"></script>
+</head>
+<body>
+    
+    <div class="top_app_bar">
+        <div class="left">
+            <md-icon-button onclick="window.history.back()"><md-icon>􀆉</md-icon></md-icon-button>
+            <img src="/icon.png" width="30" alt="CCGApps">
+            <h2>My account</h2>
+        </div>
+        <div class="center"></div>
+        <div class="right">
+        </div>
+        
+    </div>
+    
+    <img src="/icon.png" class="acc_bg" alt="">
+    <main>
+        <br><br><br>
+        
+        <div class="gradient-blur top">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="myaccount_scene">
+            
+            <br>
+            <div class="account_manager flex space-between" >
+                <div class="account_view flex column align-center">
+                    <img id="avatar" src="/level-editor/editor/avatar-generic.png" width="150" style="border-radius:999px; cursor: pointer; pointer-events: all;" alt="Avatar" title="Click to change avatar">
+                    <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+                    <div class="info">
+                        <h1 style="margin:0;text-align:center" id="name">User
+                            <div class="badge" style="display: inline-flex; margin-left: 10px;">
+                                <div class="icon"></div>
+                                <span class="name-badge"></span>
+                            </div>
+                        </h1>
+                        <span style="margin:0;text-align:center" id="displayEmail">example@example.com</span>
+                    </div>
+                </div>
+            </div>
+            
+            <md-list class="list list_manage_account liquid-glass" style="width: 40%;">
+                <md-list-item style="overflow: visible;">
+                    <md-icon slot="start">􀉪</md-icon>
+                    <span>Username</span>
+                    <span slot="supporting-text" id="username">Username</span>
+                    <md-icon-button slot="end" onclick="document.querySelector('.username-changing').setAttribute('open','')">
+                        <md-icon>􀈎</md-icon>
+                    </md-icon-button>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item style="overflow: visible;">
+                    <md-icon slot="start">􀍖</md-icon>
+                    <span>Email</span>
+                    <span slot="supporting-text" id="email">email@example.com</span>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item style="overflow: visible;">
+                    <md-icon slot="start" style="overflow: visible;">􀟖</md-icon>
+                    <span>Password</span>
+                    <span slot="supporting-text" id="password">••••••••••••</span>
+                    <md-icon-button slot="end" onclick="document.querySelector('.change-pw').setAttribute('open','')">
+                        <md-icon>􀈎</md-icon>
+                    </md-icon-button>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item class="manage_levs" style="overflow: visible;">
+                    <md-icon slot="start" style="overflow: visible;">􀏮</md-icon>
+                    <span>My levels</span>
+                    <md-icon-button slot="end" onclick="window.location.href = '../app'">
+                        <md-icon>􀆊</md-icon>
+                    </md-icon-button>
+                </md-list-item>
+            </md-list>
+            <md-list class="list dangerous liquid-glass" style="width: 40%;">
+                <md-list-item id="removeacc" onclick="document.querySelector('.del-account').setAttribute('open','')">
+                    <md-icon slot="start" style="color: var(--md-sys-color-error);">􀈒</md-icon>
+                    <span style="color: var(--md-sys-color-error);">Delete account</span>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item id="signout">
+                    <md-icon slot="start" style="color: var(--md-sys-color-error);">􀷀</md-icon>
+                    <span style="color: var(--md-sys-color-error);">Sign out</span>
+                </md-list-item>
+            </md-list>
+            <br>
+            <a href="../editor/document.html?doc=legal_stuff" style="font-size: small;">Terms of Service</a>
+        </div>
+        <forge-dialog class="username-changing" style="--forge-dialog-shape: 30px; --forge-dialog-background: var(--md-sys-color-surface-container-high); width: 90vh; --forge-dialog-elevation: 0;">
+            <forge-scaffold style="margin: 0; width: 400px; height: fit-content; overflow: visible;">
+                <mdui-layout slot="body">
+                    <mdui-top-app-bar style="background: #ffffff00;">
+                        <md-icon-button class="close-upgrades" 
+                        onclick="
+                            document.querySelector('.username-changing').removeAttribute('open');
+                        ">
+                            <md-icon>􀆄</md-icon>
+                        </md-icon-button>
+                        <mdui-top-app-bar-title>Change username</mdui-top-app-bar-title>
+                        <div style="flex-grow: 1"></div>
+                    </mdui-top-app-bar>
+                    <mdui-layout-main style="margin: 20px; margin-top: 0; overflow: visible;">
+                        <p>Change your username</p>
+                        <div class="text-field" style="width: 300px; background: #ddddddaf">
+                            <input type="text" id="usernamechanger" placeholder="Username.." oninput="checkUsernameAvailability()">
+                        </div>
+                        <p class="status good" style="color:#06bb00; display: none;"><md-icon>􀁢</md-icon> Username is available. Sweet!</p>
+                        <p class="status bad" style="color:#f00000; display: none;"><md-icon>􀁠</md-icon> Uh oh. Someone took this username...</p>
+                        
+                        <br>
+                        <md-text-button id="updateusername" class="filled blue" style="width: 100%;" onclick="handleUsernameChange()"><span style="color: #ffffff;">OK</span></md-text-button>
+                    </mdui-layout-main>
+                </mdui-layout>
+            </forge-scaffold>
+        </forge-dialog>
+        <forge-dialog class="change-pw" style="--forge-dialog-shape: 30px; --forge-dialog-background: var(--md-sys-color-surface-container-high); width: 90vh; --forge-dialog-elevation: 0;">
+            <forge-scaffold style="margin: 0; width: 400px; height: fit-content; overflow: visible;">
+                <mdui-layout slot="body">
+                    <mdui-top-app-bar style="background: #ffffff00;">
+                        <md-icon-button class="close-upgrades" 
+                        onclick="
+                            document.querySelector('.change-pw').removeAttribute('open');
+                        ">
+                            <md-icon>􀆄</md-icon>
+                        </md-icon-button>
+                        <mdui-top-app-bar-title>Change your password</mdui-top-app-bar-title>
+                        <div style="flex-grow: 1"></div>
+                    </mdui-top-app-bar>
+                    <mdui-layout-main style="margin: 20px; margin-top: 0; overflow: visible;">
+                        <div class="text-field" style="width: 300px; background: #ddddddaf">
+                            <input type="password" id="currentpw" placeholder="Current password">
+                            <md-icon-button id="showCurrentPassword" style="aspect-ratio: 1/1;" onclick="togglePasswordVisibility('currentpw', 'showCurrentPassword')"><md-icon>􀋭</md-icon></md-icon-button>
+                        </div>
+                        <div class="text-field" style="width: 300px; background: #ddddddaf; margin-top: 10px;">
+                            <input type="password" id="newpw" placeholder="New password">
+                            <md-icon-button id="showNewPassword" style="aspect-ratio: 1/1;" onclick="togglePasswordVisibility('newpw', 'showNewPassword')"><md-icon>􀋭</md-icon></md-icon-button>
+                        </div>
+                        
+                        <p>Ensure your password is strong:</p>
+                        <ul style="padding-left: 10px; width: 350px;">
+                            <li>Your password must be at least 6 characters.</li>
+                            <li>Your password should contain numbers, uppercases, lowercases.</li>
+                            <li>Your password should have special characters such as #@!$%^...</li>
+                            <li>Do not use simple password such as 123456, 111111, 222222, abcd, ...</li>
+                        </ul>
+                        
+                        <br>
+                        <md-text-button id="changepw" class="filled blue" style="width: 100%;" onclick="handlePasswordChange()"><span style="color: #ffffff;">Change password</span></md-text-button>
+                    </mdui-layout-main>
+                </mdui-layout>
+            </forge-scaffold>
+        </forge-dialog>
+        <forge-dialog class="del-account" style="--forge-dialog-shape: 30px; --forge-dialog-background: var(--md-sys-color-surface-container-high); width: 90vh; --forge-dialog-elevation: 0;">
+            <forge-scaffold style="margin: 0; width: 500px; height: fit-content; overflow: visible;">
+                <mdui-layout slot="body">
+                    <mdui-top-app-bar style="background: #ffffff00;">
+                        <md-icon-button class="close-upgrades" 
+                        onclick="
+                            document.querySelector('.del-account').removeAttribute('open');
+                        ">
+                            <md-icon>􀆄</md-icon>
+                        </md-icon-button>
+                        <mdui-top-app-bar-title>Delete account</mdui-top-app-bar-title>
+                        <div style="flex-grow: 1"></div>
+                    </mdui-top-app-bar>
+                    <mdui-layout-main style="margin: 20px; margin-top: 0; overflow: visible; width: 90%;">
+                        <h2>ARE YOU SURE WANT TO DELETE YOUR ACCOUNT ALONG WITH ALL YOUR CREATED LEVELS? THIS ACTION CAN NOT BE UNDONE.</h2>
+                        <p>Once you deleted account, you will no longer be able to get access back to your assets, levels, posts. You can still open the Editor normally but with limited features. Please be careful with your decision.</p>
+                        <br>
+                        <md-text-button id="delaccount" class="filled dangerous" style="width: 100%;" onclick="handleDeleteAccount()"><span style="color: #ffffff;">Delete account</span></md-text-button>
+                    </mdui-layout-main>
+                </mdui-layout>
+            </forge-scaffold>
+        </forge-dialog>
+    </main>
+
+
+
+
+        <style>
+        /* Avatar upload styles */
+        #avatar {
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+            border-radius: 999px;
+        }
+        
+        #avatar:hover {
+            opacity: 0.8;
+        }
+
+
+    </style>
+
+    <script>
+        // Set justify-content to flex-start for <button>, #button, or .button inside shadow root of .search.search_box
+function setButtonJustifyContentStart() {
+    document.querySelectorAll('.search.search_box').forEach(box => {
+        if (box.shadowRoot) {
+            // Select <button>, #button, or .button
+            const selectors = ['button', '#button', '.button'];
+            selectors.forEach(selector => {
+                const btn = box.shadowRoot.querySelector(selector);
+                if (btn) {
+                    btn.style.justifyContent = 'start';
+                    btn.style.setProperty('justify-content', 'start', 'important');
+                }
+            });
+            
+            // Also try to find the specific button structure we see in dev tools
+            const specificBtn = box.shadowRoot.querySelector('button#button.button');
+            if (specificBtn) {
+                specificBtn.style.justifyContent = 'start';
+                specificBtn.style.setProperty('justify-content', 'start', 'important');
+            }
+        }
+    });
+}
+
+// Make search input interactive
+function makeSearchInteractive() {
+    document.querySelectorAll('.search.search_box').forEach(searchBox => {
+        const input = searchBox.querySelector('input[type="text"]');
+        if (input) {
+            // Make only this specific button behave like a div container
+            searchBox.style.pointerEvents = 'none';
+            searchBox.style.userSelect = 'none';
+            
+            // Make input handle all interactions
+            input.style.pointerEvents = 'auto';
+            input.style.userSelect = 'text';
+            input.setAttribute('tabindex', '0');
+            
+            // Remove button-like behavior only for this element
+            searchBox.removeAttribute('role');
+            searchBox.removeAttribute('tabindex');
+            
+            // Make input functional for typing
+            input.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                console.log('Searching for:', searchTerm);
+                // Add your search logic here
+            });
+            
+            // Add keyboard shortcuts
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    console.log('Search submitted:', input.value);
+                    // Add your search submit logic here
+                }
+                if (e.key === 'Escape') {
+                    input.blur();
+                    input.value = '';
+                }
+                e.stopPropagation();
+            });
+            
+            // Simple click to focus
+            input.addEventListener('click', (e) => {
+                input.focus();
+                e.stopPropagation();
+            });
+        }
+    });
+}
+
+// Make search button behave like normal md-text-button when collapsed
+function makeSearchButtonNormal() {
+    document.querySelectorAll('.search.search_bt').forEach(searchBtn => {
+        const input = searchBtn.querySelector('input[type="text"]');
+        if (input) {
+            // Restore normal button behavior
+            searchBtn.style.pointerEvents = 'auto';
+            searchBtn.style.userSelect = 'auto';
+            searchBtn.setAttribute('role', 'button');
+            searchBtn.setAttribute('tabindex', '0');
+            
+            // Hide input when collapsed
+            input.style.display = 'none';
+            
+            // Remove input event listeners to prevent interference
+            input.removeEventListener('input', input._inputHandler);
+            input.removeEventListener('keydown', input._keydownHandler);
+            input.removeEventListener('click', input._clickHandler);
+        }
+    });
+}
+
+// Handle search button class toggling
+function setupSearchToggle() {
+    // Find all search buttons (both .search_bt and .search_box)
+    document.querySelectorAll('.search.search_bt, .search.search_box').forEach(searchBtn => {
+        // Add click handler to expand search
+        searchBtn.addEventListener('click', (e) => {
+            // Change from .search_bt to .search_box
+            if (searchBtn.classList.contains('search_bt')) {
+                searchBtn.classList.remove('search_bt');
+                searchBtn.classList.add('search_box');
+                
+                // Show and focus the input
+                const input = searchBtn.querySelector('input[type="text"]');
+                if (input) {
+                    input.style.display = 'block';
+                    setTimeout(() => input.focus(), 100);
+                }
+                
+                // Apply div-like behavior
+                makeSearchInteractive();
+            }
+        });
+    });
+    
+    // Handle clicking outside to collapse
+    document.addEventListener('click', (e) => {
+        // Don't collapse if clicking on the search button itself
+        if (e.target.closest('.search.search_box')) {
+            return;
+        }
+        
+        const searchBoxes = document.querySelectorAll('.search.search_box');
+        searchBoxes.forEach(searchBox => {
+            // Change back from .search_box to .search_bt
+            searchBox.classList.remove('search_box');
+            searchBox.classList.add('search_bt');
+            
+            // Clear input value and hide it
+            const input = searchBox.querySelector('input[type="text"]');
+            if (input) {
+                input.value = '';
+                input.blur();
+                input.style.display = 'none';
+            }
+            
+            // Apply normal button behavior
+            makeSearchButtonNormal();
+        });
+    });
+}
+
+        // Run on DOMContentLoaded and when new elements are added
+document.addEventListener('DOMContentLoaded', () => {
+    setButtonJustifyContentStart();
+    makeSearchInteractive();
+    makeSearchButtonNormal();
+    setupSearchToggle();
+});
+
+// Also run after a delay to catch late-rendered elements
+setTimeout(() => {
+    setButtonJustifyContentStart();
+    makeSearchInteractive();
+}, 1000);
+setTimeout(() => {
+    setButtonJustifyContentStart();
+    makeSearchInteractive();
+}, 2000);
+setTimeout(() => {
+    setButtonJustifyContentStart();
+    makeSearchInteractive();
+}, 3000);
+
+        // Run more frequently to catch shadow root changes
+        new MutationObserver(() => {
+            setButtonJustifyContentStart();
+            makeSearchInteractive();
+        }).observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+
+        // Also check periodically for any missed elements
+        setInterval(() => {
+            setButtonJustifyContentStart();
+            makeSearchInteractive();
+        }, 5000);
+
+        // Handle username change from dialog
+        function handleUsernameChange() {
+            const newUsername = document.getElementById('usernamechanger').value.trim();
+            if (newUsername) {
+                if (window.firebaseAuth && window.firebaseAuth.changeUsername) {
+                    window.firebaseAuth.changeUsername(newUsername)
+                        .then(() => {
+                            // Update the username display
+                            const usernameElement = document.getElementById('username');
+                            if (usernameElement) {
+                                usernameElement.textContent = newUsername;
+                            }
+                            
+                            // Close dialog
+                            document.querySelector('.username-changing').removeAttribute('open');
+                            
+                            // Clear input
+                            document.getElementById('usernamechanger').value = '';
+                            
+                            // Show success message
+                            showMessage('Username changed successfully!', 'success');
+                        })
+                        .catch(error => {
+                            showMessage('Failed to change username: ' + error.message, 'error');
+                        });
+                } else {
+                    showMessage('Firebase not loaded yet. Please wait and try again.', 'error');
+                }
+            }
+        }
+
+        // Handle password change from dialog
+        function handlePasswordChange() {
+            const currentPassword = document.getElementById('currentpw').value;
+            const newPassword = document.getElementById('newpw').value;
+            
+            if (!currentPassword || !newPassword) {
+                showMessage('Please fill in both password fields', 'error');
+                return;
+            }
+            
+            if (newPassword.length < 6) {
+                showMessage('New password must be at least 6 characters', 'error');
+                return;
+            }
+            
+            if (window.firebaseAuth && window.firebaseAuth.changePassword) {
+                window.firebaseAuth.changePassword(currentPassword, newPassword)
+                    .then(() => {
+                        // Close dialog
+                        document.querySelector('.change-pw').removeAttribute('open');
+                        
+                        // Clear inputs
+                        document.getElementById('currentpw').value = '';
+                        document.getElementById('newpw').value = '';
+                        
+                        showMessage('Password changed successfully!', 'success');
+                    })
+                    .catch(error => {
+                        showMessage('Failed to change password: ' + error.message, 'error');
+                    });
+            } else {
+                showMessage('Firebase not loaded yet. Please wait and try again.', 'error');
+            }
+        }
+
+        // Handle delete account from dialog
+        function handleDeleteAccount() {
+            if (window.firebaseAuth && window.firebaseAuth.deleteAccount) {
+                window.firebaseAuth.deleteAccount()
+                    .then(() => {
+                        showMessage('Account deleted successfully', 'success');
+                        // Close dialog
+                        document.querySelector('.del-account').removeAttribute('open');
+                        // Redirect to login
+                        setTimeout(() => {
+                            window.location.href = '../login/';
+                        }, 2000);
+                    })
+                    .catch(error => {
+                        showMessage('Failed to delete account: ' + error.message, 'error');
+                    });
+            } else {
+                showMessage('Firebase not loaded yet. Please wait and try again.', 'error');
+            }
+        }
+
+        // Check username availability
+        async function checkUsernameAvailability() {
+            const username = document.getElementById('usernamechanger').value.trim();
+            const goodStatus = document.querySelector('.status.good');
+            const badStatus = document.querySelector('.status.bad');
+            
+            // Hide both statuses initially
+            if (goodStatus) goodStatus.style.display = 'none';
+            if (badStatus) badStatus.style.display = 'none';
+            
+            if (!username) return;
+            
+            try {
+                if (window.firebaseAuth && window.firebaseAuth.isUsernameAvailable) {
+                    const isAvailable = await window.firebaseAuth.isUsernameAvailable(username);
+                    
+                    if (isAvailable) {
+                        if (goodStatus) goodStatus.style.display = 'block';
+                    } else {
+                        if (badStatus) badStatus.style.display = 'block';
+                    }
+                }
+            } catch (error) {
+                console.error('Error checking username availability:', error);
+            }
+        }
+
+        // Toggle password visibility
+        function togglePasswordVisibility(inputId, buttonId) {
+            const input = document.getElementById(inputId);
+            const button = document.getElementById(buttonId);
+            const icon = button.querySelector('md-icon');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.textContent = '􀋮'; // Eye crossed out icon
+            } else {
+                input.type = 'password';
+                icon.textContent = '􀋭'; // Eye icon
+            }
+        }
+
+        // Show message function (if not defined elsewhere)
+        function showMessage(message, type) {
+            // Remove existing messages
+            const existingMessage = document.querySelector('.message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            // Create new message
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 20px;
+                border-radius: 5px;
+                color: white;
+                z-index: 10001;
+                max-width: 300px;
+                word-wrap: break-word;
+            `;
+            
+            if (type === 'error') {
+                messageDiv.style.background = '#d32f2f';
+            } else {
+                messageDiv.style.background = '#388e3c';
+            }
+            
+            messageDiv.textContent = message;
+            
+            document.body.appendChild(messageDiv);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (messageDiv.parentNode) {
+                    messageDiv.remove();
+                }
+            }, 5000);
+        }
+    </script>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position: fixed; top: 0px; left: 0px; pointer-events: none; z-index: 9998;"><defs><filter id="liquid-glass-3k9z3q6wr_filter" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB" x="0" y="0" width="57" height="44"><feImage id="liquid-glass-3k9z3q6wr_map" width="57" height="44" xlink:href="data:image/png;base64,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"></feImage><feDisplacementMap in="SourceGraphic" in2="liquid-glass-3k9z3q6wr_map" xChannelSelector="R" yChannelSelector="G" scale="9.253043882020052"></feDisplacementMap></filter></defs></svg>
+</body>
+</html>

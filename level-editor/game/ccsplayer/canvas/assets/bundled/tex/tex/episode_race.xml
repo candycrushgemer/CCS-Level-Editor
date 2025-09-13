@@ -1,0 +1,13 @@
+<TextureAtlas imagePath="episode_race.ktp" width="256" height="256" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="episode_race/episoderace_speechbubble_base.png" x="2" y="2" w="78" h="120" pX="0.5" pY="0.5"/>
+	<sprite n="episode_race/episoderace_portraitframe.png" x="84" y="2" w="108" h="108" pX="0.5" pY="0.5" oW="110" oH="110">
+		<vertices>5 99 0 92 18 91 16 108 71 94 92 108 90 88 98 104 108 92 94 78 108 16 94 24 102 8 90 16 93 0 75 12 33 12 11 0 15 20 0 11 12 75</vertices>
+		<verticesUV>89 101 84 94 102 93 100 110 155 96 176 110 174 90 182 106 192 94 178 80 192 18 178 26 186 10 174 18 177 2 159 14 117 14 95 2 99 22 84 13 96 77</verticesUV>
+		<triangles>0 1 2 3 0 2 3 2 4 5 3 4 4 6 5 5 6 7 7 6 8 6 9 8 9 10 8 9 11 10 11 12 10 11 13 12 13 14 12 13 15 14 15 16 14 16 17 14 18 17 16 19 17 18 20 19 18 1 19 20 1 20 2</triangles>
+	</sprite>
+	<sprite n="episode_race/episoderace_speechbubble_pointer.png" x="2" y="126" w="54" h="46" pX="0.5" pY="0.5" oY="2" oW="56" oH="48">
+		<vertices>0 48 53 36 54 48 13 2 0 2</vertices>
+		<verticesUV>2 172 55 160 56 172 15 126 2 126</verticesUV>
+		<triangles>0 1 2 0 3 1 0 4 3</triangles>
+	</sprite>
+</TextureAtlas>

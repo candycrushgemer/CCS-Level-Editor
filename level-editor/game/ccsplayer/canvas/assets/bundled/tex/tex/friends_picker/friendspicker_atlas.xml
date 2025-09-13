@@ -1,0 +1,14 @@
+<TextureAtlas imagePath="friendspicker_atlas.ktp" width="256" height="256" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="friendspicker_atlas/question.png" x="2" y="163" w="90" h="91" pX="0.5" pY="0.5"/>
+	<sprite n="friendspicker_atlas/unknown_ava.png" x="2" y="68" w="90" h="91" pX="0.5" pY="0.5"/>
+	<sprite n="friendspicker_atlas/receive_invite_bg.png" x="2" y="2" w="61" h="62" pX="0.5" pY="0.5" oY="1" oW="62" oH="62" r="y"/>
+	<sprite n="friendspicker_atlas/send_invite_bg.png" x="67" y="2" w="61" h="62" pX="0.5" pY="0.5" oY="1" oW="62" oH="62" r="y"/>
+	<sprite n="friendspicker_atlas/cb_pink_panel.png" x="132" y="164" w="90" h="90" pX="0.5" pY="0.5"/>
+	<sprite n="friendspicker_atlas/speechbubble_pointer.png" x="226" y="230" w="28" h="24" pX="0.5" pY="0.5"/>
+	<sprite n="friendspicker_atlas/btn_add.png" x="226" y="199" w="27" h="27" pX="0.5" pY="0.5" oX="2" oY="2" oW="30" oH="30"/>
+	<sprite n="friendspicker_atlas/pinklight_panel.png" x="96" y="223" w="31" h="31" pX="0.5" pY="0.5" oW="32" oH="33"/>
+	<sprite n="friendspicker_atlas/slot_empty.png" x="96" y="179" w="29" h="40" pX="0.5" pY="0.5"/>
+	<sprite n="friendspicker_atlas/slot_filled.png" x="96" y="135" w="29" h="40" pX="0.5" pY="0.5"/>
+	<sprite n="friendspicker_atlas/wifi_icon.png" x="129" y="76" w="65" h="84" pX="0.5" pY="0.5" oY="2" oW="85" oH="67" r="y"/>
+	<sprite n="friendspicker_atlas/invite_not_sent.png" x="198" y="114" w="50" h="46" pX="0.5" pY="0.5" oX="1" oW="47" oH="50" r="y"/>
+</TextureAtlas>

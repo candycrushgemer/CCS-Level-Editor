@@ -1,0 +1,22 @@
+<TextureAtlas imagePath="heavy-layered.ktp" width="512" height="512" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="heavy-layered/open_box.png" x="0" y="319" w="184" h="193" pX="0.5" pY="0.5"/>
+	<sprite n="heavy-layered/b_box_close_rim.png" x="0" y="133" w="179" h="186" pX="0.5" pY="0.5"/>
+	<sprite n="heavy-layered/lemon_wedge_sticker_shadow.png" x="0" y="32" w="93" h="101" pX="0.5" pY="0.5" oW="101" oH="93" r="y"/>
+	<sprite n="heavy-layered/boxFlap_shadow1.png" x="93" y="43" w="51" h="90" pX="0.5" pY="0.5"/>
+	<sprite n="heavy-layered/wedge_lime_piece.png" x="93" y="5" w="48" h="38" pX="0.5" pY="0.5"/>
+	<sprite n="heavy-layered/wedge_Orange_piece.png" x="141" y="6" w="45" h="37" pX="0.5" pY="0.5"/>
+	<sprite n="heavy-layered/boxFlap_shadow2.png" x="144" y="43" w="51" h="90" pX="0.5" pY="0.5" oW="90" oH="51" r="y"/>
+	<sprite n="heavy-layered/thin_paper.png" x="179" y="140" w="173" h="179" pX="0.5" pY="0.5" oW="179" oH="173" r="y"/>
+	<sprite n="heavy-layered/boxFlap.png" x="352" y="434" w="160" h="78" pX="0.5" pY="0.5" oW="78" oH="160" r="y"/>
+	<sprite n="heavy-layered/boxFlap2.png" x="352" y="354" w="159" h="80" pX="0.5" pY="0.5" oW="80" oH="159" r="y"/>
+	<sprite n="heavy-layered/inner_shadow.png" x="195" y="2" w="76" h="138" pX="0.5" pY="0.5" oW="138" oH="76" r="y"/>
+	<sprite n="heavy-layered/boxFlap3.png" x="352" y="272" w="155" h="82" pX="0.5" pY="0.5"/>
+	<sprite n="heavy-layered/boxFlap4.png" x="352" y="192" w="155" h="80" pX="0.5" pY="0.5"/>
+	<sprite n="heavy-layered/lemon_wedge_stickerB_back.png" x="271" y="52" w="72" h="88" pX="0.5" pY="0.5" oW="89" oH="72" r="y"/>
+	<sprite n="heavy-layered/thin_paper_shadow.png" x="343" y="56" w="76" h="84" pX="0.5" pY="0.5" oW="84" oH="76" r="y"/>
+	<sprite n="heavy-layered/lemon_wedge_stickerA_back.png" x="343" y="1" w="73" h="55" pX="0.5" pY="0.5" oW="55" oH="73" r="y"/>
+	<sprite n="heavy-layered/lemon_wedge_stickerB.png" x="419" y="120" w="79" h="72" pX="0.5" pY="0.5" oW="90" oH="72"/>
+	<sprite n="heavy-layered/lemon_wedge_stickerA.png" x="419" y="63" w="69" h="57" pX="0.5" pY="0.5" oW="57" oH="69" r="y"/>
+	<sprite n="heavy-layered/wedge_lime.png" x="419" y="1" w="66" h="62" pX="0.5" pY="0.5"/>
+	<sprite n="heavy-layered/wedge_orange.png" x="184" y="450" w="66" h="62" pX="0.5" pY="0.5"/>
+</TextureAtlas>

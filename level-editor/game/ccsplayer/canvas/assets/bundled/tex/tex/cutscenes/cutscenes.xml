@@ -1,0 +1,13 @@
+<TextureAtlas imagePath="cutscenes.ktp" width="1024" height="1024" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="cutscenes/tall_man.png" x="2" y="462" w="560" h="560" pX="0.5" pY="0.5"/>
+	<sprite n="cutscenes/speech_panel_vertical_1.png" x="2" y="246" w="140" h="212" pX="0.5" pY="0.5" oX="3" oY="2" oW="144" oH="216">
+		<vertices>6 110 3 24 57 22 85 23 130 115 66 196 96 195 143 194 83 214 91 214 15 196 134 23 80 2 62 2</vertices>
+		<verticesUV>5 354 2 268 56 266 84 267 129 359 65 440 95 439 142 438 82 458 90 458 14 440 133 267 79 246 61 246</verticesUV>
+		<triangles>0 1 2 0 2 3 4 0 3 4 5 0 4 6 5 6 4 7 8 5 6 9 8 6 5 10 0 4 3 11 3 2 12 2 13 12</triangles>
+	</sprite>
+	<sprite n="cutscenes/speech_panel_string.png" x="2" y="227" w="10" h="15" pX="0.5" pY="0.5" oX="2" oW="12" oH="15">
+		<vertices>2 15 12 0 12 15 2 0</vertices>
+		<verticesUV>2 242 12 227 12 242 2 227</verticesUV>
+		<triangles>0 1 2 0 3 1</triangles>
+	</sprite>
+</TextureAtlas>

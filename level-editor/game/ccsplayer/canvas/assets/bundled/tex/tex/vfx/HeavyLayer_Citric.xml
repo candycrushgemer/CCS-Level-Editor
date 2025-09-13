@@ -1,0 +1,9 @@
+<TextureAtlas imagePath="HeavyLayer_Citric.ktp" width="256" height="256" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="HeavyLayer_Citric/T_VFX_HeavyLayered_Citric_pieces.png" x="2" y="138" w="244" h="116" pX="0.5" pY="0.5" oX="4" oY="10" oW="256" oH="128"/>
+	<sprite n="HeavyLayer_Citric/T_VFX_generic_shockwave.png" x="2" y="70" w="64" h="64" pX="0.5" pY="0.5"/>
+	<sprite n="HeavyLayer_Citric/T_VFX_smoke_01.png" x="2" y="34" w="32" h="32" pX="0.5" pY="0.5"/>
+	<sprite n="HeavyLayer_Citric/vfx_T_sparkle_2.png" x="2" y="5" w="23" h="25" pX="0.5" pY="0.5" oX="3" oY="3" oW="31" oH="30" r="y"/>
+	<sprite n="HeavyLayer_Citric/T_VFX_square.png" x="29" y="18" w="12" h="12" pX="0.5" pY="0.5"/>
+	<sprite n="HeavyLayer_Citric/vfx_T_glow.png" x="38" y="34" w="32" h="32" pX="0.5" pY="0.5"/>
+	<sprite n="HeavyLayer_Citric/vfx_T_sparkle.png" x="70" y="104" w="30" h="30" pX="0.5" pY="0.5" oX="1" oY="1" oW="32" oH="32"/>
+</TextureAtlas>

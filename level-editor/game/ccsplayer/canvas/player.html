@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candy Crush Saga</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div scene="kingload" class="display none">
+        <img src="assets/bundled/loading_screen/king/king_logo.webp" width="400">
+    </div>
+    <div scene="ccsloading" class="display none">
+        <img src="assets/bundled/loading_screen/ccs/ccs_logo.webp" width="500" height="500" style="transform: translateY(-100px);">
+        <span class="bubblegumbliss absolute" style="bottom: 250px; font-size: 40px; color: #2F5FA3;">Loading...</span>
+        <span class="bubblegumbliss absolute" style="top: 410px; font-size: 40px; color: #ffffff; filter: drop-shadow(1.5px 1.5px 0px #2f5fa3);" id="placeholderloadingtext">Chill and unwind.</span>
+        <div class="panel absolute flex align-items center">
+            <img src="assets/bundled/loading_screen/ccs/tiffi_msgs.webp" width="150" height="150" style="aspect-ratio: 1/1; margin-left: 100px; transform: translateY(-10px)">
+            <div class="flex column align-items center" style="width: 400px; transform: translate(-10px, -10px); filter: drop-shadow(1.5px 1.5px 0px #9D4F59);">
+                <span class="bubblegumbliss color fff text-center" style="font-size: 30px;">Did you know?</span>
+                <span class="robotoflex text-center color fff" style="font-size: 20px; width: 350px;">Chocolate Spawners create Chocolate out of thin air! Where can I buy one?</span>
+            </div>
+        </div>
+    </div>
+    <div scene="mainmenu" class="display none">
+        <img src="assets/bundled/loading_screen/ccs/ccs_logo.webp" width="650" class="absolute" style="left: 50%; transform: translate(-50%, -275px);" alt="">
+        <!--remember to include caps-->
+        <div class="button-container" style="margin: 0 auto; transform: translateY(400px);">
+            <div class="button-wrapper">
+                <img src="assets/bundled/tex/btn_textbtn_default_left_cap.webp" width="38">
+                <button class="textbtn default" style="padding: 15px 45px;" id="levelOpen">
+                    <span class="bubblegumbliss">Play!</span>
+                </button>
+                <img src="assets/bundled/tex/btn_textbtn_default_right_cap.png" width="40">
+            </div>
+        </div>
+        <div class="button-container" style="position: absolute; bottom: 0; margin: 10px;">
+            <div class="btn settings idle"></div>
+        </div>
+        <div class="absolute" style="bottom: 10px; left: 50%; transform: translateX(-50%);text-align: center;">
+            <span class="bubblegumbliss" style="color:#fff;text-align: center;">Game canvas by CCGApps. This is not actual game. More info in the About page in the Settings.</span>
+        </div>
+    </div>
+    <div scene="mainmap" class="display none">
+        <div class="top-bar"></div>
+    </div>
+    <div scene="mainLevel" class="display none">
+        <div class="top-bar-container">
+            <div class="top-bar">
+                <div class="levelinf bubblegumbliss p-3 flex column" style="width: 165px;">
+                    <span style="font-size: 35px;text-align: center;" class="levelname">1</span>
+                    <span class="moves" style="font-size: 75px;text-align: center; transform: scale(0.95);">999</span>
+                </div>
+                <div class="scoresreq bubblegumbliss p-3 flex column">
+                    <div class="score-prg">
+                        <div class="progress-cont" style="--value: 1;">
+                            <div class="cap left"></div>
+                            <div class="progress"></div>
+                            <div class="cap right"></div>
+                        </div>
+                        <div class="stars">
+                            <div class="star" style="margin-right: 50px;"></div>
+                            <div class="star" style="margin-right: 50px; transform: scale(1.15);"></div>
+                            <div class="star" style="transform: scale(1.3);"></div>
+                        </div>
+                    </div>
+                    <div class="requirements flex justify-content center align-items center" >
+                        <div class="req1">
+                            <img src="" class="hud">
+                            <span id="ordnum" class="bubblegumbliss"></span>
+                        </div>
+                        <div class="req2">
+                            <img src="" class="hud">
+                            <span id="ordnum" class="bubblegumbliss"></span>
+                        </div>
+                        <div class="req3">
+                            <img src="" class="hud">
+                            <span id="ordnum" class="bubblegumbliss"></span>
+                        </div>
+                        <span class="bubblegumbliss" style="color:#fff;font-size:25px;">Under construction!</span>
+                    </div>
+                </div>
+                <div class="button-container" style="transform:scale(1);">
+                    <div class="character"></div>
+                </div>
+            </div>
+        </div>
+        <div class="button-container" style="position: absolute; bottom: 0; margin: 10px;">
+            <div class="btn settings idle"></div>
+        </div>
+        <div class="boosters-panel flex row" style="gap: 10px;">
+            <div class="button-container">
+                <button class="boosterbtn idle">
+                    <img src="assets/bundled/tex/free_switch.webp" width="55" style="transform: translateX(-2px);" alt="">
+                </button>
+                <div class="booster-indicator idle bubblegumbliss">5</div>
+            </div>
+            <div class="button-container">
+                <button class="boosterbtn idle">
+                    <img src="assets/bundled/tex/ufo.webp" width="55" style="transform: translateX(-2px);" alt="">
+                </button>
+                <div class="booster-indicator idle bubblegumbliss">5</div>
+            </div>
+            <div class="button-container">
+                <button class="boosterbtn idle">
+                    <img src="assets/bundled/tex/lollipop.webp" width="42" style="transform: translateX(-2px);" alt="">
+                </button>
+                <div class="booster-indicator idle bubblegumbliss">5</div>
+            </div>
+            <div class="button-container">
+                <button class="boosterbtn idle">
+                    <img src="assets/bundled/tex/pinata.webp" width="46" style="transform: translateX(-2px);" alt="">
+                </button>
+                <div class="booster-indicator idle bubblegumbliss">5</div>
+            </div>
+            <div class="button-container">
+                <button class="boosterbtn idle">
+                    <img src="assets/bundled/tex/paint_brush.webp" width="55" style="transform: translateX(-2px);" alt="">
+                </button>
+            </div>
+        </div>
+        <table id="level"></table>
+    </div>
+    
+</body>
+</html>

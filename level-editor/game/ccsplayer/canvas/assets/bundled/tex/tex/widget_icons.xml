@@ -1,0 +1,3 @@
+<TextureAtlas imagePath="widget_icons.ktp" width="256" height="256" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="widget_icons/BW_widget_icon.png" x="2" y="119" w="135" h="135" pX="0.5" pY="0.5" oX="1" oY="1" oW="136" oH="140"/>
+</TextureAtlas>

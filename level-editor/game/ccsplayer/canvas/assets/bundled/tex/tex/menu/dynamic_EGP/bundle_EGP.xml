@@ -1,0 +1,62 @@
+<TextureAtlas imagePath="bundle_EGP.ktp" width="256" height="256" premultipliedAlpha="true" king_version="1.5.2" sprites_scale="2.000000">
+	<sprite n="bundle_EGP/egp_green.png" x="2" y="2" w="128" h="106" pX="0.5" pY="0.5">
+		<vertices>7 106 0 99 84 0 127 97 128 106 0 6 6 0</vertices>
+		<verticesUV>9 108 2 101 86 2 129 99 130 108 2 8 8 2</verticesUV>
+		<triangles>0 1 2 3 0 2 0 3 4 2 1 5 2 5 6</triangles>
+	</sprite>
+	<sprite n="bundle_EGP/egp_offer_background_simple_half.png" x="2" y="112" w="64" h="123" pX="0.5" pY="0.5" oX="1" oW="65" oH="123">
+		<vertices>65 123 11 123 1 113 65 0 1 8 8 0</vertices>
+		<verticesUV>66 235 12 235 2 225 66 112 2 120 9 112</verticesUV>
+		<triangles>0 1 2 0 2 3 3 2 4 5 3 4</triangles>
+	</sprite>
+	<sprite n="bundle_EGP/egp_offer_cloud2.png" x="69" y="111" w="150" h="68" pX="0.5" pY="0.5">
+		<vertices>7 68 0 60 42 14 74 21 92 43 150 68 123 45 137 52 149 63 0 5 21 0 4 0</vertices>
+		<verticesUV>76 179 69 171 111 125 143 132 161 154 219 179 192 156 206 163 218 174 69 116 90 111 73 111</verticesUV>
+		<triangles>0 1 2 0 2 3 4 0 3 0 4 5 4 6 5 6 7 5 7 8 5 9 2 1 2 9 10 10 9 11</triangles>
+	</sprite>
+	<sprite n="bundle_EGP/egp_offer_card_half.png" x="111" y="2" w="63" h="63" pX="0.5" pY="0.5">
+		<vertices>19 63 3 52 0 44 63 0 63 63 0 0</vertices>
+		<verticesUV>130 65 114 54 111 46 174 2 174 65 111 2</verticesUV>
+		<triangles>0 1 2 3 0 2 0 3 4 2 5 3</triangles>
+	</sprite>
+	<sprite n="bundle_EGP/egp_offer_stripe.png" x="166" y="2" w="48" h="128" pX="0.5" pY="0.5" oW="49" oH="128">
+		<vertices>24 128 0 128 0 119 24 0 48 0</vertices>
+		<verticesUV>190 130 166 130 166 121 190 2 214 2</verticesUV>
+		<triangles>0 1 2 0 2 3 0 3 4</triangles>
+	</sprite>
+	<sprite n="bundle_EGP/egp_offer_bow.png" x="70" y="182" w="64" h="36" pX="0.5" pY="0.5">
+		<vertices>22 36 0 36 0 20 32 12 16 0 2 3 4 0 31 31 36 36 64 21 57 36 64 35 47 0 61 0</vertices>
+		<verticesUV>92 218 70 218 70 202 102 194 86 182 72 185 74 182 101 213 106 218 134 203 127 218 134 217 117 182 131 182</verticesUV>
+		<triangles>0 1 2 2 3 0 4 3 2 4 2 5 5 6 4 7 0 3 3 8 7 9 8 3 9 10 8 11 10 9 9 3 12 12 13 9</triangles>
+	</sprite>
+	<sprite n="bundle_EGP/Ribbon_half.png" x="138" y="182" w="64" h="35" pX="0.5" pY="0.5" oY="2" oW="64" oH="37">
+		<vertices>11 37 0 37 0 8 12 2 64 28 64 2</vertices>
+		<verticesUV>149 217 138 217 138 188 150 182 202 208 202 182</verticesUV>
+		<triangles>0 1 2 3 0 2 4 0 3 3 5 4</triangles>
+	</sprite>
+	<sprite n="bundle_EGP/ribbon_shadow_area.png" x="206" y="54" w="49" h="38" pX="0.5" pY="0.5" oW="51" oH="39">
+		<vertices>16 38 0 30 19 10 49 38 49 11 0 7 6 2 1 0 6 0</vertices>
+		<verticesUV>222 92 206 84 225 64 255 92 255 65 206 61 212 56 207 54 212 54</verticesUV>
+		<triangles>0 1 2 0 2 3 2 4 3 2 1 5 2 5 6 5 7 6 7 8 6</triangles>
+	</sprite>
+	<sprite n="bundle_EGP/ribbon_tip.png" x="215" y="2" w="29" h="54" pX="0.5" pY="0.5" oW="30" oH="55">
+		<vertices>17 54 9 54 0 43 28 31 0 15 13 3 21 0 29 0</vertices>
+		<verticesUV>232 56 224 56 215 45 243 33 215 17 228 5 236 2 244 2</verticesUV>
+		<triangles>0 1 2 3 0 2 2 4 3 4 5 3 5 6 3 3 6 7</triangles>
+	</sprite>
+	<sprite n="bundle_EGP/egp_offer_bow_margin.png" x="134" y="69" w="27" h="28" pX="0.5" pY="0.5">
+		<vertices>11 28 0 28 0 17 17 19 4 0 27 0 27 19</vertices>
+		<verticesUV>145 97 134 97 134 86 151 88 138 69 161 69 161 88</verticesUV>
+		<triangles>0 1 2 3 0 2 2 4 3 3 4 5 3 5 6</triangles>
+	</sprite>
+	<sprite n="bundle_EGP/egp_offer_bow_body.png" x="2" y="239" w="128" h="4" pX="0.5" pY="0.5" oW="128" oH="5">
+		<vertices>0 4 128 0 128 4 0 0</vertices>
+		<verticesUV>2 243 130 239 130 243 2 239</verticesUV>
+		<triangles>0 1 2 0 3 1</triangles>
+	</sprite>
+	<sprite n="bundle_EGP/ribbon_tail.png" x="117" y="112" w="16" h="13" pX="0.5" pY="0.5">
+		<vertices>10 13 0 9 15 4 16 13 13 0 0 0</vertices>
+		<verticesUV>127 125 117 121 132 116 133 125 130 112 117 112</verticesUV>
+		<triangles>0 1 2 0 2 3 1 4 2 1 5 4</triangles>
+	</sprite>
+</TextureAtlas>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:1f834e0ff8c5708213a7ad4d221f3afb:30d66f013f36e37e3e499ccef9aaa85f:61bbc5194301a34fda42f9037a7c2904$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="level_menu.png" width="512" height="512">
+    <sprite n="accessibility_icon.png" x="297" y="189" w="65" h="65"/>
+    <sprite n="arrow.png" x="200" y="189" w="26" h="38"/>
+    <sprite n="ask_friends_kingdom.png" x="106" y="305" w="100" h="100"/>
+    <sprite n="audio_icon.png" x="2" y="456" w="51" h="51"/>
+    <sprite n="avatar_toffe.png" x="111" y="454" w="50" h="50"/>
+    <sprite n="bar_bg.png" x="210" y="118" w="43" h="34"/>
+    <sprite n="bg_transparent.png" x="425" y="10" w="1" h="1"/>
+    <sprite n="blue_arrow.png" x="106" y="409" w="55" h="41"/>
+    <sprite n="btn_off.png" x="387" y="118" w="34" h="70"/>
+    <sprite n="btn_on.png" x="200" y="231" w="34" h="70"/>
+    <sprite n="connect_icon_big.png" x="2" y="305" w="100" h="147"/>
+    <sprite n="devider.png" x="2" y="2" w="429" h="4"/>
+    <sprite n="document_icon.png" x="435" y="2" w="75" h="65"/>
+    <sprite n="faq_icon.png" x="210" y="305" w="65" h="65"/>
+    <sprite n="features_icon.png" x="425" y="148" w="67" h="67"/>
+    <sprite n="fill_bar.png" x="165" y="483" w="32" h="22"/>
+    <sprite n="fillout.png" x="201" y="483" w="52" h="20"/>
+    <sprite n="green_check_mark.png" x="425" y="71" w="83" h="73"/>
+    <sprite n="highscore_panel_bottom.png" x="213" y="10" w="208" h="104"/>
+    <sprite n="highscore_panel_top.png" x="2" y="10" w="207" h="53"/>
+    <sprite n="how_icon.png" x="234" y="409" w="65" h="65"/>
+    <sprite n="icon_ads.png" x="165" y="409" w="65" h="70"/>
+    <sprite n="m_board_stick.png" x="234" y="179" w="11" h="10"/>
+    <sprite n="notification_icon.png" x="366" y="219" w="65" h="65"/>
+    <sprite n="off_icon.png" x="234" y="156" w="18" h="19"/>
+    <sprite n="on.png" x="257" y="118" w="126" h="67"/>
+    <sprite n="on_icon.png" x="257" y="228" w="24" h="17"/>
+    <sprite n="rank_avatar_star.png" x="57" y="456" w="50" h="51"/>
+    <sprite n="round_cloud.png" x="2" y="71" w="194" h="230"/>
+    <sprite n="settings.png" x="435" y="219" w="65" h="65"/>
+    <sprite n="string.png" x="201" y="507" w="19" h="3"/>
+    <sprite n="switch_bg_off.png" x="230" y="193" w="63" h="31"/>
+    <sprite n="switch_bg_on.png" x="210" y="374" w="63" h="31"/>
+    <sprite n="switch_button.png" x="200" y="156" w="28" h="29"/>
+</TextureAtlas>

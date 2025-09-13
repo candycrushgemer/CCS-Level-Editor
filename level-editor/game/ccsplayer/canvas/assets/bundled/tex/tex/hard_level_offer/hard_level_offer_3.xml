@@ -1,0 +1,20 @@
+<TextureAtlas imagePath="hard_level_offer_3.ktp" width="512" height="512" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="hard_level_offer_3/iap_hlo_bg_mountain_01b.png" x="2" y="2" w="359" h="142" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_3/iap_hlo_bg_mountain_01e.png" x="2" y="148" w="476" h="57" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_3/iap_hlo_bg_mountain_01c.png" x="2" y="209" w="231" h="111" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_3/iap_hlo_bg_odus1.png" x="2" y="324" w="153" h="155" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_3/iap_hlo_bg_mountain_01d.png" x="237" y="209" w="190" h="111" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_3/iap_hlo_bg_mountain_01a.png" x="159" y="324" w="174" h="119" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_3/iap_hlo_bg_mountain_03.png" x="337" y="324" w="152" h="100" pX="0.5" pY="0.5" oW="153" oH="101"/>
+	<sprite n="hard_level_offer_3/iap_hlo_bg_odus2.png" x="365" y="2" w="122" h="87" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_3/iap_hlo_bg_cloud.png" x="159" y="447" w="185" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_3/iap_hlo_bg_legendaryhardicon.png" x="431" y="209" w="58" h="57" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_3/iap_hlo_bg_crazyhardicon.png" x="365" y="93" w="55" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_3/iap_hlo_locked_icon.png" x="424" y="93" w="45" h="50" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_3/iap_hlo_bg_crazyhardpin.png" x="431" y="270" w="48" h="41" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_3/iap_hlo_bg_superhardpin.png" x="348" y="428" w="47" h="41" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_3/iap_hlo_bg_legendaryhardpin.png" x="399" y="428" w="48" h="39" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_3/iap_hlo_bg_superhardicon.png" x="473" y="93" w="36" h="41" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_3/iap_hlo_bg_star.png" x="2" y="483" w="16" h="17" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_3/iap_hlo_bg_gradient.png" x="493" y="138" w="1" h="98" pX="0.5" pY="0.5"/>
+</TextureAtlas>

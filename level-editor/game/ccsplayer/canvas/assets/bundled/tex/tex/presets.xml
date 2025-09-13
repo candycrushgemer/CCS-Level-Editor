@@ -1,0 +1,11 @@
+<TextureAtlas imagePath="presets.ktp" width="512" height="512" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="presets/ribbon_classic.png" x="1" y="1" w="466" h="131" pX="0.5" pY="0.5"/>
+	<sprite n="presets/beige_panel.png" x="1" y="134" w="176" h="136" pX="0.5" pY="0.5"/>
+	<sprite n="presets/player_list_bg.png" x="1" y="272" w="124" h="121" pX="0.5" pY="0.5" oY="2" oW="124" oH="123"/>
+	<sprite n="presets/legal_pink_panel.png" x="1" y="395" w="120" h="88" pX="0.5" pY="0.5"/>
+	<sprite n="presets/legal_blue_panel.png" x="179" y="134" w="120" h="88" pX="0.5" pY="0.5"/>
+	<sprite n="presets/tooltip_panel.png" x="127" y="272" w="123" h="79" pX="0.5" pY="0.5"/>
+	<sprite n="presets/hanger.png" x="301" y="134" w="81" h="89" pX="0.5" pY="0.5"/>
+	<sprite n="presets/tooltip_tip.png" x="469" y="1" w="40" h="35" pX="0.5" pY="0.5" oW="40" oH="36"/>
+	<sprite n="presets/string.png" x="469" y="38" w="12" h="40" pX="0.5" pY="0.5"/>
+</TextureAtlas>

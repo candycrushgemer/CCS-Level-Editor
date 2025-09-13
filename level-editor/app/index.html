@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Editor | Home</title>
+    <link rel="shortcut icon" href="../editor/logo-1024x1024-full.png" type="image/x-icon">
+    <meta name="description" content="Official Level Editor dashboard">
+    <meta property="og:image" content="https://yourdomain.com/editor/logo-1024x1024-full.png">
+    <meta property="og:title" content="Level Editor | Home">
+    <meta property="og:description" content="Create, edit, and share custom game levels with Level Editor.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Level Editor | Home">
+    <meta name="twitter:description" content="Create, edit, and share custom game levels with Level Editor.">
+    <meta name="twitter:image" content="https://yourdomain.com/editor/logo-1024x1024-full.png">
+    <meta name="keywords"
+        content="level editor, ccs level editor, ccs level creator, candy crush level creator, candy crush level editor">
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <script src="liquid-glass-18jdn1wbjkey10kam.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+        {
+            "imports": {
+                "@material/web/": "https://esm.run/@material/web/"
+            }
+        }
+    </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+    <link rel="stylesheet" href="mat-accent-color-light.css">
+    <link rel="stylesheet" href="mat-accent-color-dark.css">
+    <link rel="stylesheet" href="mdui.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.4.0/index.js"></script>
+    <script src="../settings/settings-loader.js"></script>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage-compat.js"></script>
+    <script src="credentials.js"></script>
+    <script src="spinner-load-element.js"></script>
+    <style>
+        #topAvatar {
+            border-radius: 64px;
+        }
+    </style>
+    <script src="global-user-display.js"></script>
+</head>
+
+<body>
+
+    <div class="overlay-loading">
+        <img src="intro_logo_gif.gif" width="250px" style="user-select: none;pointer-events: none;">
+        <spinner-load></spinner-load>
+
+        <div class="watermark" style="position: absolute; bottom: 20px; display: flex; flex-direction: column; align-items: center;">
+            <span style="font-size: 12px; opacity: 0.5;">from</span>
+            <div style="display: flex; align-items: center; gap: 2px;">
+                <img src="CCGAppsGifLogo.gif" alt="" style="width: 30px;"> CCGApps
+            </div>
+        </div>
+    </div>
+    <script>
+        window.onload = function() {
+            const loadingOverlay = document.querySelector('.overlay-loading');
+            // Set opacity to 0 after load
+            loadingOverlay.style.opacity = '0';
+            loadingOverlay.style.transform = 'scale(1.2)';
+            loadingOverlay.style.backdropFilter = 'blur(0px)';
+            // After 0.5s, set display to none
+            setTimeout(() => {
+                loadingOverlay.style.display = 'none';
+            }, 500);
+        };
+    </script>
+
+
+    <div class="top_app_bar">
+        <div class="left">
+            <md-icon-button style="opacity: 0;"></md-icon-button>
+            <md-icon-button class="menu-btn" data-liquid liq-blur="5" onclick="navigateOpen()" divact style="position: absolute;">
+                <md-icon>􀋲</md-icon>
+                <md-list style="width: 200px; height: fit-content;">
+                    <md-list-item onclick="document.querySelector('.new-lev').setAttribute('open','');">
+                        <md-icon slot="start">􀅼</md-icon>
+                        <div class="flex row">
+                            <span>New level</span>
+                        </div>
+                    </md-list-item>
+                    <md-list-item onclick="document.querySelector('.level_template.open').click()">
+                        <md-icon slot="start">􀈖</md-icon>
+                        <div class="flex row">
+                            <span>Open level</span>
+                        </div>
+                    </md-list-item>
+                    <md-list-item onclick="document.querySelector('.whats-new').click()">
+                        <md-icon slot="start">􀇻</md-icon>
+                        <div class="flex row">
+                            <span>What's new?</span>
+                        </div>
+                    </md-list-item>
+                    <md-list-item onclick="document.querySelector('.settings').click()">
+                        <md-icon slot="start">􀣌</md-icon>
+                        <div class="flex row">
+                            <span>Settings</span>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </md-icon-button>
+            <img src="../editor/logo-horizontal.png" width="100" alt="">
+        </div>
+        <div class="center"></div>
+        <div class="right">
+            <mdui-dropdown >
+                <md-text-button class="search search_bt" slot="trigger">
+                    <md-icon slot="icon" style="font-size: 16px;">􀊫</md-icon><span>Search</span>
+                    <input type="text" placeholder="Search..." id="search">
+                </md-text-button>
+                <md-list data-liquid liq-blur="5" class="menu search_list" style="width:350px;">
+                    <div id="searchResults">
+                    </div>
+                    <div id="recentSearches" style="display: none;">
+                        <md-list-item class="search-header">
+                            <span style="font-weight: 500; color: #666;">Recent searches</span>
+                    </md-list-item>
+                    </div>
+                    <div id="noSearchResults" style="display: none;">
+                        <md-list-item class="no-results">
+                            <span style="color: #666;">Nothing to show. ._. </span>
+                    </md-list-item>
+                    </div>
+                </md-list>
+            </mdui-dropdown>
+            <div class="group_icon_btns" style="padding: 0;">
+                <md-icon-button class="whats-new" onclick="document.querySelector('.new-update-startup').setAttribute('open','');">
+                    <md-icon>􀇻</md-icon>
+                </md-icon-button>
+                <md-icon-button class="settings" onclick="window.location.href = '../settings/'">
+                    <md-icon>􀣌</md-icon>
+                </md-icon-button>
+            </div>
+            <mdui-dropdown>
+                <md-icon-button slot="trigger">
+                    <img src="../editor/avatar-generic.png" alt="" id="topAvatar">
+                </md-icon-button>
+                <md-list data-liquid liq-blur="5" class="menu liquid-glass blur" style="width: 400px;padding: 0 !important">
+                    <md-list-item class="state signed_in"
+                        style="background-color: #00000000; padding: 0 !important;display:none;">
+                        <div class="account_view">
+                            <img id="avatar" src="avatar-generic.png" width="50" style="border-radius:64px;"
+                                alt="Avatar">
+                            <div class="info">
+                                <h4 style="margin:0;" id="name">User</h4>
+                                <span style="margin:0;" id="email">example@example.com</span>
+                            </div>
+                        </div>
+                        <div class="buttons flex rows" style="gap: 2px;margin-top:3px;overflow:visible;">
+                            <md-filled-tonal-button style="width:100%" onclick="window.location.href = '../myaccount/'">Manage account</md-filled-tonal-button>
+                            <md-text-button style="width:100%" class="destructive"><span>Sign
+                                    out</span></md-text-button>
+                        </div>
+                    </md-list-item>
+                    <md-list-item class="state sign_in" style="background-color: #00000000; padding: 0 !important;">
+                        <div style="width: 100%; display: flex; justify-content: center; margin: 10px;">
+                            <img src="sign_in_place_holder.png" width="150" alt="Sign in to Editor">
+                        </div>
+                        <h3 style="margin: 0; text-align: center;">Sign in to Editor</h3>
+                        <p style="text-align: center;">Sign in to get your level synced, post levels to community and
+                            other things as well.</p>
+                        <div class="buttons flex rows" style="gap: 2px;margin-top:3px;">
+                            <md-filled-tonal-button style="width:100%">Sign in</md-filled-tonal-button>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </mdui-dropdown>
+        </div>
+    </div>
+    <div class="gradient-blur top">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <main>
+        <br><br><br>
+        <h1 style="text-align: center;">Welcome to Level Editor</h1>
+        <p style="text-align: center;">Let's start creating something great.</p>
+        <div class="template_starts">
+            <div class="card level_template blank"
+                onclick="document.querySelector('.new-lev').setAttribute('open','');">
+                <div class="background_preview">
+                    <div class="spotlight"></div>
+                    <md-icon>􀅼</md-icon>
+                </div>
+                <p>Start a blank level</p>
+            </div>
+            <div class="card level_template open" onclick="openFileSelector()">
+                <div class="background_preview">
+                    <div class="spotlight"></div>
+                    <md-icon style="overflow: visible;">􀈖</md-icon>
+                </div>
+                <p>Open a level</p>
+            </div>
+            <input type="file" id="levelFileInput" accept=".txt,.json" style="display: none;" onchange="handleLevelFileSelect(event)">
+            <div class="card level_template board15x15"
+                onclick="window.location.href = '../editor?lev=Untitled&boardTemplate=15x15'">
+                <div class="background_preview">
+                    <div class="spotlight"></div>
+                    <md-icon>􀇹</md-icon>
+                </div>
+                <p>Blank 15x15 Board Level</p>
+            </div>
+            <div class="card level_template jelly"
+                onclick="window.location.href = '../editor?lev=Untitled&gmtpl=jelly'">
+                <div class="background_preview">
+                    <div class="spotlight"></div>
+                    <img src="../editor/elements/jelly2.png" alt="">
+                </div>
+                <p>Jelly level</p>
+            </div>
+            <div class="card level_template sprinks"
+                onclick="window.location.href = '../editor?lev=Untitled&gmtpl=sprinks'">
+                <div class="background_preview">
+                    <div class="spotlight pink"></div>
+                    <img src="../editor/elements/sprinks.png" width="75" alt="">
+                </div>
+                <p>Sprinks level</p>
+            </div>
+        </div>
+        <br><br>
+        <h2 style="text-align: center;">My levels</h2>
+        <p id="noLevelsMessage" style="text-align: center;">Seems there's nothing to show. Go ahead and create a new level to show it here!</p>
+        <div class="recents" style="display: none;">
+            <table id="recents" style="margin: 0 auto;">
+                <tr>
+                    <th><span></span></th>
+                    <th><span>Name</span></th>
+                    <th><span>Date modified</span></th>
+                    <th><span>Location</span></th>
+                    <th><span>Actions</span></th>
+                </tr>
+            </table>
+        </div>
+
+        <forge-dialog class="upgrade-plans"
+            style="--forge-dialog-shape: 30px; --forge-dialog-background: #ffffff00; width: 90vh; --forge-dialog-elevation: 0;">
+            <forge-scaffold style="margin: 0; width: 1000px; height: 900px; overflow: visible;">
+                <mdui-layout slot="body">
+                    <mdui-top-app-bar style="background: #ffffff00;">
+                        <md-icon-button class="close-upgrades" onclick="
+                            document.querySelector('.upgrade-plans').removeAttribute('open');
+                        ">
+                            <md-icon>􀆄</md-icon>
+                        </md-icon-button>
+                        <div style="flex-grow: 1"></div>
+                    </mdui-top-app-bar>
+                    <mdui-layout-main>
+                        <div class="header blue_grd" style="color:#fff">
+                            <h1>Because our Terms of Service is updated</h1>
+                            <p>Level Editor is free forever! Fanmade tools will never ask you to pay. This dialog is
+                                just for placeholders.</p>
+                        </div>
+                        <div class="plans_available flex rows center wrap">
+                            <div class="plan tier_grd free">
+                                <h3>Free tier</h3>
+                                <h1>$0</h1>
+                                <p>To be included:</p>
+                                <ul class="plans_features_li_it">
+                                    <li>10 levels per account</li>
+                                    <li>Free 300 points to use after signing up </li>
+                                    <li>Ads</li>
+                                    <li>Level upload to community limit to 2 levels per post</li>
+                                    <li>Limited elements</li>
+                                </ul>
+                                <div class="upg_btns">
+                                    <md-text-button id="upgradePlan" target="free" disabled>You are on Free
+                                        plan</md-text-button>
+                                </div>
+                            </div>
+                            <div class="plan tier_grd standard">
+                                <h3>Standard</h3>
+                                <h1>$5.99</h1>
+                                <p>Everything in Free, plus:</p>
+                                <ul class="plans_features_li_it">
+                                    <li>50 levels per account</li>
+                                    <li>Free 300 points to use after signing up and 100 points every month</li>
+                                    <li>No ads</li>
+                                    <li>Level upload to community limit to 10 levels per post</li>
+                                    <li>Unlocked all elements</li>
+                                </ul>
+                                <div class="upg_btns">
+                                    <md-outlined-button id="upgradePlanbyPoints"
+                                        target="standard">6,000</md-outlined-button>
+                                    <md-text-button id="upgradePlan" target="standard"><span
+                                            style="color:#fff">Upgrade</span></md-text-button>
+                                </div>
+                            </div>
+                            <div class="plan tier_grd exclusive">
+                                <h3>Exclusive</h3>
+                                <h1>$19.99</h1>
+                                <p>Everything in Standard, plus:</p>
+                                <ul class="plans_features_li_it">
+                                    <li>Unlimited levels per account</li>
+                                    <li>Free 1000 points to use after signing up and 500 points every month</li>
+                                    <li>No ads</li>
+                                    <li>Level upload to community limit to 10 levels per post</li>
+                                    <li>Get free access to beta updates</li>
+                                </ul>
+                                <div class="upg_btns">
+                                    <md-outlined-button id="upgradePlanbyPoints"
+                                        target="exclusive">12,000</md-outlined-button>
+                                    <md-text-button id="upgradePlan" target="exclusive"><span
+                                            style="color:#fff">Upgrade</span></md-text-button>
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="flex center columns" style="color:#fff">
+                            <h2>You have a key to activate a plan?</h2>
+                            <p>Click here to get redirected to CCGApps Shop page.</p>
+                        </div>
+                    </mdui-layout-main>
+                </mdui-layout>
+            </forge-scaffold>
+        </forge-dialog>
+
+        <forge-dialog class="new-update-startup"
+        style="--forge-dialog-shape: 30px; --forge-dialog-background: var(--liq-dialog-light-bg); --forge-dialog-elevation: 0;" open>
+            <forge-scaffold style="margin: 0; width: 50vw; height: 600px; overflow: visible;" data-liquid liq-blur="5" light-45>
+                <mdui-layout slot="body">
+                    <mdui-top-app-bar style="background: #ffffff00;">
+                        <md-icon-button data-liquid liq-blur="5" class="close-upgrades" onclick="
+                            document.querySelector('.new-update-startup').removeAttribute('open');
+                        ">
+                            <md-icon style="color:#000000">􀆄</md-icon>
+                        </md-icon-button>
+                        <div style="flex-grow: 1"></div>
+                    </mdui-top-app-bar>
+                    <mdui-layout-main class="features_no_padding_important">
+                        <div class="features_flexbox flex" style="height:96.5%;margin:10px;gap:25px;">
+                            <div style="width:55%;background:url(startup/liquid-glass.png) no-repeat center center;height:100%;border-radius:20px;background-size:cover;"></div>
+                            
+                            <div style="overflow:hidden;overflow-y:scroll;width:55%">
+                                <h1>What's new?</h1>
+                                <span>Updated to Version 1.10</span>
+                                <br>
+                                <h2>New design, new look. The whole new elements.</h2>
+                                <p>Say hello to Liquid Glass! Level Editor now applies Liquid Glass UI anywhere, from buttons, navigation bars, menus,... But if you find it laggy or preforming slow, you can disable it in the Settings page.</p>
+                                <h2>New blockers are officially added!</h2>
+                                <p>These new blockers are in Beta mode. Sprinks' Nest, Wonderful Wrapper and Mall-O-Matic are now present on Level Editor.</p>
+                                <h2>New Level Editor BETA program</h2>
+                                <p>Sign up for free Public Beta program, or $10 to be member of Dev Beta with early access to new features at <a href="../beta/">here</a>.</p>
+                                <p>As an apology for the late release, we are opening Dev Beta program free until October 15th (previously free until September 7th). </p>
+                                <br>
+                                <p>With the new release, we hope you will be able to continue your creativity journey.</p>
+                            </div>
+                        </div>
+                    </mdui-layout-main>
+                </mdui-layout>
+            </forge-scaffold>
+        </forge-dialog>
+
+        <forge-dialog  class="new-lev"
+            style="--forge-dialog-shape: 30px; --forge-dialog-background: var(--liq-dialog-light-bg); width: 90vh; --forge-dialog-elevation: 0;">
+            <forge-scaffold data-liquid liq-blur="5" light-45 style="margin: 0; width: 400px; height: fit-content; overflow: visible; border-radius: 30px;">
+                <mdui-layout slot="body">
+                    <mdui-top-app-bar style="background: #ffffff00;">
+                        <md-icon-button class="close-upgrades" onclick="
+                            document.querySelector('.new-lev').removeAttribute('open');
+                        ">
+                            <md-icon>􀆄</md-icon>
+                        </md-icon-button>
+                        <mdui-top-app-bar-title>New level</mdui-top-app-bar-title>
+                        <div style="flex-grow: 1"></div> 
+                    </mdui-top-app-bar>
+                    <mdui-layout-main style="margin: 20px; margin-top: 0; overflow: visible;">
+                        <p>Level name:</p>
+                        <div class="text-field" style="width: 300px; background: #ddddddaf">
+                            <input type="text" id="levName" placeholder="Level name...">
+                        </div>
+                        <p>Location:</p>
+                        <div class="list-selection">
+                            <div class="list-item">
+                                <div class="radio_checkmark">
+                                    <input type="radio" name="location" id="accountCloud" checked>
+                                    <span class="checkmark">􀆅</span>
+                                </div>
+                                <label for="accountCloud" style="width: 100%;">On my account</label>
+                            </div>
+                            <md-divider></md-divider>
+                            <div class="list-item">
+                                <div class="radio_checkmark">    
+                                    <input type="radio" name="location" id="local">
+                                    <span class="checkmark">􀆅</span>
+                                </div>
+                                <label for="local" style="width: 100%;">On this device</label>
+                            </div>
+                        </div>
+                        <p>Board template:</p>
+                        <div class="list-selection">
+                            <div class="list-item">
+                                <div class="radio_checkmark">
+                                    <input type="radio" name="btemplate" id="ninenine" checked>
+                                    <span class="checkmark">􀆅</span>
+                                </div>
+                                <label for="ninenine" style="width: 100%;">9x9 board</label>
+                            </div>
+                            <md-divider></md-divider>
+                            <div class="list-item">
+                                <div class="radio_checkmark">    
+                                    <input type="radio" name="btemplate" id="fifteen">
+                                    <span class="checkmark">􀆅</span>
+                                </div>
+                                <label for="fifteen" style="width: 100%;">15x15 board</label>
+                            </div>
+                        </div>
+                        <br>
+                        <md-text-button id="createLev" class="filled blue" style="width: 100%;"
+                            onclick="createLevel()"><span style="color: #ffffff;">Create level</span></md-text-button>
+                    </mdui-layout-main>
+                </mdui-layout>
+            </forge-scaffold>
+        </forge-dialog>
+
+        <forge-dialog class="levname-changing" style="--forge-dialog-shape: 30px; --forge-dialog-background: var(--liq-dialog-light-bg); width: 90vh; --forge-dialog-elevation: 0;">
+            <forge-scaffold data-liquid liq-blur="5" light-45 style="margin: 0; width: 400px; height: fit-content; overflow: visible;">
+                <mdui-layout slot="body">
+                    <mdui-top-app-bar style="background: #ffffff00;">
+                        <md-icon-button class="close-upgrades" 
+                        onclick="
+                            document.querySelector('.levname-changing').removeAttribute('open');
+                        ">
+                            <md-icon>􀆄</md-icon>
+                        </md-icon-button>
+                        <mdui-top-app-bar-title>Change level name</mdui-top-app-bar-title>
+                        <div style="flex-grow: 1"></div>
+                    </mdui-top-app-bar>
+                    <mdui-layout-main style="margin: 20px; margin-top: 0; overflow: visible;">
+                        <p>Enter an appopriate level name:</p>
+                        <div class="text-field" style="width: 300px; background: #ddddddaf">
+                            <input type="text" id="inputlevname" placeholder="{previous level name}.." value="{previous level name}">
+                        </div>
+                        <br>
+                        <md-text-button id="updatelevname" class="filled blue" style="width: 100%;"><span style="color: #ffffff;">OK</span></md-text-button>
+                    </mdui-layout-main>
+                </mdui-layout>
+            </forge-scaffold>
+        </forge-dialog>
+
+        <forge-dialog class="del-lev" style="--forge-dialog-shape: 30px; --forge-dialog-background: var(--liq-dialog-light-bg); width: 90vh; --forge-dialog-elevation: 0;">
+            <forge-scaffold data-liquid liq-blur="5" light-45 style="margin: 0; width: 500px; height: fit-content; overflow: visible;">
+                <mdui-layout slot="body">
+                    <mdui-top-app-bar style="background: #ffffff00;">
+                        <md-icon-button class="close-upgrades" 
+                        onclick="
+                            document.querySelector('.del-lev').removeAttribute('open');
+                        ">
+                            <md-icon>􀆄</md-icon>
+                        </md-icon-button>
+                        <mdui-top-app-bar-title>Delete level</mdui-top-app-bar-title>
+                        <div style="flex-grow: 1"></div>
+                    </mdui-top-app-bar>
+                    <mdui-layout-main style="margin: 20px; margin-top: 0; overflow: visible; width: 90%;">
+                        <p>Are you sure to delete this level? The posts related to this level will appear to non-existent page.</p>
+                        <br>
+                        <md-text-button id="dellev" class="filled dangerous" style="width: 100%;"><span style="color: #ffffff;">Delete level</span></md-text-button>
+                    </mdui-layout-main>
+                </mdui-layout>
+            </forge-scaffold>
+        </forge-dialog>
+
+        <forge-dialog class="exist-lev-ask" style="--forge-dialog-shape: 30px; --forge-dialog-background: var(--liq-dialog-light-bg); width: 90vh; --forge-dialog-elevation: 0;">
+            <forge-scaffold data-liquid liq-blur="5" light-45 style="margin: 0; width: 500px; height: fit-content; overflow: visible;">
+                <mdui-layout slot="body">
+                    <mdui-top-app-bar style="background: #ffffff00;">
+                        <md-icon-button class="close-upgrades" 
+                        onclick="
+                            document.querySelector('.exist-lev-ask').removeAttribute('open');
+                        ">
+                            <md-icon>􀆄</md-icon>
+                        </md-icon-button>
+                        <mdui-top-app-bar-title>Level exists</mdui-top-app-bar-title>
+                        <div style="flex-grow: 1"></div>
+                    </mdui-top-app-bar>
+                    <mdui-layout-main style="margin: 20px; margin-top: 0; overflow: visible; width: 90%;">
+                        <p>"level" already there in your levels manager. Do you want to rename it to "level (1)" or override the existing level?</p>
+                        <br>
+                        
+                        <div class="buttons flex rows" style="gap: 2px;margin-top:3px;overflow:visible;">
+                            <md-filled-tonal-button style="width:100%" id="duplicateRenameBtn">Rename to <span id="anotherlevnumberic">level (1)</span></md-filled-tonal-button>
+                            <md-text-button style="width:100%" class="filled blue" id="duplicateOverrideBtn"><span style="color:#fff">Override</span></md-text-button>
+                        </div>
+                    </mdui-layout-main>
+                </mdui-layout>
+            </forge-scaffold>
+        </forge-dialog>
+    </main>
+
+
+    <script>
+                // Function to create a new level and redirect to editor
+        function createLevel() {
+            const levelName = document.getElementById('levName').value.trim();
+            if (!levelName) {
+                alert('Please enter a level name');
+                return;
+            }
+            
+            // Check if level name already exists
+            if (localStorage.getItem(levelName)) {
+                openDuplicateLevelDialog(levelName);
+                return;
+            }
+            
+            // Get location selection
+            const location = document.getElementById('accountCloud').checked ? 'cloud' : 'local';
+            
+            // Get board template selection
+            const boardTemplate = document.getElementById('ninenine').checked ? '9x9' : '15x15';
+            
+            // Create a placeholder entry in localStorage for the new level
+            const currentTime = new Date().toISOString();
+            const placeholderLevel = {
+                name: levelName,
+                lastModified: currentTime,
+                location: location,
+                boardSize: boardTemplate === '15x15' ? 15 : 9,
+                isPlaceholder: true,
+                created: currentTime
+            };
+            localStorage.setItem(levelName, JSON.stringify(placeholderLevel));
+            
+            // Close the new level dialog
+            document.querySelector('.new-lev').removeAttribute('open');
+            
+            // Refresh the recent levels table to show the new level
+            loadRecentLevels();
+            
+            // Create the redirect URL
+            const redirectUrl = `../editor?lev=${encodeURIComponent(levelName)}&lct=${location}&boardTemplate=${boardTemplate}`;
+            
+            // Redirect to editor
+            window.location.href = redirectUrl;
+        }
+
+        // Function to check if user is returning from editor with a new level
+        function checkForNewLevel() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const newLevelName = urlParams.get('newLevel');
+            const newLevelLocation = urlParams.get('newLevelLocation');
+            
+            if (newLevelName && newLevelLocation) {
+                // Check if the level already exists in localStorage
+                const existingLevel = localStorage.getItem(newLevelName);
+                if (!existingLevel) {
+                    // Create a placeholder level entry if it doesn't exist
+                    const placeholderLevel = {
+                        name: newLevelName,
+                        lastModified: new Date().toISOString(),
+                        location: newLevelLocation,
+                        isPlaceholder: true
+                    };
+                    localStorage.setItem(newLevelName, JSON.stringify(placeholderLevel));
+                }
+                
+                // Clear the URL parameters
+                const newUrl = window.location.pathname;
+                window.history.replaceState({}, document.title, newUrl);
+                
+                // Reload recents to show the new level
+                loadRecentLevels();
+            }
+            
+            // Also check for any placeholder levels that might have been created
+            // This handles the case where we create a level and immediately return
+            checkForPlaceholderLevels();
+        }
+
+        // Function to check for placeholder levels and update them
+        function checkForPlaceholderLevels() {
+            // Look for any levels marked as placeholders
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                try {
+                    const levelData = JSON.parse(localStorage.getItem(key));
+                    if (levelData && levelData.isPlaceholder) {
+                        // Update the placeholder with current timestamp
+                        const currentTime = new Date().toISOString();
+                        levelData.lastModified = currentTime;
+                        levelData.isPlaceholder = false; // Mark as no longer a placeholder
+                        levelData.updated = currentTime;
+                        
+                        localStorage.setItem(key, JSON.stringify(levelData));
+                    }
+                } catch (e) {
+                    console.error('Error updating placeholder level:', key, e);
+                }
+            }
+        }
+
+                // Function to add a level to the recent levels table
+        function addRecentLevel(name, dateModified, location, levelData) {
+            const recentsDiv = document.querySelector('.recents');
+            const recentsTable = document.getElementById('recents');
+            
+            // Show the recents section if it was hidden
+            recentsDiv.style.display = 'block';
+            
+            // Hide the "nothing to show" message
+            const noLevelsMessage = document.getElementById('noLevelsMessage');
+            if (noLevelsMessage) {
+                noLevelsMessage.style.display = 'none';
+            }
+            
+            // Create new table row
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td><md-icon>􀈷</md-icon></td>
+                <td onclick="openLevel('${name}', '${location}')" style="cursor: pointer;">${name}</td>
+                <td>${dateModified}</td>
+                <td>
+                    ${location === 'local' ? 
+                        '<span style="color: #666;">On this device</span>' : 
+                        '<span style="color: #4CAF50;"><md-icon style="font-size: 16px; margin-right: 4px;">􀁢</md-icon>Synced</span>'
+                    }
+                </td>
+                <td>
+                    <div class="group_icon_btns">
+                        <md-icon-button class="renLev" onclick="openRenameDialog('${name}')"><md-icon>􀈊</md-icon></md-icon-button>
+                        <md-icon-button class="delLev" onclick="openDeleteDialog('${name}')"><md-icon>􀈒</md-icon></md-icon-button>
+                    </div>
+                </td>
+            `;
+            
+            // Add the new row after the header row
+            const headerRow = recentsTable.querySelector('tr');
+            headerRow.parentNode.insertBefore(newRow, headerRow.nextSibling);
+        }
+
+        // Function to load and display recent levels from localStorage
+        function loadRecentLevels() {
+            const recentsDiv = document.querySelector('.recents');
+            const recentsTable = document.getElementById('recents');
+            const noLevelsMessage = document.getElementById('noLevelsMessage');
+            
+            // Clear existing rows (except header)
+            const rows = recentsTable.querySelectorAll('tr');
+            for (let i = 1; i < rows.length; i++) {
+                rows[i].remove();
+            }
+            
+            // Get all levels from localStorage
+            const levels = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                try {
+                    const levelData = JSON.parse(localStorage.getItem(key));
+                    // Check if it's a level (has basic level structure)
+                    if (levelData && typeof levelData === 'object' && levelData.name) {
+                        // Ensure we have a valid lastModified date
+                        let lastModified = levelData.lastModified;
+                        
+                        // If no lastModified, try to create one from the current time
+                        if (!lastModified) {
+                            lastModified = new Date().toISOString();
+                            console.log(`No lastModified found for level "${key}", setting to current time:`, lastModified);
+                        }
+                        
+                        // Validate the date format
+                        const testDate = new Date(lastModified);
+                        if (isNaN(testDate.getTime())) {
+                            console.warn(`Invalid date format for level "${key}":`, lastModified);
+                            // Set to current time if invalid
+                            lastModified = new Date().toISOString();
+                            levelData.lastModified = lastModified;
+                            localStorage.setItem(key, JSON.stringify(levelData));
+                        }
+                        
+                        levels.push({
+                            name: key,
+                            data: levelData,
+                            lastModified: lastModified,
+                            location: levelData.location || 'local'
+                        });
+                    }
+                } catch (e) {
+                    console.error(`Error parsing level data for key "${key}":`, e);
+                }
+            }
+            
+            // Sort by last modified (newest first)
+            levels.sort((a, b) => {
+                const dateA = new Date(a.lastModified);
+                const dateB = new Date(b.lastModified);
+                return dateB.getTime() - dateA.getTime();
+            });
+            
+            if (levels.length > 0) {
+                // Show recents section and hide "nothing to show" message
+                recentsDiv.style.display = 'block';
+                noLevelsMessage.style.display = 'none';
+                
+                // Add each level to the table
+                levels.forEach(level => {
+                    const dateModified = formatDate(level.lastModified);
+                    addRecentLevel(level.name, dateModified, level.location, level.data);
+                });
+            } else {
+                // Hide recents section and show "nothing to show" message
+                recentsDiv.style.display = 'none';
+                noLevelsMessage.style.display = 'block';
+            }
+        }
+
+        // Function to format date for display
+        function formatDate(dateString) {
+            if (!dateString) {
+                return 'Unknown';
+            }
+            
+            try {
+                const date = new Date(dateString);
+                
+                // Check if the date is valid
+                if (isNaN(date.getTime())) {
+                    console.warn('Invalid date string:', dateString);
+                    return 'Invalid date';
+                }
+                
+                const now = new Date();
+                const diffTime = now.getTime() - date.getTime();
+                
+                // If the date is in the future, show as "Just now"
+                if (diffTime < 0) {
+                    return 'Just now';
+                }
+                
+                // Calculate time differences using Math.floor instead of Math.ceil
+                const diffMinutes = Math.floor(diffTime / (1000 * 60));
+                const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                
+                if (diffMinutes < 1) {
+                    return 'Just now';
+                } else if (diffMinutes < 60) {
+                    return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
+                } else if (diffHours < 24) {
+                    return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+                } else if (diffDays === 1) {
+                    return '1 day ago';
+                } else if (diffDays < 7) {
+                    return `${diffDays} days ago`;
+                } else if (diffDays < 30) {
+                    const weeks = Math.ceil(diffDays / 7);
+                    return `${weeks} week${weeks > 1 ? 's' : ''} ago`;
+                } else if (diffDays < 365) {
+                    const months = Math.ceil(diffDays / 30);
+                    return `${months} month${months > 1 ? 's' : ''} ago`;
+                } else {
+                    return date.toLocaleDateString();
+                }
+            } catch (error) {
+                console.error('Error formatting date:', error, 'Date string:', dateString);
+                return 'Invalid date';
+            }
+        }
+
+        // Function to open rename dialog
+        function openRenameDialog(oldName) {
+            const dialog = document.querySelector('.levname-changing');
+            const input = document.getElementById('inputlevname');
+            const updateButton = document.getElementById('updatelevname');
+            
+            // Set the current name as placeholder and value
+            input.placeholder = oldName;
+            input.value = oldName;
+            
+            // Store the old name for reference
+            updateButton.setAttribute('data-old-name', oldName);
+            
+            // Show the dialog
+            dialog.setAttribute('open', '');
+            
+            // Focus the input
+            setTimeout(() => input.focus(), 100);
+        }
+
+        // Function to rename a level
+        function renameLevel(oldName) {
+            const newName = document.getElementById('inputlevname').value.trim();
+            if (newName && newName !== oldName) {
+                // Check if the new name already exists
+                if (localStorage.getItem(newName)) {
+                    // Show duplicate level dialog for rename
+                    openDuplicateLevelDialogForRename(oldName, newName);
+                    return;
+                }
+                
+                const levelData = localStorage.getItem(oldName);
+                if (levelData) {
+                    // Update the level data with new name and timestamp
+                    const parsedData = JSON.parse(levelData);
+                    parsedData.name = newName;
+                    parsedData.lastModified = new Date().toISOString();
+                    
+                    // Remove old entry and add new one
+                    localStorage.removeItem(oldName);
+                    localStorage.setItem(newName, JSON.stringify(parsedData));
+                    
+                    // Close the dialog
+                    document.querySelector('.levname-changing').removeAttribute('open');
+                    
+                    // Reload the recents table
+                    loadRecentLevels();
+                }
+            }
+        }
+
+        // Function to open delete dialog
+        function openDeleteDialog(levelName) {
+            const dialog = document.querySelector('.del-lev');
+            const deleteButton = document.getElementById('dellev');
+            
+            // Store the level name for reference
+            deleteButton.setAttribute('data-level-name', levelName);
+            
+            // Show the dialog
+            dialog.setAttribute('open', '');
+        }
+
+        // Function to open duplicate level dialog
+        function openDuplicateLevelDialog(levelName) {
+            const dialog = document.querySelector('.exist-lev-ask');
+            const renameButton = dialog.querySelector('md-filled-tonal-button');
+            const overrideButton = dialog.querySelector('md-text-button.filled.blue');
+            
+            // Update the dialog text with the actual level name
+            const messageText = dialog.querySelector('p');
+            messageText.textContent = `"${levelName}" already exists in your levels manager. Do you want to rename it to "${levelName} (1)" or override the existing level?`;
+            
+            // Update the rename button text
+            const renameSpan = renameButton.querySelector('#anotherlevnumberic');
+            if (renameSpan) {
+                renameSpan.textContent = `${levelName} (1)`;
+            }
+            
+            // Set mode and store the level name for reference
+            dialog.setAttribute('data-mode', 'new');
+            renameButton.setAttribute('data-level-name', levelName);
+            overrideButton.setAttribute('data-level-name', levelName);
+            
+            // Show the dialog
+            dialog.setAttribute('open', '');
+        }
+
+        // Function to open duplicate level dialog for rename
+        function openDuplicateLevelDialogForRename(oldName, newName) {
+            // Close the rename dialog first
+            document.querySelector('.levname-changing').removeAttribute('open');
+            
+            const dialog = document.querySelector('.exist-lev-ask');
+            const renameButton = dialog.querySelector('md-filled-tonal-button');
+            const overrideButton = dialog.querySelector('md-text-button.filled.blue');
+
+            // Update the dialog text with the actual level name
+            const messageText = dialog.querySelector('p');
+            messageText.textContent = `"${newName}" already exists in your levels manager. Do you want to rename "${oldName}" to "${newName} (1)" or override the existing level?`;
+            
+            // Update the rename button text
+            const renameSpan = renameButton.querySelector('#anotherlevnumberic');
+            if (renameSpan) {
+                renameSpan.textContent = `${newName} (1)`;
+            }
+            
+            // Set mode and store names for reference
+            dialog.setAttribute('data-mode', 'rename');
+            dialog.setAttribute('data-old-name', oldName);
+            renameButton.setAttribute('data-level-name', oldName);
+            overrideButton.setAttribute('data-level-name', newName);
+            
+            // Show the dialog
+            dialog.setAttribute('open', '');
+        }
+
+        // Function to handle renaming duplicate level
+        function handleDuplicateRename(originalName) {
+            const dialog = document.querySelector('.exist-lev-ask');
+            const mode = dialog.getAttribute('data-mode');
+            
+            if (mode === 'rename') {
+                // Handle rename mode
+                const newName = `${originalName} (1)`;
+                
+                const levelData = localStorage.getItem(originalName);
+                if (levelData) {
+                    // Update the level data with new name and timestamp
+                    const parsedData = JSON.parse(levelData);
+                    parsedData.name = newName;
+                    parsedData.lastModified = new Date().toISOString();
+                    
+                    // Remove old entry and add new one
+                    localStorage.removeItem(originalName);
+                    localStorage.setItem(newName, JSON.stringify(parsedData));
+                    
+                    // Close the dialog
+                    dialog.removeAttribute('open');
+                    
+                    // Reload the recents table
+                    loadRecentLevels();
+                }
+            } else if (mode === 'file') {
+                // Handle file loading mode with rename
+                const newName = `${originalName} (1)`;
+                const levelData = JSON.parse(dialog.getAttribute('data-level-data'));
+                
+                // Update the level name
+                levelData.name = newName;
+                levelData.lastModified = new Date().toISOString();
+                levelData.location = 'local';
+                levelData.source = 'file';
+                levelData.created = new Date().toISOString();
+                
+                // Save to localStorage
+                localStorage.setItem(newName, JSON.stringify(levelData));
+                
+                // Close the dialog
+                dialog.removeAttribute('open');
+                
+                // Refresh the recent levels table
+                loadRecentLevels();
+                
+                // Redirect to editor
+                const redirectUrl = `../editor?lev=${encodeURIComponent(newName)}&lct=local&source=file`;
+                window.location.href = redirectUrl;
+            } else {
+                // Handle new level creation mode
+                const newName = `${originalName} (1)`;
+                
+                // Get location and board template from form
+                const location = document.getElementById('accountCloud').checked ? 'cloud' : 'local';
+                const boardTemplate = document.getElementById('ninenine').checked ? '9x9' : '15x15';
+                
+                // Create a placeholder entry in localStorage for the new level
+                const placeholderLevel = {
+                    name: newName,
+                    lastModified: new Date().toISOString(),
+                    location: location,
+                    boardSize: boardTemplate === '15x15' ? 15 : 9,
+                    isPlaceholder: true
+                };
+                localStorage.setItem(newName, JSON.stringify(placeholderLevel));
+                
+                // Close the dialog
+                dialog.removeAttribute('open');
+                
+                // Close the new level dialog
+                document.querySelector('.new-lev').removeAttribute('open');
+                
+                // Refresh the recent levels table to show the new level
+                loadRecentLevels();
+                
+                // Create the redirect URL with new name
+                const redirectUrl = `../editor?lev=${encodeURIComponent(newName)}&lct=${location}&boardTemplate=${boardTemplate}`;
+                
+                // Redirect to editor
+                window.location.href = redirectUrl;
+            }
+        }
+
+        // Function to handle overriding duplicate level
+        function handleDuplicateOverride(levelName) {
+            const dialog = document.querySelector('.exist-lev-ask');
+            const mode = dialog.getAttribute('data-mode');
+            
+            if (mode === 'rename') {
+                // Handle rename mode - override the existing level with the same name
+                const oldName = dialog.getAttribute('data-old-name');
+                const levelData = localStorage.getItem(oldName);
+                
+                if (levelData) {
+                    // Update the level data with new name and timestamp
+                    const parsedData = JSON.parse(levelData);
+                    parsedData.name = levelName; // Use the new name (which already exists)
+                    parsedData.lastModified = new Date().toISOString();
+                    
+                    // Remove old entry and add new one (overriding existing)
+                    localStorage.removeItem(oldName);
+                    localStorage.setItem(levelName, JSON.stringify(parsedData));
+                    
+                    // Close the dialog
+                    dialog.removeAttribute('open');
+                    
+                    // Reload the recents table
+                    loadRecentLevels();
+                }
+            } else if (mode === 'file') {
+                // Handle file loading mode with override
+                const levelData = JSON.parse(dialog.getAttribute('data-level-data'));
+                
+                // Update the level data
+                levelData.name = levelName; // Use the existing name
+                levelData.lastModified = new Date().toISOString();
+                levelData.location = 'local';
+                levelData.source = 'file';
+                levelData.created = new Date().toISOString();
+                
+                // Override the existing level
+                localStorage.setItem(levelName, JSON.stringify(levelData));
+                
+                // Close the dialog
+                dialog.removeAttribute('open');
+                
+                // Refresh the recent levels table
+                loadRecentLevels();
+                
+                // Redirect to editor
+                const redirectUrl = `../editor?lev=${encodeURIComponent(levelName)}&lct=local&source=file`;
+                window.location.href = redirectUrl;
+            } else {
+                // Handle new level creation mode
+                // Get location and board template from form
+                const location = document.getElementById('accountCloud').checked ? 'cloud' : 'local';
+                const boardTemplate = document.getElementById('ninenine').checked ? '9x9' : '15x15';
+                
+                // Update the existing level entry with new timestamp and board size
+                const existingLevel = localStorage.getItem(levelName);
+                if (existingLevel) {
+                    try {
+                        const parsedData = JSON.parse(existingLevel);
+                        parsedData.lastModified = new Date().toISOString();
+                        parsedData.boardSize = boardTemplate === '15x15' ? 15 : 9;
+                        parsedData.location = location;
+                        localStorage.setItem(levelName, JSON.stringify(parsedData));
+                    } catch (e) {
+                        console.error('Error updating existing level:', e);
+                    }
+                }
+                
+                // Close the dialog
+                dialog.removeAttribute('open');
+                
+                // Close the new level dialog
+                document.querySelector('.new-lev').removeAttribute('open');
+                
+                // Refresh the recent levels table to show the updated level
+                loadRecentLevels();
+                
+                // Create the redirect URL
+                const redirectUrl = `../editor?lev=${encodeURIComponent(levelName)}&lct=${location}&boardTemplate=${boardTemplate}`;
+                
+                // Redirect to editor (will override existing level)
+                window.location.href = redirectUrl;
+            }
+        }
+
+        // Function to set up duplicate level dialog buttons
+        function setupDuplicateLevelDialogButtons() {
+            const dialog = document.querySelector('.exist-lev-ask');
+            if (!dialog) return;
+            
+            // Set up rename button
+            const renameButton = document.getElementById('duplicateRenameBtn');
+            if (renameButton) {
+                renameButton.addEventListener('click', () => {
+                    const levelName = renameButton.getAttribute('data-level-name');
+                    if (levelName) {
+                        handleDuplicateRename(levelName);
+                    }
+                });
+            }
+            
+            // Set up override button
+            const overrideButton = document.getElementById('duplicateOverrideBtn');
+            if (overrideButton) {
+                overrideButton.addEventListener('click', () => {
+                    const levelName = overrideButton.getAttribute('data-level-name');
+                    if (levelName) {
+                        handleDuplicateOverride(levelName);
+                    }
+                });
+            }
+        }
+
+        // Function to delete a level
+        function deleteLevel(levelName) {
+            localStorage.removeItem(levelName);
+            
+            // Close the dialog
+            document.querySelector('.del-lev').removeAttribute('open');
+            
+            // Reload the recents table
+            loadRecentLevels();
+        }
+
+        // Search functionality
+        let recentSearches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
+        let searchTimeout;
+
+        // Function to search levels
+        function searchLevels(searchTerm) {
+            if (!searchTerm.trim()) {
+                showRecentSearches();
+                return;
+            }
+
+            const results = [];
+            const searchLower = searchTerm.toLowerCase();
+
+            // Search in localStorage (local levels)
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                try {
+                    const levelData = JSON.parse(localStorage.getItem(key));
+                    if (levelData && typeof levelData === 'object' && levelData.name) {
+                        // Check if level name contains search term
+                        if (levelData.name.toLowerCase().includes(searchLower)) {
+                            results.push({
+                                name: key,
+                                data: levelData,
+                                location: levelData.location || 'local',
+                                source: 'local'
+                            });
+                        }
+                    }
+                } catch (e) {
+                    // Skip invalid entries
+                }
+            }
+
+            // TODO: Search in database (cloud levels)
+            // This would be implemented when database integration is added
+            // For now, we'll just search local storage
+
+            displaySearchResults(results, searchTerm);
+        }
+
+        // Function to display search results
+        function displaySearchResults(results, searchTerm) {
+            const searchResults = document.getElementById('searchResults');
+            const recentSearches = document.getElementById('recentSearches');
+            const noSearchResults = document.getElementById('noSearchResults');
+
+            // Hide recent searches when showing results
+            recentSearches.style.display = 'none';
+
+            if (results.length === 0) {
+                searchResults.innerHTML = '';
+                noSearchResults.style.display = 'block';
+                return;
+            }
+
+            noSearchResults.style.display = 'none';
+            
+            // Add search term to recent searches if it's not already there
+            addToRecentSearches(searchTerm);
+
+            // Display results
+            const resultsHTML = results.map(level => `
+                <md-list-item class="search-item" onclick="openLevel('${level.name}', '${level.location}')" style="cursor: pointer;">
+                    <md-icon slot="start">􀈷</md-icon>
+                    <span>${level.name}</span>
+                    <span slot="supporting-text" class="detailed-info">
+                        <span class="lct-searched-level">
+                            ${level.location === 'local' ? 'On this device' : 'Synced'}
+                        </span> | 
+                        <span>${formatDate(level.data.lastModified)}</span>
+                    </span>
+                </md-list-item>
+            `).join('');
+            
+            searchResults.innerHTML = resultsHTML;
+        }
+
+        // Function to show recent searches
+        function showRecentSearches() {
+            const searchResults = document.getElementById('searchResults');
+            const recentSearchesElement = document.getElementById('recentSearches');
+            const noSearchResults = document.getElementById('noSearchResults');
+
+            // Clear search results
+            searchResults.innerHTML = '';
+
+            if (recentSearches.length === 0) {
+                recentSearchesElement.style.display = 'none';
+                noSearchResults.style.display = 'block';
+                return;
+            }
+
+            recentSearchesElement.style.display = 'block';
+            noSearchResults.style.display = 'none';
+
+            // Display recent searches
+            recentSearchesElement.innerHTML = `
+                <md-list-item class="search-header">
+                    <span style="font-weight: 500; color: #666;">Recent searches</span>
+                </md-list-item>
+                ${recentSearches.slice(0, 5).map(searchTerm => `
+                    <md-list-item class="search-item" onclick="searchLevels('${searchTerm}')" style="cursor: pointer;">
+                        <md-icon slot="start">􀊫</md-icon>
+                        <span>${searchTerm}</span>
+                        <md-icon-button slot="end" class="remove-search" onclick="removeRecentSearch('${searchTerm}', event)">
+                            <md-icon>􀆄</md-icon>
+                        </md-icon-button>
+                    </md-list-item>
+                `).join('')}
+            `;
+        }
+
+        // Function to add search term to recent searches
+        function addToRecentSearches(searchTerm) {
+            // Remove if already exists
+            recentSearches = recentSearches.filter(term => term !== searchTerm);
+            
+            // Add to beginning
+            recentSearches.unshift(searchTerm);
+            
+            // Keep only last 10 searches
+            if (recentSearches.length > 10) {
+                recentSearches = recentSearches.slice(0, 10);
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
+        }
+
+        // Function to remove a recent search
+        function removeRecentSearch(searchTerm, event) {
+            // Stop event propagation to prevent interference
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+            
+            // Remove the search term from the array
+            recentSearches = recentSearches.filter(term => term !== searchTerm);
+            
+            // Save to localStorage
+            localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
+            
+            // Refresh the display
+            showRecentSearches();
+        }
+
+        // Function to ensure search dropdown is open
+        function openSearchDropdown() {
+            const searchDropdown = document.querySelector('mdui-dropdown');
+            if (searchDropdown) {
+                searchDropdown.setAttribute('open', '');
+            }
+        }
+
+        // Function to set up search functionality
+        function setupSearch() {
+            const searchInput = document.getElementById('search');
+            
+            if (!searchInput) {
+                return;
+            }
+            
+            // Show recent searches initially
+            showRecentSearches();
+
+            // Handle input changes
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.trim();
+                
+                // Clear previous timeout
+                if (searchTimeout) {
+                    clearTimeout(searchTimeout);
+                }
+
+                // Debounce search to avoid too many searches while typing
+                searchTimeout = setTimeout(() => {
+                    searchLevels(searchTerm);
+                }, 300);
+            });
+
+            // Handle Enter key
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    const searchTerm = e.target.value.trim();
+                    searchLevels(searchTerm);
+                }
+            });
+
+            // Handle Escape key
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    e.target.value = '';
+                    showRecentSearches();
+                }
+            });
+
+            // Handle focus to show recent searches
+            searchInput.addEventListener('focus', () => {
+                if (!searchInput.value.trim()) {
+                    showRecentSearches();
+                }
+            });
+            
+            // Handle click to ensure dropdown opens
+            searchInput.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event bubbling
+                openSearchDropdown(); // Ensure dropdown is open
+                if (!searchInput.value.trim()) {
+                    showRecentSearches();
+                }
+            });
+        }
+
+        // Function to set up dialog button event listeners
+        function setupDialogButtons() {
+            // Set up rename dialog button
+            const updateButton = document.getElementById('updatelevname');
+            if (updateButton) {
+                updateButton.addEventListener('click', () => {
+                    const oldName = updateButton.getAttribute('data-old-name');
+                    if (oldName) {
+                        renameLevel(oldName);
+                    }
+                });
+            }
+            
+            // Set up delete dialog button
+            const deleteButton = document.getElementById('dellev');
+            if (deleteButton) {
+                deleteButton.addEventListener('click', () => {
+                    const levelName = deleteButton.getAttribute('data-level-name');
+                    if (levelName) {
+                        deleteLevel(levelName);
+                    }
+                });
+            }
+            
+            // Set up enter key for rename dialog
+            const renameInput = document.getElementById('inputlevname');
+            if (renameInput) {
+                renameInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        const updateButton = document.getElementById('updatelevname');
+                        const oldName = updateButton.getAttribute('data-old-name');
+                        if (oldName) {
+                            renameLevel(oldName);
+                        }
+                    }
+                });
+            }
+            
+            // Set up duplicate level dialog buttons
+            setupDuplicateLevelDialogButtons();
+        }
+
+        // Function to set up duplicate level dialog buttons
+        function setupDuplicateLevelDialogButtons() {
+            const dialog = document.querySelector('.exist-lev-ask');
+            if (!dialog) return;
+            
+            // Set up rename button
+            const renameButton = document.getElementById('duplicateRenameBtn');
+            if (renameButton) {
+                renameButton.addEventListener('click', () => {
+                    const levelName = renameButton.getAttribute('data-level-name');
+                    if (levelName) {
+                        handleDuplicateRename(levelName);
+                    }
+                });
+            }
+            
+            // Set up override button
+            const overrideButton = document.getElementById('duplicateOverrideBtn');
+            if (overrideButton) {
+                overrideButton.addEventListener('click', () => {
+                    const levelName = overrideButton.getAttribute('data-level-name');
+                    if (levelName) {
+                        handleDuplicateOverride(levelName);
+                    }
+                });
+            }
+        }
+
+        // Function to open a level in the editor
+        function openLevel(levelName, location) {
+            // Get the level data to determine board template
+            const levelData = localStorage.getItem(levelName);
+            let boardTemplate = '9x9'; // default
+            
+            console.log('🔍 Opening level:', levelName, 'from location:', location);
+            console.log('🔍 Looking for level data in localStorage...');
+            
+            if (levelData) {
+                try {
+                    const parsedData = JSON.parse(levelData);
+                    console.log('✅ Found level data for', levelName, ':', parsedData);
+                    
+                    // Check if the level has board size information
+                    if (parsedData.boardSize) {
+                        boardTemplate = parsedData.boardSize === 15 ? '15x15' : '9x9';
+                        console.log('📏 Using boardSize from data:', parsedData.boardSize, '->', boardTemplate);
+                    } else if (parsedData.table && parsedData.table.length > 0) {
+                        // Infer from table dimensions
+                        const rows = parsedData.table.length;
+                        const cols = parsedData.table[0] ? parsedData.table[0].length : 0;
+                        console.log('📐 Inferring from table dimensions:', rows, 'x', cols);
+                        
+                        if (rows === 15 && cols === 15) {
+                            boardTemplate = '15x15';
+                        } else if (rows === 9 && cols === 9) {
+                            boardTemplate = '9x9';
+                        }
+                        console.log('📐 Inferred boardTemplate:', boardTemplate);
+                    } else {
+                        console.log('⚠️ No board size info found, using default:', boardTemplate);
+                    }
+                    
+                    // Check if this is a placeholder level (no actual level data)
+                    if (parsedData.isPlaceholder) {
+                        console.warn('⚠️ This is a placeholder level - no actual level data to load');
+                        console.log('📋 Placeholder data:', parsedData);
+                    } else {
+                        console.log('🎯 Level has actual data:', {
+                            hasTable: !!parsedData.table,
+                            hasElements: !!parsedData.elements,
+                            hasRequirements: !!parsedData.requirements,
+                            tableSize: parsedData.table ? `${parsedData.table.length}x${parsedData.table[0]?.length || 0}` : 'N/A'
+                        });
+                    }
+                } catch (e) {
+                    console.error('❌ Error parsing level data:', e);
+                }
+            } else {
+                console.log('❌ No level data found for:', levelName);
+                console.log('🔍 Checking all localStorage keys for similar names...');
+                
+                // Look for levels with similar names
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key && key.includes(levelName.substring(0, 3))) {
+                        console.log('🔍 Found similar key:', key);
+                        try {
+                            const similarData = JSON.parse(localStorage.getItem(key));
+                            console.log('🔍 Similar level data:', similarData);
+                        } catch (e) {
+                            console.log('🔍 Could not parse similar level data');
+                        }
+                    }
+                }
+            }
+            
+            console.log('🎯 Final boardTemplate:', boardTemplate);
+            // Redirect to editor with level info and board template
+            const redirectUrl = `../editor?lev=${encodeURIComponent(levelName)}&lct=${location}&boardTemplate=${boardTemplate}`;
+            console.log('🚀 Redirecting to:', redirectUrl);
+            window.location.href = redirectUrl;
+        }
+
+        // Function to open file selector for loading levels
+        function openFileSelector() {
+            document.getElementById('levelFileInput').click();
+        }
+
+        // Function to handle level file selection
+        function handleLevelFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Reset file input for future use
+            event.target.value = '';
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const content = e.target.result;
+                    const fileName = file.name.replace(/\.(txt|json)$/i, '') || 'Untitled';
+                    
+                    // Try to parse the content
+                    let levelData;
+                    try {
+                        // Try JSON first
+                        levelData = JSON.parse(content);
+                    } catch (jsonError) {
+                        // If JSON fails, create basic level data
+                        levelData = {
+                            name: fileName,
+                            table: Array(9).fill().map(() => Array(9).fill(0)),
+                            elements: [],
+                            requirements: {
+                                moves: 20,
+                                score: 1000
+                            }
+                        };
+                    }
+                    
+                    // Ensure the level has the correct structure
+                    if (!levelData.name) {
+                        levelData.name = fileName;
+                    }
+                    
+                    // Add metadata
+                    levelData.lastModified = new Date().toISOString();
+                    levelData.location = 'local';
+                    levelData.source = 'file';
+                    levelData.created = new Date().toISOString();
+                    
+                    // Check if level already exists
+                    if (localStorage.getItem(levelData.name)) {
+                        // Show duplicate dialog
+                        openDuplicateLevelDialogForFile(levelData.name, levelData);
+                    } else {
+                        // Create the level directly
+                        createLevelFromFile(levelData);
+                    }
+                    
+                } catch (error) {
+                    console.error('Error processing file:', error);
+                    alert('Error processing file. Please try again.');
+                }
+            };
+            
+            reader.onerror = function() {
+                console.error('File reading error:', reader.error);
+                alert('Error reading file. Please try again.');
+            };
+            
+            reader.readAsText(file);
+        }
+
+        // Function to create level from file
+        function createLevelFromFile(levelData) {
+            // Save to localStorage
+            localStorage.setItem(levelData.name, JSON.stringify(levelData));
+            
+            // Refresh the recent levels table
+            loadRecentLevels();
+            
+            // Redirect to editor
+            const redirectUrl = `../editor?lev=${encodeURIComponent(levelData.name)}&lct=local&source=file`;
+            window.location.href = redirectUrl;
+        }
+
+        // Function to open duplicate level dialog for file loading
+        function openDuplicateLevelDialogForFile(levelName, levelData) {
+            const dialog = document.querySelector('.exist-lev-ask');
+            const renameButton = dialog.querySelector('md-filled-tonal-button');
+            const overrideButton = dialog.querySelector('md-text-button.filled.blue');
+
+            // Update the dialog text for file loading
+            const messageText = dialog.querySelector('p');
+            messageText.textContent = `"${levelName}" already exists in your levels manager. Do you want to rename the imported level to "${levelName} (1)" or override the existing level?`;
+            
+            // Update the rename button text
+            const renameSpan = renameButton.querySelector('#anotherlevnumberic');
+            if (renameSpan) {
+                renameSpan.textContent = `${levelName} (1)`;
+            }
+            
+            // Set mode and store data for reference
+            dialog.setAttribute('data-mode', 'file');
+            dialog.setAttribute('data-level-data', JSON.stringify(levelData));
+            renameButton.setAttribute('data-level-name', levelName);
+            overrideButton.setAttribute('data-level-name', levelName);
+            
+            // Show the dialog
+            dialog.setAttribute('open', '');
+        }
+
+                // Set justify-content to flex-start for <button>, #button, or .button inside shadow root of .search.search_box
+                function setButtonJustifyContentStart() {
+                    document.querySelectorAll('.search.search_box').forEach(box => {
+                        if (box.shadowRoot) {
+                            // Select <button>, #button, or .button
+                            const selectors = ['button', '#button', '.button'];
+                            selectors.forEach(selector => {
+                                const btn = box.shadowRoot.querySelector(selector);
+                                if (btn) {
+                                    btn.style.justifyContent = 'start';
+                                    btn.style.setProperty('justify-content', 'start', 'important');
+                                }
+                            });
+                            
+                            // Also try to find the specific button structure we see in dev tools
+                            const specificBtn = box.shadowRoot.querySelector('button#button.button');
+                            if (specificBtn) {
+                                specificBtn.style.justifyContent = 'start';
+                                specificBtn.style.setProperty('justify-content', 'start', 'important');
+                            }
+                        }
+                    });
+                }
+
+                // Make search input interactive
+                function makeSearchInteractive() {
+                    document.querySelectorAll('.search.search_box').forEach(searchBox => {
+                        const input = searchBox.querySelector('input[type="text"]');
+                        if (input) {
+                            // Make only this specific button behave like a div container
+                            searchBox.style.pointerEvents = 'none';
+                            searchBox.style.userSelect = 'none';
+                            
+                            // Make input handle all interactions
+                            input.style.pointerEvents = 'auto';
+                            input.style.userSelect = 'text';
+                            input.setAttribute('tabindex', '0');
+                            
+                            // Remove button-like behavior only for this element
+                            searchBox.removeAttribute('role');
+                            searchBox.removeAttribute('tabindex');
+                            
+                            // Make input functional for typing
+                            input.addEventListener('input', (e) => {
+                                const searchTerm = e.target.value.toLowerCase();
+                                console.log('Searching for:', searchTerm);
+                                // Add your search logic here
+                            });
+                            
+                            // Add keyboard shortcuts
+                            input.addEventListener('keydown', (e) => {
+                                if (e.key === 'Enter') {
+                                    console.log('Search submitted:', input.value);
+                                    // Add your search submit logic here
+                                }
+                                if (e.key === 'Escape') {
+                                    input.blur();
+                                    input.value = '';
+                                }
+                                e.stopPropagation();
+                            });
+                            
+                            // Simple click to focus
+                            input.addEventListener('click', (e) => {
+                                input.focus();
+                                e.stopPropagation();
+                            });
+                        }
+                    });
+                }
+
+                // Make search button behave like normal md-text-button when collapsed
+                function makeSearchButtonNormal() {
+                    document.querySelectorAll('.search.search_bt').forEach(searchBtn => {
+                        const input = searchBtn.querySelector('input[type="text"]');
+                        if (input) {
+                            // Restore normal button behavior
+                            searchBtn.style.pointerEvents = 'auto';
+                            searchBtn.style.userSelect = 'auto';
+                            searchBtn.setAttribute('role', 'button');
+                            searchBtn.setAttribute('tabindex', '0');
+                            
+                            // Hide input when collapsed
+                            input.style.display = 'none';
+                            
+                            // Remove input event listeners to prevent interference
+                            input.removeEventListener('input', input._inputHandler);
+                            input.removeEventListener('keydown', input._keydownHandler);
+                            input.removeEventListener('click', input._clickHandler);
+                        }
+                    });
+                }
+
+                // Handle search button class toggling
+                function setupSearchToggle() {
+                    // Find all search buttons (both .search_bt and .search_box)
+                    document.querySelectorAll('.search.search_bt, .search.search_box').forEach(searchBtn => {
+                        // Add click handler to expand search
+                        searchBtn.addEventListener('click', (e) => {
+                            // Change from .search_bt to .search_box
+                            if (searchBtn.classList.contains('search_bt')) {
+                                searchBtn.classList.remove('search_bt');
+                                searchBtn.classList.add('search_box');
+                                
+                                // Show and focus the input
+                                const input = searchBtn.querySelector('input[type="text"]');
+                                if (input) {
+                                    input.style.display = 'block';
+                                    setTimeout(() => input.focus(), 100);
+                                }
+                                
+                                // Apply div-like behavior
+                                makeSearchInteractive();
+                            }
+                        });
+                    });
+                    
+                    // Handle clicking outside to collapse
+                    document.addEventListener('click', (e) => {
+                        // Don't collapse if clicking on the search button itself
+                        if (e.target.closest('.search.search_box')) {
+                            return;
+                        }
+                        // Don't collapse if clicking on the search dropdown or its contents
+                        if (e.target.closest('mdui-dropdown')) {
+                            return;
+                        }
+
+                        const searchBoxes = document.querySelectorAll('.search.search_box');
+                        searchBoxes.forEach(searchBox => {
+                            // Change back from .search_box to .search_bt
+                            searchBox.classList.remove('search_box');
+                            searchBox.classList.add('search_bt');
+                            
+                            // Clear input value and hide it
+                            const input = searchBox.querySelector('input[type="text"]');
+                            if (input) {
+                                input.value = '';
+                                input.blur();
+                                input.style.display = 'none';
+                            }
+                            
+                            // Apply normal button behavior
+                            makeSearchButtonNormal();
+                        });
+                    });
+                }
+
+                        // Run on DOMContentLoaded and when new elements are added
+                document.addEventListener('DOMContentLoaded', () => {
+                    setButtonJustifyContentStart();
+                    makeSearchInteractive();
+                    makeSearchButtonNormal();
+                    setupSearchToggle();
+                            
+                            // Load recent levels and check for new levels
+                            loadRecentLevels();
+                            checkForNewLevel();
+                            
+                            // Set up dialog button event listeners
+                            setupDialogButtons();
+
+                            // Set up search functionality
+                            setupSearch();
+                });
+
+                // Also run after a delay to catch late-rendered elements
+                setTimeout(() => {
+                    setButtonJustifyContentStart();
+                    makeSearchInteractive();
+                }, 1000);
+                setTimeout(() => {
+                    setButtonJustifyContentStart();
+                    makeSearchInteractive();
+                }, 2000);
+                setTimeout(() => {
+                    setButtonJustifyContentStart();
+                    makeSearchInteractive();
+                }, 3000);
+
+                // Run more frequently to catch shadow root changes
+                new MutationObserver(() => {
+                    setButtonJustifyContentStart();
+                    makeSearchInteractive();
+                }).observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+
+                // Also check periodically for any missed elements
+                setInterval(() => {
+                    setButtonJustifyContentStart();
+                    makeSearchInteractive();
+                }, 5000);
+    </script>
+<script>
+    function removeFullscreenAndMobileAttributes() {
+        document.querySelectorAll('forge-dialog').forEach(dialog => {
+            dialog.removeAttribute('fullscreen');
+            dialog.removeAttribute('mobile');
+        });
+    }
+
+    // Run on DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', removeFullscreenAndMobileAttributes);
+
+    // Observe for dynamically added forge-dialog elements
+    new MutationObserver(() => {
+        removeFullscreenAndMobileAttributes();
+    }).observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+
+    // Also run periodically in case dialogs are added late
+    setInteratval(removeFullscreenAndMobileAttributes, 2000);
+</script>
+
+<script>
+/**
+ * Enables elements with the 'divact' attribute to act as divs,
+ * allowing their child elements to be interactive (e.g., clickable, focusable).
+ * This disables pointer-events on the host, but enables them on children.
+ */
+function enableDivAct() {
+    document.querySelectorAll('[divact]').forEach(el => {
+        // Only apply once
+        if (el.__divactApplied) return;
+        el.__divactApplied = true;
+
+        // Set pointer-events: none on the host
+        el.style.pointerEvents = 'none';
+
+        // Set pointer-events: auto on all direct children
+        Array.from(el.children).forEach(child => {
+            child.style.pointerEvents = 'auto';
+        });
+
+        // Also allow focus for interactive children
+        Array.from(el.querySelectorAll('button, [tabindex], input, select, textarea, a')).forEach(child => {
+            child.tabIndex = child.tabIndex >= 0 ? child.tabIndex : 0;
+        });
+    });
+}
+
+// Initial run
+document.addEventListener('DOMContentLoaded', enableDivAct);
+
+// Observe for dynamically added elements with 'divact'
+new MutationObserver(() => {
+    enableDivAct();
+}).observe(document.body, {
+    childList: true,
+    subtree: true
+});
+</script>
+
+<script>
+function navigateOpen() {
+    const menuBtn = document.querySelector('.menu-btn');
+
+    if (!menuBtn) return;
+
+    // Add .menu-expanded, remove .menu-normal if present
+    menuBtn.classList.add('menu-expanded');
+    menuBtn.classList.remove('menu-normal');
+
+    // Handler to close menu when clicking outside
+    function handleClickOutside(event) {
+        if (!menuBtn.contains(event.target)) {
+            menuBtn.classList.remove('menu-expanded');
+            menuBtn.classList.add('menu-normal');
+            document.removeEventListener('mousedown', handleClickOutside, true);
+            document.removeEventListener('touchstart', handleClickOutside, true);
+        }
+    }
+
+    // Attach the outside click handler
+    setTimeout(() => {
+        document.addEventListener('mousedown', handleClickOutside, true);
+        document.addEventListener('touchstart', handleClickOutside, true);
+    }, 0);
+}
+</script>
+
+<script>
+(function() {
+    // Key to track if the user has visited before
+    const updateDialogKey = 'whatsnew';
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const dialog = document.querySelector('.new-update-startup');
+        if (!dialog) return;
+
+        if (localStorage.getItem(updateDialogKey)) {
+            // Remove the 'open' attribute on all subsequent loads
+            dialog.removeAttribute('open');
+        } else {
+            // First load: set the flag for future loads
+            localStorage.setItem(updateDialogKey, 'true');
+        }
+    });
+})();
+</script>
+
+
+</body>
+
+</html>

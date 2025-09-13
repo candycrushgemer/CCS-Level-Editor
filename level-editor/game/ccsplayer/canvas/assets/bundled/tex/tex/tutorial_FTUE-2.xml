@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:719ece735aead68d9c61c448cc0e6449:a85bf0f225e1678cfb83301393d3127b:4438ffb885c813876179cf590e87dd37$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="tutorial_FTUE-2.png" width="512" height="512">
+    <sprite n="tutorial_badge_jelly_queen.png" x="1" y="1" w="177" h="165"/>
+    <sprite n="tutorial_blue_arrow.png" x="180" y="1" w="110" h="81"/>
+    <sprite n="tutorial_icon_bluecandy.png" x="1" y="168" w="95" h="92"/>
+    <sprite n="tutorial_icon_bombbomb.png" x="138" y="390" w="86" h="99"/>
+    <sprite n="tutorial_icon_colorbomb.png" x="276" y="198" w="94" h="95"/>
+    <sprite n="tutorial_icon_crystal_candy.png" x="372" y="281" w="93" h="93"/>
+    <sprite n="tutorial_icon_crystal_countdown.png" x="179" y="177" w="95" h="92"/>
+    <sprite n="tutorial_icon_dragon.png" x="318" y="390" w="87" h="92"/>
+    <sprite n="tutorial_icon_frosting.png" x="407" y="376" w="87" h="92"/>
+    <sprite n="tutorial_icon_frostingwrapped.png" x="1" y="262" w="94" h="112"/>
+    <sprite n="tutorial_icon_jelly.png" x="263" y="295" w="93" h="93"/>
+    <sprite n="tutorial_icon_moves.png" x="226" y="390" w="90" h="95"/>
+    <sprite n="tutorial_icon_striped.png" x="167" y="271" w="94" h="90"/>
+    <sprite n="tutorial_icon_stripedALL.png" x="288" y="94" w="100" h="102"/>
+    <sprite n="tutorial_icon_stripedbomb.png" x="46" y="376" w="90" h="109"/>
+    <sprite n="tutorial_icon_stripedstriped.png" x="292" y="1" w="109" h="91"/>
+    <sprite n="tutorial_icon_stripedwrapped.png" x="403" y="1" w="106" h="102"/>
+    <sprite n="tutorial_icon_vertical.png" x="98" y="251" w="67" h="71"/>
+    <sprite n="tutorial_icon_wrapped_blue.png" x="390" y="105" w="97" h="86"/>
+    <sprite n="tutorial_icon_wrapped_green.png" x="390" y="193" w="96" h="86"/>
+    <sprite n="tutorial_icon_wrappedwrapped.png" x="180" y="84" w="106" h="91"/>
+    <sprite n="tutorial_lollipop.png" x="98" y="168" w="79" h="81"/>
+    <sprite n="tutorial_speech_bubble_panel.png" x="1" y="376" w="43" h="115"/>
+</TextureAtlas>

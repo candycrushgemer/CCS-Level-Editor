@@ -1,0 +1,3 @@
+<TextureAtlas imagePath="double_color_bomb_texture.ktp" width="256" height="256" premultipliedAlpha="true" king_version="1.5.2" sprites_scale="0.500000">
+	<sprite n="double_color_bomb_texture/double_colorbomb_outlines.png" x="2" y="31" w="222" h="223" pX="0.5" pY="0.5" oX="10" oY="8" oW="241" oH="236"/>
+</TextureAtlas>

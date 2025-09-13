@@ -1,0 +1,6 @@
+<TextureAtlas imagePath="presentation_refresh.ktp" width="256" height="256" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="presentation_refresh/btn_blue.png" x="2" y="134" w="120" h="120" pX="0.5" pY="0.5"/>
+	<sprite n="presentation_refresh/btn_pink.png" x="2" y="10" w="120" h="120" pX="0.5" pY="0.5"/>
+	<sprite n="presentation_refresh/frame_portrait.png" x="126" y="138" w="116" h="116" pX="0.5" pY="0.5" oX="2" oY="2" oW="120" oH="120"/>
+	<sprite n="presentation_refresh/icn_settings.png" x="126" y="89" w="48" h="45" pX="0.5" pY="0.5" oX="4" oY="3" oW="52" oH="52" r="y"/>
+</TextureAtlas>

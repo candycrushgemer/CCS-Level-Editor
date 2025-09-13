@@ -1,0 +1,19 @@
+<TextureAtlas imagePath="pickoneoffer_default.ktp" width="256" height="256" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="pickoneoffer_default/offer_ribbon.png" x="2" y="174" w="150" h="80" pX="0.5" pY="0.5" oX="1" oY="1" oW="151" oH="81"/>
+	<sprite n="pickoneoffer_default/bow.png" x="156" y="177" w="83" h="77" pX="0.5" pY="0.5" oW="77" oH="83" r="y"/>
+	<sprite n="pickoneoffer_default/panel_shine.png" x="243" y="246" w="10" h="8" pX="0.5" pY="0.5" oW="8" oH="10" r="y"/>
+	<sprite n="pickoneoffer_default/panel_shine_corner.png" x="243" y="220" w="3" h="22" pX="0.5" pY="0.5" oW="22" oH="3" r="y"/>
+	<sprite n="pickoneoffer_default/free_tag.png" x="2" y="28" w="54" h="142" pX="0.5" pY="0.5" oX="1" oW="143" oH="55" r="y"/>
+	<sprite n="pickoneoffer_default/panel_bundle_base_gold.png" x="2" y="2" w="43" h="22" pX="0.5" pY="0.5" oW="22" oH="43" r="y"/>
+	<sprite n="pickoneoffer_default/panel_bundle_base_gradient.png" x="49" y="2" w="37" h="22" pX="0.5" pY="0.5" oY="7" oW="22" oH="44" r="y"/>
+	<sprite n="pickoneoffer_default/free_top_dots.png" x="156" y="144" w="69" h="29" pX="0.5" pY="0.5"/>
+	<sprite n="pickoneoffer_default/free_top_base.png" x="90" y="109" w="62" h="61" pX="0.5" pY="0.5" oW="61" oH="62" r="y"/>
+	<sprite n="pickoneoffer_default/panel_bundle_base_button.png" x="229" y="125" w="25" h="48" pX="0.5" pY="0.5" oW="25" oH="49"/>
+	<sprite n="pickoneoffer_default/panel_bundle_base_pink.png" x="60" y="127" w="22" h="43" pX="0.5" pY="0.5"/>
+	<sprite n="pickoneoffer_default/panel_bundle_base_purple.png" x="60" y="80" w="22" h="43" pX="0.5" pY="0.5"/>
+	<sprite n="pickoneoffer_default/shop_bundle_base.png" x="60" y="33" w="22" h="43" pX="0.5" pY="0.5"/>
+	<sprite n="pickoneoffer_default/shadow_frame.png" x="156" y="86" w="56" h="54" pX="0.5" pY="0.5" oX="1" oY="1" oW="56" oH="59" r="y"/>
+	<sprite n="pickoneoffer_default/panel_bundle_frame_gold.png" x="86" y="28" w="54" h="54" pX="0.5" pY="0.5" oW="54" oH="55"/>
+	<sprite n="pickoneoffer_default/panel_bundle_frame_pink.png" x="144" y="27" w="53" h="55" pX="0.5" pY="0.5" oW="54" oH="55"/>
+	<sprite n="pickoneoffer_default/panel_bundle_frame_purple.png" x="201" y="28" w="53" h="54" pX="0.5" pY="0.5" oW="53" oH="55"/>
+</TextureAtlas>

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCGApps Log In</title>
+    <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
+    <meta name="description" content="Official Level Editor dashboard">
+    <meta property="og:image" content="https://yourdomain.com/editor/logo-1024x1024-full.png">
+    <meta property="og:title" content="CCGApps Log In">
+    <meta property="og:description" content="Create, edit, and share custom game levels with Level Editor.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CCGApps Log In">
+    <meta name="twitter:description" content="Create, edit, and share custom game levels with Level Editor.">
+    <meta name="twitter:image" content="https://yourdomain.com/editor/logo-1024x1024-full.png">
+    <meta name="keywords" content="level editor, ccs level editor, ccs level creator, candy crush level creator, candy crush level editor">
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <script src="liquid-glass-18jdn1wbjkey10kam.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+        {
+            "imports": {
+                "@material/web/": "https://esm.run/@material/web/"
+            }
+        }
+    </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+    <link rel="stylesheet" href="mat-accent-color-light.css">
+    <link rel="stylesheet" href="mat-accent-color-dark.css">
+    <link rel="stylesheet" href="mdui.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <script src="instant-navigation.js"></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.4.0/index.js"></script>
+    
+    <style>
+        .error-message, .success-message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .error-message {
+            background-color: #ffebee;
+            color: #d32f2f;
+            border: 1px solid #ffcdd2;
+        }
+        
+        .success-message {
+            background-color: #e8f5e8;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+        
+        .text-field.error_field {
+            border-color: #d32f2f !important;
+            box-shadow: 0 0 0 2px rgba(211, 47, 47, 0.2) !important;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage-compat.js"></script>
+    <script src="spinner-load-element.js"></script>
+</head>
+<body>
+    
+    <div class="top_app_bar">
+        <div class="left">
+            <md-icon-button onclick="window.history.back()"><md-icon>􀆉</md-icon></md-icon-button>
+            <img src="/icon.png" width="45" alt="CCGApps">
+        </div>
+        <div class="center"></div>
+        <div class="right">
+        </div>
+        
+    </div>
+    
+    <img src="/icon.png" class="acc_bg" alt="">
+    <main>
+        <br><br><br>
+        
+        <div class="gradient-blur top">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="login_scene">
+            <h1>Log In To CCGApps</h1>
+            <br>
+            <form id="authentication-form">
+                <div class="info_wrapper liquid-glass blur">
+                    <div class="text-field" style="background: #ffffff86; border-radius: 64px;box-shadow: inset 2px 2px 1px -2px #FFFFFF,inset -2px -2px 1px -2px #FFFFFF;">
+                        <md-icon style="font-size: 16px;">􀍖</md-icon>
+                        <input type="email" name="email" id="email" placeholder="Email" required>
+                    </div>
+                    <div class="text-field" style="background: #ffffff86; border-radius: 64px; margin-top: 10px;box-shadow: inset 2px 2px 1px -2px #FFFFFF,inset -2px -2px 1px -2px #FFFFFF;">
+                        <md-icon style="font-size: 16px;">􀟖</md-icon>
+                        <input type="password" name="password" id="password" placeholder="Password" required>
+                        <md-icon-button id="showPassword" style="aspect-ratio: 1/1;" onclick="event.preventDefault()"><md-icon>􀋭</md-icon></md-icon-button>
+                    </div>
+                    <div class="buttons flex row space-between" style="margin-top: 10px;">
+                        <md-text-button style="border: 1px solid #00000010;" onclick="event.preventDefault();window.location.href = '../signup/'">Sign up</md-text-button>
+                        <md-text-button class="filled blue" onclick="handleSignIn(event)" id="signInBtn">
+                            <span id="signInText" style="color:#fff">Sign in</span>
+                            <spinner-load id="signInSpinner" size="small" style="display: none;"></spinner-load>
+                        </md-text-button>
+                    </div>
+                </div>
+            </form>
+            
+
+            
+            <div class="social_logins">
+                <div class="btn_signin facebook" onclick="handleFacebookSignIn()"></div>
+                <div class="btn_signin google" onclick="handleGoogleSignIn()"></div>
+            </div>
+            <p style="font-size: small;">Forgot password? <a href="../resetpassword/">Click here</a>.</p>
+            <a href="../editor/document.html?doc=legal_stuff" style="font-size: small;">Terms of Service</a>
+        </div>
+    </main>
+
+
+    <script src="credentials.js"></script>
+    <script>
+        // Show/hide password functionality
+        document.getElementById('showPassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const icon = this.querySelector('md-icon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.textContent = '􀋭';
+            } else {
+                passwordInput.type = 'password';
+                icon.textContent = '􀋭';
+            }
+        });
+
+        // Handle email/password sign in
+        async function handleSignIn(event) {
+            event.preventDefault();
+            
+            // Clear previous error states
+            clearFieldErrors();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            let hasErrors = false;
+            
+            // Validate email
+            if (!email) {
+                markFieldAsError('email', 'Email is required');
+                hasErrors = true;
+            } else if (!isValidEmail(email)) {
+                markFieldAsError('email', 'Invalid email format');
+                hasErrors = true;
+            }
+            
+            // Validate password
+            if (!password) {
+                markFieldAsError('password', 'Password is required');
+                hasErrors = true;
+            }
+            
+            if (hasErrors) {
+                return;
+            }
+            
+            showButtonLoading(true);
+            
+            try {
+                await firebaseAuth.signInWithEmail(email, password);
+                showMessage('Sign in successful!', 'success');
+                // Redirect will happen automatically via auth state observer
+            } catch (error) {
+                let errorMessage = 'Sign in failed';
+                let errorField = null;
+                
+                switch (error.code) {
+                    case 'auth/user-not-found':
+                        errorMessage = 'No account found with this email';
+                        errorField = 'email';
+                        break;
+                    case 'auth/wrong-password':
+                        errorMessage = 'Incorrect password';
+                        errorField = 'password';
+                        break;
+                    case 'auth/invalid-email':
+                        errorMessage = 'Invalid email address';
+                        errorField = 'email';
+                        break;
+                    case 'auth/too-many-requests':
+                        errorMessage = 'Too many failed attempts. Please try again later';
+                        break;
+                }
+                
+                if (errorField) {
+                    markFieldAsError(errorField, errorMessage);
+                } else {
+                    showMessage(errorMessage, 'error');
+                }
+            } finally {
+                showButtonLoading(false);
+            }
+        }
+        
+        // Mark field as error
+        function markFieldAsError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                const textField = field.closest('.text-field');
+                if (textField) {
+                    textField.classList.add('error_field');
+                    
+                    // Add error message after the text-field (not inside it)
+                    const existingError = textField.nextElementSibling;
+                    if (existingError && existingError.classList.contains('field-error-message')) {
+                        existingError.remove();
+                    }
+                    
+                    const errorMessage = document.createElement('div');
+                    errorMessage.className = 'field-error-message';
+                    errorMessage.style.cssText = 'color: #d32f2f; font-size: 12px; margin-top: 5px; margin-left: 10px;';
+                    errorMessage.textContent = message;
+                    
+                    textField.parentNode.insertBefore(errorMessage, textField.nextSibling);
+                }
+            }
+        }
+        
+        // Clear all field errors
+        function clearFieldErrors() {
+            document.querySelectorAll('.text-field.error_field').forEach(field => {
+                field.classList.remove('error_field');
+                // Remove error message that's now outside the text-field
+                const errorMessage = field.nextElementSibling;
+                if (errorMessage && errorMessage.classList.contains('field-error-message')) {
+                    errorMessage.remove();
+                }
+            });
+        }
+        
+        // Validate email format
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Handle Google sign in
+        async function handleGoogleSignIn() {
+            showButtonLoading(true);
+            
+            try {
+                await firebaseAuth.signInWithGoogle();
+                showMessage('Google sign in successful!', 'success');
+            } catch (error) {
+                let errorMessage = 'Google sign in failed';
+                if (error.code === 'auth/popup-closed-by-user') {
+                    errorMessage = 'Sign in was cancelled';
+                }
+                showMessage(errorMessage, 'error');
+            } finally {
+                showButtonLoading(false);
+            }
+        }
+
+        // Handle Facebook sign in
+        async function handleFacebookSignIn() {
+            showButtonLoading(true);
+            
+            try {
+                await firebaseAuth.signInWithFacebook();
+                showMessage('Facebook sign in successful!', 'success');
+            } catch (error) {
+                let errorMessage = 'Facebook sign in failed';
+                if (error.code === 'auth/popup-closed-by-user') {
+                    errorMessage = 'Sign in was cancelled';
+                }
+                showMessage(errorMessage, 'error');
+            } finally {
+                showButtonLoading(false);
+            }
+        }
+
+        // Show button loading state
+        function showButtonLoading(show) {
+            const signInText = document.getElementById('signInText');
+            const signInSpinner = document.getElementById('signInSpinner');
+            const signInBtn = document.getElementById('signInBtn');
+
+            console.log('showButtonLoading called with:', show);
+            console.log('signInText:', signInText);
+            console.log('signInSpinner:', signInSpinner);
+            console.log('signInBtn:', signInBtn);
+
+            if (show) {
+                signInText.style.display = 'none';
+                signInSpinner.style.display = 'block';
+                signInBtn.disabled = true;
+            } else {
+                signInText.style.display = 'block';
+                signInSpinner.style.display = 'none';
+                signInBtn.disabled = false;
+            }
+        }
+
+
+
+        // Show message
+        function showMessage(message, type) {
+            // Remove existing messages
+            const existingMessage = document.querySelector('.error-message, .success-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            // Create new message
+            const messageDiv = document.createElement('div');
+            messageDiv.className = type === 'error' ? 'error-message' : 'success-message';
+            messageDiv.textContent = message;
+            
+            // Insert after the form
+            const form = document.getElementById('authentication-form');
+            form.parentNode.insertBefore(messageDiv, form.nextSibling);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (messageDiv.parentNode) {
+                    messageDiv.remove();
+                }
+            }, 5000);
+        }
+
+        // Check if user is already signed in
+        document.addEventListener('DOMContentLoaded', function() {
+            // Firebase will automatically redirect if user is already signed in
+            // via the auth state observer in credentials.js
+            
+            // Debug: Check if firebaseAuth is available
+            console.log('firebaseAuth available:', typeof window.firebaseAuth !== 'undefined');
+            if (typeof window.firebaseAuth !== 'undefined') {
+                console.log('firebaseAuth methods:', Object.keys(window.firebaseAuth));
+            }
+            
+            // Add real-time validation
+            setupRealTimeValidation();
+        });
+        
+        // Setup real-time validation
+        function setupRealTimeValidation() {
+            const emailField = document.getElementById('email');
+            const passwordField = document.getElementById('password');
+            
+            // Email validation
+            emailField.addEventListener('blur', function() {
+                const email = this.value.trim();
+                if (email && !isValidEmail(email)) {
+                    markFieldAsError('email', 'Invalid email format');
+                } else if (email) {
+                    clearFieldError('email');
+                }
+            });
+            
+            // Clear errors when user starts typing
+            [emailField, passwordField].forEach(field => {
+                field.addEventListener('input', function() {
+                    clearFieldError(this.id);
+                });
+            });
+        }
+        
+        // Clear error for a specific field
+        function clearFieldError(fieldId) {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                const textField = field.closest('.text-field');
+                if (textField) {
+                    textField.classList.remove('error_field');
+                    // Remove error message that's now outside the text-field
+                    const errorMessage = textField.nextElementSibling;
+                    if (errorMessage && errorMessage.classList.contains('field-error-message')) {
+                        errorMessage.remove();
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script>
+        // Set justify-content to flex-start for button, #button, or .button inside shadow root of .search.search_box
+function setButtonJustifyContentStart() {
+    document.querySelectorAll('.search.search_box').forEach(box => {
+        if (box.shadowRoot) {
+            // Select button, #button, or .button
+            const selectors = ['button', '#button', '.button'];
+            selectors.forEach(selector => {
+                const btn = box.shadowRoot.querySelector(selector);
+                if (btn) {
+                    btn.style.justifyContent = 'start';
+                    btn.style.setProperty('justify-content', 'start', 'important');
+                }
+            });
+            
+            // Also try to find the specific button structure we see in dev tools
+            const specificBtn = box.shadowRoot.querySelector('button#button.button');
+            if (specificBtn) {
+                specificBtn.style.justifyContent = 'start';
+                specificBtn.style.setProperty('justify-content', 'start', 'important');
+            }
+        }
+    });
+}
+
+// Make search input interactive
+function makeSearchInteractive() {
+    document.querySelectorAll('.search.search_box').forEach(searchBox => {
+        const input = searchBox.querySelector('input[type="text"]');
+        if (input) {
+            // Make only this specific button behave like a div container
+            searchBox.style.pointerEvents = 'none';
+            searchBox.style.userSelect = 'none';
+            
+            // Make input handle all interactions
+            input.style.pointerEvents = 'auto';
+            input.style.userSelect = 'text';
+            input.setAttribute('tabindex', '0');
+            
+            // Remove button-like behavior only for this element
+            searchBox.removeAttribute('role');
+            searchBox.removeAttribute('tabindex');
+            
+            // Make input functional for typing
+            input.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                console.log('Searching for:', searchTerm);
+                // Add your search logic here
+            });
+            
+            // Add keyboard shortcuts
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    console.log('Search submitted:', input.value);
+                    // Add your search submit logic here
+                }
+                if (e.key === 'Escape') {
+                    input.blur();
+                    input.value = '';
+                }
+                e.stopPropagation();
+            });
+            
+            // Simple click to focus
+            input.addEventListener('click', (e) => {
+                input.focus();
+                e.stopPropagation();
+            });
+        }
+    });
+}
+
+// Make search button behave like normal md-text-button when collapsed
+function makeSearchButtonNormal() {
+    document.querySelectorAll('.search.search_bt').forEach(searchBtn => {
+        const input = searchBtn.querySelector('input[type="text"]');
+        if (input) {
+            // Restore normal button behavior
+            searchBtn.style.pointerEvents = 'auto';
+            searchBtn.style.userSelect = 'auto';
+            searchBtn.setAttribute('role', 'button');
+            searchBtn.setAttribute('tabindex', '0');
+            
+            // Hide input when collapsed
+            input.style.display = 'none';
+            
+            // Remove input event listeners to prevent interference
+            input.removeEventListener('input', input._inputHandler);
+            input.removeEventListener('keydown', input._keydownHandler);
+            input.removeEventListener('click', input._clickHandler);
+        }
+    });
+}
+
+// Handle search button class toggling
+function setupSearchToggle() {
+    // Find all search buttons (both .search_bt and .search_box)
+    document.querySelectorAll('.search.search_bt, .search.search_box').forEach(searchBtn => {
+        // Add click handler to expand search
+        searchBtn.addEventListener('click', (e) => {
+            // Change from .search_bt to .search_box
+            if (searchBtn.classList.contains('search_bt')) {
+                searchBtn.classList.remove('search_bt');
+                searchBtn.classList.add('search_box');
+                
+                // Show and focus the input
+                const input = searchBtn.querySelector('input[type="text"]');
+                if (input) {
+                    input.style.display = 'block';
+                    setTimeout(() => input.focus(), 100);
+                }
+                
+                // Apply div-like behavior
+                makeSearchInteractive();
+            }
+        });
+    });
+    
+    // Handle clicking outside to collapse
+    document.addEventListener('click', (e) => {
+        // Don't collapse if clicking on the search button itself
+        if (e.target.closest('.search.search_box')) {
+            return;
+        }
+        
+        const searchBoxes = document.querySelectorAll('.search.search_box');
+        searchBoxes.forEach(searchBox => {
+            // Change back from .search_box to .search_bt
+            searchBox.classList.remove('search_box');
+            searchBox.classList.add('search_bt');
+            
+            // Clear input value and hide it
+            const input = searchBox.querySelector('input[type="text"]');
+            if (input) {
+                input.value = '';
+                input.blur();
+                input.style.display = 'none';
+            }
+            
+            // Apply normal button behavior
+            makeSearchButtonNormal();
+        });
+    });
+}
+
+        // Run on DOMContentLoaded and when new elements are added
+document.addEventListener('DOMContentLoaded', () => {
+    setButtonJustifyContentStart();
+    makeSearchInteractive();
+    makeSearchButtonNormal();
+    setupSearchToggle();
+});
+
+// Also run after a delay to catch late-rendered elements
+setTimeout(() => {
+    setButtonJustifyContentStart();
+    makeSearchInteractive();
+}, 1000);
+setTimeout(() => {
+    setButtonJustifyContentStart();
+    makeSearchInteractive();
+}, 2000);
+setTimeout(() => {
+    setButtonJustifyContentStart();
+    makeSearchInteractive();
+}, 3000);
+
+// Run more frequently to catch shadow root changes
+new MutationObserver(() => {
+    setButtonJustifyContentStart();
+    makeSearchInteractive();
+}).observe(document.body, {
+    childList: true,
+    subtree: true
+});
+
+// Also check periodically for any missed elements
+setInterval(() => {
+    setButtonJustifyContentStart();
+    makeSearchInteractive();
+}, 5000);
+    </script>
+</body>
+</html>

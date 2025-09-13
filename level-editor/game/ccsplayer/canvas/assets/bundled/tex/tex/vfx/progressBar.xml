@@ -1,0 +1,8 @@
+<TextureAtlas imagePath="progressBar.ktp" width="512" height="512" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="progressBar/T_vfx_progressbar_filling_glow.png" x="2" y="468" w="402" h="42" pX="0.5" pY="0.5" oX="49" oY="29" oW="500" oH="100"/>
+	<sprite n="progressBar/T_flying_sugarstar.png" x="408" y="442" w="74" h="68" pX="0.5" pY="0.5" oX="1" oY="4" oW="75" oH="75"/>
+	<sprite n="progressBar/T_vfx_star_base_glow_impact.png" x="2" y="344" w="128" h="120" pX="0.5" pY="0.5" oY="4" oW="128" oH="128"/>
+	<sprite n="progressBar/T_vfx_star_base_glow.png" x="134" y="345" w="123" h="119" pX="0.5" pY="0.5" oX="2" oY="4" oW="128" oH="128"/>
+	<sprite n="progressBar/T_vfx_progressBar_star_01.png" x="261" y="416" w="48" h="48" pX="0.5" pY="0.5" oY="1" oW="48" oH="49"/>
+	<sprite n="progressBar/T_scores_bar_filler_side_2024.png" x="313" y="433" w="36" h="31" pX="0.5" pY="0.5" oW="31" oH="36" r="y"/>
+</TextureAtlas>

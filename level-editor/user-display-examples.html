@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Display Examples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .example {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .avatar-example {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #007bff;
+        }
+        .user-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .code {
+            background: #f1f3f4;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Global User Display System Examples</h1>
+    
+    <div class="example">
+        <h2>Avatar Display</h2>
+        <p>Using <code>data-user-avatar</code> attribute:</p>
+        <div class="code">
+            &lt;div data-user-avatar class="avatar-example"&gt;&lt;/div&gt;
+        </div>
+        <div data-user-avatar class="avatar-example"></div>
+        
+        <p>Using <code>data-user-avatar</code> attribute on IMG:</p>
+        <div class="code">
+            &lt;img data-user-avatar width="100" height="100" style="border-radius: 50%;"&gt;
+        </div>
+        <img data-user-avatar width="100" height="100" style="border-radius: 50%;">
+        
+        <p>Using <code>.data-user-avatar</code> class:</p>
+        <div class="code">
+            &lt;div class="data-user-avatar avatar-example"&gt;&lt;/div&gt;
+        </div>
+        <div class="data-user-avatar avatar-example"></div>
+    </div>
+    
+    <div class="example">
+        <h2>Email Display</h2>
+        <p>Using <code>data-user-email</code> attribute:</p>
+        <div class="code">
+            &lt;span data-user-email&gt;&lt;/span&gt;
+        </div>
+        <div class="user-info">
+            Email: <span data-user-email></span>
+        </div>
+        
+        <p>Using <code>.data-user-email</code> class:</p>
+        <div class="code">
+            &lt;span class="data-user-email"&gt;&lt;/span&gt;
+        </div>
+        <div class="user-info">
+            Email: <span class="data-user-email"></span>
+        </div>
+    </div>
+    
+    <div class="example">
+        <h2>Username Display</h2>
+        <p>Using <code>data-user-username</code> attribute:</p>
+        <div class="code">
+            &lt;span data-user-username&gt;&lt;/span&gt;
+        </div>
+        <div class="user-info">
+            Username: <span data-user-username></span>
+        </div>
+        
+        <p>Using <code>.data-user-username</code> class:</p>
+        <div class="code">
+            &lt;span class="data-user-username"&gt;&lt;/span&gt;
+        </div>
+        <div class="user-info">
+            Username: <span class="data-user-username"></span>
+        </div>
+    </div>
+    
+    <div class="example">
+        <h2>Combined User Card</h2>
+        <div class="code">
+            &lt;div class="user-card"&gt;
+            &lt;img data-user-avatar width="80" height="80" style="border-radius: 50%;"&gt;
+            &lt;h3 data-user-username&gt;&lt;/h3&gt;
+            &lt;p data-user-email&gt;&lt;/p&gt;
+            &lt;/div&gt;
+        </div>
+        <div class="user-card" style="text-align: center; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+            <img data-user-avatar width="80" height="80" style="border-radius: 50%; margin-bottom: 10px;">
+            <h3 data-user-username style="margin: 10px 0;"></h3>
+            <p data-user-email style="color: #666; margin: 0;"></p>
+        </div>
+    </div>
+    
+    <div class="example">
+        <h2>JavaScript API Examples</h2>
+        <p>Manual refresh:</p>
+        <div class="code">
+            // Refresh all user displays
+            userDisplay.refresh();
+            
+            // Or use the direct function
+            refreshUserDisplay();
+        </div>
+        <button onclick="userDisplay.refresh()">Refresh User Display</button>
+        
+        <p>Get current user data:</p>
+        <div class="code">
+            // Get user data object
+            const userData = userDisplay.getData();
+            console.log(userData);
+            
+            // Check if user is logged in
+            if (userDisplay.isLoggedIn()) {
+                console.log('User is logged in');
+            }
+        </div>
+        <button onclick="console.log(userDisplay.getData())">Log User Data</button>
+        <button onclick="alert('User logged in: ' + userDisplay.isLoggedIn())">Check Login Status</button>
+    </div>
+    
+    <div class="example">
+        <h2>How to Include</h2>
+        <p>Add this to your HTML pages after Firebase SDK:</p>
+        <div class="code">
+            &lt;!-- Firebase SDK --&gt;
+            &lt;script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"&gt;&lt;/script&gt;
+            &lt;script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"&gt;&lt;/script&gt;
+            &lt;script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"&gt;&lt;/script&gt;
+            
+            &lt;!-- Your Firebase config --&gt;
+            &lt;script src="credentials.js"&gt;&lt;/script&gt;
+            
+            &lt;!-- Global User Display System --&gt;
+            &lt;script src="global-user-display.js"&gt;&lt;/script&gt;
+        </div>
+    </div>
+    
+    <div class="example">
+        <h2>Available Attributes and Classes</h2>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <th style="border: 1px solid #ddd; padding: 10px;">Type</th>
+                <th style="border: 1px solid #ddd; padding: 10px;">Usage</th>
+                <th style="border: 1px solid #ddd; padding: 10px;">Result</th>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>data-user-avatar</code></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Attribute</td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Sets src (IMG) or background-image (DIV)</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>.data-user-avatar</code></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Class</td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Sets src (IMG) or background-image (DIV)</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>data-user-email</code></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Attribute</td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Sets textContent</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>.data-user-email</code></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Class</td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Sets textContent</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>data-user-username</code></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Attribute</td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Sets textContent</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>.data-user-username</code></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Class</td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Sets textContent</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Firebase SDK (for testing) -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Global User Display System -->
+    <script src="global-user-display.js"></script>
+</body>
+</html> 

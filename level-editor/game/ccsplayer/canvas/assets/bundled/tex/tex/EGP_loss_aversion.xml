@@ -1,0 +1,27 @@
+<TextureAtlas imagePath="EGP_loss_aversion.ktp" width="512" height="512" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="EGP_loss_aversion/Line.png" x="1" y="509" w="169" h="2" pX="0.5" pY="0.5"/>
+	<sprite n="EGP_loss_aversion/C_Tiffi_Body_1.png" x="174" y="393" w="128" h="116" pX="0.5" pY="0.5"/>
+	<sprite n="EGP_loss_aversion/C_Tiffi_Body_2.png" x="1" y="391" w="131" h="116" pX="0.5" pY="0.5">
+		<vertices>1 57 0 49 20 33 22 70 45 14 105 70 52 0 89 11 112 32 128 56 131 42 127 32 131 33 109 19 73 0 83 1 45 116 77 116 110 82 124 101 122 88 8 96 12 109 29 18 1 31 0 32</vertices>
+		<verticesUV>2 448 1 440 21 424 23 461 46 405 106 461 53 391 90 402 113 423 129 447 132 433 128 423 132 424 110 410 74 391 84 392 46 507 78 507 111 473 125 492 123 479 9 487 13 500 30 409 2 422 1 423</verticesUV>
+		<triangles>0 1 2 0 2 3 4 3 2 4 5 3 6 5 4 5 6 7 8 5 7 9 5 8 10 9 8 10 8 11 11 12 10 8 7 13 7 6 14 7 14 15 5 16 3 17 16 5 17 5 18 19 17 18 19 18 20 16 21 3 16 22 21 4 2 23 1 24 2 1 25 24</triangles>
+	</sprite>
+	<sprite n="EGP_loss_aversion/C_Tiffi_Arm_3.png" x="134" y="466" w="35" h="41" pX="0.5" pY="0.5" oW="41" oH="35" r="y"/>
+	<sprite n="EGP_loss_aversion/C_Tiffi_Face_Neutral.png" x="134" y="412" w="35" h="52" pX="0.5" pY="0.5" oW="52" oH="35" r="y"/>
+	<sprite n="EGP_loss_aversion/C_Tiffi_Leg_3.png" x="134" y="379" w="35" h="31" pX="0.5" pY="0.5" oW="31" oH="35" r="y"/>
+	<sprite n="EGP_loss_aversion/Panel_header.png" x="1" y="344" w="101" h="45" pX="0.5" pY="0.5"/>
+	<sprite n="EGP_loss_aversion/X_outline.png" x="104" y="363" w="27" h="26" pX="0.5" pY="0.5" oW="26" oH="28" r="y"/>
+	<sprite n="EGP_loss_aversion/SP_Reward_icon.png" x="306" y="440" w="92" h="71" pX="0.5" pY="0.5" oW="93" oH="72"/>
+	<sprite n="EGP_loss_aversion/Pannel_bottom.png" x="400" y="425" w="90" h="86" pX="0.5" pY="0.5"/>
+	<sprite n="EGP_loss_aversion/C_Pin.png" x="492" y="496" w="16" h="15" pX="0.5" pY="0.5" oW="15" oH="16" r="y"/>
+	<sprite n="EGP_loss_aversion/C_Tiffi_Face_Sad.png" x="306" y="400" w="61" h="38" pX="0.5" pY="0.5"/>
+	<sprite n="EGP_loss_aversion/C_Tiffi_Arm_1.png" x="369" y="389" w="29" h="49" pX="0.5" pY="0.5"/>
+	<sprite n="EGP_loss_aversion/C_Tiffi_Face_Surprised.png" x="306" y="356" w="61" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="EGP_loss_aversion/beige_icon_inset_2.png" x="400" y="370" w="54" h="53" pX="0.5" pY="0.5" oW="53" oH="54" r="y"/>
+	<sprite n="EGP_loss_aversion/cf_temp_pin.png" x="456" y="374" w="53" h="49" pX="0.5" pY="0.5" oX="4" oY="3" oW="60" oH="52"/>
+	<sprite n="EGP_loss_aversion/pink_plus.png" x="369" y="364" w="23" h="23" pX="0.5" pY="0.5"/>
+	<sprite n="EGP_loss_aversion/C_Tiffi_Arm_4.png" x="456" y="334" w="46" h="38" pX="0.5" pY="0.5"/>
+	<sprite n="EGP_loss_aversion/beige_icon_inset.png" x="394" y="328" w="45" h="40" pX="0.5" pY="0.5"/>
+	<sprite n="EGP_loss_aversion/C_Tiffi_Arm_5.png" x="441" y="292" w="41" h="40" pX="0.5" pY="0.5"/>
+	<sprite n="EGP_loss_aversion/C_Tiffi_Leg_4.png" x="171" y="355" w="37" h="34" pX="0.5" pY="0.5" oW="34" oH="37" r="y"/>
+</TextureAtlas>

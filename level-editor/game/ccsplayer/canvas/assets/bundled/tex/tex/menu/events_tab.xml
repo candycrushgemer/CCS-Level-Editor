@@ -1,0 +1,42 @@
+<TextureAtlas imagePath="events_tab.ktp" width="1024" height="1024" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="events_tab/card_ribbon_green.png" x="2" y="942" w="331" h="80" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/card_ribbon_pink.png" x="337" y="942" w="331" h="80" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/card_ribbon_bronze.png" x="672" y="942" w="330" h="80" pX="0.5" pY="0.5" oX="1" oW="331" oH="80"/>
+	<sprite n="events_tab/card_ribbon_gold.png" x="2" y="608" w="80" h="330" pX="0.5" pY="0.5" oX="1" oW="331" oH="80" r="y"/>
+	<sprite n="events_tab/card_ribbon_silver.png" x="2" y="274" w="80" h="330" pX="0.5" pY="0.5" oX="1" oW="331" oH="80" r="y"/>
+	<sprite n="events_tab/ec_claim_badge.png" x="2" y="40" w="230" h="230" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/events_card_progress_stretch.png" x="2" y="12" w="104" h="24" pX="0.5" pY="0.5" oW="24" oH="104" r="y"/>
+	<sprite n="events_tab/ec_default_badge.png" x="86" y="708" w="230" h="230" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/ec_wip.png" x="86" y="538" w="166" h="166" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/card_ribbon_bronze_small.png" x="86" y="375" w="38" h="159" pX="0.5" pY="0.5" oX="1" oW="160" oH="38" r="y"/>
+	<sprite n="events_tab/progress_icons/ec_level_pin_royale.png" x="86" y="274" w="71" h="97" pX="0.5" pY="0.5" oW="97" oH="71" r="y"/>
+	<sprite n="events_tab/card_ribbon_gold_small.png" x="128" y="375" w="38" h="159" pX="0.5" pY="0.5" oX="1" oW="160" oH="38" r="y"/>
+	<sprite n="events_tab/progress_icons/ec_candy_orange.png" x="161" y="277" w="75" h="94" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/card_ribbon_green_small.png" x="170" y="375" w="38" h="159" pX="0.5" pY="0.5" oX="1" oW="160" oH="38" r="y"/>
+	<sprite n="events_tab/card_ribbon_pink_small.png" x="212" y="375" w="38" h="159" pX="0.5" pY="0.5" oX="1" oW="160" oH="38" r="y"/>
+	<sprite n="events_tab/card_ribbon_silver_small.png" x="236" y="114" w="38" h="159" pX="0.5" pY="0.5" oX="1" oW="160" oH="38" r="y"/>
+	<sprite n="events_tab/progress_icons/ec_goldbar.png" x="240" y="278" w="89" h="93" pX="0.5" pY="0.5" oW="93" oH="89" r="y"/>
+	<sprite n="events_tab/ec_text_tag.png" x="254" y="378" w="110" h="156" pX="0.5" pY="0.5" oW="156" oH="110" r="y"/>
+	<sprite n="events_tab/events_card_progress_tipleft.png" x="236" y="6" w="48" h="104" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/leaderboard_icon.png" x="278" y="123" w="148" h="151" pX="0.5" pY="0.5" oW="152" oH="148" r="y"/>
+	<sprite n="events_tab/navbar_red_notification_icon.png" x="334" y="283" w="90" h="90" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/event_card_panel_border.png" x="288" y="7" w="112" h="112" pX="0.5" pY="0.5" oX="9" oY="7" oW="130" oH="130"/>
+	<sprite n="events_tab/ec_clock_cooldown.png" x="404" y="9" w="127" h="110" pX="0.5" pY="0.5" oW="110" oH="127" r="y"/>
+	<sprite n="events_tab/ec_reward_counter.png" x="256" y="580" w="124" h="124" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/ec_reward_panel.png" x="368" y="458" w="49" h="118" pX="0.5" pY="0.5" oX="6" oW="130" oH="50" r="y"/>
+	<sprite n="events_tab/progress_icons/ec_level_pin.png" x="368" y="378" w="82" h="76" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/progress_icons/ec_inv_lock.png" x="429" y="282" w="82" h="92" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/event_card_panel.png" x="430" y="160" w="118" h="118" pX="0.5" pY="0.5" oX="6" oY="6" oW="130" oH="130"/>
+	<sprite n="events_tab/ec_timer_panel.png" x="535" y="46" w="84" h="110" pX="0.5" pY="0.5" oW="110" oH="84" r="y"/>
+	<sprite n="events_tab/events_card_progress_tipright.png" x="320" y="834" w="48" h="104" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/progress_icons/ec_wip_small.png" x="320" y="738" w="92" h="92" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/progress_icons/ec_candy_green.png" x="372" y="849" w="88" h="89" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/progress_icons/ec_candy_blue.png" x="384" y="646" w="85" h="88" pX="0.5" pY="0.5" oW="88" oH="85" r="y"/>
+	<sprite n="events_tab/events_card_emboss.png" x="384" y="586" w="56" h="56" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/progress_icons/ec_blocker_jelly.png" x="416" y="758" w="87" h="87" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/progress_icons/ec_candy_yellow.png" x="464" y="854" w="70" h="84" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/progress_icons/ec_candy_purple.png" x="421" y="500" w="81" h="82" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/progress_icons/ec_candy_red.png" x="454" y="414" w="82" h="82" pX="0.5" pY="0.5"/>
+	<sprite n="events_tab/progress_icons/ec_dailywin.png" x="515" y="329" w="80" h="81" pX="0.5" pY="0.5" oW="81" oH="80" r="y"/>
+	<sprite n="events_tab/progress_icons/ec_blocker_liquorice.png" x="552" y="247" w="77" h="78" pX="0.5" pY="0.5" oW="78" oH="77" r="y"/>
+</TextureAtlas>

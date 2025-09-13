@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:2cadb62e528c869fa3e2bf8720b935c7:69fea3793fc2e35751b038e86afd8d26:711848d7ca8967690bcde133171b9d8a$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="ads_daily_calendar.png" width="1024" height="1024">
+    <sprite n="ads_banner_1.png" x="2" y="537" w="145" h="231" r="y"/>
+    <sprite n="ads_banner_film.png" x="2" y="292" w="147" h="239" r="y"/>
+    <sprite n="ads_giftbox_1.png" x="2" y="774" w="196" h="208" oX="1" oY="3" oW="210" oH="201" r="y"/>
+    <sprite n="ads_giftbox_2.png" x="155" y="292" w="80" h="198" oX="1" oY="0" oW="200" oH="80" r="y"/>
+    <sprite n="ads_giftbox_3.png" x="153" y="537" w="148" h="198" oX="1" oY="1" oW="200" oH="150" r="y"/>
+    <sprite n="ads_plaque_1.png" x="2" y="2" w="213" h="284" oX="4" oY="8" oW="220" oH="300"/>
+    <sprite n="ads_tag_1.png" x="204" y="741" w="116" h="147" oX="0" oY="2" oW="150" oH="120" r="y"/>
+    <sprite n="ads_tagstring_1.png" x="2" y="988" w="72" h="16"/>
+</TextureAtlas>

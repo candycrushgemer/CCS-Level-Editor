@@ -1,0 +1,21 @@
+<TextureAtlas imagePath="dragon_nest.ktp" width="512" height="512" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="dragon_nest/frame_down.png" x="0" y="435" w="227" h="77" pX="0.5" pY="0.5"/>
+	<sprite n="dragon_nest/frame_up.png" x="227" y="316" w="227" h="196" pX="0.5" pY="0.5"/>
+	<sprite n="dragon_nest/rock_3.png" x="454" y="452" w="56" h="60" pX="0.5" pY="0.5" oW="60" oH="56" r="y"/>
+	<sprite n="dragon_nest/star.png" x="454" y="402" w="51" h="50" pX="0.5" pY="0.5" oX="3" oY="3" oW="57" oH="57"/>
+	<sprite n="dragon_nest/rock_1.png" x="454" y="366" w="48" h="36" pX="0.5" pY="0.5"/>
+	<sprite n="dragon_nest/shine_2.png" x="502" y="386" w="10" h="16" pX="0.5" pY="0.5" oW="18" oH="10" r="y"/>
+	<sprite n="dragon_nest/rock_4.png" x="454" y="334" w="40" h="32" pX="0.5" pY="0.5" oW="32" oH="40" r="y"/>
+	<sprite n="dragon_nest/frame_right.png" x="454" y="227" w="38" h="107" pX="0.5" pY="0.5"/>
+	<sprite n="dragon_nest/shine_3.png" x="492" y="310" w="19" h="24" pX="0.5" pY="0.5"/>
+	<sprite n="dragon_nest/nest_inner.png" x="0" y="47" w="179" h="180" pX="0.5" pY="0.5"/>
+	<sprite n="dragon_nest/dragon_egg.png" x="0" y="235" w="90" h="81" pX="0.5" pY="0.5" oW="81" oH="90" r="y"/>
+	<sprite n="dragon_nest/gummi_dragon_free.png" x="90" y="263" w="137" h="172" pX="0.5" pY="0.5">
+		<vertices>0 67 19 91 7 82 39 22 124 52 63 11 116 25 98 6 74 0 92 0 116 9 128 45 127 32 137 91 19 125 35 155 137 121 74 172 58 171 110 163 130 143 92 172 14 19 0 35 7 24</vertices>
+		<verticesUV>90 330 109 354 97 345 129 285 214 315 153 274 206 288 188 269 164 263 182 263 206 272 218 308 217 295 227 354 109 388 125 418 227 384 164 435 148 434 200 426 220 406 182 435 104 282 90 298 97 287</verticesUV>
+		<triangles>0 1 2 3 1 0 3 4 1 5 4 3 5 6 4 5 7 6 5 8 7 8 9 7 7 10 6 11 4 6 11 6 12 1 4 13 1 13 14 14 13 15 13 16 15 17 15 16 17 18 15 16 19 17 20 19 16 21 17 19 3 0 22 22 0 23 24 22 23</triangles>
+	</sprite>
+	<sprite n="dragon_nest/framw_left.png" x="90" y="228" w="121" h="35" pX="0.5" pY="0.5" oW="35" oH="121" r="y"/>
+	<sprite n="dragon_nest/rock_2.png" x="0" y="373" w="63" h="62" pX="0.5" pY="0.5" oW="62" oH="63" r="y"/>
+	<sprite n="dragon_nest/vignette.png" x="227" y="211" w="106" h="105" pX="0.5" pY="0.5" oW="105" oH="106" r="y"/>
+</TextureAtlas>

@@ -1,0 +1,26 @@
+<TextureAtlas imagePath="goldbar_deal.ktp" width="512" height="512" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="goldbar_deal/open_vault.png" x="2" y="258" w="250" h="252" pX="0.5" pY="0.5"/>
+	<sprite n="goldbar_deal/gold_pile.png" x="2" y="5" w="134" h="249" pX="0.5" pY="0.5" oX="5" oY="5" oW="258" oH="139" r="y"/>
+	<sprite n="goldbar_deal/JellyQueen.png" x="140" y="15" w="172" h="239" pX="0.5" pY="0.5" oX="1" oY="12" oW="173" oH="252"/>
+	<sprite n="goldbar_deal/JQ_eyes_close.png" x="140" y="2" w="14" h="9" pX="0.5" pY="0.5"/>
+	<sprite n="goldbar_deal/JQ_left_eye.png" x="158" y="2" w="8" h="9" pX="0.5" pY="0.5"/>
+	<sprite n="goldbar_deal/JQ_right_eye.png" x="170" y="2" w="8" h="9" pX="0.5" pY="0.5" oW="9" oH="8" r="y"/>
+	<sprite n="goldbar_deal/slot.png" x="182" y="3" w="55" h="8" pX="0.5" pY="0.5" oX="1" oY="1" oW="57" oH="10"/>
+	<sprite n="goldbar_deal/stick.png" x="241" y="3" w="14" h="8" pX="0.5" pY="0.5" oX="1" oW="15" oH="8"/>
+	<sprite n="goldbar_deal/close_vault.png" x="256" y="295" w="210" h="215" pX="0.5" pY="0.5" oX="1" oW="212" oH="215"/>
+	<sprite n="goldbar_deal/JQ_left eyebrow.png" x="256" y="258" w="22" h="33" pX="0.5" pY="0.5" oW="33" oH="22" r="y"/>
+	<sprite n="goldbar_deal/JQ_surprise.png" x="282" y="259" w="45" h="32" pX="0.5" pY="0.5"/>
+	<sprite n="goldbar_deal/JQ_right_eyebrow.png" x="470" y="498" w="37" h="12" pX="0.5" pY="0.5"/>
+	<sprite n="goldbar_deal/glasses_reflection.png" x="470" y="477" w="31" h="17" pX="0.5" pY="0.5" oW="17" oH="32" r="y"/>
+	<sprite n="goldbar_deal/JQ_smile.png" x="470" y="430" w="28" h="43" pX="0.5" pY="0.5" oW="43" oH="28" r="y"/>
+	<sprite n="goldbar_deal/JQ_face_default.png" x="470" y="383" w="24" h="43" pX="0.5" pY="0.5" oW="43" oH="24" r="y"/>
+	<sprite n="goldbar_deal/goldbar_piece.png" x="470" y="332" w="22" h="47" pX="0.5" pY="0.5" oW="47" oH="22" r="y"/>
+	<sprite n="goldbar_deal/sparkle.png" x="470" y="307" w="21" h="21" pX="0.5" pY="0.5" oX="1" oY="1" oW="23" oH="23"/>
+	<sprite n="goldbar_deal/shadow.png" x="470" y="227" w="17" h="76" pX="0.5" pY="0.5" oW="76" oH="17" r="y"/>
+	<sprite n="goldbar_deal/goldbar_bunch.png" x="331" y="246" w="125" h="45" pX="0.5" pY="0.5" oX="3" oY="10" oW="137" oH="55"/>
+	<sprite n="goldbar_deal/goldbar_deal_tag.png" x="316" y="199" w="140" h="43" pX="0.5" pY="0.5" oW="142" oH="43"/>
+	<sprite n="goldbar_deal/goldbar_stacked.png" x="460" y="107" w="46" h="116" pX="0.5" pY="0.5" oW="116" oH="46" r="y"/>
+	<sprite n="goldbar_deal/rays.png" x="316" y="15" w="86" h="88" pX="0.5" pY="0.5" oY="4" oW="88" oH="93" r="y"/>
+	<sprite n="goldbar_deal/JQ_arm.png" x="406" y="48" w="102" h="55" pX="0.5" pY="0.5" oX="1" oW="56" oH="102" r="y"/>
+	<sprite n="goldbar_deal/JQ_arm_sunglasses.png" x="316" y="109" w="117" h="86" pX="0.5" pY="0.5" oX="1" oW="119" oH="87"/>
+</TextureAtlas>

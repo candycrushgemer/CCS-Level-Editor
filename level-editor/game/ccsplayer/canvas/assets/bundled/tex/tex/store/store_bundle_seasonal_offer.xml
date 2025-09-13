@@ -1,0 +1,7 @@
+<TextureAtlas imagePath="store_bundle_seasonal_offer.ktp" width="512" height="512" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="store_bundle_seasonal_offer/gold_wave_f.png" x="2" y="409" w="303" h="101" pX="0.5" pY="0.5" oW="304" oH="101"/>
+	<sprite n="store_bundle_seasonal_offer/inset_frame.png" x="309" y="397" w="119" h="113" pX="0.5" pY="0.5" oX="2" oY="2" oW="121" oH="119"/>
+	<sprite n="store_bundle_seasonal_offer/hero_offer_glow_white.png" x="432" y="443" w="67" h="67" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_seasonal_offer/plus_symbol.png" x="432" y="390" w="52" h="49" pX="0.5" pY="0.5" oY="4" oW="49" oH="56" r="y"/>
+	<sprite n="store_bundle_seasonal_offer/risingsun_singleray.png" x="2" y="371" w="100" h="34" pX="0.5" pY="0.5" oY="2" oW="36" oH="102" r="y"/>
+</TextureAtlas>

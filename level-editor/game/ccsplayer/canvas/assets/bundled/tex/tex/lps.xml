@@ -1,0 +1,5 @@
+<TextureAtlas imagePath="lps.ktp" width="128" height="128" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="lps/missing_icon.png" x="2" y="41" w="96" h="85" pX="0.5" pY="0.5" oY="6" oW="96" oH="95"/>
+	<sprite n="lps/slot.png" x="102" y="48" w="20" h="78" pX="0.5" pY="0.5" oW="78" oH="20" r="y"/>
+	<sprite n="lps/pin_stick.png" x="102" y="35" w="10" h="9" pX="0.5" pY="0.5" oX="1" oW="11" oH="10" r="y"/>
+</TextureAtlas>

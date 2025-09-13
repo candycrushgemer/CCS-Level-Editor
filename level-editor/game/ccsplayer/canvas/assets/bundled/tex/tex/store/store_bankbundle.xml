@@ -1,0 +1,40 @@
+<TextureAtlas imagePath="store_bankbundle.ktp" width="1024" height="1024" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="store_bankbundle/shop_bundle_frame.png" x="2" y="772" w="620" h="250" pX="0.5" pY="0.5"/>
+	<sprite n="store_bankbundle/candy_bank_panel_header.png" x="626" y="952" w="349" h="70" pX="0.5" pY="0.5" oX="1" oY="1" oW="351" oH="71"/>
+	<sprite n="store_bankbundle/timer_panel_transparent.png" x="979" y="974" w="42" h="48" pX="0.5" pY="0.5" oW="48" oH="42" r="y"/>
+	<sprite n="store_bankbundle/goldbar_deal_sparkle.png" x="979" y="930" w="41" h="40" pX="0.5" pY="0.5" oX="2" oY="3" oW="46" oH="46"/>
+	<sprite n="store_bankbundle/candy_bank_panel_best_value.png" x="626" y="888" w="311" h="60" pX="0.5" pY="0.5" oX="2" oY="2" oW="315" oH="63"/>
+	<sprite n="store_bankbundle/shop_bundle_thin_frame_shadow.png" x="941" y="627" w="81" h="299" pX="0.5" pY="0.5" oW="299" oH="81" r="y"/>
+	<sprite n="store_bankbundle/candy_bank_panel_limited_deal.png" x="626" y="824" w="311" h="60" pX="0.5" pY="0.5" oX="2" oY="2" oW="315" oH="63"/>
+	<sprite n="store_bankbundle/candy_bank_panel_popular.png" x="626" y="760" w="311" h="60" pX="0.5" pY="0.5" oX="2" oY="2" oW="315" oH="63"/>
+	<sprite n="store_bankbundle/shop_bundle_frame_highlight.png" x="941" y="930" w="22" h="18" pX="0.5" pY="0.5"/>
+	<sprite n="store_bankbundle/shop_bundle_thin_frame.png" x="2" y="602" w="620" h="166" pX="0.5" pY="0.5"/>
+	<sprite n="store_bankbundle/shop_bundle_frame_panel.png" x="967" y="938" w="2" h="10" pX="0.5" pY="0.5"/>
+	<sprite n="store_bankbundle/shop_bundle_panel_gradient.png" x="626" y="652" w="300" h="104" pX="0.5" pY="0.5"/>
+	<sprite n="store_bankbundle/shop_bundle_frame_stripe1.png" x="930" y="709" w="7" h="47" pX="0.5" pY="0.5" oW="47" oH="7" r="y"/>
+	<sprite n="store_bankbundle/shop_bundle_frame_stripe2.png" x="930" y="655" w="7" h="50" pX="0.5" pY="0.5" oW="50" oH="7" r="y"/>
+	<sprite n="store_bankbundle/shop_bundle_frame_shadow.png" x="626" y="532" w="297" h="116" pX="0.5" pY="0.5"/>
+	<sprite n="store_bankbundle/candy_bank_ribbon_header.png" x="927" y="531" w="94" h="92" pX="0.5" pY="0.5" oW="92" oH="95" r="y"/>
+	<sprite n="store_bankbundle/shop_bundle_XS_frame.png" x="2" y="277" w="202" h="250" pX="0.5" pY="0.5"/>
+	<sprite n="store_bankbundle/shop_bundle_frame_bottom.png" x="2" y="536" w="46" h="62" pX="0.5" pY="0.5" oY="10" oW="62" oH="56" r="y"/>
+	<sprite n="store_bankbundle/timer_panel_shop.png" x="52" y="543" w="88" h="55" pX="0.5" pY="0.5" oX="1" oW="89" oH="55"/>
+	<sprite n="store_bankbundle/shop_bundle_base_button.png" x="144" y="549" w="106" h="49" pX="0.5" pY="0.5"/>
+	<sprite n="store_bankbundle/shop_bundle_XS_box_dropshadow.png" x="2" y="50" w="110" h="223" pX="0.5" pY="0.5" oW="223" oH="110" r="y"/>
+	<sprite n="store_bankbundle/goldbar_deal_bonus_icon.png" x="2" y="13" w="33" h="33" pX="0.5" pY="0.5" oX="15" oY="15" oW="58" oH="66"/>
+	<sprite n="store_bankbundle/shop_bundle_XS_panel_gradient.png" x="116" y="62" w="202" h="211" pX="0.5" pY="0.5"/>
+	<sprite n="store_bankbundle/shop_bundle_XS_box.png" x="208" y="326" w="92" h="201" pX="0.5" pY="0.5" oW="201" oH="92" r="y"/>
+	<sprite n="store_bankbundle/booster_wheel_relocation_free_tag.png" x="304" y="370" w="73" h="157" pX="0.5" pY="0.5" oX="1" oW="189" oH="74" r="y"/>
+	<sprite n="store_bankbundle/shop_bundle_base.png" x="304" y="280" w="86" h="86" pX="0.5" pY="0.5"/>
+	<sprite n="store_bankbundle/plus_label_gold_2.png" x="381" y="379" w="70" h="148" pX="0.5" pY="0.5" oW="149" oH="70" r="y"/>
+	<sprite n="store_bankbundle/shop_bundle_box_dropshadow.png" x="455" y="488" w="137" h="110" pX="0.5" pY="0.5"/>
+	<sprite n="store_bankbundle/candy_bank_badge_best_value.png" x="322" y="147" w="128" h="129" pX="0.5" pY="0.5" oW="129" oH="129"/>
+	<sprite n="store_bankbundle/shop_bundle_XS_frame_shadow.png" x="394" y="282" w="116" h="93" pX="0.5" pY="0.5" oW="93" oH="116" r="y"/>
+	<sprite n="store_bankbundle/goldbar_deal_bonus_amount_panel.png" x="455" y="381" w="80" h="103" pX="0.5" pY="0.5" oW="103" oH="80" r="y"/>
+	<sprite n="store_bankbundle/candy_bank_badge_limited_deal.png" x="322" y="14" w="128" h="129" pX="0.5" pY="0.5" oW="129" oH="129"/>
+	<sprite n="store_bankbundle/candy_bank_badge_popular.png" x="454" y="149" w="128" h="129" pX="0.5" pY="0.5" oW="129" oH="129"/>
+	<sprite n="store_bankbundle/shop_bundle_box.png" x="514" y="285" w="128" h="92" pX="0.5" pY="0.5"/>
+	<sprite n="store_bankbundle/booster_amount_panel.png" x="539" y="385" w="98" h="99" pX="0.5" pY="0.5" oY="1" oW="99" oH="99" r="y"/>
+	<sprite n="store_bankbundle/bank_discount_tag.png" x="454" y="19" w="68" h="126" pX="0.5" pY="0.5" oW="126" oH="68" r="y"/>
+	<sprite n="store_bankbundle/goldbar_deal_bonus_tag_jellyqueen.png" x="526" y="61" w="80" h="84" pX="0.5" pY="0.5"/>
+	<sprite n="store_bankbundle/legal_text_beige_panel.png" x="586" y="203" w="74" h="78" pX="0.5" pY="0.5" oW="78" oH="74" r="y"/>
+</TextureAtlas>

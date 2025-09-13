@@ -1,0 +1,38 @@
+<TextureAtlas imagePath="hard_level_offer_1.ktp" width="256" height="256" premultipliedAlpha="false" king_version="1.5.2" sprites_scale="2.000000">
+	<sprite n="hard_level_offer_1/hard_level_offer_hill3.png" x="2" y="2" w="100" h="128" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_1/hard_level_offer_main_hill_2.png" x="2" y="134" w="203" h="71" pX="0.5" pY="0.5">
+		<vertices>0 71 37 24 203 71 0 64 78 0 189 27 201 51 162 0 173 6</vertices>
+		<verticesUV>2 205 39 158 205 205 2 198 80 134 191 161 203 185 164 134 175 140</verticesUV>
+		<triangles>0 1 2 0 3 1 1 4 2 2 4 5 5 6 2 5 4 7 7 8 5</triangles>
+	</sprite>
+	<sprite n="hard_level_offer_1/hard_level_offer_hill2_2.png" x="2" y="209" w="191" h="39" pX="0.5" pY="0.5">
+		<vertices>0 39 191 0 191 39 0 0</vertices>
+		<verticesUV>2 248 193 209 193 248 2 209</verticesUV>
+		<triangles>0 1 2 0 3 1</triangles>
+	</sprite>
+	<sprite n="hard_level_offer_1/hard_level_offer_main_hill_3.png" x="106" y="2" w="55" h="114" pX="0.5" pY="0.5">
+		<vertices>55 48 5 114 0 114 55 103 0 0 50 0</vertices>
+		<verticesUV>161 50 111 116 106 116 161 105 106 2 156 2</verticesUV>
+		<triangles>0 1 2 3 1 0 0 2 4 0 4 5</triangles>
+	</sprite>
+	<sprite n="hard_level_offer_1/hard_level_offer_hill2_4.png" x="165" y="2" w="31" h="73" pX="0.5" pY="0.5">
+		<vertices>31 73 3 73 0 70 31 0 0 0</vertices>
+		<verticesUV>196 75 168 75 165 72 196 2 165 2</verticesUV>
+		<triangles>0 1 2 0 2 3 2 4 3</triangles>
+	</sprite>
+	<sprite n="hard_level_offer_1/hard_level_offer_hill2_3.png" x="200" y="2" w="34" h="67" pX="0.5" pY="0.5">
+		<vertices>32 67 0 67 34 65 0 4 24 0 34 0</vertices>
+		<verticesUV>232 69 200 69 234 67 200 6 224 2 234 2</verticesUV>
+		<triangles>0 1 2 1 3 2 3 4 2 4 5 2</triangles>
+	</sprite>
+	<sprite n="hard_level_offer_1/hard_level_offer_main_hill_1.png" x="165" y="79" w="74" h="32" pX="0.5" pY="0.5">
+		<vertices>0 32 20 0 74 32 0 19 59 0 74 25 68 6</vertices>
+		<verticesUV>165 111 185 79 239 111 165 98 224 79 239 104 233 85</verticesUV>
+		<triangles>0 1 2 0 3 1 1 4 2 2 4 5 4 6 5</triangles>
+	</sprite>
+	<sprite n="hard_level_offer_1/hard_level_offer_hill2_1.png" x="203" y="115" w="31" h="60" pX="0.5" pY="0.5">
+		<vertices>0 60 31 7 31 60 15 0 0 0</vertices>
+		<verticesUV>203 175 234 122 234 175 218 115 203 115</verticesUV>
+		<triangles>0 1 2 0 3 1 0 4 3</triangles>
+	</sprite>
+</TextureAtlas>

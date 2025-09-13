@@ -1,0 +1,11 @@
+<TextureAtlas imagePath="store_bundle_webstore.ktp" width="256" height="256" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="store_bundle_webstore/webstore_giftcard.png" x="2" y="164" w="116" h="90" pX="0.5" pY="0.5" oX="3" oW="119" oH="90">
+		<vertices>13 84 3 36 37 90 25 90 84 0 119 44 109 4 102 0 114 69 119 65 6 18</vertices>
+		<verticesUV>12 248 2 200 36 254 24 254 83 164 118 208 108 168 101 164 113 233 118 229 5 182</verticesUV>
+		<triangles>0 1 2 2 3 0 4 2 1 4 5 2 6 5 4 6 4 7 8 2 5 9 8 5 4 1 10</triangles>
+	</sprite>
+	<sprite n="store_bundle_webstore/webstorelabel_margin.png" x="122" y="193" w="114" h="61" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_webstore/webstorepanel.png" x="122" y="132" w="90" h="57" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_webstore/webstorecheck.png" x="216" y="135" w="38" h="54" pX="0.5" pY="0.5" oW="54" oH="38" r="y"/>
+	<sprite n="store_bundle_webstore/webstorelabel_mid.png" x="2" y="117" w="44" h="43" pX="0.5" pY="0.5" oW="43" oH="61" r="y"/>
+</TextureAtlas>

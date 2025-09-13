@@ -1,0 +1,15 @@
+<TextureAtlas imagePath="tab_card_content.ktp" width="512" height="512" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="tab_card_content/s_panel_calendar.png" x="2" y="306" w="188" h="204" pX="0.5" pY="0.5" oX="4" oY="4" oW="200" oH="213"/>
+	<sprite n="tab_card_content/s_panel_wheel.png" x="2" y="152" w="150" h="150" pX="0.5" pY="0.5"/>
+	<sprite n="tab_card_content/s_panel_gift.png" x="2" y="16" w="123" h="132" pX="0.5" pY="0.5" oW="132" oH="123" r="y"/>
+	<sprite n="tab_card_content/t_inv_shade.png" x="2" y="2" w="7" h="10" pX="0.5" pY="0.5"/>
+	<sprite n="tab_card_content/t_inv_sectionPanel.png" x="129" y="27" w="84" h="121" pX="0.5" pY="0.5"/>
+	<sprite n="tab_card_content/t_inv_goldbars.png" x="156" y="193" w="93" h="109" pX="0.5" pY="0.5" oW="109" oH="93" r="y"/>
+	<sprite n="tab_card_content/s_panel_shadow_wheel.png" x="156" y="157" w="32" h="32" pX="0.5" pY="0.5" oX="1" oY="1" oW="34" oH="34"/>
+	<sprite n="tab_card_content/t_inv_addBooster.png" x="192" y="159" w="30" h="30" pX="0.5" pY="0.5" oX="1" oY="1" oW="32" oH="32"/>
+	<sprite n="tab_card_content/t_inv_lock.png" x="217" y="55" w="89" h="100" pX="0.5" pY="0.5"/>
+	<sprite n="tab_card_content/t_inv_tooltip.png" x="217" y="8" w="88" h="43" pX="0.5" pY="0.5" oW="43" oH="88" r="y"/>
+	<sprite n="tab_card_content/s_panel_lives.png" x="310" y="434" w="85" h="76" pX="0.5" pY="0.5"/>
+	<sprite n="tab_card_content/t_inv_pinkButtonInset.png" x="399" y="446" w="74" h="64" pX="0.5" pY="0.5"/>
+	<sprite n="tab_card_content/s_panel_striped_candies.png" x="399" y="377" w="73" h="65" pX="0.5" pY="0.5"/>
+</TextureAtlas>

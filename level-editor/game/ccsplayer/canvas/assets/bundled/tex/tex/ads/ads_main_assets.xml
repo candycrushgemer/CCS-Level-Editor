@@ -1,0 +1,3 @@
+<TextureAtlas imagePath="ads_main_assets.ktp" width="64" height="64" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="ads_glow.png" x="2" y="22" w="40" h="40" pX="0.5" pY="0.5"/>
+</TextureAtlas>

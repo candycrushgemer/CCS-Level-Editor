@@ -1,0 +1,19 @@
+<TextureAtlas imagePath="store_bundle_art.ktp" width="1024" height="1024" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="store_bundle_art/BB_summer_cup_2025_bg.png" x="2" y="643" w="601" h="379" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_art/store_bundle_boosterwheel.png" x="607" y="893" w="400" h="129" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_art/store_bundle_gradient_daily_deal.png" x="1011" y="872" w="1" h="150" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_art/store_bundle_keyart_daily_deal.png" x="607" y="793" w="400" h="96" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_art/store_bundle_gradient_hard_level_offer.png" x="1016" y="872" w="1" h="150" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_art/store_bundle_gradient_weekly_deal.png" x="1021" y="872" w="1" h="150" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_art/store_bundle_keyart_hard_level_offer.png" x="607" y="684" w="400" h="105" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_art/store_bundle_keyart_weekly_deal.png" x="607" y="566" w="400" h="114" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_art/store_bundle_ool_pinkbg.png" x="2" y="242" w="253" h="320" pX="0.5" pY="0.5" oY="2" oW="320" oH="255" r="y"/>
+	<sprite n="store_bundle_art/store_bundle_boosterwheel_needle.png" x="2" y="573" w="30" h="66" pX="0.5" pY="0.5" oX="2" oY="2" oW="34" oH="70"/>
+	<sprite n="store_bundle_art/store_bundle_boosterwheel_pin.png" x="36" y="573" w="66" h="66" pX="0.5" pY="0.5" oX="5" oY="5" oW="77" oH="77"/>
+	<sprite n="store_bundle_art/store_bundle_hook_ool.png" x="106" y="575" w="76" h="64" pX="0.5" pY="0.5" oW="66" oH="76" r="y"/>
+	<sprite n="store_bundle_art/store_bundle_keyart_heartsR_ool.png" x="2" y="22" w="78" h="216" pX="0.5" pY="0.5" oW="216" oH="78" r="y"/>
+	<sprite n="store_bundle_art/store_bundle_pattern_deal.png" x="84" y="33" w="300" h="205" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_art/store_bundle_pattern_hard_level_offer.png" x="388" y="339" w="205" h="300" pX="0.5" pY="0.5" oW="300" oH="205" r="y"/>
+	<sprite n="store_bundle_art/store_bundle_keyart_heartsL_ool.png" x="259" y="255" w="277" h="80" pX="0.5" pY="0.5"/>
+	<sprite n="store_bundle_art/store_bundle_boosterwheel_body.png" x="540" y="51" w="282" h="284" pX="0.5" pY="0.5" oX="2" oY="2" oW="288" oH="286" r="y"/>
+</TextureAtlas>

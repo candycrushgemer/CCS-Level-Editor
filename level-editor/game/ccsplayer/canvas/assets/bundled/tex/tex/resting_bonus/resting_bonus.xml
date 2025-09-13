@@ -1,0 +1,6 @@
+<TextureAtlas imagePath="resting_bonus.ktp" width="512" height="512" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="onfire_chain_5.png" x="2" y="472" w="300" h="38" pX="0.5" pY="0.5"/>
+	<sprite n="onfire_item5.png" x="306" y="411" w="119" h="99" pX="0.5" pY="0.5" oW="99" oH="119" r="y"/>
+	<sprite n="onfire_chain_string.png" x="429" y="504" w="63" h="6" pX="0.5" pY="0.5" oW="6" oH="63" r="y"/>
+	<sprite n="onfire_tier_label_max.png" x="2" y="386" w="90" h="82" pX="0.5" pY="0.5" oY="2" oW="90" oH="84"/>
+</TextureAtlas>

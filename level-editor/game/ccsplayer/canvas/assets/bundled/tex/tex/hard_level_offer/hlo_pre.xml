@@ -1,0 +1,6 @@
+<TextureAtlas imagePath="hlo_pre.ktp" width="256" height="256" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="hlo_pre/iap_hlo_odisBag.png" x="1" y="2" w="114" h="253" pX="0.5" pY="0.5"/>
+	<sprite n="hlo_pre/iap_hlo_bundle_bag.png" x="117" y="161" w="114" h="94" pX="0.5" pY="0.5" oW="94" oH="114" r="y"/>
+	<sprite n="hlo_pre/iap_hlo_wing.png" x="117" y="81" w="84" h="78" pX="0.5" pY="0.5" oW="78" oH="84" r="y"/>
+	<sprite n="hlo_pre/iap_hlo_button.png" x="203" y="135" w="24" h="24" pX="0.5" pY="0.5"/>
+</TextureAtlas>

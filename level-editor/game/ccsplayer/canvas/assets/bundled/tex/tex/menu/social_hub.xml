@@ -1,0 +1,33 @@
+<TextureAtlas imagePath="social_hub.ktp" width="512" height="512" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="social_hub/list_bg.png" x="2" y="378" w="128" h="132" pX="0.5" pY="0.5"/>
+	<sprite n="social_hub/list_bg_suggestion.png" x="2" y="242" w="128" h="132" pX="0.5" pY="0.5"/>
+	<sprite n="social_hub/icon_no_connection.png" x="2" y="109" w="101" h="129" pX="0.5" pY="0.5" oX="2" oY="2" oW="133" oH="105" r="y"/>
+	<sprite n="social_hub/bff_btn_scroll_up.png" x="2" y="5" w="114" h="100" pX="0.5" pY="0.5" oY="2" oW="100" oH="116" r="y"/>
+	<sprite n="social_hub/list_bff.png" x="107" y="114" w="120" h="124" pX="0.5" pY="0.5" oX="4" oW="128" oH="132"/>
+	<sprite n="social_hub/shield_default.png" x="120" y="6" w="123" h="104" pX="0.5" pY="0.5" oX="5" oY="3" oW="114" oH="132" r="y"/>
+	<sprite n="social_hub/list_item_emptystate.png" x="247" y="390" w="122" h="120" pX="0.5" pY="0.5" oX="4" oY="6" oW="128" oH="132" r="y"/>
+	<sprite n="social_hub/stick.png" x="231" y="501" w="10" h="9" pX="0.5" pY="0.5" oX="1" oW="11" oH="10" r="y"/>
+	<sprite n="social_hub/tabs_bg_support.png" x="231" y="442" w="10" h="55" pX="0.5" pY="0.5"/>
+	<sprite n="social_hub/tabs_division.png" x="231" y="424" w="10" h="14" pX="0.5" pY="0.5"/>
+	<sprite n="social_hub/empty_icon_slot.png" x="231" y="392" w="9" h="28" pX="0.5" pY="0.5" oW="28" oH="9" r="y"/>
+	<sprite n="social_hub/card_button_extension.png" x="134" y="394" w="84" h="116" pX="0.5" pY="0.5" oW="116" oH="84" r="y"/>
+	<sprite n="social_hub/empty_add_icon01.png" x="134" y="336" w="74" h="54" pX="0.5" pY="0.5" oX="2" oY="1" oW="58" oH="75" r="y"/>
+	<sprite n="social_hub/icon_arrow.png" x="212" y="347" w="29" h="41" pX="0.5" pY="0.5" oX="2" oY="2" oW="34" oH="44"/>
+	<sprite n="social_hub/empty_add_icon02.png" x="134" y="260" w="55" h="72" pX="0.5" pY="0.5" oX="1" oY="3" oW="58" oH="75"/>
+	<sprite n="social_hub/empty_add_icon03.png" x="193" y="261" w="55" h="71" pX="0.5" pY="0.5" oX="2" oY="3" oW="58" oH="75"/>
+	<sprite n="social_hub/icon_default.png" x="245" y="336" w="70" h="50" pX="0.5" pY="0.5" oX="11" oY="1" oW="72" oH="72" r="y"/>
+	<sprite n="social_hub/empty_friends_icon.png" x="373" y="443" w="70" h="67" pX="0.5" pY="0.5" oX="3" oY="3" oW="72" oH="77" r="y"/>
+	<sprite n="social_hub/bff_icon_off.png" x="447" y="442" w="63" h="68" pX="0.5" pY="0.5" oX="2" oY="3" oW="72" oH="72" r="y"/>
+	<sprite n="social_hub/accept_request.png" x="373" y="370" w="69" h="69" pX="0.5" pY="0.5" oX="4" oY="5" oW="77" oH="77"/>
+	<sprite n="social_hub/socialhub_tab_active.png" x="319" y="328" w="50" h="58" pX="0.5" pY="0.5"/>
+	<sprite n="social_hub/bff_icon_on.png" x="252" y="265" w="62" h="67" pX="0.5" pY="0.5" oX="4" oY="4" oW="72" oH="72" r="y"/>
+	<sprite n="social_hub/deeplink_card_bg.png" x="446" y="405" w="60" h="33" pX="0.5" pY="0.5" oW="33" oH="60" r="y"/>
+	<sprite n="social_hub/socialhub_tab_inactive.png" x="446" y="351" w="58" h="50" pX="0.5" pY="0.5" oW="50" oH="58" r="y"/>
+	<sprite n="social_hub/decline_request.png" x="373" y="297" w="69" h="69" pX="0.5" pY="0.5" oX="4" oY="5" oW="77" oH="77"/>
+	<sprite n="social_hub/btn_icon_add.png" x="318" y="271" w="47" h="53" pX="0.5" pY="0.5" oX="16" oY="13" oW="72" oH="72" r="y"/>
+	<sprite n="social_hub/btn_icon_invite.png" x="446" y="302" w="56" h="45" pX="0.5" pY="0.5" oX="8" oY="15" oW="72" oH="72"/>
+	<sprite n="social_hub/bff_icon_title.png" x="446" y="246" w="53" h="52" pX="0.5" pY="0.5" oX="2" oY="2" oW="54" oH="58" r="y"/>
+	<sprite n="social_hub/btn_icon_facebook.png" x="369" y="240" w="53" h="53" pX="0.5" pY="0.5" oX="9" oY="10" oW="72" oH="72"/>
+	<sprite n="social_hub/deeplink_list_icon.png" x="318" y="233" w="46" h="34" pX="0.5" pY="0.5" oX="1" oY="1" oW="48" oH="36"/>
+	<sprite n="social_hub/invite_failed.png" x="252" y="236" w="27" h="25" pX="0.5" pY="0.5" oW="25" oH="27" r="y"/>
+</TextureAtlas>

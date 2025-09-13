@@ -1,0 +1,89 @@
+<TextureAtlas imagePath="booster_vfx.ktp" width="512" height="512" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="booster_vfx/cb_shape_06.png" x="1" y="453" w="90" h="58" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_hires.png" x="93" y="431" w="84" h="80" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/cb_shape_explode.png" x="2" y="404" w="80" h="46" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/fish_glow4.png" x="180" y="459" w="76" h="51" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/fish_glow5.png" x="260" y="465" w="70" h="45" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/fish_glow2.png" x="334" y="466" w="69" h="44" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/Orange_Wrapped.png" x="407" y="466" w="68" h="44" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/fish_glow1_wrapp.png" x="479" y="467" w="30" h="43" pX="0.5" pY="0.5" oW="43" oH="30" r="y"/>
+	<sprite n="booster_vfx/flash_glow.png" x="479" y="416" w="25" h="47" pX="0.5" pY="0.5" oW="47" oH="25" r="y"/>
+	<sprite n="booster_vfx/fish_glow3.png" x="334" y="420" w="66" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/Blue_Wrapped.png" x="260" y="423" w="63" h="38" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/Green_Wrapped.png" x="404" y="424" w="63" h="38" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/Purple_Wrapped.png" x="404" y="381" w="63" h="39" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/Red_Wrapped.png" x="471" y="349" w="39" h="63" pX="0.5" pY="0.5" oW="63" oH="39" r="y"/>
+	<sprite n="booster_vfx/fish_glow3_wrapp.png" x="180" y="417" w="63" h="38" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/Yellow_Wrapped.png" x="247" y="378" w="62" h="41" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/flash.png" x="313" y="381" w="16" h="38" pX="0.5" pY="0.5" oW="38" oH="16" r="y"/>
+	<sprite n="booster_vfx/cb_shape_09.png" x="332" y="353" w="64" h="64" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/bubble_blue.png" x="313" y="365" w="13" h="12" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/Red_Regular.png" x="399" y="324" w="59" h="53" pX="0.5" pY="0.5" oW="53" oH="59" r="y"/>
+	<sprite n="booster_vfx/glow_circle.png" x="462" y="297" w="48" h="48" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/cb_shape_07.png" x="85" y="369" w="60" h="60" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/bubble_green.png" x="148" y="416" w="13" h="12" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/Blue_Regular.png" x="165" y="360" w="57" h="53" pX="0.5" pY="0.5" oW="53" oH="57" r="y"/>
+	<sprite n="booster_vfx/bubble_orange.png" x="148" y="399" w="13" h="13" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/bubble_purple.png" x="148" y="383" w="13" h="12" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/bubble_red.png" x="148" y="367" w="13" h="12" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/bubble_yellow.png" x="226" y="400" w="13" h="13" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/Blue_Striped.png" x="2" y="347" w="57" h="53" pX="0.5" pY="0.5" oW="53" oH="57" r="y"/>
+	<sprite n="booster_vfx/Green_Regular.png" x="63" y="313" w="55" h="53" pX="0.5" pY="0.5" oW="53" oH="55" r="y"/>
+	<sprite n="booster_vfx/fish_glow1.png" x="122" y="309" w="39" h="54" pX="0.5" pY="0.5" oW="54" oH="39" r="y"/>
+	<sprite n="booster_vfx/Green_Striped.png" x="2" y="290" w="55" h="53" pX="0.5" pY="0.5" oW="53" oH="55" r="y"/>
+	<sprite n="booster_vfx/Orange_Regular.png" x="61" y="256" w="55" h="53" pX="0.5" pY="0.5" oW="53" oH="55" r="y"/>
+	<sprite n="booster_vfx/Orange_Striped.png" x="2" y="233" w="55" h="53" pX="0.5" pY="0.5" oW="53" oH="55" r="y"/>
+	<sprite n="booster_vfx/Purple_Regular.png" x="226" y="321" w="55" h="53" pX="0.5" pY="0.5" oW="53" oH="55" r="y"/>
+	<sprite n="booster_vfx/green_glow.png" x="284" y="317" w="46" h="45" pX="0.5" pY="0.5" oW="45" oH="46" r="y"/>
+	<sprite n="booster_vfx/Purple_Regular_reskin_allstars.png" x="165" y="303" w="55" h="53" pX="0.5" pY="0.5" oW="53" oH="55" r="y"/>
+	<sprite n="booster_vfx/colorbomb_01.png" x="119" y="261" w="42" h="45" pX="0.5" pY="0.5" oW="45" oH="42" r="y"/>
+	<sprite n="booster_vfx/Purple_Striped.png" x="224" y="264" w="55" h="53" pX="0.5" pY="0.5" oW="53" oH="55" r="y"/>
+	<sprite n="booster_vfx/Red_Striped.png" x="164" y="246" w="55" h="53" pX="0.5" pY="0.5" oW="53" oH="55" r="y"/>
+	<sprite n="booster_vfx/colorbomb_02.png" x="119" y="214" w="42" h="45" pX="0.5" pY="0.5" oW="45" oH="42" r="y"/>
+	<sprite n="booster_vfx/fish_glow1_2.png" x="61" y="213" w="54" h="39" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/Yellow_Regular.png" x="2" y="177" w="53" h="52" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/Yellow_Striped.png" x="333" y="298" w="53" h="52" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/red_glow.png" x="282" y="263" w="48" h="52" pX="0.5" pY="0.5" oW="52" oH="48" r="y"/>
+	<sprite n="booster_vfx/bomb.png" x="389" y="267" w="54" h="54" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/bomb_blur1.png" x="332" y="241" w="54" h="54" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/bomb_blur2.png" x="445" y="240" w="54" h="54" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/bomb_blur3.png" x="388" y="211" w="54" h="54" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/white_glow.png" x="444" y="190" w="54" h="48" pX="0.5" pY="0.5" oW="48" oH="54" r="y"/>
+	<sprite n="booster_vfx/fish_glow2_wrapp.png" x="223" y="227" w="51" h="33" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/blue_glow.png" x="277" y="223" w="52" h="38" pX="0.5" pY="0.5" oW="38" oH="52" r="y"/>
+	<sprite n="booster_vfx/colorbomb_16.png" x="331" y="194" w="52" h="45" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/ring_tint.png" x="386" y="158" w="50" h="50" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/ring.png" x="164" y="193" w="49" h="49" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_03.png" x="118" y="167" w="42" h="45" pX="0.5" pY="0.5" oW="45" oH="42" r="y"/>
+	<sprite n="booster_vfx/yellow_glow.png" x="58" y="163" w="51" h="47" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/cb_shape_08.png" x="1" y="129" w="45" h="45" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_04.png" x="216" y="182" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_05.png" x="162" y="148" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_06.png" x="111" y="123" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_07.png" x="48" y="119" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_08.png" x="1" y="85" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_09.png" x="263" y="179" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_10.png" x="209" y="138" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_11.png" x="158" y="104" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_12.png" x="95" y="79" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_13.png" x="48" y="75" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_14.png" x="1" y="41" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/pink_glow.png" x="1" y="1" w="42" h="38" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_15.png" x="48" y="28" w="42" h="45" pX="0.5" pY="0.5" oW="45" oH="42" r="y"/>
+	<sprite n="booster_vfx/colorbomb_17.png" x="439" y="146" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_18.png" x="92" y="28" w="42" h="45" pX="0.5" pY="0.5" oW="45" oH="42" r="y"/>
+	<sprite n="booster_vfx/colorbomb_19.png" x="310" y="150" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_20.png" x="256" y="135" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_21.png" x="205" y="94" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_22.png" x="142" y="60" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_23.png" x="136" y="13" w="42" h="45" pX="0.5" pY="0.5" oW="45" oH="42" r="y"/>
+	<sprite n="booster_vfx/colorbomb_24.png" x="180" y="13" w="42" h="45" pX="0.5" pY="0.5" oW="45" oH="42" r="y"/>
+	<sprite n="booster_vfx/colorbomb_25.png" x="357" y="113" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_26.png" x="303" y="106" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_27.png" x="252" y="91" w="45" h="42" pX="0.5" pY="0.5"/>
+	<sprite n="booster_vfx/colorbomb_28.png" x="224" y="44" w="42" h="45" pX="0.5" pY="0.5" oW="45" oH="42" r="y"/>
+	<sprite n="booster_vfx/colorbomb_29.png" x="268" y="44" w="42" h="45" pX="0.5" pY="0.5" oW="45" oH="42" r="y"/>
+	<sprite n="booster_vfx/colorbomb_30.png" x="312" y="59" w="42" h="45" pX="0.5" pY="0.5" oW="45" oH="42" r="y"/>
+	<sprite n="booster_vfx/colorbomb_31.png" x="312" y="12" w="42" h="45" pX="0.5" pY="0.5" oW="45" oH="42" r="y"/>
+	<sprite n="booster_vfx/colorbomb_32.png" x="404" y="102" w="45" h="42" pX="0.5" pY="0.5"/>
+</TextureAtlas>

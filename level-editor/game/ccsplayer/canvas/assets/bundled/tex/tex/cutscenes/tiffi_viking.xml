@@ -1,0 +1,10 @@
+<TextureAtlas imagePath="tiffi_viking.ktp" width="512" height="512" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="tiffi_viking/stick.png" x="2" y="41" w="16" h="469" pX="0.5" pY="0.5"/>
+	<sprite n="tiffi_viking/button_clip_left.png" x="2" y="12" w="25" h="25" pX="0.5" pY="0.5"/>
+	<sprite n="tiffi_viking/Tiffi_viking_body_2.png" x="22" y="266" w="218" h="244" pX="0.5" pY="0.5"/>
+	<sprite n="tiffi_viking/tiffi_happy_right_arm.png" x="22" y="41" w="120" h="221" pX="0.5" pY="0.5"/>
+	<sprite n="tiffi_viking/Tiffi_viking_body.png" x="146" y="20" w="226" h="242" pX="0.5" pY="0.5"/>
+	<sprite n="tiffi_viking/tiffi_sad_right_arm.png" x="376" y="399" w="130" h="111" pX="0.5" pY="0.5"/>
+	<sprite n="tiffi_viking/tiffi_shield.png" x="244" y="395" w="119" h="115" pX="0.5" pY="0.5"/>
+	<sprite n="tiffi_viking/tiffi_happy_left_arm.png" x="244" y="324" w="56" h="67" pX="0.5" pY="0.5" oW="67" oH="56" r="y"/>
+</TextureAtlas>

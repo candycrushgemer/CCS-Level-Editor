@@ -1,0 +1,16 @@
+<TextureAtlas imagePath="ads_prelevel_slice_3.ktp" width="512" height="512" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="ads_prelevel_slice_3/Ads_prelevel_prize_display.png" x="2" y="381" w="71" h="129" pX="0.5" pY="0.5"/>
+	<sprite n="ads_prelevel_slice_3/ads_bubble_button_1.png" x="2" y="249" w="127" h="128" pX="0.5" pY="0.5"/>
+	<sprite n="ads_prelevel_slice_3/Ads_prelevel_jackpot_open.png" x="77" y="384" w="64" h="126" pX="0.5" pY="0.5" oW="126" oH="64" r="y"/>
+	<sprite n="ads_prelevel_slice_3/shine.png" x="2" y="130" w="115" h="115" pX="0.5" pY="0.5"/>
+	<sprite n="ads_prelevel_slice_3/Ads_prelevel_jackpot_closed.png" x="2" y="27" w="93" h="99" pX="0.5" pY="0.5" oW="99" oH="93" r="y"/>
+	<sprite n="ads_prelevel_slice_3/Ads_prelevel_prize_display_lamp.png" x="2" y="4" w="18" h="19" pX="0.5" pY="0.5" oW="19" oH="18" r="y"/>
+	<sprite n="ads_prelevel_slice_3/ads_prelevel_fill_bar.png" x="24" y="5" w="26" h="18" pX="0.5" pY="0.5"/>
+	<sprite n="ads_prelevel_slice_3/ads_prelevel_fill_bar_red.png" x="54" y="5" w="26" h="18" pX="0.5" pY="0.5"/>
+	<sprite n="ads_prelevel_slice_3/ads_progressbar_shadow.png" x="84" y="10" w="37" h="13" pX="0.5" pY="0.5"/>
+	<sprite n="ads_prelevel_slice_3/wooshpng.png" x="99" y="55" w="71" h="71" pX="0.5" pY="0.5"/>
+	<sprite n="ads_prelevel_slice_3/ads_button_ear.png" x="125" y="3" w="54" h="48" pX="0.5" pY="0.5"/>
+	<sprite n="ads_prelevel_slice_3/spark.png" x="99" y="39" w="12" h="12" pX="0.5" pY="0.5"/>
+	<sprite n="ads_prelevel_slice_3/star.png" x="121" y="176" w="68" h="69" pX="0.5" pY="0.5" oW="69" oH="69"/>
+	<sprite n="ads_prelevel_slice_3/confetti.png" x="121" y="141" w="22" h="31" pX="0.5" pY="0.5" oW="31" oH="22" r="y"/>
+</TextureAtlas>

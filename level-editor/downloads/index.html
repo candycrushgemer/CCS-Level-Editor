@@ -12,6 +12,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <link rel="stylesheet" href="landing_ccs_css.css">
+  <script src="../app/instant-navigation.js"></script>
 </head>
 
 <body>
@@ -37,7 +38,8 @@
         <div class="left">
           <h1 class="big_header bubblegum_bliss blue_color">Download Level Editor now!</h1>
           <span>Download the desktop app to make your levels offline whenever you want! <br>Just a few steps left and you are ready!</span>
-          <button normal type="button" style="width: fit-content;">Download now!</button>
+          <button normal type="button" style="width: fit-content;" onclick="downloadEditor()">Download now!</button>
+          <span style="font-size: smaller; opacity: 0.7; display: none;" class="download-helper">If the download hasn't started, <a id="directdownloadtry" href="#download">click here</a> to try again, or go to <a href="https://drive.usercontent.google.com/download?id=19k_aMc3_ylMPqdr6-qOkPwpqOVQhtVe8&export=download&authuser=0">the direct link</a>.</span>
           <span style="font-size: smaller; opacity: 0.7;"><br>*Requires Windows 10 or later.</span>
         </div>
         <div class="right">
@@ -181,6 +183,124 @@
         console.error('Error loading playlist', err);
         document.getElementById('playlistContainer').textContent = 'Failed to load playlist.';
       });
+  </script>
+  <script>
+    // Download editor function using Google Drive API
+    async function downloadEditor() {
+      const fileId = '19k_aMc3_ylMPqdr6-qOkPwpqOVQhtVe8';
+      const apiKey = 'AIzaSyBtUTZyi3X_5j0DQesTKNN30xyqL9OthdU';
+      
+      try {
+        // Show loading state
+        const button = event.target;
+        const originalText = button.textContent;
+        button.textContent = 'Downloading...';
+        button.disabled = true;
+        
+        // Show the download helper text
+        const helperSpan = document.querySelector('.download-helper');
+        if (helperSpan) {
+          helperSpan.style.display = 'block';
+        }
+        
+        // First, get file metadata to check accessibility and get filename
+        const metadataUrl = `https://www.googleapis.com/drive/v3/files/${fileId}?key=${apiKey}&fields=name,size,mimeType`;
+        const metadataResponse = await fetch(metadataUrl);
+        
+        if (!metadataResponse.ok) {
+          throw new Error(`API Error: ${metadataResponse.status}`);
+        }
+        
+        const metadata = await metadataResponse.json();
+        console.log('File metadata:', metadata);
+        
+        // Method 1: Try to fetch the file data using API and create blob download
+        const downloadUrl = `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=${apiKey}`;
+        
+        const response = await fetch(downloadUrl);
+        
+        if (response.ok) {
+          // Convert response to blob
+          const blob = await response.blob();
+          
+          // Create download link with blob URL
+          const blobUrl = window.URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = blobUrl;
+          link.download = metadata.name || 'CCSEditor1.9Setup.exe';
+          link.style.display = 'none';
+          document.body.appendChild(link);
+          
+          // Use setTimeout to ensure the click works properly on first try
+          setTimeout(() => {
+            link.click();
+            console.log('Download click triggered');
+            
+            // Clean up after a short delay
+            setTimeout(() => {
+              if (document.body.contains(link)) {
+                document.body.removeChild(link);
+              }
+              window.URL.revokeObjectURL(blobUrl);
+            }, 100);
+          }, 100);
+          
+          console.log('Download initiated successfully via API');
+          
+        } else {
+          throw new Error(`Download failed: ${response.status}`);
+        }
+        
+        // Reset button
+        button.textContent = originalText;
+        button.disabled = false;
+        
+      } catch (error) {
+        console.error('API download failed:', error);
+        
+        // Reset button
+        const button = event.target;
+        button.textContent = 'Download now!';
+        button.disabled = false;
+        
+        // Fallback to direct URL methods
+        console.log('Trying fallback download methods...');
+        const directUrls = [
+          `https://drive.google.com/uc?export=download&id=${fileId}&confirm=t`,
+          `https://drive.usercontent.google.com/download?id=${fileId}&export=download&confirm=t`
+        ];
+        
+        for (const url of directUrls) {
+          try {
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'CCSEditor1.9Setup.exe';
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            console.log('Fallback download initiated');
+            return;
+          } catch (fallbackError) {
+            console.log('Fallback method failed:', fallbackError);
+          }
+        }
+        
+        // Final fallback - open sharing link
+        window.open(`https://drive.google.com/file/d/${fileId}/view?usp=sharing`, '_blank');
+      }
+    }
+    
+    // Add event listener for direct download try link
+    document.addEventListener('DOMContentLoaded', function() {
+      const directDownloadLink = document.getElementById('directdownloadtry');
+      if (directDownloadLink) {
+        directDownloadLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          downloadEditor();
+        });
+      }
+    });
   </script>
   <script>
     // Initialize GSAP ScrollTrigger

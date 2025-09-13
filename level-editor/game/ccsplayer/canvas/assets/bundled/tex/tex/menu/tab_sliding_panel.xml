@@ -1,0 +1,7 @@
+<TextureAtlas imagePath="tab_sliding_panel.ktp" width="256" height="256" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="tab_sliding_panel/t_inv_pinkButton.png" x="2" y="110" w="150" h="144" pX="0.5" pY="0.5"/>
+	<sprite n="tab_sliding_panel/s_panel_nonfeatured_background.png" x="156" y="191" w="66" h="63" pX="0.5" pY="0.5"/>
+	<sprite n="tab_sliding_panel/s_panel_small_box_middle.png" x="226" y="142" w="5" h="112" pX="0.5" pY="0.5" oW="112" oH="5" r="y"/>
+	<sprite n="tab_sliding_panel/s_panel_red_notification_icon.png" x="156" y="145" w="45" h="42" pX="0.5" pY="0.5" oW="42" oH="45" r="y"/>
+	<sprite n="tab_sliding_panel/s_panel_shadow_pin.png" x="156" y="109" w="32" h="32" pX="0.5" pY="0.5" oX="1" oY="1" oW="34" oH="34"/>
+</TextureAtlas>

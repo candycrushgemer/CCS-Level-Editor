@@ -1,0 +1,24 @@
+<TextureAtlas imagePath="deeplink.ktp" width="512" height="512" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="deeplink/envelope_base.png" x="2" y="2" w="411" h="278" pX="0.5" pY="0.5" oX="3" oY="2" oW="419" oH="283">
+		<vertices>4 217 3 2 6 2 147 137 99 280 10 266 13 279 201 117 274 130 368 268 414 161 410 263 414 57 400 9 410 2 233 117</vertices>
+		<verticesUV>3 217 2 2 5 2 146 137 98 280 9 266 12 279 200 117 273 130 367 268 413 161 409 263 413 57 399 9 409 2 232 117</verticesUV>
+		<triangles>0 1 2 0 2 3 0 3 4 4 5 0 4 6 5 4 3 7 8 4 7 4 8 9 10 9 8 11 9 10 8 12 10 12 8 13 13 14 12 8 7 15</triangles>
+	</sprite>
+	<sprite n="deeplink/envelope_fold_front.png" x="2" y="284" w="201" h="214" pX="0.5" pY="0.5" oX="3" oY="2" oW="204" oH="220">
+		<vertices>3 23 80 2 109 150 3 8 204 2 173 203 204 216 193 215</vertices>
+		<verticesUV>2 305 79 284 108 432 2 290 203 284 172 485 203 498 192 497</verticesUV>
+		<triangles>0 1 2 0 3 1 2 1 4 5 2 4 6 5 4 6 7 5</triangles>
+	</sprite>
+	<sprite n="deeplink/envelope_fold_back.png" x="207" y="274" w="131" h="130" pX="0.5" pY="0.5" oY="1" oW="131" oH="131">
+		<vertices>0 131 27 93 131 131 0 129 90 22 131 1 114 4 128 1</vertices>
+		<verticesUV>207 404 234 366 338 404 207 402 297 295 338 274 321 277 335 274</verticesUV>
+		<triangles>0 1 2 0 3 1 1 4 2 2 4 5 5 4 6 6 7 5</triangles>
+	</sprite>
+	<sprite n="deeplink/levelpin_current.png" x="99" y="2" w="101" h="86" pX="0.5" pY="0.5"/>
+	<sprite n="deeplink/invite_paper.png" x="204" y="2" w="50" h="50" pX="0.5" pY="0.5" oX="1" oY="1" oW="52" oH="52"/>
+	<sprite n="deeplink/envelope_inside.png" x="39" y="2" w="28" h="28" pX="0.5" pY="0.5">
+		<vertices>0 28 28 0 28 28 0 0</vertices>
+		<verticesUV>39 30 67 2 67 30 39 2</verticesUV>
+		<triangles>0 1 2 0 3 1</triangles>
+	</sprite>
+</TextureAtlas>

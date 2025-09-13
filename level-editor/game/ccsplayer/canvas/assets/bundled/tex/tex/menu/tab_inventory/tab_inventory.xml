@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:6c956408ebbfedacae6f3f94fd7d08ed:22bd9615ecbe5da8a1bd6a3d2846fc8b:54b5ca21968aba45326b2a464b7b6c44$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="tab_inventory.png" width="256" height="256">
+    <sprite n="t_inv_goldbars.png" x="2" y="150" w="109" h="93" pX="0.5" pY="0.5"/>
+    <sprite n="t_inv_pinkButton.png" x="2" y="2" w="150" h="144" pX="0.5" pY="0.5"/>
+</TextureAtlas>

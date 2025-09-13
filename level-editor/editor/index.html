@@ -8,11 +8,11 @@
         <link rel="icon" href="logo.png">
         <link href="style.css" rel="stylesheet" type="text/css" />
         <script src="https://cdn.jsdelivr.net/npm/underscore@1.12.0/underscore-min.js"></script>
-        <meta content="Candy Crush Level Editor" property="og:title">
-        <meta content="Level editor for candy crush that can be used to export levels in your browser" property="og:description">
-        <meta content="Candy Crush Level Editor" property="og:site_name">
+        <meta content="CCS Level Editor" property="og:title">
+        <meta content="Create your own CCS levels with ease!" property="og:description">
+        <meta content="CCS Level Editor" property="og:site_name">
         <meta name="google-site-verification" content="6zm1HJRG6NhdZesBE-6ZfphnUfd5-FUnh3X80hrWDHY" />
-        <version>1.9</version>
+        <version>1.10</version>
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
         <meta http-equiv="Pragma" content="no-cache" />
         <meta http-equiv="Expires" content="0" />
@@ -62,6 +62,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
         <script src="spinner-load-element.js"></script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3323549477131930" crossorigin="anonymous"></script>
     </head>
 
     <body style="margin: 0;">
@@ -90,6 +91,16 @@
             };
         </script>
         <script src="script.js" defer></script>
+        <script src="app/script.js" defer></script>
+        <script src="../app/instant-navigation.js"></script>
+        <script src="../settings/settings-loader.js"></script>
+        
+        <!-- Firebase SDK -->
+        <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage-compat.js"></script>
+        <script src="credentials.js"></script>
         <mdui-navigation-drawer modal close-on-esc close-on-overlay-click contained class="beginning-navd" style="position: fixed;">
             <div class="content-navdrawer" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
                 <md-icon-button class="close-navdrawer"><md-icon>􀅾</md-icon></md-icon-button>
@@ -102,11 +113,11 @@
                     <md-icon slot="start">folder</md-icon>Open a level
                 </md-list-item>
                 <br>
-                <md-list-item type="link" href="https://drive.usercontent.google.com/download?id=1DsI9hi_z5MeB9Xw1AxyMU3q5xfoyOMJo&export=download&authuser=0" style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-radius: 20px; user-select: none;" md-list-item="">
+                <md-list-item type="link" href="/level-editor/downloads/" style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-radius: 20px; user-select: none;" md-list-item="">
                     <md-icon slot="start" aria-hidden="true">􀈨</md-icon>Download editor for Windows
                 </md-list-item>
                 <div class="navd-end" style="position: absolute; bottom: 15;"> 
-                    <md-icon-button class="settings-btn"><md-icon>􀣌</md-icon></md-icon-button>
+                    <md-icon-button><md-icon>􀣌</md-icon></md-icon-button>
                     <p style="font-size: smaller;">© Copyright 2025. Made with ❤️ by Blakiemon and other people.
                         <a class="footer-href" href="https://discord.gg/kqq5Tx4XcM">Discord server</a> • <a class="footer-href" href="https://forms.gle/XMkahmBmzxN2HUEN9">Bug reports</a>
                     </p>
@@ -121,89 +132,154 @@
             <div></div>
             <div></div>
         </div>
+
+        <div class="toaster">
+            <div class="toaster-wrapper flex" data-liquid liq-refrac="2" light-45 liq-blur="4">
+                <span id="messages">Level Saved</span>
+            </div>
+        </div>
+
             <mdui-top-app-bar class="example-top-app-bar" style="width: 100vw; align-items: center; position: fixed; z-index: 10; margin: 0 auto; margin-top: 10px; display: flex; justify-content: space-between;">
                 <div class="left" style="display: flex; align-items: center; gap: 10px;">
-                    <md-icon-button class="opennavd">
+                    <md-icon-button data-liquid class="back-to-app" onclick="goBackToApp()" title="Back to App">
+                        <md-icon>􀆉</md-icon>
+                    </md-icon-button>
+                    <md-icon-button style="opacity: 0;"></md-icon-button>
+                    <md-icon-button class="menu-btn" data-liquid liq-blur="5" onclick="navigateOpen()" divact style="position: absolute; left: 60px;">
                         <md-icon>􀋲</md-icon>
+                        <md-list style="width: 200px; height: fit-content;">
+                            <md-list-item>
+                                <md-icon slot="start">􀈨</md-icon>
+                                <div class="flex row">
+                                    <span>Download Editor</span>
+                                </div>
+                            </md-list-item>
+                            <md-list-item class="settings-btn">
+                                <md-icon slot="start">􀣌</md-icon>
+                                <div class="flex row">
+                                    <span>Settings</span>
+                                </div>
+                            </md-list-item>
+                        </md-list>
                     </md-icon-button>
                     <img src="logo-horizontal.png" width="90px" draggable="false">
                 </div>
-                <div class="center" style="display: flex; align-items: center; gap: 5px; padding: 5px; background: #dadada2a; border-radius: 64px; position: relative;">
-                    <mdui-dropdown placement="bottom">
-                        <md-icon-button slot="trigger" class="quick-access-acent"><md-icon>􀈕</md-icon></md-icon-button>
-                        <md-list class="menu" style="width: 300px;">
-                            <md-list-item type="link" class="newlvl"> <md-icon slot="start">􀅼</md-icon><span>New</span> <div slot="end"><span>Ctrl + L</span></div></md-list-item>
-                            <md-list-item type="link" class="openlvl"> <md-icon slot="start">􀈖</md-icon><span>Open</span> <div slot="end"><span>Ctrl + O</span></div><input type="file" id="fileInput" accept=".txt,.json,.level" style="display: none;" /></md-list-item>
-                            <md-divider></md-divider>
-                            <md-list-item type="link" class="export-button" onclick="exportLevelUI()"> <md-icon slot="start">􀈂</md-icon><span>Export level</span> <div slot="end"><span>Ctrl + S</span></div></md-list-item>
-                            <md-list-item class="import-main" type="link" onclick="displayImportLevelUI()"> <md-icon slot="start">􀈄</md-icon><span>Import level</span> <div slot="end"><span>Ctrl + I</span></div></md-list-item>
-                                                         
-                        </md-list>
-                    </mdui-dropdown>
-                    <mdui-dropdown placement="bottom">
-                        <md-icon-button slot="trigger" class="quick-access-acent"><md-icon>􀅴</md-icon></md-icon-button>
-                        <md-list class="menu" style="width: 300px;">
-                            <md-list-item type="link" target="_blank" href="document.html"> <md-icon slot="start">􀉀</md-icon><span>Documentation</span> <div slot="end">Alt + M</div></md-list-item>
-                            <md-list-item type="link" class="credit-btn"> <md-icon slot="start">􀅴</md-icon><span>About</span> <div slot="end">Ctrl + B</div></md-list-item>
-                        </md-list>
-                    </mdui-dropdown>
-                    <div class="vertical-divider"></div>
-                    <mdui-dropdown placement="bottom">
-                        <md-icon-button slot="trigger" class="quick-access-acent"><md-icon>􀊬</md-icon></md-icon-button>
-                        <md-list class="menu" style="width: 300px;">
-                            <md-list-item style="background-color: #00000000;">
-                                <span>Zoom</span>
-                                <div class="zoom-options" style="display: flex; align-items: center; gap: 10px;">
-                                    <div class="slider-container">
-                                        <md-icon-button class="zoom-out md-icon-button" title="Zoom out">
-                                            <md-icon>􀊭</md-icon>
-                                        </md-icon-button>
-                                        <div class="slider">
-                                            <div class="slider-track"></div>
-                                            <div class="slider-thumb"></div>
+                <div class="center" style="display:flex; align-items: center; border-radius: 64px; position: relative; overflow: visible;gap: 5px; padding: 10px; box-shadow: 0px 0px 30px 0px #00000042;">
+                    <div data-liquid liq-blur="5" style="display: flex; align-items: center; border-radius: 64px; position: absolute; width:100%; height:100%; z-index:-1" liq-refrac="0"></div>
+                        <mdui-dropdown placement="bottom">
+                            <md-icon-button slot="trigger" class="quick-access-acent"><md-icon>􀈕</md-icon></md-icon-button>
+                            <md-list data-liquid liq-blur="5" class="menu" style="width: 300px;">
+                                <md-list-item type="link" class="newlvl"> <md-icon slot="start">􀅼</md-icon><span>New</span> <div slot="end"><span>Ctrl + L</span></div></md-list-item>
+                                <md-list-item type="link" class="openlvl"> <md-icon slot="start">􀈖</md-icon><span>Open</span> <div slot="end"><span>Ctrl + O</span></div><input type="file" id="fileInput" accept=".txt,.json,.level" style="display: none;" /></md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item type="link" class="export-button"> <md-icon slot="start">􀈨</md-icon><span>Save</span> <div slot="end"><span>Ctrl + S</span></div></md-list-item>
+                                <md-list-item type="link" class="advanced-save-lev" onclick="exportLevelUI()"> <md-icon slot="start">􀈨</md-icon><span>Save as</span> <div slot="end"><span>Ctrl + Shift + S</span></div></md-list-item>
+                                <md-list-item class="import-main" type="link" onclick="displayImportLevelUI()"> <md-icon slot="start">􀈦</md-icon><span>Import level</span> <div slot="end"><span>Ctrl + I</span></div></md-list-item>
+                                                             
+                            </md-list>
+                        </mdui-dropdown>
+                        <mdui-dropdown placement="bottom">
+                            <md-icon-button slot="trigger" class="quick-access-acent"><md-icon>􀅴</md-icon></md-icon-button>
+                            <md-list data-liquid liq-blur="5" class="menu" style="width: 300px;">
+                                <md-list-item type="link" target="_blank" href="document.html"> <md-icon slot="start">􀉀</md-icon><span>Documentation</span> <div slot="end">Alt + M</div></md-list-item>
+                                <md-list-item type="link" class="credit-btn"> <md-icon slot="start">􀅴</md-icon><span>About</span> <div slot="end">Ctrl + B</div></md-list-item>
+                            </md-list>
+                        </mdui-dropdown>
+                        <div class="vertical-divider"></div>
+                        <mdui-dropdown placement="bottom">
+                            <md-icon-button slot="trigger" class="quick-access-acent"><md-icon>􀊬</md-icon></md-icon-button>
+                            <md-list data-liquid liq-blur="5" class="menu" style="width: 300px;">
+                                <md-list-item style="background-color: #00000000;">
+                                    <span>Zoom</span>
+                                    <div class="zoom-options" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="slider-container">
+                                            <md-icon-button class="zoom-out md-icon-button" title="Zoom out">
+                                                <md-icon>􀊭</md-icon>
+                                            </md-icon-button>
+                                            <div class="slider">
+                                                <div class="slider-track"></div>
+                                                <div class="slider-thumb"></div>
+                                            </div>
+                                            <md-icon-button class="zoom-in md-icon-button" title="Zoom in">
+                                                <md-icon>􀊬</md-icon>
+                                            </md-icon-button>
                                         </div>
-                                        <md-icon-button class="zoom-in md-icon-button" title="Zoom in">
-                                            <md-icon>􀊬</md-icon>
-                                        </md-icon-button>
                                     </div>
-                                </div>
-                            </md-list-item>
-                        </md-list>
-                    </mdui-dropdown>
-                    <mdui-dropdown placement="bottom" style="display: none;">
-                        <md-icon-button slot="trigger" class="quick-access-acent"><md-icon>􀌤</md-icon></md-icon-button>
-                        <md-list class="menu" style="width: 500px;">
-                            <md-list-item style="background-color: #00000000;">
-                                <span>Errors and warnings <span class="beta-text">BETA</span></span>
-                                <div class="noerrors" style="display: none; justify-content: center; align-items: center; gap: 10px; flex-direction: column;">
-                                    <img src="no_errors.png" alt="No errors or warnings" style="width: 256px; height: 256px;">
-                                    <span>No errors or warnings. Keep going!</span>
-                                </div>
-                                <div class="errors" style="display: flex; flex-direction: column; gap: 3px;">
-                                    <md-list-item type="text" class="log error"> <md-icon slot="start" style="color: var(--md-sys-color-error);">􀆄</md-icon><span>Invalid rapid paths</span> </md-list-item>
-                                    <md-list-item type="text" class="log warning"> <md-icon slot="start" style="color: #ff9800;">􀇾</md-icon><span>Candy Cannons should have Max Spawn and Spawn Interval properties to make them work.  </span></md-list-item>
-                                </div>
-                            </md-list-item>
-                        </md-list>
-                    </mdui-dropdown>
-                    <div class="vertical-divider"></div>
-                    <!-- Mode toggle buttons -->
-                    <md-icon-button id="normal-mode-btn" class="mode-toggle-btn" title="Normal Mode" onclick="toggleMode('normal')">
-                        <md-icon>􀫌</md-icon>
-                    </md-icon-button>
-                    <md-icon-button id="drag-mode-btn" class="mode-toggle-btn" title="Drag Mode" onclick="toggleMode('drag')">
-                        <md-icon>􀉼</md-icon>
-                    </md-icon-button>
-                    <md-icon-button id="reset-drag" class="reset-drag-btn" title="Reset position" onclick="resetDrag()">
-                        <md-icon>􀅈</md-icon>
-                    </md-icon-button>
+                                </md-list-item>
+                            </md-list>
+                        </mdui-dropdown>
+                        <mdui-dropdown placement="bottom" style="display: none;">
+                            <md-icon-button slot="trigger" class="quick-access-acent"><md-icon>􀌤</md-icon></md-icon-button>
+                            <md-list data-liquid liq-blur="5" class="menu" style="width: 500px;">
+                                <md-list-item style="background-color: #00000000;">
+                                    <span>Errors and warnings <span class="beta-text">BETA</span></span>
+                                    <div class="noerrors" style="display: none; justify-content: center; align-items: center; gap: 10px; flex-direction: column;">
+                                        <img src="no_errors.png" alt="No errors or warnings" style="width: 256px; height: 256px;">
+                                        <span>No errors or warnings. Keep going!</span>
+                                    </div>
+                                    <div class="errors" style="display: flex; flex-direction: column; gap: 3px;">
+                                        <md-list-item type="text" class="log error"> <md-icon slot="start" style="color: var(--md-sys-color-error);">􀆄</md-icon><span>Invalid rapid paths</span> </md-list-item>
+                                        <md-list-item type="text" class="log warning"> <md-icon slot="start" style="color: #ff9800;">􀇾</md-icon><span>Candy Cannons should have Max Spawn and Spawn Interval properties to make them work.  </span></md-list-item>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </mdui-dropdown>
+                        <div class="vertical-divider"></div>
+                        <md-icon-button id="normal-mode-btn" class="mode-toggle-btn" title="Normal Mode" onclick="toggleMode('normal')">
+                            <md-icon>􀫌</md-icon>
+                        </md-icon-button>
+                        <div class="mb-cont">
+                            <div class="mb-wrp" style="display: flex;gap: 5px;">
+                                <md-icon-button id="drag-mode-btn" class="mode-toggle-btn" title="Drag Mode" onclick="toggleMode('drag')">
+                                    <md-icon>􀉼</md-icon>
+                                </md-icon-button>
+                            </div>
+                        </div>
+                        <div class="vertical-divider"></div>
+                        <md-icon-button class="preview-game" style="display: none;">
+                            <md-icon>􀊙</md-icon>
+                        </md-icon-button>
+                        <mdui-dropdown placement="bottom-right">
+                            <md-icon-button slot="trigger">
+                                <img class="user_avt" style="border-radius: 64px;" src="avatar-generic.png" alt="">
+                            </md-icon-button>
+                            <md-list class="menu" data-liquid liq-blur="5" style="width: 400px;padding: 0 !important">
+                                <md-list-item class="state signed_in" style="background-color: #00000000; padding: 0 !important;display:none;">
+                                    <div class="account_view">
+                                        <img data-user-avatar src="avatar-generic.png" width="50" style="border-radius:64px;">
+                                        <div class="info">
+                                            <h4 style="margin:0;" id="name">User</h4>
+                                            <span style="margin:0;" id="email">example@example.com</span>
+                                        </div>
+                                    </div>
+                                    <div class="buttons flex rows" style="gap: 2px;margin-top:3px;">
+                                        <md-filled-tonal-button style="width:100%" onclick="window.location.href = '../myaccount'">Manage account</md-filled-tonal-button>
+                                        <md-text-button style="width:100%" class="destructive" onclick="window.location.href = '../login?redirect=../editor'"><span>Sign out</span></md-text-button>
+                                    </div>
+                                </md-list-item>
+                                <md-list-item class="state sign_in" style="background-color: #00000000; padding: 0 !important;">
+                                    <div style="width: 100%; display: flex; justify-content: center; margin: 10px;">
+                                        <img src="sign_in_place_holder.png" width="150" alt="Sign in to Editor">
+                                    </div>
+                                    <h3 style="margin: 0; text-align: center;">Sign in to Editor</h3>
+                                    <p style="text-align: center;">Sign in to get your level synced, post levels to community and other things as well.</p>
+                                    <div class="buttons flex rows" style="gap: 2px;margin-top:3px;">
+                                        <md-filled-tonal-button style="width:100%" onclick="window.location.href = '../login?redirect=../editor'">Sign in</md-filled-tonal-button>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </mdui-dropdown>
                 </div>
+                
+                <md-icon-button id="reset-drag" class="reset-drag-btn" title="Reset position" onclick="resetDrag()">
+                    <md-icon>􀅈</md-icon>
+                </md-icon-button>
                 <div class="right" style="width: 100px;"></div>
             </mdui-top-app-bar>
           
             <mdui-layout-main class="example-layout-main" style="height: 97vh;">
                 <div id="main">
-                    <div class="bottom-side-bar">
+                    <div class="bottom-side-bar" data-liquid liq-blur="5">
                         <div class="tabs">
                             <div class="tab minimize" style="width: 50px;"><md-icon>􀅋</md-icon></div>
                             <div class="tab config"><span>Configuration</span></div>
@@ -221,11 +297,43 @@
 
                     <div class="sideselectionright">
                         <br><br><br>
-                        <md-list style="background-color: color-mix(in srgb, var(--md-sys-color-surface-container-low) 85%, transparent); border-radius: 30px; margin: 10px; padding-left: 15px; padding-right: 15px; border: 1px solid #00000025; backdrop-filter: blur(10px);">
+                        <md-list style="background-color: color-mix(in srgb, var(--md-sys-color-surface-container-low) 85%, transparent); border-radius: 30px; margin: 10px; padding-left: 15px; padding-right: 15px; border: 1px solid #00000025; backdrop-filter: blur(10px); ">
                             <div class="elements-topab" style="display: flex; place-items: center; justify-content: space-between; margin-right: 10px; margin-left: 10px;">
                                 <h2>Configuration</h2>
                             </div>
-                            <div class="scrollable" id="config">
+                            <div class="scrollable" id="config"><mdui-card variant="outlined" id="level-types" style="border-radius: 20px; background-color: #00000000;">
+                                <mdui-collapse value="opened">
+                                    <mdui-collapse-item value="opened">
+                                        <div slot="header">
+                                            <md-list-item style="user-select: none; display: flex; justify-content: space-between;">
+                                                <div style="display: flex; align-items: center; justify-content: space-between;">
+                                                    <p>Level Type</p>
+                                                    <div class="text-field">
+                                                        <input style="height: 50px; width: 150px" type="text" placeholder="(default)" name="leveltype" id="leveltype"></input>
+                                                    </div>
+                                                </div>
+                                            </md-list-item>
+                                            <md-list-item style="user-select: none; display: flex; justify-content: space-between;">
+                                                <div style="display: flex; align-items: center; justify-content: space-between;">
+                                                    <p>Level ID</p>
+                                                    <div class="text-field">
+                                                        <input style="height: 50px; width: 150px" type="number" placeholder="XXXXXXXXX" name="levelid" id="levelid"></input>
+                                                    </div>
+                                                </div>
+                                            </md-list-item>
+                                            <md-list-item style="user-select: none; display: flex; justify-content: space-between;">
+                                                <div style="display: flex; align-items: center; justify-content: space-between;">
+                                                    <p>Target Level</p>
+                                                    <div class="text-field">
+                                                        <input style="height: 50px; width: 150px" type="number" placeholder="" name="leveltarg" id="leveltarg"></input>
+                                                    </div>
+                                                </div>
+                                            </md-list-item>
+                                        </div>
+                                        
+                                    </mdui-collapse-item>
+                                </mdui-collapse>
+                            </mdui-card><br>
                                 <mdui-card variant="outlined" style="border-radius: 20px; background-color: #00000000;">
                                     <mdui-collapse value="opened">
                                         <mdui-collapse-item value="opened">
@@ -398,7 +506,12 @@
                                 <mdui-card variant="outlined" style="border-radius: 20px; background-color: #00000000;">
                                     <mdui-collapse value="opened">
                                         <mdui-collapse-item value="opened">
-                                            <md-list-item slot="header" style="user-select: none;" type="link"><span>Score targets</span> <md-icon slot="end">􀆈</md-icon></md-list-item><md-divider inset></md-divider>
+                                            <md-list-item slot="header" style="user-select: none; display: flex; justify-content: space-between;">
+                                                <div style="display: flex; align-items: center; justify-content: space-between;">
+                                                    <p>Score targets</p>
+                                                    
+                                                </div>
+                                            </md-list-item>
                                             <div style="display: flex; align-items: center; justify-content: space-between; margin-left: 15px; margin-right: 15px;">
                                                 <p style="display: flex; gap: 10px; place-items: center;"><img src="ui/hud/hud_scoreStar_red.png" style="width: 25px;"> Star 1</p>
                                                 <div class="text-field">
@@ -727,6 +840,38 @@
                                                    <div class="selectelement" element="pinata_unbreakable" gamelayer="normal"></div>
                                                    <div class="selectelement" element="pinata_empty" gamelayer="normal"></div>
                                                    <div class="selectelement" element="rainbow_rapid_mold" gamelayer="normal"></div>
+                                                    <div class="selectelement" element="gumball_machine_empty" gamelayer="normal"></div><div class="selectelement" element="gumball_machine" gamelayer="normal"></div>
+                                                    <div class="selectelement" element="mallomatic_head_top" gamelayer="normal"></div>
+                                                    <div class="selectelement" element="mallomatic_head_left" gamelayer="normal"></div>
+                                                    <div class="selectelement" element="mallomatic_head_right" gamelayer="normal"></div>
+                                                    <div class="selectelement" element="mallomatic_head_bottom" gamelayer="normal"></div>
+                                                <div class="selectelement" element="sprinks_nest" gamelayer="normal"></div>
+                                            </div>
+                                        </div>
+                                    </mdui-collapse-item>
+                                </mdui-collapse>
+                                <md-divider inset></md-divider>
+                                <mdui-collapse>
+                                    <mdui-collapse-item>
+                                        <md-list-item type="link" slot="header" style="user-select: none;">
+                                            <img width="30px" slot="start" src="blockers.png"/><span>Wonderful Wrapper</span>
+                                            <md-icon slot="end">􀆈</md-icon>
+                                        </md-list-item>
+                                        <div style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
+                                            <div class="dropped" id="wonderful-wrapper">
+                                                <div class="selectelement" element="wonderful_base" gamelayer="normal"></div>
+                                                <div class="selectelement" element="wonderful_base_vertical" gamelayer="normal"></div>
+                                                <div class="selectelement" element="wonderful_blue_stripe" gamelayer="wonderful"></div>
+                                                <div class="selectelement" element="wonderful_red_stripe" gamelayer="wonderful"></div>
+                                                <div class="selectelement" element="wonderful_yellow_stripe" gamelayer="wonderful"></div>
+                                                <div class="selectelement" element="wonderful_green_stripe" gamelayer="wonderful"></div>
+                                                <div class="selectelement" element="wonderful_purple_stripe" gamelayer="wonderful"></div>
+                                                <div class="selectelement" element="wonderful_orange_stripe" gamelayer="wonderful"></div>
+                                                <div class="selectcoloredelement" element="colorbomb"></div>
+                                                <div class="selectcoloredelement" element="striped_horizontal"></div>
+                                                <div class="selectcoloredelement" element="striped_vertical"></div>
+                                                <div class="selectcoloredelement" element="wrapped"></div>
+                                                <div class="selectcoloredelement" element="jellyfish"></div>
                                             </div>
                                         </div>
                                     </mdui-collapse-item>
@@ -811,13 +956,12 @@
                                 <mdui-collapse>
                                     <mdui-collapse-item>
                                         <md-list-item type="link" slot="header" style="user-select: none;">
-                                            <img width="30px" slot="start" src="ingredientas.png"/><span>Ingredients</span>
+                                            <img width="30px" slot="start" src="elements/sprinks_hud.png"/><span>Sprinks</span>
                                             <md-icon slot="end">􀆈</md-icon>
                                         </md-list-item>
                                         <div style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
                                             <div class="dropped" id="ingredients">
-                                                <div class="selectelement" element="cherry" gamelayer="normal"></div>
-                                                <div class="selectelement" element="hazelnut" gamelayer="normal"></div>
+                                                <div class="selectelement" element="sprinks" gamelayer="normal"></div>
                                                 <div class="selectelement" element="ingredients_exit" gamelayer="ingredients_exit"></div>
                                             </div>
                                         </div>
@@ -1030,20 +1174,6 @@
                                 <mdui-collapse>
                                     <mdui-collapse-item>
                                         <md-list-item type="link" slot="header" style="user-select: none;">
-                                            <img width="30px" slot="start" src="gumball_machine.webp"/><span>Gumball Machine</span>
-                                            <md-icon slot="end">􀆈</md-icon>
-                                        </md-list-item>
-                                        <div style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
-                                            <div class="dropped" id="gumball">
-                                                <div class="selectelement" element="gumball_machine_empty" gamelayer="normal"></div><div class="selectelement" element="gumball_machine" gamelayer="normal"></div>
-                                            </div>
-                                        </div>
-                                    </mdui-collapse-item>
-                                </mdui-collapse>
-                                <md-divider inset></md-divider>
-                                <mdui-collapse>
-                                    <mdui-collapse-item>
-                                        <md-list-item type="link" slot="header" style="user-select: none;">
                                             <img width="30px" slot="start" src="elements/portal_entrance.png"/><span>Teleporters</span>
                                             <md-icon slot="end">􀆈</md-icon>
                                         </md-list-item>
@@ -1098,6 +1228,27 @@
                                         
                                     </mdui-collapse-item>
                                 </mdui-collapse>
+                                <md-divider inset></md-divider>
+                                <mdui-collapse>
+                                    <mdui-collapse-item>
+                                        <md-list-item type="link" slot="header" style="user-select: none;">
+                                            <img width="30px" slot="start" src="blockers.png"/><span>Wonderful Wrapper</span>
+                                            <md-icon slot="end">􀆈</md-icon>
+                                        </md-list-item>
+                                        <div style="background-color: var(--md-sys-color-surface-container-highest); border-radius: 20px;">
+                                            <div class="dropped" id="wonderful-wrapper">
+                                                <div class="selectelement" element="wonderful_base" gamelayer="normal"></div>
+                                                <div class="selectelement" element="wonderful_blue_stripe" gamelayer="normal"></div>
+                                                <div class="selectelement" element="wonderful_red_stripe" gamelayer="normal"></div>
+                                                <div class="selectelement" element="wonderful_yellow_stripe" gamelayer="normal"></div>
+                                                <div class="selectelement" element="wonderful_green_stripe" gamelayer="normal"></div>
+                                                <div class="selectelement" element="wonderful_purple_stripe" gamelayer="normal"></div>
+                                                <div class="selectelement" element="wonderful_orange_stripe" gamelayer="normal"></div>
+                                            </div>
+                                        </div>
+                                    </mdui-collapse-item>
+                                </mdui-collapse>
+                                <md-divider inset></md-divider>
                             </md-list>
                             </div>
                     </div>
@@ -1160,7 +1311,7 @@
                                 <img src="logo-1024x1024-full.png" style="width: 100px; height: 100px;">
                                 <div class="app-info-text">
                                     <h2>Candy Crush Level Editor</h2>
-                                    <p>Version 1.9</p>
+                                    <p>Version 1.10</p>
                                 </div>
                             </div>
                             <p style="display: flex;align-items: center;">This tool belongs to and is developed by <img src="CCGAppsGifLogo.gif" draggable="false" style="width: 30px; height: 30px;">CCGApps.</p>
@@ -1197,7 +1348,7 @@
                 </mdui-dialog>
                 <forge-dialog aria-labelledby="dialog-title" preset="bottom-sheet" class="export-dialog" style="--forge-dialog-shape: 20px; --forge-dialog-background: #00000000; --forge-dialog-elevation: 0;">
                     <forge-scaffold id="levelResult" style="padding: 20px; display: none;">
-                        <div slot="header" style="background: color-mix(in srgb, var(--md-sys-color-surface-container-high) 60%, transparent); border-radius: 30px; padding: 10px; backdrop-filter: blur(10px); margin-bottom: 20px;">
+                        <div slot="header" style="background: color-mix(in srgb, var(--md-sys-color-surface-container-high) 60%, transparent); border-radius: 30px; padding: 10px; backdrop-filter: blur(10px); margin-bottom: 20px; box-shadow: inset 2px 2px 0px -1px #FFFFFF,inset -2px -2px 0px -1px #FFFFFF;">
                             <h1 class="forge-typography--heading4" id="dialog-title" style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px;">
                                 <md-icon style="font-size: 24px;">􀆅</md-icon>
                                 Level exported successfully!
@@ -1283,7 +1434,7 @@
                                                     </div>
                                                 </md-list-item>
                                                 <audio id="musicMain" loop>
-                                                    <source id="musicSrc" src="audio/songs/Editor_Song_Theme_Candy_Fantasia.ogg" type="audio/ogg">
+                                                    <source id="musicSrc" src="audio/songs/bonbon_bonbon.ogg" type="audio/ogg">
                                                 </audio>
                                                 <md-list-item>
                                                     <md-icon-button id="mute" slot="start">
@@ -1309,12 +1460,86 @@
                                     <md-divider></md-divider>
                                     <md-list-item>
                                         <md-icon slot="start">􀅴</md-icon>
-                                        V1.9
+                                        V1.10
                                         <md-filled-button id="checkUpdates" slot="end">Check for updates</md-filled-button>
                                         <md-text-button slot="end">View changelogs</md-text-button>
                                     </md-list-item>
                                 </md-list>
                                 <mdui-snackbar closeable class="updates-notify">You're using the latest version of Level Editor!</mdui-snackbar>
+                            </mdui-layout-main>
+                        </mdui-layout>
+                    </forge-scaffold>
+                </forge-dialog>
+                <forge-dialog class="upgrade-plans" style="--forge-dialog-shape: 30px; --forge-dialog-background: #ffffff00; width: 90vh; --forge-dialog-elevation: 0;">
+                    <forge-scaffold style="margin: 0; width: 1000px; height: 900px; overflow: visible;">
+                        <mdui-layout slot="body">
+                            <mdui-top-app-bar style="background: #ffffff00;">
+                                <md-icon-button class="close-upgrades" 
+                                onclick="
+                                    document.querySelector('.upgrade-plans').removeAttribute('open');
+                                ">
+                                    <md-icon>􀆄</md-icon>
+                                </md-icon-button>
+                                <div style="flex-grow: 1"></div>
+                            </mdui-top-app-bar>
+                            <mdui-layout-main>
+                                <div class="header blue_grd" style="color:#fff">
+                                    <h1>Choose your best plan that suits you!</h1>
+                                    <p>Enjoy best premium features of Level Editor to enhance your work quality.</p>
+                                </div>
+                                <div class="plans_available flex rows center wrap">
+                                    <div class="plan tier_grd free">
+                                        <h3>Free tier</h3>
+                                        <h1>$0</h1>
+                                        <p>To be included:</p>
+                                        <ul class="plans_features_li_it">
+                                            <li>10 levels per account</li>
+                                            <li>Free 300 points to use after signing up </li>
+                                            <li>Ads</li>
+                                            <li>Level upload to community limit to 2 levels per post</li>
+                                            <li>Limited elements</li>
+                                        </ul>
+                                        <div class="upg_btns">
+                                            <md-text-button id="upgradePlan" target="free" disabled>You are on Free plan</md-text-button>
+                                        </div>
+                                    </div>
+                                    <div class="plan tier_grd standard">
+                                        <h3>Standard</h3>
+                                        <h1>$5.99</h1>
+                                        <p>Everything in Free, plus:</p>
+                                        <ul class="plans_features_li_it">
+                                            <li>50 levels per account</li>
+                                            <li>Free 300 points to use after signing up and 100 points every month</li>
+                                            <li>No ads</li>
+                                            <li>Level upload to community limit to 10 levels per post</li>
+                                            <li>Unlocked all elements</li>
+                                        </ul>
+                                        <div class="upg_btns">
+                                            <md-outlined-button id="upgradePlanbyPoints" target="standard">6,000</md-outlined-button>
+                                            <md-text-button id="upgradePlan" target="standard"><span style="color:#fff">Upgrade</span></md-text-button>
+                                        </div>
+                                    </div>
+                                    <div class="plan tier_grd exclusive">
+                                        <h3>Exclusive</h3>
+                                        <h1>$19.99</h1>
+                                        <p>Everything in Standard, plus:</p>
+                                        <ul class="plans_features_li_it">
+                                            <li>Unlimited levels per account</li>
+                                            <li>Free 1000 points to use after signing up and 500 points every month</li>
+                                            <li>No ads</li>
+                                            <li>Level upload to community limit to 10 levels per post</li>
+                                            <li>Get free access to beta updates</li>
+                                        </ul>
+                                        <div class="upg_btns">
+                                            <md-outlined-button id="upgradePlanbyPoints" target="exclusive">12,000</md-outlined-button>
+                                            <md-text-button id="upgradePlan" target="exclusive"><span style="color:#fff">Upgrade</span></md-text-button>
+                                        </div>
+                                    </div>
+                                </div><br>
+                                <div class="flex center columns" style="color:#fff">
+                                    <h2>You have a key to activate a plan?</h2>
+                                    <p>Click here to get redirected to CCGApps Shop page.</p>
+                                </div>
                             </mdui-layout-main>
                         </mdui-layout>
                     </forge-scaffold>
@@ -1332,17 +1557,17 @@
             </script>
 
         <script>
-            // Function to open the export dialog
-            const exportButton = document.querySelector('.export-button');
-            const exportDialog = document.querySelector('.export-dialog'); // Select the dialog by ID
-            const close = document.querySelector('.close-btn');
+            // Function to open the export dialog - DISABLED for custom handling
+            // const exportButton = document.querySelector('.export-button');
+            // const exportDialog = document.querySelector('.export-dialog'); // Select the dialog by ID
+            // const close = document.querySelector('.close-btn');
             
-            exportButton.addEventListener("click", () => exportDialog.open = true);
-            if (close) {
-                close.addEventListener("click", () => exportDialog.open = false);
-            } else {
-                console.error("Close button not found");
-            }
+            // exportButton.addEventListener("click", () => exportDialog.open = true);
+            // if (close) {
+            //     close.addEventListener("click", () => exportDialog.open = false);
+            // } else {
+            //     console.error("Close button not found");
+            // }
 
             // Open Import dialog
             const closeImport = document.querySelector('.cancel');
@@ -1404,9 +1629,17 @@
                 // Get the file name from the export-name field
                 var fileName = document.getElementById("export-name").value.trim();
                 
-                // If the file name is blank, use the default
+                // If the file name is blank, use the default or URL parameter
                 if (!fileName) {
-                    fileName = "level.txt";
+                    // Check for 'lev' URL parameter
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const levParam = urlParams.get('lev');
+                    
+                    if (levParam) {
+                        fileName = levParam + ".txt";
+                    } else {
+                        fileName = "level.txt";
+                    }
                 } else if (!fileName.toLowerCase().endsWith('.txt')) {
                     // Ensure the file has a .txt extension
                     fileName += '.txt';
@@ -1756,6 +1989,15 @@
                     return;
                 }
 
+                // Set default filename from URL parameter if available
+                const urlParams = new URLSearchParams(window.location.search);
+                const levParam = urlParams.get('lev');
+                const exportNameField = document.getElementById('export-name');
+                
+                if (levParam && exportNameField && !exportNameField.value.trim()) {
+                    exportNameField.value = levParam;
+                }
+
                 // Hide #fakeLoading and show #levelResult after 2 seconds
                 setTimeout(() => {
                     fakeLoading.style.display = 'none'; // Hide #fakeLoading
@@ -1820,8 +2062,8 @@
                                 triggerClick(".newlvl"); // Trigger click on .newlvl
                                 break;
                             case 's':
-                                event.preventDefault(); // Prevent default browser behavior
-                                triggerClick(".export-button"); // Trigger click on .export-button
+                                // Let script.js handle all Ctrl+S combinations
+                                // Don't prevent default here to allow script.js to handle it
                                 break;
                             case 'i':
                                 event.preventDefault(); // Prevent default browser behavior
@@ -2022,6 +2264,96 @@
                 // Add event listener to the entire document
                 document.addEventListener('click', playClickSound);
             });
+        </script>
+
+        <script src="liquid-glass-18jdn1wbjkey10kam.js"></script>
+        <script>
+            /**
+             * Enables elements with the 'divact' attribute to act as divs,
+             * allowing their child elements to be interactive (e.g., clickable, focusable).
+             * This disables pointer-events on the host, but enables them on children.
+             */
+            function enableDivAct() {
+                document.querySelectorAll('[divact]').forEach(el => {
+                    // Only apply once
+                    if (el.__divactApplied) return;
+                    el.__divactApplied = true;
+            
+                    // Set pointer-events: none on the host
+                    el.style.pointerEvents = 'none';
+            
+                    // Set pointer-events: auto on all direct children
+                    Array.from(el.children).forEach(child => {
+                        child.style.pointerEvents = 'auto';
+                    });
+            
+                    // Also allow focus for interactive children
+                    Array.from(el.querySelectorAll('button, [tabindex], input, select, textarea, a')).forEach(child => {
+                        child.tabIndex = child.tabIndex >= 0 ? child.tabIndex : 0;
+                    });
+                });
+            }
+            
+            // Initial run
+            document.addEventListener('DOMContentLoaded', enableDivAct);
+            
+            // Observe for dynamically added elements with 'divact'
+            new MutationObserver(() => {
+                enableDivAct();
+            }).observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+            </script>
+            <script>
+                function navigateOpen() {
+                    const menuBtn = document.querySelector('.menu-btn');
+                
+                    if (!menuBtn) return;
+                
+                    // Add .menu-expanded, remove .menu-normal if present
+                    menuBtn.classList.add('menu-expanded');
+                    menuBtn.classList.remove('menu-normal');
+                
+                    // Handler to close menu when clicking outside
+                    function handleClickOutside(event) {
+                        if (!menuBtn.contains(event.target)) {
+                            menuBtn.classList.remove('menu-expanded');
+                            menuBtn.classList.add('menu-normal');
+                            document.removeEventListener('mousedown', handleClickOutside, true);
+                            document.removeEventListener('touchstart', handleClickOutside, true);
+                        }
+                    }
+                
+                    // Attach the outside click handler
+                    setTimeout(() => {
+                        document.addEventListener('mousedown', handleClickOutside, true);
+                        document.addEventListener('touchstart', handleClickOutside, true);
+                    }, 0);
+                }
+                </script>
+
+        <script>
+            function removeMdRippleOpacity() {
+                document.querySelectorAll('md-icon-button').forEach(iconButton => {
+                    if (iconButton.shadowRoot) {
+                        applyRippleOpacity(iconButton.shadowRoot);
+                    } else {
+                        customElements.whenDefined('md-icon-button').then(() => {
+                            if (iconButton.shadowRoot) {
+                                applyRippleOpacity(iconButton.shadowRoot);
+                            }
+                        });
+                    }
+                });
+            }
+
+            function applyRippleOpacity(shadowRoot) {
+                const rippleElements = shadowRoot.querySelectorAll('md-ripple');
+                rippleElements.forEach(ripple => {
+                    ripple.style.opacity = '0';
+                });
+            }
         </script>
     </body>
 </html>

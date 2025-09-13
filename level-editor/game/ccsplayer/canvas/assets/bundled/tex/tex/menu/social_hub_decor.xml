@@ -1,0 +1,7 @@
+<TextureAtlas imagePath="social_hub_decor.ktp" width="512" height="512" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="social_hub_decor/empty_bg_cottomcloud.png" x="2" y="401" w="426" h="109" pX="0.5" pY="0.5" oY="3" oW="426" oH="119"/>
+	<sprite n="social_hub_decor/bg_cloud.png" x="432" y="399" w="54" h="111" pX="0.5" pY="0.5" oX="3" oY="3" oW="120" oH="60" r="y"/>
+	<sprite n="social_hub_decor/deeplink_card_grass.png" x="2" y="317" w="425" h="80" pX="0.5" pY="0.5" oX="6" oW="441" oH="80"/>
+	<sprite n="social_hub_decor/header_ribbon.png" x="2" y="197" w="351" h="116" pX="0.5" pY="0.5" oX="1" oY="2" oW="355" oH="120"/>
+	<sprite n="social_hub_decor/deeplink_card_tree.png" x="357" y="228" w="87" h="85" pX="0.5" pY="0.5" oX="2" oY="1" oW="87" oH="90" r="y"/>
+</TextureAtlas>

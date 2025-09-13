@@ -1,0 +1,52 @@
+<TextureAtlas imagePath="hard_level_offer_2.ktp" width="256" height="256" premultipliedAlpha="false" king_version="1.5.2" sprites_scale="2.000000">
+	<sprite n="hard_level_offer_2/hard_level_offer_cloud.png" x="2" y="216" w="98" h="38" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_2/hard_level_offer_bundleBG.png" x="104" y="249" w="97" h="5" pX="0.5" pY="0.5" oW="5" oH="97" r="y"/>
+	<sprite n="hard_level_offer_2/hard_level_offer_skull1.png" x="205" y="202" w="47" h="52" pX="0.5" pY="0.5">
+		<vertices>31 52 9 51 0 40 45 36 0 19 47 28 22 0 47 16 36 0 2 8 9 2</vertices>
+		<verticesUV>236 254 214 253 205 242 250 238 205 221 252 230 227 202 252 218 241 202 207 210 214 204</verticesUV>
+		<triangles>0 1 2 3 0 2 3 2 4 5 3 4 5 4 6 7 5 6 6 8 7 9 6 4 6 9 10</triangles>
+	</sprite>
+	<sprite n="hard_level_offer_2/hard_level_offer_Panel2.png" x="104" y="171" w="76" h="74" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_2/hard_level_offer_lightning1.png" x="184" y="214" w="17" h="31" pX="0.5" pY="0.5">
+		<vertices>0 0 13 0 7 18 0 20 9 31 4 31 17 8</vertices>
+		<verticesUV>184 214 197 214 191 232 184 234 193 245 188 245 201 222</verticesUV>
+		<triangles>0 1 2 3 0 2 2 4 5 4 2 6 6 2 1</triangles>
+	</sprite>
+	<sprite n="hard_level_offer_2/hard_level_string.png" x="184" y="198" w="15" h="12" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_2/hard_level_offer_Hill1_path.png" x="184" y="142" w="66" h="52" pX="0.5" pY="0.5">
+		<vertices>0 52 6 40 30 52 0 49 44 1 66 9 48 0 61 0 66 3</vertices>
+		<verticesUV>184 194 190 182 214 194 184 191 228 143 250 151 232 142 245 142 250 145</verticesUV>
+		<triangles>0 1 2 0 3 1 2 1 4 5 2 4 6 5 4 5 6 7 7 8 5</triangles>
+	</sprite>
+	<sprite n="hard_level_offer_2/hard_level_offer_skull2.png" x="2" y="157" w="75" h="55" pX="0.5" pY="0.5">
+		<vertices>0 47 2 32 4 52 14 55 22 52 29 0 41 52 65 31 52 0 74 13 75 25 70 2 65 41 48 55 59 55 5 8 0 29 0 13</vertices>
+		<verticesUV>2 204 4 189 6 209 16 212 24 209 31 157 43 209 67 188 54 157 76 170 77 182 72 159 67 198 50 212 61 212 7 165 2 186 2 170</verticesUV>
+		<triangles>0 1 2 1 3 2 4 3 1 5 4 1 5 6 4 5 7 6 5 8 7 9 7 8 7 9 10 9 8 11 12 6 7 13 6 12 14 13 12 5 1 15 1 16 15 16 17 15</triangles>
+	</sprite>
+	<sprite n="hard_level_offer_2/hard_level_offer_142.png" x="81" y="198" w="14" h="14" pX="0.5" pY="0.5" oX="1" oY="1" oW="16" oH="16">
+		<vertices>14 15 1 14 15 1 1 1</vertices>
+		<verticesUV>94 212 81 211 95 198 81 198</verticesUV>
+		<triangles>0 1 2 1 3 2</triangles>
+	</sprite>
+	<sprite n="hard_level_offer_2/hard_level_offer_white_bg.png" x="81" y="190" w="4" h="4" pX="0.5" pY="0.5"/>
+	<sprite n="hard_level_offer_2/hard_level_offer_pin2.png" x="81" y="144" w="62" h="23" pX="0.5" pY="0.5">
+		<vertices>2 15 0 7 9 0 21 8 15 23 38 9 51 23 58 16 56 0 62 9 62 0 0 0</vertices>
+		<verticesUV>83 159 81 151 90 144 102 152 96 167 119 153 132 167 139 160 137 144 143 153 143 144 81 144</verticesUV>
+		<triangles>0 1 2 0 2 3 4 0 3 4 3 5 6 4 5 6 5 7 5 8 7 7 8 9 8 10 9 1 11 2</triangles>
+	</sprite>
+	<sprite n="hard_level_offer_2/hard_level_offer_pin1.png" x="147" y="114" w="30" h="53" pX="0.5" pY="0.5" oW="53" oH="30" r="y">
+		<vertices>10 29 0 23 0 10 13 0 23 30 46 0 38 30 53 22 52 4</vertices>
+		<verticesUV>148 124 154 114 167 114 177 127 147 137 177 160 147 152 155 167 173 166</verticesUV>
+		<triangles>0 1 2 3 0 2 0 3 4 4 3 5 5 6 4 7 6 5 7 5 8</triangles>
+	</sprite>
+	<sprite n="hard_level_offer_2/hard_level_offer_pin1_CF.png" x="181" y="108" w="53" h="30" pX="0.5" pY="0.5">
+		<vertices>10 29 0 23 0 10 13 0 23 30 46 0 38 30 53 22 52 4</vertices>
+		<verticesUV>191 137 181 131 181 118 194 108 204 138 227 108 219 138 234 130 233 112</verticesUV>
+		<triangles>0 1 2 3 0 2 0 3 4 4 3 5 5 6 4 7 6 5 7 5 8</triangles>
+	</sprite>
+	<sprite n="hard_level_offer_2/hard_level_hanger.png" x="2" y="113" w="46" h="40" pX="0.5" pY="0.5">
+		<vertices>9 30 0 24 0 7 8 0 34 0 46 40 2 40</vertices>
+		<verticesUV>11 143 2 137 2 120 10 113 36 113 48 153 4 153</verticesUV>
+		<triangles>0 1 2 0 2 3 0 3 4 0 4 5 6 0 5</triangles>
+	</sprite>
+</TextureAtlas>

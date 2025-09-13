@@ -1,0 +1,135 @@
+<TextureAtlas imagePath="candy_mix.ktp" width="1024" height="1024" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="candy_mix/gummy_rope_white_stroke.png" x="2" y="2" w="60" h="500" pX="0.5" pY="0.5" oX="77" oW="183" oH="500"/>
+	<sprite n="candy_mix/t_cakeBomb_tray_d.png" x="66" y="2" w="150" h="149" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/drop_down_dragon2.png" x="220" y="2" w="141" h="150" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/bobber.png" x="66" y="155" w="123" h="124" pX="0.5" pY="0.5" oX="3" oY="4" oW="128" oH="128"/>
+	<sprite n="candy_mix/order-fondant-hd.png" x="365" y="2" w="126" h="115" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/dragonsnest_nest.png" x="66" y="283" w="107" h="118" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/Red_Regular.png" x="193" y="156" w="100" h="110" pX="0.5" pY="0.5" oW="100" oH="111"/>
+	<sprite n="candy_mix/wrapped_fish.png" x="495" y="2" w="109" h="99" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/rainbow_candy_L.png" x="2" y="506" w="105" h="102" pX="0.5" pY="0.5" oY="1" oW="105" oH="105"/>
+	<sprite n="candy_mix/Blue_Striped.png" x="297" y="156" w="100" h="107" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/Blue_Regular.png" x="177" y="283" w="100" h="107" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/Green_Wrapped.png" x="608" y="2" w="100" h="105" pX="0.5" pY="0.5" oW="100" oH="106"/>
+	<sprite n="candy_mix/Green_Striped.png" x="111" y="405" w="100" h="104" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/Green_Regular.png" x="2" y="612" w="100" h="104" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/Red_Wrapped.png" x="401" y="121" w="100" h="103" pX="0.5" pY="0.5" oW="100" oH="104"/>
+	<sprite n="candy_mix/Red_Striped.png" x="712" y="2" w="100" h="103" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/Purple_Striped.png" x="2" y="720" w="100" h="103" pX="0.5" pY="0.5" oW="100" oH="104"/>
+	<sprite n="candy_mix/Purple_Regular.png" x="281" y="270" w="100" h="103" pX="0.5" pY="0.5" oW="100" oH="104"/>
+	<sprite n="candy_mix/Orange_Striped.png" x="505" y="111" w="100" h="103" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/Orange_Regular.png" x="111" y="513" w="100" h="103" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/Orange_Wrapped.png" x="816" y="2" w="99" h="103" pX="0.5" pY="0.5" oW="100" oH="105"/>
+	<sprite n="candy_mix/Purple_Wrapped.png" x="2" y="827" w="99" h="102" pX="0.5" pY="0.5" oY="1" oW="100" oH="104"/>
+	<sprite n="candy_mix/Blue_Wrapped.png" x="919" y="2" w="99" h="102" pX="0.5" pY="0.5" oX="1" oW="100" oH="103"/>
+	<sprite n="candy_mix/fondant_2.png" x="215" y="394" w="100" h="100" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/fondant_1.png" x="401" y="228" w="100" h="100" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/Yellow_Wrapped.png" x="106" y="620" w="99" h="101" pX="0.5" pY="0.5" oW="100" oH="103"/>
+	<sprite n="candy_mix/Yellow_Striped.png" x="609" y="111" w="100" h="99" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/Yellow_Regular.png" x="713" y="109" w="100" h="99" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/chest_base.png" x="106" y="725" w="94" h="102" pX="0.5" pY="0.5" oX="4" oY="3" oW="102" oH="109"/>
+	<sprite n="candy_mix/gummy_rope_3.png" x="215" y="498" w="95" h="100" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/gummy_rope_2.png" x="505" y="218" w="95" h="100" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/gummy_rope_1.png" x="319" y="377" w="95" h="100" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/gummy_rope_4.png" x="105" y="831" w="94" h="100" pX="0.5" pY="0.5" oW="95" oH="100"/>
+	<sprite n="candy_mix/fish_revamp.png" x="2" y="935" w="100" h="88" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/striped_fish.png" x="817" y="109" w="99" h="87" pX="0.5" pY="0.5" oX="5" oW="105" oH="92"/>
+	<sprite n="candy_mix/key_gray_01.png" x="920" y="108" w="87" h="97" pX="0.5" pY="0.5" oX="4" oW="91" oH="97"/>
+	<sprite n="candy_mix/lock.png" x="418" y="332" w="83" h="100" pX="0.5" pY="0.5" oX="1" oW="85" oH="100"/>
+	<sprite n="candy_mix/drop_down_dragon.png" x="215" y="602" w="78" h="95" pX="0.5" pY="0.5" oW="83" oH="95"/>
+	<sprite n="candy_mix/fish_colorbomb.png" x="106" y="935" w="94" h="78" pX="0.5" pY="0.5" oX="1" oY="1" oW="97" oH="80"/>
+	<sprite n="candy_mix/mulock_key.png" x="609" y="214" w="80" h="90" pX="0.5" pY="0.5" oX="8" oW="90" oH="90"/>
+	<sprite n="candy_mix/sugar_chest_revamp_key.png" x="319" y="481" w="79" h="90" pX="0.5" pY="0.5" oX="4" oW="90" oH="90"/>
+	<sprite n="candy_mix/dragonsnest_egg.png" x="209" y="701" w="79" h="87" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/t_spec_luckyCandy_m.png" x="693" y="214" w="81" h="82" pX="0.5" pY="0.5" oX="1" oY="2" oW="85" oH="85"/>
+	<sprite n="candy_mix/chain_05.png" x="505" y="322" w="79" h="84" pX="0.5" pY="0.5" oY="12" oW="79" oH="96"/>
+	<sprite n="candy_mix/chain_04.png" x="204" y="792" w="78" h="84" pX="0.5" pY="0.5" oY="13" oW="80" oH="97"/>
+	<sprite n="candy_mix/evil_flying.png" x="817" y="200" w="78" h="78" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/evil_base.png" x="418" y="436" w="78" h="78" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/crystal_candy_03.png" x="297" y="602" w="78" h="78" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/crystal_candy_02.png" x="204" y="880" w="78" h="78" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/crystal_candy_01.png" x="604" y="308" w="78" h="78" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/path_line_UV.png" x="899" y="209" w="77" h="77" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/path_bridge_empty_UV.png" x="505" y="410" w="77" h="77" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/mold.png" x="297" y="684" w="77" h="77" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/chain_02.png" x="402" y="518" w="75" h="76" pX="0.5" pY="0.5" oW="79" oH="77"/>
+	<sprite n="candy_mix/skull_pedestal.png" x="693" y="300" w="75" h="75" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/chain_01.png" x="778" y="282" w="74" h="73" pX="0.5" pY="0.5" oX="7" oY="2" oW="81" oH="76"/>
+	<sprite n="candy_mix/key_gray_02.png" x="292" y="765" w="81" h="65" pX="0.5" pY="0.5" oY="10" oW="81" oH="87"/>
+	<sprite n="candy_mix/shredder_eyeframe_full.png" x="204" y="962" w="84" h="60" pX="0.5" pY="0.5" oX="33" oY="58" oW="150" oH="150"/>
+	<sprite n="candy_mix/shredder_eyeframe.png" x="379" y="598" w="84" h="60" pX="0.5" pY="0.5" oX="33" oY="58" oW="150" oH="150"/>
+	<sprite n="candy_mix/shredder_body_base.png" x="588" y="390" w="86" h="57" pX="0.5" pY="0.5" oX="32" oY="48" oW="150" oH="150"/>
+	<sprite n="candy_mix/drop_down_dragon_head.png" x="286" y="834" w="72" h="64" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/shredder_mouth_2.png" x="856" y="290" w="102" h="45" pX="0.5" pY="0.5" oX="20" oY="100" oW="150" oH="150"/>
+	<sprite n="candy_mix/t_cakeBomb_slice_08_d.png" x="500" y="491" w="64" h="71" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/shredder_eyeclosed.png" x="286" y="902" w="84" h="54" pX="0.5" pY="0.5" oX="33" oY="58" oW="150" oH="150"/>
+	<sprite n="candy_mix/rainbow_candy.png" x="379" y="662" w="67" h="65" pX="0.5" pY="0.5" oX="5" oY="6" oW="77" oH="77"/>
+	<sprite n="candy_mix/wrapper.png" x="292" y="960" w="70" h="59" pX="0.5" pY="0.5" oX="2" oY="3" oW="75" oH="65"/>
+	<sprite n="candy_mix/sugar_chest_revamp_key_yellow_b.png" x="686" y="379" w="64" h="64" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/sugar_chest_revamp_key_red_b.png" x="586" y="451" w="64" h="64" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/sugar_chest_revamp_key_purple_b.png" x="772" y="359" w="64" h="64" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/sugar_chest_revamp_key_orange_b.png" x="481" y="566" w="64" h="64" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/sugar_chest_revamp_key_green_b.png" x="378" y="731" w="64" h="64" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/sugar_chest_revamp_key_blue_b.png" x="856" y="339" w="64" h="64" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/shredder_mouth_1.png" x="924" y="339" w="95" h="43" pX="0.5" pY="0.5" oX="27" oY="100" oW="150" oH="150"/>
+	<sprite n="candy_mix/drop_down_dragon_egg.png" x="362" y="834" w="68" h="60" pX="0.5" pY="0.5" oX="10" oY="8" oW="83" oH="68"/>
+	<sprite n="candy_mix/key_gray_03.png" x="654" y="451" w="95" h="40" pX="0.5" pY="0.5" oX="4" oY="1" oW="102" oH="45"/>
+	<sprite n="candy_mix/evil_bowl.png" x="568" y="519" w="61" h="62" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/t_cakeBomb_slice_03_d.png" x="467" y="634" w="52" h="72" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/UpgradableWrapper_1.png" x="374" y="898" w="68" h="55" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/t_cakeBomb_slice_05_d.png" x="366" y="960" w="67" h="55" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/UpgradableWrapper_2.png" x="754" y="427" w="68" h="54" pX="0.5" pY="0.5" oW="68" oH="55"/>
+	<sprite n="candy_mix/t_cakeBomb_slice_02_d.png" x="450" y="710" w="67" h="54" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/t_cakeBomb_slice_01_d.png" x="549" y="585" w="49" h="72" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/t_cakeBomb_slice_06_d.png" x="924" y="386" w="64" h="55" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/t_cakeBomb_slice_07_d.png" x="654" y="495" w="46" h="74" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/drop_down_dragon_top.png" x="840" y="407" w="63" h="54" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/t_cakeBomb_slice_04_d.png" x="446" y="768" w="69" h="49" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/skull_head.png" x="434" y="821" w="58" h="57" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/lock_glow.png" x="523" y="661" w="53" h="61" pX="0.5" pY="0.5" oX="7" oY="7" oW="68" oH="75"/>
+	<sprite n="candy_mix/shredder_mouth_lip_1.png" x="704" y="495" w="101" h="28" pX="0.5" pY="0.5" oX="23" oY="100" oW="150" oH="150"/>
+	<sprite n="candy_mix/shredder_mouth_lip_2.png" x="602" y="585" w="96" h="29" pX="0.5" pY="0.5" oX="27" oY="100" oW="150" oH="150"/>
+	<sprite n="candy_mix/shredder_eyewhite.png" x="446" y="882" w="73" h="37" pX="0.5" pY="0.5" oX="38" oY="64" oW="150" oH="150"/>
+	<sprite n="candy_mix/path_t.png" x="826" y="465" w="50" h="50" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/path_line.png" x="704" y="527" w="50" h="50" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/path_cross.png" x="437" y="957" w="50" h="50" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/path_corner.png" x="907" y="445" w="50" h="50" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/rainbow_candy2.png" x="602" y="618" w="50" h="48" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/chain_04_glow.png" x="521" y="726" w="44" h="52" pX="0.5" pY="0.5" oY="4" oW="45" oH="56"/>
+	<sprite n="candy_mix/chain_03.png" x="66" y="405" w="29" h="76" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/shredder_mouth_teeth_2.png" x="446" y="923" w="85" h="24" pX="0.5" pY="0.5" oX="32" oY="119" oW="150" oH="150"/>
+	<sprite n="candy_mix/shredder_mouth_teeth_1.png" x="580" y="670" w="85" h="24" pX="0.5" pY="0.5" oX="32" oY="119" oW="150" oH="150"/>
+	<sprite n="candy_mix/jelly_nostroke_revamp.png" x="962" y="290" w="45" h="45" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/drop_down_dragon_cannon.png" x="778" y="212" w="35" h="43" pX="0.5" pY="0.5" oX="4" oW="43" oH="43"/>
+	<sprite n="candy_mix/chain_02_glow.png" x="980" y="209" w="38" h="39" pX="0.5" pY="0.5" oW="40" oH="39"/>
+	<sprite n="candy_mix/evil_goo.png" x="377" y="799" w="50" h="26" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/chain_03_glow.png" x="992" y="386" w="25" h="49" pX="0.5" pY="0.5" oY="7" oW="25" oH="63"/>
+	<sprite n="candy_mix/shredder_topchute_rim.png" x="314" y="575" w="69" h="17" pX="0.5" pY="0.5" oX="40" oY="18" oW="150" oH="150"/>
+	<sprite n="candy_mix/drop_down_dragon_eyelids.png" x="980" y="252" w="32" h="33" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/popper_overlay.png" x="961" y="445" w="32" h="32" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/skull_bone3.png" x="365" y="121" w="30" h="29" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/skull_bone4.png" x="385" y="332" w="29" h="29" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/drop_down_arrow.png" x="496" y="821" w="39" h="21" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/shredder_topchute_body.png" x="758" y="527" w="50" h="16" pX="0.5" pY="0.5" oX="50" oY="29" oW="150" oH="150"/>
+	<sprite n="candy_mix/skull_bone1.png" x="997" y="439" w="24" h="29" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/skull_bone2.png" x="519" y="782" w="24" h="28" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/mulock_keyicon_red.png" x="496" y="846" w="25" h="25" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/mulock_keyicon_purple.png" x="997" y="472" w="25" h="25" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/mulock_keyicon_blue.png" x="580" y="698" w="25" h="25" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/shredder_topchute_base.png" x="656" y="618" w="48" h="13" pX="0.5" pY="0.5" oX="51" oY="41" oW="150" oH="150"/>
+	<sprite n="candy_mix/shredder_pupil.png" x="880" y="465" w="20" h="31" pX="0.5" pY="0.5" oX="65" oY="70" oW="150" oH="150"/>
+	<sprite n="candy_mix/drop_down_egg.png" x="812" y="519" w="22" h="28" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/mulock_keyicon_green.png" x="702" y="581" w="23" h="25" pX="0.5" pY="0.5" oX="1" oW="25" oH="25"/>
+	<sprite n="candy_mix/popper_shadow.png" x="633" y="519" w="16" h="34" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/mulock_keyicon_yellow.png" x="961" y="481" w="21" h="25" pX="0.5" pY="0.5" oX="2" oW="25" oH="25"/>
+	<sprite n="candy_mix/drop_down_dragon_eyes.png" x="523" y="634" w="22" h="22" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/drop_down_dragon_jaw.png" x="758" y="547" w="23" h="21" pX="0.5" pY="0.5" oX="1" oY="2" oW="25" oH="25"/>
+	<sprite n="candy_mix/mulock_keyicon_orange.png" x="880" y="500" w="19" h="25" pX="0.5" pY="0.5" oX="3" oW="25" oH="25"/>
+	<sprite n="candy_mix/flag_pin.png" x="66" y="485" w="17" h="17" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/evil_screw_shadow.png" x="87" y="485" w="17" h="17" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/evil_screw_1.png" x="778" y="259" w="16" h="16" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/evil_blade.png" x="281" y="377" w="20" h="12" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/evil_skrew_3.png" x="798" y="259" w="15" h="15" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/evil_screw_4.png" x="481" y="518" w="15" h="15" pX="0.5" pY="0.5"/>
+	<sprite n="candy_mix/evil_screw_2.png" x="481" y="537" w="15" h="15" pX="0.5" pY="0.5"/>
+</TextureAtlas>

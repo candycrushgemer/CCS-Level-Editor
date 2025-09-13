@@ -1,0 +1,13 @@
+<TextureAtlas imagePath="ool_popup_new_ui.ktp" width="256" height="256" premultipliedAlpha="true" king_version="1.5.2" sprites_scale="2.000000">
+	<sprite n="ool_popup_new_ui/OOL_new_pink_line_01.png" x="2" y="2" w="248" h="72" pX="0.5" pY="0.5" oY="7" oW="248" oH="79"/>
+	<sprite n="ool_popup_new_ui/ads_prize_display_simple.png" x="2" y="78" w="71" h="129" pX="0.5" pY="0.5"/>
+	<sprite n="ool_popup_new_ui/ool_tooltip_icon.png" x="77" y="78" w="81" h="67" pX="0.5" pY="0.5" oX="4" oY="5" oW="92" oH="78"/>
+	<sprite n="ool_popup_new_ui/ool_cloud2.png" x="2" y="211" w="77" h="44" pX="0.5" pY="0.5"/>
+	<sprite n="ool_popup_new_ui/ool_cloud1.png" x="77" y="149" w="76" h="44" pX="0.5" pY="0.5" oW="77" oH="44"/>
+	<sprite n="ool_popup_new_ui/OOL_new_BG_01.png" x="162" y="78" w="27" h="110" pX="0.5" pY="0.5"/>
+	<sprite n="ool_popup_new_ui/ool_cloud1_bottomhalf.png" x="83" y="197" w="77" h="35" pX="0.5" pY="0.5" oW="77" oH="44"/>
+	<sprite n="ool_popup_new_ui/ool_cloud2_half.png" x="193" y="78" w="40" h="44" pX="0.5" pY="0.5" oW="77" oH="44"/>
+	<sprite n="ool_popup_new_ui/ool_cloud1_half.png" x="193" y="126" w="38" h="44" pX="0.5" pY="0.5" oX="39" oW="77" oH="44"/>
+	<sprite n="ool_popup_new_ui/ool_popup_bkg_panel_pink.png" x="164" y="192" w="33" h="33" pX="0.5" pY="0.5"/>
+	<sprite n="ool_popup_new_ui/OOL_new_BG_02.png" x="237" y="78" w="4" h="110" pX="0.5" pY="0.5"/>
+</TextureAtlas>

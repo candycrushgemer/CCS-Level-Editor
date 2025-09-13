@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Editor Beta</title>
+    <link rel="shortcut icon" href="../editor/logo-1024x1024-full.png" type="image/x-icon">
+    <meta name="description" content="Register Level Editor Beta by CCGApps">
+    <meta property="og:image" content="https://yourdomain.com/editor/logo-1024x1024-full.png">
+    <meta property="og:title" content="Level Editor Beta">
+    <meta property="og:description" content="Register Level Editor Beta by CCGApps">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Level Editor Beta">
+    <meta name="twitter:description" content="Register Level Editor Beta by CCGApps">
+    <meta name="twitter:image" content="https://yourdomain.com/editor/logo-1024x1024-full.png">
+    <meta name="keywords"
+        content="level editor, ccs level editor, ccs level creator, candy crush level creator, candy crush level editor">
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <script src="liquid-glass-18jdn1wbjkey10kam.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+        {
+            "imports": {
+                "@material/web/": "https://esm.run/@material/web/"
+            }
+        }
+    </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+    <link rel="stylesheet" href="mat-accent-color-light.css">
+    <link rel="stylesheet" href="mat-accent-color-dark.css">
+    <link rel="stylesheet" href="mdui.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.4.0/index.js"></script>
+    <script src="../settings/settings-loader.js"></script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage-compat.js"></script>
+    <script src="credentials.js"></script>
+    <script src="spinner-load-element.js"></script>
+    <script src="beta.js"></script>
+    <style>
+        #topAvatar {
+            border-radius: 64px;
+        }
+    </style>
+</head>
+
+<body style="margin:30px;overflow:hidden;">
+    <md-icon-button onclick="window.history.back()" style="position:fixed;inset:0;margin:30px;" data-liquid liq-blur="5">
+        <md-icon>􀆄</md-icon>
+    </md-icon-button>
+
+    
+    <img src="/icon.png" class="acc_bg" alt="">
+
+    <div class="screen_1" style="display: none;">
+        <h1>Welcome to Beta Program Register Form.</h1>
+        <p>Before you continue, ensure you signed in the correct account.</p>
+        <div class="account_card" light-90>
+            <div class="left">    
+                <img src="../editor/avatar-generic.png" class="avatar" alt="User Avatar" id="avatar">
+                <div class="info">    
+                    <span id="name"></span>
+                    <span id="email"></span>
+                </div>
+            </div>
+            <div class="right"></div>
+        </div><br>
+        <md-outlined-button style="width:100%;height:50px;" class="form filled next-step step2" spotlight>
+            <span style="color:#fff">Continue</span>
+            <div class="spotlight"></div>
+        </md-outlined-button><br><br>
+        
+        <md-outlined-button  style="width:100%;height:50px;border:none;--md-outlined-button-outline-color:#00000000" class="form filled" onclick="window.location.href = '../myaccount/'" spotlight>
+            <span style="color:#fff">Change account at dashboard</span>
+            <div class="spotlight"></div>
+        </md-outlined-button>
+
+    </div>
+    <div class="screen_2" style="display:none;">
+        <h1>Choose your preferred Beta program</h1>
+        <p>Choose how you will get Beta releases in the program you prefer. Developer Beta users will also get Public Beta releases.</p>
+        <div class="list-selection" light-90>
+            <div class="list-item">
+                <div class="radio_checkmark">
+                    <input type="radio" name="beta" id="pubBeta" checked>
+                    <span class="checkmark">􀆅</span>
+                </div>
+                <label for="pubBeta" style="width: 100%;">Level Editor Public Beta</label>
+            </div>
+            <md-divider></md-divider>
+            <div class="list-item">
+                <div class="radio_checkmark">    
+                    <input type="radio" name="beta" id="devBeta">
+                    <span class="checkmark">􀆅</span>
+                </div>
+                <label for="devBeta" style="width: 100%;">Level Editor Developer Beta</label>
+            </div>
+        </div><br>
+        <div class="flex" style="justify-content:space-between;">
+            <md-outlined-button class="form back-btn step1" style="background:#fff" spotlight>
+                <span>Go back</span>
+                <div class="spotlight"></div>
+            </md-outlined-button>
+            
+            <md-outlined-button class="form filled next-step step3" spotlight>
+                <span style="color:#fff">Continue</span>
+                <div class="spotlight"></div>
+            </md-outlined-button>
+        </div>
+    </div>
+    <div class="screen_3" style="display: none;">
+        <div class="screen_public_beta" style="display: none;">
+            <h1>Sign up for Level Editor Public Beta</h1>
+            <p>You are going to sign up Level Editor Public Beta for your account. By signing up and taking part in the program, you agree with:</p>
+            <div class="checkbox_container">
+                <div class="checkbox_wrapper">
+                    <input type="checkbox" name="pubbetaagreem" id="tos">
+                    <span onclick="document.querySelector('#tos').click()">
+                        <span class="icon">􀆅</span>
+                    </span>
+                </div>
+                <label for="tos">I agree with the <a href="../editor/document.html?doc=legal_stuff">Terms of Services</a></label>
+            </div>
+            <div class="checkbox_container">
+                <div class="checkbox_wrapper">
+                    <input type="checkbox" name="pubbetaagreem" id="updemail">
+                    <span onclick="document.querySelector('#updemail').click()">
+                        <span class="icon">􀆅</span>
+                    </span>
+                </div>
+                <label for="updemail">(Optional) Get updates, announcements and notifications to my email</a></label>
+            </div>
+            <p>You will be awarded a badge in recognition of being one of our most active Candy Crushers.</p>
+            <br>
+            <div class="flex" style="justify-content:space-between;">
+                <md-outlined-button class="form back-btn step2" style="background:#fff" spotlight>
+                    <span>Go back</span>
+                    <div class="spotlight"></div>
+                </md-outlined-button>
+                
+                <md-outlined-button class="form filled next-step step4" spotlight id="getpubbeta">
+                    <span style="color:#fff">Complete sign up</span>
+                    <div class="spotlight"></div>
+                </md-outlined-button>
+            </div>
+        </div>
+        <div class="screen_dev_beta" style="display: none;">
+            <h1>Sign up for Level Editor Developer Beta</h1>
+            <p>You are going to sign up Level Editor Developer Beta for your account. By signing up and taking part in the program, you agree with:</p>
+            <div class="checkbox_container">
+                <div class="checkbox_wrapper">
+                    <input type="checkbox" name="devbetaprog" id="devtos">
+                    <span onclick="document.querySelector('#devtos').click()">
+                        <span class="icon">􀆅</span>
+                    </span>
+                </div>
+                <label for="devtos">I agree with the <a href="../editor/document.html?doc=legal_stuff">Terms of Services</a></label>
+            </div>
+            <div class="checkbox_container">
+                <div class="checkbox_wrapper">
+                    <input type="checkbox" name="devbetaprog" id="devupdemail">
+                    <span onclick="document.querySelector('#devupdemail').click()">
+                        <span class="icon">􀆅</span>
+                    </span>
+                </div>
+                <label for="devupdemail">(Optional) Get updates, announcements and notifications to my email</a></label>
+            </div>
+            <p>You will be awarded a badge in recognition of being one of our loyal Candy Crushers.</p>
+            <s><p>To complete your Developer Beta registration, please click the Pay button. The Dev Beta program requires a one-time fee of $15, payable via PayPal or a valid credit card.</p></s>
+            <p>To apology, Developer Beta is opening free until October 15th. Anyone can freely sign up with a CCGApps Account.</p>
+            <br>
+            <div class="flex" style="justify-content:space-between;">
+                <md-outlined-button class="form back-btn step1" style="background:#fff" spotlight>
+                    <span>Go back</span>
+                    <div class="spotlight"></div>
+                </md-outlined-button>
+                
+                <md-outlined-button class="form filled next-step step4" spotlight id="getdevbeta">
+                    <span style="color:#fff">Complete</span>
+                    <div class="spotlight"></div>
+                </md-outlined-button>
+            </div>
+        </div>
+    </div>
+    <div class="screen_4" style="text-align: center;display: none;">
+        <img class="congrats_img" src="congrats_beta_registered.png" width="900">
+        <h1>Welcome to Level Editor Beta!</h1>
+        <p>Thank you for registering the Beta program. Now you have access to the Beta releases, exclusive perks and a very cool <div class="badge legendary" style="display: inline-flex;"><div class="icon"></div><span>LEGENDARY</span></div> badge displayed on your account. Beta releases live at <a href="https://ccgappsbeta.web.app/">https://ccgappsbeta.web.app</a>.</p>
+
+        <md-outlined-button class="form filled" spotlight style="width:100%;height:65px;" id="opendashboard">
+            <span style="color:#fff">Sweet!</span>
+            <div class="spotlight"></div>
+        </md-outlined-button>
+    </div>
+    <div class="dashboard" style="display:none;">
+        <h1>Welcome to Beta Home</h1>
+        <span>Member since <span id="registeredbeta"></span></span>
+        <p style="width: 700px;" class="greet">With Beta, you can experiment with us to help us to build the editor better. </p>
+        <div class="features">
+            <div class="features_card get_access_to_new_features" light-45>
+                <div class="content">
+                    <h3>Get access to early features</h3>
+                    <p>Be the first one to test the new features and get latest releases as possible.</p>
+                </div>
+            </div>
+            <div class="features_card legendary_badge_on_account" light-45>
+                <div class="content">
+                    <h3>You Are A Legendary</h3>
+                    <p>Get a super cool Legendary badge on your account to show off with everyone</p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <md-list class="list" style="width: 700px;">
+            <md-list-item>
+                <span>Open Level Editor Beta</span>
+                <md-icon slot="end">􀄯</md-icon>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item
+            onclick="
+                        document.querySelector('.leave-beta').setAttribute('open','');
+                    "
+            >
+                <span style="color:#f00">Leave the Beta Program</span>
+            </md-list-item>
+        </md-list>
+    </div>
+
+    <forge-dialog class="leave-beta" style="--forge-dialog-shape: 30px; --forge-dialog-background: var(--md-sys-color-surface-container-high); width: 90vh; --forge-dialog-elevation: 0;">
+        <forge-scaffold style="margin: 0; width: 500px; height: fit-content; overflow: visible;">
+            <mdui-layout slot="body">
+                <mdui-top-app-bar style="background: #ffffff00;">
+                    <md-icon-button class="close-upgrades" 
+                    onclick="
+                        document.querySelector('.leave-beta').removeAttribute('open');
+                    ">
+                        <md-icon>􀆄</md-icon>
+                    </md-icon-button>
+                    <mdui-top-app-bar-title>Leave the Beta Program</mdui-top-app-bar-title>
+                    <div style="flex-grow: 1"></div>
+                </mdui-top-app-bar>
+                <mdui-layout-main style="margin: 20px; margin-top: 0; overflow: visible; width: 90%;">
+                    <h2>Are you sure want to leave the Level Editor Beta experience?</h2>
+                    <p>If you don't have any interest of the Beta program anymore, you can leave the Beta program and continue getting stable versions. If you sign up the paid program by mistake, contact candycrushgemer at Discord to get a refund.</p>
+                    <br>
+                    <md-text-button id="leavebeta" class="filled dangerous" style="width: 100%;" onclick="handleLeaveBeta()"><span style="color: #ffffff;">Leave</span></md-text-button>
+                </mdui-layout-main>
+            </mdui-layout>
+        </forge-scaffold>
+    </forge-dialog>
+
+    <div class="page-counter" light-90>
+        <div class="dot step1"></div>
+        <div class="dot step2"></div>
+        <div class="dot step3"></div>
+        <div class="dot step4"></div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize existing spotlight elements - remove all inline styles
+            document.querySelectorAll('[spotlight] .spotlight').forEach(spotlight => {
+                spotlight.removeAttribute('style');
+            });
+
+            // Mouse move handler
+            document.addEventListener('mousemove', function (e) {
+                const activeSpotlights = document.querySelectorAll('[spotlight] .spotlight.active');
+                activeSpotlights.forEach(spotlight => {
+                    const container = spotlight.closest('[spotlight]');
+                    if (container) {
+                        const rect = container.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        spotlight.style.setProperty('left', (x - 100) + 'px', 'important');
+                        spotlight.style.setProperty('top', (y - 100) + 'px', 'important');
+                    }
+                });
+            });
+
+            // Mouse down handler
+            document.addEventListener('mousedown', function (e) {
+                const spotlightContainer = e.target.closest('[spotlight]');
+                if (spotlightContainer) {
+                    const spotlight = spotlightContainer.querySelector('.spotlight');
+                    if (spotlight) {
+                        spotlight.classList.add('active');
+                        
+                        const rect = spotlightContainer.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        spotlight.style.setProperty('left', (x - 100) + 'px', 'important');
+                        spotlight.style.setProperty('top', (y - 100) + 'px', 'important');
+                    }
+                }
+            });
+
+            // Mouse up handler
+            document.addEventListener('mouseup', function (e) {
+                document.querySelectorAll('[spotlight] .spotlight').forEach(spotlight => {
+                    spotlight.classList.remove('active');
+                });
+            });
+
+            // Touch handlers for mobile
+            document.addEventListener('touchstart', function (e) {
+                if (e.touches.length > 0) {
+                    const touch = e.touches[0];
+                    positionSpotlights(touch.clientX, touch.clientY);
+                    
+                    // Show spotlight when touching spotlight container
+                    const spotlightContainer = e.target.closest('[spotlight]');
+                    if (spotlightContainer) {
+                        const spotlight = spotlightContainer.querySelector('.spotlight');
+                        if (spotlight) {
+                            spotlight.classList.add('active');
+                        }
+                    }
+                }
+            });
+
+            document.addEventListener('touchend', function (e) {
+                const spotlights = document.querySelectorAll('.spotlight');
+                spotlights.forEach(spotlight => {
+                    spotlight.classList.remove('active');
+                });
+            });
+
+            document.addEventListener('touchmove', function (e) {
+                // Only prevent default if we're dragging over interactive elements
+                const target = e.target;
+                const isInteractive = target.closest('[spotlight], md-filled-button, button, [role="button"], .card');
+
+                if (isInteractive) {
+                    e.preventDefault(); // Prevent scrolling while dragging over buttons/cards
+                }
+
+                if (e.touches.length > 0) {
+                    const touch = e.touches[0];
+                    positionSpotlights(touch.clientX, touch.clientY);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

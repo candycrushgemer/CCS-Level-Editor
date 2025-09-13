@@ -1,0 +1,4 @@
+<TextureAtlas imagePath="bank_deal_tags_banners.ktp" width="256" height="256" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="bank_deal_tags_banners/bank_deal_banner.png" x="2" y="205" w="216" h="49" pX="0.5" pY="0.5"/>
+	<sprite n="bank_deal_tags_banners/bank_deal_pink_tag.png" x="2" y="84" w="115" h="117" pX="0.5" pY="0.5"/>
+</TextureAtlas>

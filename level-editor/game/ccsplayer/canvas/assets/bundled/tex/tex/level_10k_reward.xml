@@ -1,0 +1,12 @@
+<TextureAtlas imagePath="level_10k_reward.ktp" width="512" height="512" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="level_10k_reward/level_10k_tiffi.png" x="2" y="301" w="200" h="209" pX="0.5" pY="0.5"/>
+	<sprite n="level_10k_reward/level_10k_yeti.png" x="2" y="89" w="186" h="208" pX="0.5" pY="0.5" oW="208" oH="186" r="y"/>
+	<sprite n="level_10k_reward/level_10k_firework_blue.png" x="2" y="8" w="77" h="77" pX="0.5" pY="0.5"/>
+	<sprite n="level_10k_reward/level_10k_star.png" x="83" y="33" w="45" h="52" pX="0.5" pY="0.5"/>
+	<sprite n="level_10k_reward/level_10k_clip.png" x="83" y="10" w="18" h="19" pX="0.5" pY="0.5" oW="20" oH="18" r="y"/>
+	<sprite n="level_10k_reward/level_10k_confetti_1.png" x="105" y="11" w="12" h="18" pX="0.5" pY="0.5" oW="18" oH="12" r="y"/>
+	<sprite n="level_10k_reward/level_10k_confetti_2.png" x="121" y="11" w="13" h="18" pX="0.5" pY="0.5" oW="18" oH="13" r="y"/>
+	<sprite n="level_10k_reward/level_10k_share_icon.png" x="132" y="44" w="36" h="41" pX="0.5" pY="0.5" oX="1" oW="42" oH="37" r="y"/>
+	<sprite n="level_10k_reward/level_10k_yeti_head.png" x="192" y="111" w="129" h="186" pX="0.5" pY="0.5"/>
+	<sprite n="level_10k_reward/level_10k_yeti_arm.png" x="325" y="384" w="162" h="126" pX="0.5" pY="0.5" oW="126" oH="162" r="y"/>
+</TextureAtlas>

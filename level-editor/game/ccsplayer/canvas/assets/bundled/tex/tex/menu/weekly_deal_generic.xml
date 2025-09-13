@@ -1,0 +1,7 @@
+<TextureAtlas imagePath="weekly_deal_generic.ktp" width="256" height="256" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="weekly_deal_generic/weekly_deal_generic_1.png" x="2" y="2" w="165" h="180" pX="0.5" pY="0.5"/>
+	<sprite n="weekly_deal_generic/weekly_deal_generic_2.png" x="2" y="186" w="192" h="56" pX="0.5" pY="0.5"/>
+	<sprite n="weekly_deal_generic/weekly_deal_generic_5.png" x="171" y="2" w="67" h="87" pX="0.5" pY="0.5"/>
+	<sprite n="weekly_deal_generic/weekly_deal_generic_4.png" x="171" y="93" w="44" h="76" pX="0.5" pY="0.5"/>
+	<sprite n="weekly_deal_generic/weekly_deal_generic_3.png" x="219" y="93" w="30" h="95" pX="0.5" pY="0.5"/>
+</TextureAtlas>

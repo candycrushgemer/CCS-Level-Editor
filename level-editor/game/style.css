@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    min-width: 100vw;
+    width: 100vw;
+    height: 100vh;
+    background: url(bg/w6_bg.jpg) no-repeat center center fixed;
+    background-size: cover;
+
+}
+
+iframe {
+    width: 700px;
+    height: 929px;
+    background: #ffffff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0px 0px 20px 5px #00000060;
+    border: none;
+}

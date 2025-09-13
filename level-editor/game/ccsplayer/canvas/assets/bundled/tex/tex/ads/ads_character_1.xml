@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:ed470d4a573200e3c2d278470c6035a6:bc1a34664531b394ac3e6d989198bd81:5f359dedbb26b269dbeac5843acc648e$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="ads_character_1.png" width="512" height="512">
+    <sprite n="ads_character_arm_1.png" x="157" y="409" w="64" h="87" oX="1" oY="0" oW="70" oH="92"/>
+    <sprite n="ads_character_arm_2.png" x="4" y="409" w="147" h="99" oX="0" oY="0" oW="150" oH="104"/>
+    <sprite n="ads_character_arm_3.png" x="227" y="409" w="132" h="68" oX="0" oY="0" oW="134" oH="72"/>
+    <sprite n="ads_character_body_1.png" x="4" y="4" w="445" h="399" oX="4" oY="4" oW="460" oH="414"/>
+    <sprite n="ads_character_pin.png" x="455" y="4" w="39" h="38" oX="3" oY="1" oW="46" oH="46" r="y"/>
+    <sprite n="ads_character_stick.png" x="227" y="483" w="16" h="20" oX="1" oY="0" oW="21" oH="20"/>
+</TextureAtlas>

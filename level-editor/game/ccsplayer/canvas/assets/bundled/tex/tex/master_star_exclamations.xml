@@ -1,0 +1,4 @@
+<TextureAtlas imagePath="master_star_exclamations.ktp" width="256" height="256" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="master_star_exclamations/sugar_crystalize.png" x="1" y="1" w="202" h="77" pX="0.5" pY="0.5" oX="11" oY="2" oW="224" oH="81"/>
+	<sprite n="master_star_exclamations/stars_crystalize.png" x="1" y="80" w="204" h="69" pX="0.5" pY="0.5" oX="5" oY="2" oW="214" oH="81"/>
+</TextureAtlas>

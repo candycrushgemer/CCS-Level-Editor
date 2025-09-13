@@ -1,0 +1,5 @@
+<TextureAtlas imagePath="season_mastery.ktp" width="512" height="512" premultipliedAlpha="false" king_version="1.5.2">
+	<sprite n="participating_events_frame.png" x="2" y="2" w="198" h="198" pX="0.5" pY="0.5"/>
+	<sprite n="participating_events_frame_square.png" x="204" y="2" w="196" h="196" pX="0.5" pY="0.5"/>
+	<sprite n="season_mastery_point.png" x="2" y="204" w="179" h="179" pX="0.5" pY="0.5"/>
+</TextureAtlas>

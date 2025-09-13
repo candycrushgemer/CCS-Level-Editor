@@ -1,0 +1,32 @@
+<TextureAtlas imagePath="hll2.ktp" width="512" height="512" premultipliedAlpha="true" king_version="1.5.2">
+	<sprite n="hll2/hll_legendarypin.png" x="2" y="2" w="118" h="178" pX="0.5" pY="0.5" oY="3" oW="118" oH="184"/>
+	<sprite n="hll2/hll_nightmarishlyhardpin.png" x="124" y="2" w="124" h="162" pX="0.5" pY="0.5" oX="6" oW="137" oH="164"/>
+	<sprite n="hll2/hll_hardpin.png" x="2" y="184" w="123" h="145" pX="0.5" pY="0.5" oX="6" oW="137" oH="147"/>
+	<sprite n="hll2/SuperHardCandy1.png" x="252" y="2" w="231" h="60" pX="0.5" pY="0.5" oX="13" oY="2" oW="256" oH="64"/>
+	<sprite n="hll2/LegendaryCandy1.png" x="2" y="333" w="231" h="60" pX="0.5" pY="0.5" oX="13" oY="2" oW="256" oH="64"/>
+	<sprite n="hll2/NightmareCandy1.png" x="2" y="397" w="231" h="59" pX="0.5" pY="0.5" oX="13" oY="3" oW="256" oH="64"/>
+	<sprite n="hll2/HardCandy1.png" x="252" y="66" w="231" h="59" pX="0.5" pY="0.5" oX="13" oY="3" oW="256" oH="64"/>
+	<sprite n="hll2/skull_icon_legendary.png" x="129" y="168" w="100" h="101" pX="0.5" pY="0.5"/>
+	<sprite n="hll2/skull_icon_legendary_stroke.png" x="252" y="129" w="107" h="92" pX="0.5" pY="0.5"/>
+	<sprite n="hll2/skull_icon_legendary_bite_1.png" x="363" y="129" w="124" h="78" pX="0.5" pY="0.5" oW="126" oH="78"/>
+	<sprite n="hll2/hll_superhardpin.png" x="237" y="225" w="89" h="106" pX="0.5" pY="0.5" oX="2" oY="3" oW="92" oH="110"/>
+	<sprite n="hll2/skull_icon_nightmare_bite_1.png" x="330" y="225" w="106" h="71" pX="0.5" pY="0.5" oW="107" oH="71"/>
+	<sprite n="hll2/skull_icon_nightmare.png" x="237" y="335" w="94" h="68" pX="0.5" pY="0.5"/>
+	<sprite n="hll2/skull_icon_nightmare_stroke.png" x="237" y="407" w="101" h="63" pX="0.5" pY="0.5"/>
+	<sprite n="hll2/skull_icon_legendary_bite_0.png" x="335" y="300" w="92" h="67" pX="0.5" pY="0.5" oX="1" oW="93" oH="67"/>
+	<sprite n="hll2/skull_icon_legendary_bbq.png" x="440" y="211" w="61" h="78" pX="0.5" pY="0.5"/>
+	<sprite n="hll2/skull_icon_superhard.png" x="129" y="273" w="77" h="56" pX="0.5" pY="0.5"/>
+	<sprite n="hll2/skull_icon_superhard_bite_1.png" x="431" y="300" w="79" h="53" pX="0.5" pY="0.5"/>
+	<sprite n="hll2/vignette.png" x="342" y="371" w="64" h="64" pX="0.5" pY="0.5"/>
+	<sprite n="hll2/skull_icon_hard_bite_1.png" x="342" y="439" w="72" h="53" pX="0.5" pY="0.5"/>
+	<sprite n="hll2/inset_hll.png" x="431" y="357" w="58" h="58" pX="0.5" pY="0.5"/>
+	<sprite n="hll2/skull_icon_hard.png" x="418" y="419" w="63" h="52" pX="0.5" pY="0.5"/>
+	<sprite n="hll2/skull_icon_nightmare_strokeside.png" x="2" y="460" w="101" h="20" pX="0.5" pY="0.5"/>
+	<sprite n="hll2/skull_icon_legendary_strokeside.png" x="2" y="484" w="101" h="20" pX="0.5" pY="0.5"/>
+	<sprite n="hll2/popup_bkg_panel_superhard.png" x="107" y="460" w="34" h="34" pX="0.5" pY="0.5" oX="3" oY="2" oW="39" oH="39"/>
+	<sprite n="hll2/popup_bkg_panel_nightmare.png" x="145" y="460" w="34" h="34" pX="0.5" pY="0.5" oX="3" oY="2" oW="39" oH="39"/>
+	<sprite n="hll2/popup_bkg_panel_legendary.png" x="183" y="460" w="34" h="34" pX="0.5" pY="0.5" oX="3" oY="2" oW="39" oH="39"/>
+	<sprite n="hll2/popup_bkg_panel_hard.png" x="221" y="474" w="34" h="34" pX="0.5" pY="0.5" oX="3" oY="2" oW="39" oH="39"/>
+	<sprite n="hll2/skull_icon_legendary_bite_2.png" x="259" y="474" w="45" h="17" pX="0.5" pY="0.5"/>
+	<sprite n="hll2/skull_icon_legendary_bite_00.png" x="259" y="495" w="30" h="15" pX="0.5" pY="0.5" oX="3" oY="3" oW="38" oH="21"/>
+</TextureAtlas>
